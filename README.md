@@ -45,8 +45,6 @@ Avec :
 | test  | Si vous réalisez un test|
 
 Veillez à commit et push le plus <span style="color:red"> régulièrement </span> possible.
- possible.
-
 
 ## Buglist
 
