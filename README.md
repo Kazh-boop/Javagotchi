@@ -30,12 +30,12 @@ Pour que ce soit plus facile de s'y retrouver dans les modifs, écrivez vos mess
 ```
 pref(class) : description rapide de ce que vous avez fait dans le commit
 
-(class) --> La classe ou la modification est effectué (ou le package) dans la mesure du possible (optionnel) 
-
-Veillez à commit et push le plus [color=#BB0B0B] régulièrement [/color] possible.
-
 ```
 Avec : 
+
+
+(class) --> La classe ou la modification est effectué (ou le package) dans la mesure du possible (optionnel) 
+
 
 | Pref  | Description | 
 | :--------------- | :--------------- |
@@ -43,6 +43,9 @@ Avec :
 | docs  | Si vous ajoutez/modifiez de la doc  | 
 | fix  | Si vous corrigez un bug connu |
 | test  | Si vous réalisez un test|
+
+Veillez à commit et push le plus [color=#BB0B0B] régulièrement [/color] possible.
+
 
 ## Buglist
 
