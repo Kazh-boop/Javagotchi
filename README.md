@@ -44,7 +44,8 @@ Avec :
 | fix  | Si vous corrigez un bug connu |
 | test  | Si vous réalisez un test|
 
-Veillez à commit et push le plus [color=#BB0B0B] régulièrement [/color] possible.
+Veillez à commit et push le plus <span style="color:red"> régulièrement </span> possible.
+ possible.
 
 
 ## Buglist
