@@ -1,7 +1,7 @@
 package app.view;
 
-import javax.swing.JFrame;
-
+import javax.swing.*;
+import java.awt.Dimension;
 public class MainFrame extends JFrame {
     
     public MainFrame() {
@@ -9,9 +9,8 @@ public class MainFrame extends JFrame {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //ends program when JFrame closed
 
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setPreferredSize(new Dimension(500, 500));
+        pack();
 
-        setVisible(true); //if false then frame will be invisible
-        setResizable(false);
     }
 }
