@@ -6,13 +6,13 @@ import java.awt.Dimension;
 import java.awt.Image;
 
 import app.controller.*;
+import app.model.Cat;
 
 public class MainMenu {
 
     MainMenuController m;
     MainFrame f;
     JPanel j;
-    JPanel r;
     JButton b;
     JProgressBar p;
     JTextField t;
@@ -22,11 +22,13 @@ public class MainMenu {
         this.m = new MainMenuController(this);
         this.f = new MainFrame();
         this.j = new JPanel();
-        r = new JPanel();
 
-        Image right = new ImageIcon("app/image/right.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
-        this.b = new JButton(" ", new ImageIcon(right));
-        b.setIcon(new ImageIcon("app/image/bg.png"));
+        
+        Cat a = new Cat("A");
+
+        //Image right = new ImageIcon("app/image/right.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+        this.b = new JButton(a.getMood(), new ImageIcon());
+        //b.setIcon(new ImageIcon("app/image/bg.png"));
         b.setBorderPainted(false);
         b.setContentAreaFilled(false); 
         b.setFocusPainted(false); 
@@ -40,12 +42,9 @@ public class MainMenu {
         p.setValue(0);
         p.setStringPainted(true);
 
-        r.add(p);
-        r.setOpaque(false);
+        j.add(p);
         j.add(b);
-        j.setOpaque(false);
         f.add(j);
-        f.add(r);
 
     
         f.setVisible(true); //if false then frame will be invisible

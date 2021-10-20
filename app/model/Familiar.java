@@ -17,6 +17,7 @@ public abstract class Familiar {
 
     protected int vitality;
 
+    protected Mood mood;
 
     // Constructor called by childs class to init attributes value
     protected Familiar() {
@@ -25,6 +26,7 @@ public abstract class Familiar {
         this.hungriness = 100;
         this.hygiene = 100;
         this.vitality = 100;
+        this.mood = Mood.HAPPY;
     }
 
     // Accessors
@@ -47,5 +49,8 @@ public abstract class Familiar {
     public void setHappiness(int happiness) {
         this.happiness = happiness;
     }
-
+    
+    public String getMood() {
+        return mood.name();
+    }
 }
