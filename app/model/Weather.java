@@ -1,10 +1,10 @@
 package app.model;
 
 public enum Weather {
-    SUNNY(0.7, "Ensolleillé", ""),
+    SUNNY(0, Animal.getCoeff(0), "Ensolleillé", ""),
     CLOUDY(1, "", ""),
-    RAINY(1.3, "", ""),
-    SNOWY(1.1, "", "");
+    RAINY(2, 1.3, "", ""),
+    SNOWY(3, 1.1, "", "");
 
     int id;
     double coef;
