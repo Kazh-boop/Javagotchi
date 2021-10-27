@@ -7,35 +7,71 @@ import java.util.HashMap;
 
 public class Room { 
 
-
-    private int currentRoom = 0;
     private Weather weather;
-    
+    private Rooms room;
 
-    public String[] rooms = {
-        "Cuisine",
-        "Chambre",
-        "Jardin"
-    };
-
+    // constructor
     public Room() {
         weather = Weather.SUNNY;
+        room = Rooms.LIVING_ROOM;
+    }
     
+    // getters
+    public Weather getWeather() {
+        return weather;
     }
-
-    public getWeatherName() {
-        return weather.getName();
-    }
+    
+	public Rooms getCurrentRoom() {
+		return room;
+	}
 
     public String getImageRoom() {
         return weather.getUrl();
     }
 
-    public String changeWeather(){
+    
+    
+    public void changeWeather(){
         int newWeather = (int) (Math.random()*100 + 1);
-        if(newWeather < 5) {
-            
-        }
-        return null;
+        if (newWeather < 5) 
+            weather = Weather.SNOWY;
+        else if (newWeather < 30)
+        	weather = Weather.RAINY;
+        else if (newWeather < 60)
+        	weather = Weather.CLOUDY;
+        else
+        	weather = Weather.SUNNY;
     }
+	
+	public void moveLeft() {
+		switch(room) {
+		case GARDEN:
+			break;
+		case KITCHEN:
+			room = Rooms.LIVING_ROOM;
+			break;
+		case LIVING_ROOM:
+			room = Rooms.GARDEN;
+			break;
+		default:
+			break;
+		}
+		this.changeWeather();
+	}
+	
+	public void moveRight() {
+		switch(room) {
+		case GARDEN:
+			room = Rooms.LIVING_ROOM;
+			break;
+		case KITCHEN:
+			room = Rooms.KITCHEN;
+			break;
+		case LIVING_ROOM:
+			break;
+		default:
+			break;
+		}
+		this.changeWeather();
+	}
 }
