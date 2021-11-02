@@ -5,21 +5,22 @@ import java.awt.event.*;
 
 public class MainMenuController implements ActionListener {
 
-    MainMenu m;
+    MainMenu main;
 
     public MainMenuController(MainMenu m) {
-        this.m = m;
+        this.main = m;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == this.m.getB1()) {
-            System.out.println("end");
-            System.exit(0);
-
+        if(e.getSource() == this.main.getNouvellePartie()) {
+        	new NouvellePartieMenu();
             
+        }else if(e.getSource() == this.main.getSauvegardes()) {
+        	new SauvegardesMenu();
+            
+        }else if(e.getSource() == this.main.getQuitter()) {
+            System.exit(0);
         }
     }
-
-
 }

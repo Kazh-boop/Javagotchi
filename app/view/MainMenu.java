@@ -1,76 +1,74 @@
 package app.view;
 
 import javax.swing.*;
-
 import java.awt.Dimension;
-import java.awt.Image;
+import java.awt.GridLayout;
 
 import app.controller.*;
-import app.model.Cat;
 
 public class MainMenu {
-
-    MainMenuController m;
-    MainFrame f;
-    JPanel j;
-    JButton b;
-    JProgressBar p;
-    JTextField t;
+	
+	MainMenuController mainMenuController;
+	MainFrame mainFrame;
+	JPanel mainPanel;
+	
+	JLabel Titre;
+    JButton nouvellePartie;
+    JButton sauvegardes;
+    JButton quitter;
 
     public MainMenu() {
-
-        this.m = new MainMenuController(this);
-        this.f = new MainFrame();
-        this.j = new JPanel();
-
+    	
+        this.mainMenuController = new MainMenuController(this);
+        this.mainFrame = new MainFrame();
+        this.mainPanel = new JPanel();
         
-        Cat a = new Cat("A");
-
-        //Image right = new ImageIcon("app/image/right.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
-        this.b = new JButton(a.getMood(), new ImageIcon());
-        //b.setIcon(new ImageIcon("app/image/bg.png"));
-        b.setBorderPainted(false);
-        b.setContentAreaFilled(false); 
-        b.setFocusPainted(false); 
-        b.setOpaque(false);
-
-        b.setPreferredSize(new Dimension(150,100));
-        this.b.addActionListener(this.m);
-        t = new JTextField();
-    
-        p = new JProgressBar(0, 100);
-        p.setValue(0);
-        p.setStringPainted(true);
-
-        j.add(p);
-        j.add(b);
-        f.add(j);
-
-    
-        f.setVisible(true); //if false then frame will be invisible
-        f.setResizable(false);
-
-        for(int i = 0; i <= p.getMaximum(); i++) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            p.setValue(i);
-            System.out.println(p.getValue());
-        }
-
-        /*
-        f.getContentPane().removeAll();
-        f.repaint();
-        */
+        // composition des JComponent
+        this.Titre = new JLabel("Titre");
+        this.nouvellePartie = new JButton("Nouvelle Partie");
+        this.sauvegardes = new JButton("Sauvegardes");
+        this.quitter = new JButton("Quitter");
+        
+        // placement des JComponent
+        
+        // habillage des JComponent 
+        //nouvellePartie.setPreferredSize(new Dimension(150,100));
+        //sauvegardes.setPreferredSize(new Dimension(150,100));
+        //quitter.setPreferredSize(new Dimension(150,100));
+        
+        // création des eventListener pour les JButton
+        this.nouvellePartie.addActionListener(this.mainMenuController);
+        this.sauvegardes.addActionListener(this.mainMenuController);
+        this.quitter.addActionListener(this.mainMenuController);
+        
+        // ajout des éléments dans la mainFrame
+        mainPanel.add(Titre);
+        mainPanel.add(nouvellePartie);
+        mainPanel.add(sauvegardes);
+        mainPanel.add(quitter);
+        mainFrame.add(mainPanel);
+        
+        
+        // habillage de la mainFrame
+        mainPanel.setLayout(new GridLayout(4,1,0,50));
+        mainFrame.setSize(1280,720);
+        mainFrame.setVisible(true); //if false then frame will be invisible
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public JButton getB1(){
-        return b;
+    public JButton getNouvellePartie(){
+        return nouvellePartie;
+    }
+    
+    public JButton getSauvegardes(){
+        return sauvegardes;
+    }
+    
+    public JButton getQuitter(){
+        return quitter;
     }
     
     public JFrame getMainFrame(){
-        return this.f;
+        return this.mainFrame;
     }
 }
