@@ -16,8 +16,6 @@ public class MainMenuController implements ActionListener {
         if(e.getSource() == this.m.getB1()) {
             System.out.println("end");
             System.exit(0);
-
-            
         }
     }
 
