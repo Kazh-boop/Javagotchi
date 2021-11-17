@@ -23,7 +23,7 @@ public class Room {
     
     }
 
-    public getWeatherName() {
+    public String getWeatherName() {
         return weather.getName();
     }
 
