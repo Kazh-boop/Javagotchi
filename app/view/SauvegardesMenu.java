@@ -29,9 +29,9 @@ public class SauvegardesMenu {
         
         // habillage des JComponent
         
-        // création des eventListener pour les JButton
+        // crï¿½ation des eventListener pour les JButton
         
-        // ajout des éléments dans la mainFrame
+        // ajout des ï¿½lï¿½ments dans la mainFrame
         mainPanel.add(Titre);
         mainFrame.add(mainPanel);
         
