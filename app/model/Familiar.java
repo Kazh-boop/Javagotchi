@@ -19,14 +19,23 @@ public abstract class Familiar {
 
     protected Mood mood;
 
+    private static final int MAX_STATS = 100;
+
     // Constructor called by childs class to init attributes value
     protected Familiar() {
-        this.happiness = 100;
-        this.energy = 100;
-        this.hungriness = 100;
-        this.hygiene = 100;
-        this.vitality = 100;
+        this.happiness = MAX_STATS;
+        this.energy = MAX_STATS;
+        this.hungriness = MAX_STATS;
+        this.hygiene = MAX_STATS;
+        this.vitality = MAX_STATS;
         this.mood = Mood.HAPPY;
+    }
+
+    protected Familiar(Familiar f) {
+        this.energy = f.energy;
+        this.happiness = f.happiness;
+        this.hygiene = f.hygiene;
+        this.hungriness = f.hungriness;
     }
 
     // Accessors
@@ -39,7 +48,9 @@ public abstract class Familiar {
     }
 
     public void setHungriness(int hungriness) {
-        this.hungriness = hungriness;
+        if(hungriness < MAX_STATS){
+            this.hungriness = hungriness;
+        }
     }
 
     public int getHappiness() {
@@ -47,10 +58,14 @@ public abstract class Familiar {
     }
 
     public void setHappiness(int happiness) {
-        this.happiness = happiness;
+        if(happiness < MAX_STATS) {
+            this.happiness = happiness;
+        }
     }
-    
+
     public String getMood() {
-        return mood.name();
+        return mood.getName();
     }
+
+    
 }
