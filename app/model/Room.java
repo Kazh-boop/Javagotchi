@@ -10,7 +10,7 @@ public class Room {
 
     private int currentRoom = 0;
     private Weather weather;
-    
+    private static final int AMOUNT_OF_WEATHER = 5;
 
     public String[] rooms = {
         "Cuisine",
@@ -33,7 +33,7 @@ public class Room {
 
     public String changeWeather(){
         int newWeather = (int) (Math.random()*100 + 1);
-        if(newWeather < 5) {
+        if(newWeather < AMOUNT_OF_WEATHER ) {
             
         }
         return null;

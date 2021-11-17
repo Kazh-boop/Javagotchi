@@ -12,6 +12,12 @@ public enum Mood {
         this.coef = coef;
         this.name = name;
     }
- 
-    
+
+    protected double getCoef() {
+        return coef;
+    }
+
+    protected String getName() {
+        return name;
+    }
 }
