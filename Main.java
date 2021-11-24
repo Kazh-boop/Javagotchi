@@ -1,3 +1,5 @@
+import app.model.Familiar;
+import app.model.Rabbit;
 import app.view.*;
 
 public class Main {
@@ -5,5 +7,6 @@ public class Main {
         new MainMenu();
         GamePanel gamePanel = new GamePanel();
         gamePanel.init();
+        Familiar familiar = new Rabbit();
     }
 }

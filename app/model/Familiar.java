@@ -1,27 +1,25 @@
 package app.model;
 
-import java.util.Currency;
-
 public abstract class Familiar {
-
 
     // Familiar attributes
     protected String name;
-
     protected String food;
     protected int hungriness;
-
     protected int happiness;
-
     protected int energy;
-
     protected int hygiene;
-
     protected int vitality;
-
     protected Mood mood;
+    protected Room room;
+    protected int portions;
+    
+    protected TimerPortions timerPortions;
 
     private static final int MAX_STATS = 100;
+    private static final int MAX_FEED_PORTION = 35;
+    private static final int DECREASE_STATS_PER_ACTION = 5;
+    private static final int MAX_PORTIONS = 4;
 
     // Constructor called by childs class to init attributes value
     protected Familiar() {
@@ -31,6 +29,10 @@ public abstract class Familiar {
         this.hygiene = MAX_STATS;
         this.vitality = MAX_STATS;
         this.mood = Mood.HAPPY;
+        this.room = new Room(Rooms.LIVING_ROOM);
+        this.portions = 2;
+        this.timerPortions = new TimerPortions(this);
+        this.timerPortions.run();
     }
 
     protected Familiar(Familiar f) {
@@ -40,6 +42,10 @@ public abstract class Familiar {
         this.hungriness = f.hungriness;
         this.vitality = f.vitality;
         this.mood = f.mood;
+        this.room = f.room;
+        this.portions = f.portions;
+        this.timerPortions = new TimerPortions(f);
+        this.timerPortions.run();
     }
 
     // Accessors
@@ -52,9 +58,31 @@ public abstract class Familiar {
     }
 
     public void setHungriness(int hungriness) {
-        if(hungriness < MAX_STATS){
-            this.hungriness = hungriness;
+        this.hungriness = hungriness;
+    }
+
+    public void feed() {
+        if(hungriness < MAX_STATS && this.room.getRoom() == Rooms.KITCHEN && this.portions > 0){
+            // we can only feed him whith 35% of the hungriness
+            this.hungriness += MAX_FEED_PORTION;
+            this.energy -= DECREASE_STATS_PER_ACTION;
+            this.hygiene -= DECREASE_STATS_PER_ACTION;
+        }else{
+            // TODO indiquer à l'utilisateur qu'il ne peut pas le nourrir
         }
+    }
+
+    public void addPortion()
+    {
+        if(this.portions < MAX_PORTIONS)
+        {
+            this.portions++;
+        }
+    }
+
+    public int getPortions()
+    {
+        return this.portions;
     }
 
     public int getHappiness() {

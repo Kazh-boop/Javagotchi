@@ -1,5 +1,7 @@
 package app.controller;
 
+import app.model.Familiar;
+import app.model.Rabbit;
 import app.view.*;
 import java.awt.event.*;
 
