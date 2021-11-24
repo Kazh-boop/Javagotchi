@@ -12,12 +12,6 @@ public class Room {
     private Weather weather;
     private static final int AMOUNT_OF_WEATHER = 5;
 
-    public String[] rooms = {
-        "Cuisine",
-        "Chambre",
-        "Jardin"
-    };
-
     public Room() {
         
     }
