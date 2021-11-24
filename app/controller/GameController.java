@@ -1,12 +1,14 @@
 package app.controller;
 
 import javax.swing.JButton;
-import app.model.Familiar;
+import app.model.*;
 
-private Familiar familiar = new Familiar();
-private GamePanel gamePanel;
+//private Familiar familiar = new Familiar();
+//private GamePanel gamePanel;
 
 public class GameController {
+    /*void GameController()
+    
     public int onClickEatButton()
     {
         int result = this.familiar.getHungriness() + 35;
@@ -17,5 +19,5 @@ public class GameController {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-    }
+    }*/
 }

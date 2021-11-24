@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JProgressBar;
 import javax.swing.event.*;
 
-import app.controller.GameController;
+import app.controller.*;
 
 public class GamePanel {
     private MainFrame mainFrame = new MainFrame();
@@ -27,7 +27,7 @@ public class GamePanel {
     }
 
     public void actionPerformed(Action e){
-        this.progressBar.setValue(gameController.onClickEatButton());
+        //this.progressBar.setValue(gameController.onClickEatButton());
     }
 
 }

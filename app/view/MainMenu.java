@@ -36,12 +36,12 @@ public class MainMenu {
         //sauvegardes.setPreferredSize(new Dimension(150,100));
         //quitter.setPreferredSize(new Dimension(150,100));
         
-        // création des eventListener pour les JButton
+        // crï¿½ation des eventListener pour les JButton
         this.nouvellePartie.addActionListener(this.mainMenuController);
         this.sauvegardes.addActionListener(this.mainMenuController);
         this.quitter.addActionListener(this.mainMenuController);
         
-        // ajout des éléments dans la mainFrame
+        // ajout des elements dans la mainFrame
         mainPanel.add(Titre);
         mainPanel.add(nouvellePartie);
         mainPanel.add(sauvegardes);
