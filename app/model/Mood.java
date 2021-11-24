@@ -1,9 +1,11 @@
 package app.model;
 
 public enum Mood {
-    HAPPY(0.7, "Content"),
-    FINE(1, "Normal"),
-    SAD(1.3, "Triste");
+    HAPPY(0.6, "Épanoui"),
+    JOYFUL(0.8, "Joyeux"),
+    FINE(1, "Neutre"),
+    SAD(1.2, "Maussade"),
+    MISERABLE(1.4, "Malheureux"),;
     
     double coef;
     String name;

@@ -31,7 +31,7 @@ public class SauvegardesMenu {
         
         // creation des eventListener pour les JButton
         
-        // ajout des �l�ments dans la mainFrame
+        // ajout des elements dans la mainFrame
         mainPanel.add(Titre);
         mainFrame.add(mainPanel);
         

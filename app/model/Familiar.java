@@ -1,5 +1,7 @@
 package app.model;
 
+import java.util.Currency;
+
 public abstract class Familiar {
 
 
@@ -36,6 +38,8 @@ public abstract class Familiar {
         this.happiness = f.happiness;
         this.hygiene = f.hygiene;
         this.hungriness = f.hungriness;
+        this.vitality = f.vitality;
+        this.mood = f.mood;
     }
 
     // Accessors
@@ -67,5 +71,14 @@ public abstract class Familiar {
         return mood.getName();
     }
 
-    
+    public Mood calculateMood(Weather currentWeather, Room currentRoom) {
+        int moodValue = (hungriness + happiness + hygiene + energy + vitality) / 5;
+
+        if(moodValue >= 85) return Mood.HAPPY;
+        else if(moodValue >= 70) return Mood.JOYFUL;
+        else if(moodValue >= 50) return Mood.FINE;
+        else if(moodValue >= 30) return Mood.SAD;
+
+        return Mood.MISERABLE;
+    }
 }
