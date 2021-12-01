@@ -95,6 +95,29 @@ public abstract class Familiar {
         }
     }
 
+    public int getHygiene(){
+        return hygiene;
+    }
+
+    public void setHygiene(int hygiene){
+        if(hygiene < MAX_STATS){
+            this.hygiene = hygiene;
+        }
+        if (hygiene < 10){
+            //this.moodValue -= 10;  TODO quand hygiene moins de 10% baise du mood
+        }
+    }
+
+    public int getEnergy(){
+        return energy;
+    }
+
+    public void setEnergy(int energy){
+        if (energy < MAX_STATS){
+            this.energy=energy;
+        }
+    }
+
     public String getMood() {
         return mood.getName();
     }
@@ -116,5 +139,9 @@ public abstract class Familiar {
 
     public String getFamiliarType() {
         return familiarType;
+    }
+
+    public Rooms getRooms(){
+        return room.getRoom();
     }
 }
