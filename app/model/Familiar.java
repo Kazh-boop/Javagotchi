@@ -13,6 +13,8 @@ public abstract class Familiar {
 
     protected int happiness;
 
+    protected int hygiene;
+
     protected int energy;
 
     protected int hygiene;
@@ -64,6 +66,29 @@ public abstract class Familiar {
     public void setHappiness(int happiness) {
         if(happiness < MAX_STATS) {
             this.happiness = happiness;
+        }
+    }
+
+    public int getHygiene(){
+        return hygiene;
+    }
+
+    public void setHygiene(int hygiene){
+        if(hygiene < MAX_STATS){
+            this.hygiene = hygiene;
+        }
+        if (hygiene < 10){
+            this.moodValue=moodValue-10; 
+        }
+    }
+
+    public int getEnergy(){
+        return energy;
+    }
+
+    public void setEnergy(int energy){
+        if (energy < MAX_STATS){
+            this.energy=energy;
         }
     }
 
