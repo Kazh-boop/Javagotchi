@@ -1,7 +1,5 @@
 package app.model;
 
-import java.util.Currency;
-
 public abstract class Familiar {
 
 
@@ -9,9 +7,8 @@ public abstract class Familiar {
     protected String name;
 
     protected String food;
-    protected int hungriness;
 
-    protected int happiness;
+    protected int hungriness;
 
     protected int energy;
 
@@ -21,11 +18,12 @@ public abstract class Familiar {
 
     protected Mood mood;
 
+    protected String familiarType;
+    
     private static final int MAX_STATS = 100;
 
     // Constructor called by childs class to init attributes value
     protected Familiar() {
-        this.happiness = MAX_STATS;
         this.energy = MAX_STATS;
         this.hungriness = MAX_STATS;
         this.hygiene = MAX_STATS;
@@ -35,7 +33,6 @@ public abstract class Familiar {
 
     protected Familiar(Familiar f) {
         this.energy = f.energy;
-        this.happiness = f.happiness;
         this.hygiene = f.hygiene;
         this.hungriness = f.hungriness;
         this.vitality = f.vitality;
@@ -57,22 +54,13 @@ public abstract class Familiar {
         }
     }
 
-    public int getHappiness() {
-        return happiness;
-    }
-
-    public void setHappiness(int happiness) {
-        if(happiness < MAX_STATS) {
-            this.happiness = happiness;
-        }
-    }
 
     public String getMood() {
         return mood.getName();
     }
 
     public Mood calculateMood(Weather currentWeather, Room currentRoom) {
-        int moodValue = (hungriness + happiness + hygiene + energy + vitality) / 5;
+        int moodValue = (hungriness + hygiene + energy + vitality) / 5;
 
         if(moodValue >= 85) return Mood.HAPPY;
         else if(moodValue >= 70) return Mood.JOYFUL;
@@ -80,5 +68,13 @@ public abstract class Familiar {
         else if(moodValue >= 30) return Mood.SAD;
 
         return Mood.MISERABLE;
+    }
+
+    public float getMoodCoef() {
+        return mood.getCoef();
+    }
+
+    public String getFamiliarType() {
+        return familiarType;
     }
 }

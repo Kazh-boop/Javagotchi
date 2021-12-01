@@ -5,7 +5,7 @@ package app.model;
 
 public class Room { 
 
-    private Weather weather;
+    private Weather currentWeather;
     private static final int AMOUNT_OF_WEATHER = 5;
     public Rooms currentRoom;
 
@@ -21,8 +21,8 @@ public class Room {
         return weather.getUrl();
     }
 
-    public double getWeatherCoef() {
-        return weather.getCoeff();
+    public float getWeatherCoef() {
+        return weather.getCoef();
     }
 
     public String changeWeather(){

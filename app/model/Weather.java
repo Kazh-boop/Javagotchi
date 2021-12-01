@@ -1,17 +1,17 @@
 package app.model;
 
 public enum Weather {
-    SUNNY(0, 0.7, "Ensolleillé", ""),
-    CLOUDY(1, 1.1, "Nuageux", ""),
-    RAINY(2, 1.3, "Pluvieux", ""),
-    SNOWY(3, 0.9, "Neigeux", "");
+    SUNNY(0, 0.7f, "Ensolleillé", ""),
+    CLOUDY(1, 1.1f, "Nuageux", ""),
+    RAINY(2, 1.3f, "Pluvieux", ""),
+    SNOWY(3, 0.9f, "Neigeux", "");
 
     private int id;
-    private double coef;
+    private float coef;
     private String name;
     private String url;
 
-    Weather(int id, double coef, String name, String url){
+    Weather(int id, float coef, String name, String url){
         this.coef = coef;
         this.name = name;
         this.url = url;
@@ -19,7 +19,8 @@ public enum Weather {
     }
 
     protected int getId() { return id; }
-    protected double getCoeff() { return coef; }
+    
+    protected float getCoef() { return coef; }
 
     protected String getName() { return name; }
 
