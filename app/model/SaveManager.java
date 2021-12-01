@@ -25,8 +25,8 @@ public class SaveManager implements Serializable {
     }
 
     public void openStream(String saveName) throws FileNotFoundException {
-        dataOutStream = new FileOutputStream( path + saveName + ".dat");
-        dataInStream = new FileInputStream(path + saveName + ".dat");
+        dataOutStream = new FileOutputStream( directoryPath + saveName + ".dat");
+        dataInStream = new FileInputStream(directoryPath + saveName + ".dat");
     }
 
     public void writeSave(Familiar f) throws IOException {
@@ -36,7 +36,7 @@ public class SaveManager implements Serializable {
         dataOutStream.close();
     }
 
-    public void deleteSave() {
+    public void deleteSave(String saveName) {
         File f = new File("save/" + saveName + ".dat");
         f.delete();   
     }
