@@ -11,15 +11,15 @@ public class Room {
     }
 
     public String getWeatherName() {
-        return weather.getName();
+        return currentWeather.getName();
     }
 
     public String getImageRoom() {
-        return weather.getUrl();
+        return currentWeather.getUrl();
     }
 
     public float getWeatherCoef() {
-        return weather.getCoef();
+        return currentWeather.getCoef();
     }
 
     public String changeWeather(){
