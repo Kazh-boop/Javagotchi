@@ -16,6 +16,8 @@ public abstract class Familiar {
     
     protected TimerPortions timerPortions;
 
+    protected String familiarType;
+    
     private static final int MAX_STATS = 100;
     private static final int MAX_FEED_PORTION = 35;
     private static final int DECREASE_STATS_PER_ACTION = 5;
@@ -23,7 +25,6 @@ public abstract class Familiar {
 
     // Constructor called by childs class to init attributes value
     protected Familiar() {
-        this.happiness = MAX_STATS;
         this.energy = MAX_STATS;
         this.hungriness = MAX_STATS;
         this.hygiene = MAX_STATS;
@@ -37,7 +38,6 @@ public abstract class Familiar {
 
     protected Familiar(Familiar f) {
         this.energy = f.energy;
-        this.happiness = f.happiness;
         this.hygiene = f.hygiene;
         this.hungriness = f.hungriness;
         this.vitality = f.vitality;
@@ -100,7 +100,7 @@ public abstract class Familiar {
     }
 
     public Mood calculateMood(Weather currentWeather, Room currentRoom) {
-        int moodValue = (hungriness + happiness + hygiene + energy + vitality) / 5;
+        int moodValue = (hungriness + hygiene + energy + vitality) / 5;
 
         if(moodValue >= 85) return Mood.HAPPY;
         else if(moodValue >= 70) return Mood.JOYFUL;
@@ -108,5 +108,13 @@ public abstract class Familiar {
         else if(moodValue >= 30) return Mood.SAD;
 
         return Mood.MISERABLE;
+    }
+
+    public float getMoodCoef() {
+        return mood.getCoef();
+    }
+
+    public String getFamiliarType() {
+        return familiarType;
     }
 }

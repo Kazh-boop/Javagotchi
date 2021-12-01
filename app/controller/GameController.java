@@ -1,23 +1,21 @@
 package app.controller;
 
-import javax.swing.JButton;
-import app.model.*;
-
-//private Familiar familiar = new Familiar();
-//private GamePanel gamePanel;
+import app.model.Familiar;
+import app.model.Room;
+import app.model.Rooms;
 
 public class GameController {
-    /*void GameController()
     
-    public int onClickEatButton()
-    {
-        int result = this.familiar.getHungriness() + 35;
-        this.familiar.setHungriness(result);
-        return result;
+    Familiar currentFamiliar;
+    Room currentRoom;
+
+    public GameController(Familiar selectedFamiliar) {
+        currentFamiliar = selectedFamiliar;
+        currentRoom = new Room(Rooms.LIVING_ROOM);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
+    public float calculateDecreaseValueHungriness() {
+        return Math.abs(currentFamiliar.getHungriness() - (1*currentRoom.getWeatherCoef()*currentFamiliar.getMoodCoef());
+    }
 
-    }*/
 }

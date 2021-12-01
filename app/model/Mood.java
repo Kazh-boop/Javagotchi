@@ -1,21 +1,21 @@
 package app.model;
 
 public enum Mood {
-    HAPPY(0.6, "Épanoui"),
-    JOYFUL(0.8, "Joyeux"),
-    FINE(1, "Neutre"),
-    SAD(1.2, "Maussade"),
-    MISERABLE(1.4, "Malheureux"),;
+    HAPPY(0.6f, "Épanoui"),
+    JOYFUL(0.8f, "Joyeux"),
+    FINE(1f, "Neutre"),
+    SAD(1.2f, "Maussade"),
+    MISERABLE(1.4f, "Malheureux"),;
     
-    double coef;
+    float coef;
     String name;
 
-    Mood(double coef, String name){
+    Mood(float coef, String name){
         this.coef = coef;
         this.name = name;
     }
 
-    protected double getCoef() {
+    protected float getCoef() {
         return coef;
     }
 
