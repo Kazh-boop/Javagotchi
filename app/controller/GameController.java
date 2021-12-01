@@ -14,8 +14,8 @@ public class GameController {
         currentRoom = new Room(Rooms.LIVING_ROOM);
     }
 
-    public float calculateDecreaseValueHungriness() {
-        return Math.abs(currentFamiliar.getHungriness() - (1*currentRoom.getWeatherCoef()*currentFamiliar.getMoodCoef());
+    public float calculateDecreaseValue(float currentValue) {
+        return Math.abs(currentValue - (1*currentRoom.getWeatherCoef()*currentFamiliar.getMoodCoef()));
     }
 
 }

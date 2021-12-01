@@ -18,6 +18,8 @@ public abstract class Familiar {
 
     protected Mood mood;
 
+    protected int moodValue;
+
     protected String familiarType;
     
     private static final int MAX_STATS = 100;
@@ -29,7 +31,7 @@ public abstract class Familiar {
         this.hygiene = MAX_STATS;
         this.vitality = MAX_STATS;
         this.mood = Mood.HAPPY;
-    }
+    } 
 
     protected Familiar(Familiar f) {
         this.energy = f.energy;
@@ -59,8 +61,15 @@ public abstract class Familiar {
         return mood.getName();
     }
 
-    public Mood calculateMood(Weather currentWeather, Room currentRoom) {
-        int moodValue = (hungriness + hygiene + energy + vitality) / 5;
+
+    public void recalculateMood(Weather currentWeather, Rooms currentRoom) {
+        moodValue = (int)((hungriness + hygiene + energy + vitality) / 5);
+        if(currentRoom == Rooms.GARDEN) moodValue*=currentWeather.getCoef();
+        
+        this.mood = changeMood();
+    }
+
+    public Mood changeMood() {
 
         if(moodValue >= 85) return Mood.HAPPY;
         else if(moodValue >= 70) return Mood.JOYFUL;
