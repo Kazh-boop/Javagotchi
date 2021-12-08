@@ -6,7 +6,7 @@ import app.model.Rooms;
 import app.view.GamePanel;
 
 import javax.swing.JButton;
-import app.*;
+//import app.*;
 
 public class GameController {
     
@@ -24,7 +24,7 @@ public class GameController {
     }
 
     public float calculateDecreaseValueHungriness() {
-        return Math.abs(currentFamiliar.getHungriness() - (1*currentRoom.getWeatherCoef()*currentFamiliar.getMoodCoef());
+        return Math.abs(currentFamiliar.getHungriness() - (1*currentRoom.getWeatherCoef()*currentFamiliar.getMoodCoef()));
     }
 
     public int onClickHygieneButton(){
