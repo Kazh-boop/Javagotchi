@@ -39,7 +39,6 @@ public class MenuController implements ActionListener {
 			mainMenuDisplay(this.mainFrame);
 			
         }else if(e.getSource() == this.newGameMenu.getLeftFamiliar()) {
-            
         	
         }else if(e.getSource() == this.newGameMenu.getRightFamiliar()) {
             
@@ -59,26 +58,25 @@ public class MenuController implements ActionListener {
 	
 	public void mainMenuDisplay(MainFrame nFrame) {
 		this.mainFrame = nFrame;
-		mainFrame = hide(mainFrame);
+		mainFrame = flush(mainFrame);
 		mainMenu.display(this,mainFrame);
 	}
 	
 	public void newGameMenuDisplay(MainFrame nFrame) {
 		this.mainFrame = nFrame;
-		mainFrame = hide(mainFrame);
+		mainFrame = flush(mainFrame);
 		newGameMenu.display(this,mainFrame);
 	}
 	
 	public void savesMenuDisplay(MainFrame nFrame) {
 		this.mainFrame = nFrame;
-		mainFrame = hide(mainFrame);
+		mainFrame = flush(mainFrame);
 		savesMenu.display(this,mainFrame);
 	}
 	
-	private MainFrame hide(MainFrame nFrame) {
-		nFrame.removeAll();
-		nFrame.setEnabled(true);
-		nFrame.setVisible(true);
+	private MainFrame flush(MainFrame nFrame) {
+		nFrame.getContentPane().removeAll();
+		nFrame.repaint();
 		return nFrame;
 	}
 }
