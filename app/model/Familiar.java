@@ -15,6 +15,7 @@ public abstract class Familiar {
     protected int portions;
     
     protected TimerPortions timerPortions;
+    protected TimerEnergy timerEnergy;
 
     private static final int MAX_STATS = 100;
     private static final int MAX_FEED_PORTION = 35;
@@ -33,6 +34,8 @@ public abstract class Familiar {
         this.portions = 2;
         this.timerPortions = new TimerPortions(this);
         this.timerPortions.run();
+        this.timerEnergy = new TimerEnergy(this);
+        this.timerEnergy.run();
     }
 
     protected Familiar(Familiar f) {
@@ -46,6 +49,9 @@ public abstract class Familiar {
         this.portions = f.portions;
         this.timerPortions = new TimerPortions(f);
         this.timerPortions.run();
+        this.timerEnergy = new TimerEnergy(f);
+        this.timerEnergy.run();
+
     }
 
     // Accessors
@@ -85,6 +91,7 @@ public abstract class Familiar {
         return this.portions;
     }
 
+
     public int getHappiness() {
         return happiness;
     }
@@ -104,7 +111,7 @@ public abstract class Familiar {
             this.hygiene = hygiene;
         }
         if (hygiene < 10){
-            this.moodValue=moodValue-10; 
+           // this.moodValue=moodValue-10; 
         }
     }
 
@@ -116,6 +123,17 @@ public abstract class Familiar {
         if (energy < MAX_STATS){
             this.energy=energy;
         }
+       /* if (energy<5){
+            long timer = System.currentTimeMillis();
+            int delay = 7200;
+            while(System.currentTimeMillis() - timer < delay ){
+                hygieneButton.setEnabled(false);
+                eatButton.setEnabled(false);
+                sleepButton.setEnabled(false);
+                // désactiver également les boutons de déplacements !
+            } 
+            this.energy=100;
+        }*/
     }
 
     public String getMood() {

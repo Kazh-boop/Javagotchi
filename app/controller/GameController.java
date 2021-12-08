@@ -3,7 +3,7 @@ package app.controller;
 import javax.swing.JButton;
 import app.*;
 
-//private Familiar familiar = new Familiar();
+private Familiar familiar = new Familiar();
 //private GamePanel gamePanel;
 
 public class GameController {
@@ -31,11 +31,32 @@ public class GameController {
 
     }
 
+   
+
     public int onClickSleepButton(){
         if (familiar.Rooms == LIVING_ROOM){
-            int result = this.familiar.getEnergy() + 35; //mais il ne peut plus bouger pendant 10 minutes
+            forcedSleep();
+            int result = this.familiar.getEnergy() + 35; 
             this.familiar.setEnergy(result);
             return result;}
+    }
+
+    public void forcedSleep(){
+        if (energy<5){
+            stopButton(7200000);}
+        else{
+            stopButton(6000);}
+        }
+    }
+
+    public void stopButton(int delay){
+        TimerForcedSleep timerForcedSleep = new TimerForcedSleep(familiar,delay,this);
+        timerForcedSleep.run();
+        hygieneButton.setEnabled(false);
+        eatButton.setEnabled(false);
+        sleepButton.setEnabled(false);
+        // désactiver également les boutons de déplacements !
+        
     }
         
 }
