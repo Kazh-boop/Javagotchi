@@ -22,6 +22,8 @@ public abstract class Familiar {
 
     protected String familiarType;
     
+    protected String urlIcon;
+
     // Constants
 
     private static final int MAX_STATS = 100;
@@ -48,6 +50,7 @@ public abstract class Familiar {
         this.hungriness = f.hungriness;
         this.vitality = f.vitality;
         this.mood = f.mood;
+        this.url = 
     }
 
     // Accessors

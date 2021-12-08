@@ -3,6 +3,8 @@ package app.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JPanel;
+
 import app.model.Cat;
 import app.model.*;
 import app.view.*;
@@ -62,8 +64,10 @@ public class MenuController implements ActionListener {
 			case "Rabbit" :
 				fam = new Rabbit(newGameMenu.getFamiliarName());
 				break;
-		}
-		
+
+			}
+		this.gameController = new GameController(fam, mainFrame);
+				
         }else if(e.getSource() == this.savesMenu.getBackMenu()) {
 			mainMenuDisplay(this.mainFrame);
         }
