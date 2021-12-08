@@ -1,49 +1,53 @@
 package app.view;
 
-import java.awt.GridLayout;
-
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import app.controller.SauvegardesMenuController;
+import app.controller.MenuController;
 
-public class SauvegardesMenu {
+public class SavesMenu {
 	
-	SauvegardesMenuController menuController;
+	MenuController mainController;
 	MainFrame mainFrame;
 	JPanel mainPanel;
 	
-	JLabel Titre;
+	JButton backMenu;
+	JLabel title;
 
-    public SauvegardesMenu() {
-    	
-        this.menuController = new SauvegardesMenuController(this);
-        this.mainFrame = new MainFrame();
+    public SavesMenu(){}
+    
+    public void display(MenuController nController, MainFrame nFrame) {
+    	this.mainController = nController;
+        this.mainFrame = nFrame;
+        
         this.mainPanel = new JPanel();
         
         // composition des JComponent
-        this.Titre = new JLabel("Sauvegardes");
+        this.title = new JLabel("Sauvegardes");
+        this.backMenu = new JButton("Retour");
         
         // placement des JComponent
         
         // habillage des JComponent
         
-        // cr�ation des eventListener pour les JButton
+        // creation des eventListener pour les JButton
+        this.backMenu.addActionListener(this.mainController);
         
-        // ajout des �l�ments dans la mainFrame
-        mainPanel.add(Titre);
+        // ajout des elements dans la mainFrame
+        mainPanel.add(backMenu);
+        mainPanel.add(title);
         mainFrame.add(mainPanel);
         
-        
-        // habillage de la mainFrame
-        mainPanel.setLayout(new GridLayout(4,1,0,50));
-        mainFrame.setSize(1280,720);
-        mainFrame.setVisible(true); //if false then frame will be invisible
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.setVisible(true);
     }
     
     public JFrame getMainFrame(){
         return this.mainFrame;
     }
+
+    public JButton getBackMenu(){
+    	return this.backMenu;
+	}
 }
