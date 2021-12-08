@@ -37,4 +37,18 @@ public class GamePanel {
         //this.progressBar.setValue(gameController.onClickEatButton());
     }
 
+    public JButton getHygieneButton()
+    {
+        return hygieneButton;
+    }
+
+    public JButton getEaButton()
+    {
+        return eatButton;
+    }
+    public JButton getSleepButton()
+    {
+        return sleepButton;
+    }
+
 }

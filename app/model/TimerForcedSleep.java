@@ -2,15 +2,17 @@ package app.model;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class TimerEnergy extends TimerTask{
+import app.view.*;
+
+public class TimerForcedSleep extends TimerTask{
     private Familiar familiar;
     private int delay;
-    private GameController gameController;
+    private GamePanel gamePanel;
 
-    public TimerEnergy(Familiar familiar,int delay,GameController gameController){
+    public TimerForcedSleep(Familiar familiar,int delay,GamePanel gamePanel){
         this.familiar=familiar;
         this.delay=delay;
-        this.gameController=gameController;
+        this.gamePanel = gamePanel;
 
     }
     @Override
@@ -21,9 +23,9 @@ public class TimerEnergy extends TimerTask{
             @Override
             public void run(){
                 familiar.setEnergy(100);
-                hygieneButton.setEnabled(true);
-                eatButton.setEnabled(true);
-                sleepButton.setEnabled(true);
+                gamePanel.getHygieneButton().setEnabled(true);
+                gamePanel.getEaButton().setEnabled(true);
+                gamePanel.getSleepButton().setEnabled(true);
                 timer.cancel();
                 timer.purge();
                

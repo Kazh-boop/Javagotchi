@@ -4,6 +4,7 @@ import app.model.Familiar;
 import app.model.Room;
 import app.model.Rooms;
 import app.view.GamePanel;
+import app.model.*;
 
 
 //private GamePanel gamePanel;
@@ -54,11 +55,11 @@ public class GameController {
 
 
     public void stopButton(int delay){
-        TimerForcedSleep timerForcedSleep = new TimerForcedSleep(currentFamiliar,delay,this);
+        TimerForcedSleep timerForcedSleep = new TimerForcedSleep(currentFamiliar,delay,gamePanel);
         timerForcedSleep.run();
-        hygieneButton.setEnabled(false);
-        eatButton.setEnabled(false);
-        sleepButton.setEnabled(false);
+        gamePanel.getHygieneButton().setEnabled(false);
+        gamePanel.getEaButton().setEnabled(false);
+        gamePanel.getSleepButton().setEnabled(false);
         // désactiver également les boutons de déplacements !
         
     }
