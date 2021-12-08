@@ -11,6 +11,5 @@ public class MainFrame extends JFrame {
 
         setPreferredSize(new Dimension(500, 500));
         pack();
-
     }
 }

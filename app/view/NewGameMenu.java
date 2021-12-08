@@ -3,7 +3,6 @@ package app.view;
 import java.awt.*;
 import javax.swing.*;
 import app.controller.*;
-
 public class NewGameMenu {
 	
 	private final int NAME_MAX_CHAR = 16;
