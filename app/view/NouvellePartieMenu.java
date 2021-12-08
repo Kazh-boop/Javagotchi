@@ -1,49 +1,113 @@
 package app.view;
 
-import java.awt.GridLayout;
+import java.awt.*;
+import javax.swing.*;
+import app.controller.*;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-import app.controller.NouvellePartieMenuController;
-
-public class NouvellePartieMenu {
+public class NewGameMenu {
 	
-	NouvellePartieMenuController menuController;
-	MainFrame mainFrame;
-	JPanel mainPanel;
+	private final int NAME_MAX_CHAR = 16;
+	private MenuController mainController;
 	
-	JLabel Titre;
+	private MainFrame mainFrame;
+	private JPanel backPanel;
+	private JPanel namePanel;
+	private JPanel speciesNamePanel;
+	private JPanel spiciesPanel;
+	private JPanel gamePanel;
+	
+	private JTextField name;
+	private JLabel texteName;
+	private JLabel speciesIcon;
+	private JButton backMenu;
+	private JButton leftFamiliar;
+	private JButton rightFamiliar;
+	private JButton launchGame;
+	
+    public NewGameMenu(){}
 
-    public NouvellePartieMenu() {
+    public void display(MenuController nController, MainFrame nFrame) {
+    	this.mainController = nController;
+        this.mainFrame = nFrame;
     	
-        this.menuController = new NouvellePartieMenuController(this);
-        this.mainFrame = new MainFrame();
-        this.mainPanel = new JPanel();
+        this.backPanel = new JPanel();
+        this.namePanel = new JPanel();
+        this.speciesNamePanel = new JPanel();
+        this.spiciesPanel = new JPanel();
+        this.gamePanel = new JPanel();
         
         // composition des JComponent
-        this.Titre = new JLabel("Nouvelle Partie");
+        this.name = new JTextField("name",NAME_MAX_CHAR);
+        this.texteName = new JLabel("Choix de l'espÃ¨ce de votre familier");
+        this.backMenu = new JButton("Retour");
+        this.leftFamiliar = new JButton(createImageIcon("../image/left.png"));
+        this.speciesIcon = new JLabel(createImageIcon("../image/cat.png"));
+        this.rightFamiliar = new JButton(createImageIcon("../image/right.png"));
+        this.launchGame = new JButton("Lancer la partie");
         
         // placement des JComponent
         
         // habillage des JComponent 
         
-        // création des eventListener pour les JButton
+        // creation des eventListener pour les JButton
+        this.backMenu.addActionListener(this.mainController);
+        this.rightFamiliar.addActionListener(this.mainController);
+        this.leftFamiliar.addActionListener(this.mainController);
+        this.launchGame.addActionListener(this.mainController);
         
-        // ajout des éléments dans la mainFrame
-        mainPanel.add(Titre);
-        mainFrame.add(mainPanel);
+        // ajout des elements dans la mainFrame
+        mainFrame.setLayout(new GridLayout(0, 1));
+        backPanel.add(backMenu);
+        namePanel.add(name);
         
+        speciesNamePanel.add(texteName);
+        spiciesPanel.add(leftFamiliar);
+        spiciesPanel.add(speciesIcon);
+        spiciesPanel.add(rightFamiliar);
         
-        // habillage de la mainFrame
-        mainPanel.setLayout(new GridLayout(4,1,0,50));
-        mainFrame.setSize(1280,720);
-        mainFrame.setVisible(true); //if false then frame will be invisible
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gamePanel.add(launchGame);
+        
+        mainFrame.add(backPanel);
+        mainFrame.add(namePanel);
+        mainFrame.add(speciesNamePanel);
+        mainFrame.add(spiciesPanel);
+        mainFrame.add(gamePanel);
+        
+        mainFrame.setVisible(true);
     }
     
+// getter    
     public JFrame getMainFrame(){
         return this.mainFrame;
+    }
+    
+    public JLabel getSpeciesIcon() {
+    	return this.speciesIcon;
+    }
+    
+    public JButton getBackMenu(){
+    	return this.backMenu;
+    }
+    
+    public JButton getRightFamiliar(){
+    	return this.rightFamiliar;
+    }
+    
+    public JButton getLeftFamiliar(){
+    	return this.leftFamiliar;
+    }
+    
+    public JButton getLaunchGame(){
+    	return this.launchGame;
+    }
+    
+    private static ImageIcon createImageIcon(String path) {
+        java.net.URL imgURL = NewGameMenu.class.getResource(path);
+        if (imgURL != null) {
+            return new ImageIcon(imgURL);
+        } else {
+            System.err.println("Couldn't find file: " + path);
+            return null;
+        }
     }
 }
