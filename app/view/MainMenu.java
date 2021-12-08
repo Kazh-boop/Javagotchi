@@ -7,64 +7,62 @@ import app.controller.*;
 
 public class MainMenu {
 	
-	MainMenuController mainMenuController;
+	MenuController mainController;
 	MainFrame mainFrame;
 	JPanel mainPanel;
 	
-	JLabel Titre;
-    JButton nouvellePartie;
-    JButton sauvegardes;
-    JButton quitter;
+	JLabel title;
+    JButton newGame;
+    JButton saves;
+    JButton quit;
 
-    public MainMenu() {
-    	
-        this.mainMenuController = new MainMenuController(this);
-        this.mainFrame = new MainFrame();
+    public MainMenu(){}
+    
+    public void display(MenuController nController, MainFrame nFrame) {
+    	this.mainController = nController;
+        this.mainFrame = nFrame;
+        
         this.mainPanel = new JPanel();
         
         // composition des JComponent
-        this.Titre = new JLabel("Titre");
-        this.nouvellePartie = new JButton("Nouvelle Partie");
-        this.sauvegardes = new JButton("Sauvegardes");
-        this.quitter = new JButton("Quitter");
+        this.title = new JLabel("Titre");
+        this.newGame = new JButton("Nouvelle Partie");
+        this.saves = new JButton("Sauvegardes");
+        this.quit = new JButton("Quitter");
         
         // placement des JComponent
         
         // habillage des JComponent 
-        //nouvellePartie.setPreferredSize(new Dimension(150,100));
-        //sauvegardes.setPreferredSize(new Dimension(150,100));
-        //quitter.setPreferredSize(new Dimension(150,100));
+        //newGame.setPreferredSize(new Dimension(150,100));
+        //saves.setPreferredSize(new Dimension(150,100));
+        //quit.setPreferredSize(new Dimension(150,100));
         
         // creation des eventListener pour les JButton
-        this.nouvellePartie.addActionListener(this.mainMenuController);
-        this.sauvegardes.addActionListener(this.mainMenuController);
-        this.quitter.addActionListener(this.mainMenuController);
+        this.newGame.addActionListener(this.mainController);
+        this.saves.addActionListener(this.mainController);
+        this.quit.addActionListener(this.mainController);
         
         // ajout des elements dans la mainFrame
-        mainPanel.add(Titre);
-        mainPanel.add(nouvellePartie);
-        mainPanel.add(sauvegardes);
-        mainPanel.add(quitter);
+        mainPanel.setLayout(new GridLayout(4,1,0,50));
+        mainPanel.add(title);
+        mainPanel.add(newGame);
+        mainPanel.add(saves);
+        mainPanel.add(quit);
         mainFrame.add(mainPanel);
         
-        
-        // habillage de la mainFrame
-        mainPanel.setLayout(new GridLayout(4,1,0,50));
-        mainFrame.setSize(1280,720);
-        mainFrame.setVisible(true); //if false then frame will be invisible
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
-
-    public JButton getNouvellePartie(){
-        return nouvellePartie;
+        mainFrame.setVisible(true);
     }
     
-    public JButton getSauvegardes(){
-        return sauvegardes;
+    public JButton getNewGame(){
+        return newGame;
     }
     
-    public JButton getQuitter(){
-        return quitter;
+    public JButton getSaves(){
+        return saves;
+    }
+    
+    public JButton getQuit(){
+        return quit;
     }
     
     public JFrame getMainFrame(){
