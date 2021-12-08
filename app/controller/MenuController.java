@@ -3,10 +3,8 @@ package app.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JPanel;
+import javax.swing.ImageIcon;
 
-import app.model.Cat;
-import app.model.*;
 import app.view.*;
 
 public class MenuController implements ActionListener {
@@ -15,16 +13,20 @@ public class MenuController implements ActionListener {
 	private MainMenu mainMenu;
 	private NewGameMenu newGameMenu;
 	private SavesMenu savesMenu;
-	private GameController gameController;
-
+	
+	private final int CURSOR_MAX = 3;
+	private final int CURSOR_MIN = 0;
+	private int cursorImage = 0;
+	private final String[] familiarType = {"Cat", "Dog", "Robot", "Rabbit"};
+	private final String[] familiarTypeURL = {"../image/cat.png", "../image/dog.png", "../image/robot.png", "../image/rabbit.png"};
 	
 	public MenuController() {
 		this.mainFrame = new MainFrame();
-		this.mainMenu = new MainMenu();
-		this.newGameMenu = new NewGameMenu();
-		this.savesMenu = new SavesMenu();
+		this.mainMenu = new MainMenu(mainFrame);
+		this.newGameMenu = new NewGameMenu(mainFrame);
+		this.savesMenu = new SavesMenu(mainFrame);
 		
-		firstMainMenuDisplay(this.mainFrame);
+		firstMainMenuDisplay();
 	}
 	
 	@Override
@@ -32,68 +34,68 @@ public class MenuController implements ActionListener {
 		
 		// JButton form MainMenu
         if(e.getSource() == this.mainMenu.getNewGame()) {
-        	newGameMenuDisplay(this.mainFrame);
+        	newGameMenuDisplay();
         	
         }else if(e.getSource() == this.mainMenu.getSaves()) {
-            savesMenuDisplay(this.mainFrame);
+            savesMenuDisplay();
         	
         }else if(e.getSource() == this.mainMenu.getQuit()) {
         	System.exit(1);
         
         // JButton from newGameMenu
         }else if(e.getSource() == this.newGameMenu.getBackMenu()) {
-			mainMenuDisplay(this.mainFrame);
+			mainMenuDisplay();
 			
-        }else if(e.getSource() == this.newGameMenu.getLeftFamiliar()) {
+        }else if(e.getSource() == this.newGameMenu.getLeftFamiliarType()) {
+        	turnLeftFamiliar();
         	
-        }else if(e.getSource() == this.newGameMenu.getRightFamiliar()) {
-            
-        }else if(e.getSource() == this.newGameMenu.getLaunchGame()) {	
-        // JButton from savesMenu     
-		Familiar fam;
-		switch(newGameMenu.getChoosenFamiliar()) {
-			case "Cat" :
-				fam = new Cat(newGameMenu.getFamiliarName());
-				break;
-			case "Dog" :
-				// fam = new Dog(newGameMenu.getFamiliarName());
-				break;
-			case "Robot" :
-				fam = new Robot(newGameMenu.getFamiliarName());
-				break;
-			case "Rabbit" :
-				fam = new Rabbit(newGameMenu.getFamiliarName());
-				break;
-
-			}
-		this.gameController = new GameController(fam, mainFrame);
-				
+        }else if(e.getSource() == this.newGameMenu.getRightFamiliarType()) {
+        	turnRightFamiliar();
+        	
+        }else if(e.getSource() == this.newGameMenu.getLaunchGame()) {
+        	System.exit(1);
+        	
+        // JButton from savesMenu        	
         }else if(e.getSource() == this.savesMenu.getBackMenu()) {
-			mainMenuDisplay(this.mainFrame);
+			mainMenuDisplay();
         }
     }
 	
-	public void firstMainMenuDisplay(MainFrame nFrame) {
-		this.mainFrame = nFrame;
-		mainMenu.display(this,mainFrame);
+	private void turnRightFamiliar() {
+		if(cursorImage < CURSOR_MAX) {
+			cursorImage++;
+		}else{
+			cursorImage = CURSOR_MIN;
+		}
+			this.newGameMenu.getSpeciesIcon().setIcon(createImageIcon(familiarTypeURL[cursorImage]));
+		}
+
+	private void turnLeftFamiliar() {
+	if(cursorImage > CURSOR_MIN) {
+		cursorImage--;
+	}else{
+		cursorImage = CURSOR_MAX;
+	}
+		this.newGameMenu.getSpeciesIcon().setIcon(createImageIcon(familiarTypeURL[cursorImage]));
+	}
+
+	public void firstMainMenuDisplay() {
+		mainMenu.display(this);
 	}
 	
-	public void mainMenuDisplay(MainFrame nFrame) {
-		this.mainFrame = nFrame;
+	public void mainMenuDisplay() {
 		mainFrame = flush(mainFrame);
-		mainMenu.display(this,mainFrame);
+		mainMenu.display(this);
 	}
 	
-	public void newGameMenuDisplay(MainFrame nFrame) {
-		this.mainFrame = nFrame;
+	public void newGameMenuDisplay() {
 		mainFrame = flush(mainFrame);
-		newGameMenu.display(this,mainFrame);
+		newGameMenu.display(this);
 	}
 	
-	public void savesMenuDisplay(MainFrame nFrame) {
-		this.mainFrame = nFrame;
+	public void savesMenuDisplay() {
 		mainFrame = flush(mainFrame);
-		savesMenu.display(this,mainFrame);
+		savesMenu.display(this);
 	}
 	
 	private MainFrame flush(MainFrame nFrame) {
@@ -101,4 +103,14 @@ public class MenuController implements ActionListener {
 		nFrame.repaint();
 		return nFrame;
 	}
+	
+	private static ImageIcon createImageIcon(String path) {
+        java.net.URL imgURL = NewGameMenu.class.getResource(path);
+        if (imgURL != null) {
+            return new ImageIcon(imgURL);
+        } else {
+            System.err.println("Couldn't find file: " + path);
+            return null;
+        }
+    }
 }
