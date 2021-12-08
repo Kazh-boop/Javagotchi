@@ -3,6 +3,7 @@ package app.controller;
 import app.model.Familiar;
 import app.model.Room;
 import app.model.Rooms;
+import app.view.GameView;
 import app.view.MainFrame;
 
 public class GameController {

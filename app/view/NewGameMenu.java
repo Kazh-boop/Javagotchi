@@ -22,9 +22,6 @@ public class NewGameMenu {
 	private JButton leftFamiliar;
 	private JButton rightFamiliar;
 	private JButton launchGame;
-	
-    private final String[] familiarType = {"Cat", "Dog", "Robot", "Rabbit"}; 
-    private int currentFamiliar = 0;
 
     public NewGameMenu(){}
 
@@ -111,10 +108,6 @@ public class NewGameMenu {
             System.err.println("Couldn't find file: " + path);
             return null;
         }
-    }
-
-    public String getChoosenFamiliar() {
-        return familiarType[currentFamiliar];
     }
 
     public String getFamiliarName () {
