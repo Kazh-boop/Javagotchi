@@ -23,6 +23,9 @@ public class NewGameMenu {
 	private JButton rightFamiliar;
 	private JButton launchGame;
 	
+    private final String[] familiarType = {"Cat", "Dog", "Robot", "Rabbit"}; 
+    private int currentFamiliar = 0;
+
     public NewGameMenu(){}
 
     public void display(MenuController nController, MainFrame nFrame) {
@@ -36,7 +39,7 @@ public class NewGameMenu {
         this.gamePanel = new JPanel();
         
         // composition des JComponent
-        this.name = new JTextField("name",NAME_MAX_CHAR);
+        this.name = new JTextField("Name",NAME_MAX_CHAR);
         this.texteName = new JLabel("Choix de l'espèce de votre familier");
         this.backMenu = new JButton("Retour");
         this.leftFamiliar = new JButton(createImageIcon("../image/left.png"));
@@ -108,5 +111,14 @@ public class NewGameMenu {
             System.err.println("Couldn't find file: " + path);
             return null;
         }
+    }
+
+    public String getChoosenFamiliar() {
+        return familiarType[currentFamiliar];
+    }
+
+    public String getFamiliarName () {
+
+        return name.getText();
     }
 }

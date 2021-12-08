@@ -3,6 +3,8 @@ package app.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import app.model.Cat;
+import app.model.*;
 import app.view.*;
 
 public class MenuController implements ActionListener {
@@ -11,6 +13,8 @@ public class MenuController implements ActionListener {
 	private MainMenu mainMenu;
 	private NewGameMenu newGameMenu;
 	private SavesMenu savesMenu;
+	private GameController gameController;
+
 	
 	public MenuController() {
 		this.mainFrame = new MainFrame();
@@ -42,10 +46,24 @@ public class MenuController implements ActionListener {
         	
         }else if(e.getSource() == this.newGameMenu.getRightFamiliar()) {
             
-        }else if(e.getSource() == this.newGameMenu.getLaunchGame()) {
-        	System.exit(1);
-        	
-        // JButton from savesMenu        	
+        }else if(e.getSource() == this.newGameMenu.getLaunchGame()) {	
+        // JButton from savesMenu     
+		Familiar fam;
+		switch(newGameMenu.getChoosenFamiliar()) {
+			case "Cat" :
+				fam = new Cat(newGameMenu.getFamiliarName());
+				break;
+			case "Dog" :
+				// fam = new Dog(newGameMenu.getFamiliarName());
+				break;
+			case "Robot" :
+				fam = new Robot(newGameMenu.getFamiliarName());
+				break;
+			case "Rabbit" :
+				fam = new Rabbit(newGameMenu.getFamiliarName());
+				break;
+		}
+		
         }else if(e.getSource() == this.savesMenu.getBackMenu()) {
 			mainMenuDisplay(this.mainFrame);
         }
