@@ -2,7 +2,7 @@ package app.model;
 
 public class Room { 
 
-    private Weather weather;
+    private Weather currentWeather;
     private static final int AMOUNT_OF_WEATHER = 5;
     public Rooms currentRoom;
 
@@ -11,15 +11,15 @@ public class Room {
     }
 
     public String getWeatherName() {
-        return weather.getName();
+        return currentWeather.getName();
     }
 
     public String getImageRoom() {
-        return weather.getUrl();
+        return currentWeather.getUrl();
     }
 
-    public double getWeatherCoef() {
-        return weather.getCoeff();
+    public float getWeatherCoef() {
+        return currentWeather.getCoef();
     }
 
     public String changeWeather(){

@@ -1,56 +1,60 @@
 package app.controller;
 
-import javax.swing.JButton;
-import app.*;
+import app.model.Familiar;
+import app.model.Room;
+import app.model.Rooms;
+import app.view.GamePanel;
 
-private Familiar familiar = new Familiar();
+
 //private GamePanel gamePanel;
+import javax.swing.JButton;
+//import app.*;
 
 public class GameController {
-    /*void GameController()
     
-    public int onClickEatButton()
-    {
-        int result = this.familiar.getHungriness() + 35;
-        this.familiar.setHungriness(result);
-        return result;
+    Familiar currentFamiliar;
+    Room currentRoom;
+    GamePanel gamePanel;
+
+    public GameController(Familiar selectedFamiliar) {
+        currentFamiliar = selectedFamiliar;
+        currentRoom = new Room(Rooms.LIVING_ROOM);
     }
 
+    public GameController(GamePanel gamePanel) {
+        this.gamePanel = gamePanel;
+    }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }*/
+    public float calculateDecreaseValueHungriness() {
+        return Math.abs(currentFamiliar.getHungriness() - (1*currentRoom.getWeatherCoef()*currentFamiliar.getMoodCoef()));
+    }
 
     public int onClickHygieneButton(){
-        if ((familiar.Rooms == GARDEN ) || (familiar.Rooms == KITCHEN)){
-            int result = this.familiar.getHygiene()+ 35;
-            this.familiar.setHygiene(result);
-            return result;}
-
-
+        if ((currentFamiliar.getRooms() == Rooms.GARDEN ) || (currentFamiliar.getRooms() == Rooms.KITCHEN)){
+            currentFamiliar.setHygiene(this.currentFamiliar.getHygiene() + 35);
+        }
+        return currentFamiliar.getHygiene();
     }
 
    
 
     public int onClickSleepButton(){
-        if (familiar.Rooms == LIVING_ROOM){
-            forcedSleep();
-            int result = this.familiar.getEnergy() + 35; 
-            this.familiar.setEnergy(result);
-            return result;}
+        if (currentFamiliar.getRooms() == Rooms.LIVING_ROOM){
+            this.currentFamiliar.setEnergy(this.currentFamiliar.getEnergy() + 35); //mais il ne peut plus bouger pendant 10 minutes
+        }
+        return currentFamiliar.getHygiene();
     }
 
     public void forcedSleep(){
-        if (energy<5){
+        if (currentFamiliar.getEnergy()<5){
             stopButton(7200000);}
         else{
             stopButton(6000);}
         }
-    }
+
 
     public void stopButton(int delay){
-        TimerForcedSleep timerForcedSleep = new TimerForcedSleep(familiar,delay,this);
+        TimerForcedSleep timerForcedSleep = new TimerForcedSleep(currentFamiliar,delay,this);
         timerForcedSleep.run();
         hygieneButton.setEnabled(false);
         eatButton.setEnabled(false);

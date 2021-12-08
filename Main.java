@@ -7,6 +7,6 @@ public class Main {
         new MainMenu();
         GamePanel gamePanel = new GamePanel();
         gamePanel.init();
-        Familiar familiar = new Rabbit();
+        Familiar familiar = new Rabbit("Panpan");
     }
 }

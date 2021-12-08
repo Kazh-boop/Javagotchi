@@ -21,11 +21,12 @@ public class TimerEnergy extends TimerTask{
             @Override
             public void run(){
                 familiar.setEnergy(100);
-                timer.cancel();
-                timer.purge();
                 hygieneButton.setEnabled(true);
                 eatButton.setEnabled(true);
                 sleepButton.setEnabled(true);
+                timer.cancel();
+                timer.purge();
+               
                 
             }
         },0,delay);

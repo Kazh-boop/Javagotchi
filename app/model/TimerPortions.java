@@ -13,8 +13,7 @@ public class TimerPortions extends TimerTask {
 
     @Override
     public void run() {
-        Timer timer;
-        timer = new Timer();
+        Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {

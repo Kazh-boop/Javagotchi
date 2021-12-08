@@ -5,7 +5,7 @@ import java.util.TimerTask;
 
 public class TimerEnergy extends TimerTask {
     private Familiar familiar;
-    private static final int MINUTES_PER_PORTION = 2* 1000;
+    private static final int MINUTES_PER_PORTION = 10 *60 * 1000;
 
     public TimerEnergy(Familiar familiar){
         this.familiar = familiar;
