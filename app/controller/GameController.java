@@ -9,6 +9,7 @@ import app.model.*;
 //private GamePanel gamePanel;
 import javax.swing.JButton;
 //import app.*;
+import app.view.GameView;
 import app.view.MainFrame;
 
 public class GameController {
@@ -43,8 +44,6 @@ public class GameController {
         return Math.abs(currentValue - (1*currentRoom.getWeatherCoef()*currentFamiliar.getMoodCoef()));
     }
 
-   
-
     public int onClickSleepButton(){
         if (currentFamiliar.getRooms() == Rooms.LIVING_ROOM){
             this.currentFamiliar.setEnergy(this.currentFamiliar.getEnergy() + 35); //mais il ne peut plus bouger pendant 10 minutes
@@ -54,11 +53,9 @@ public class GameController {
 
     public void forcedSleep(){
         if (currentFamiliar.getEnergy()<5){
-            stopButton(7200000);}
-        else{
-            stopButton(6000);}
+            stopButton(7200000);
         }
-
+    }
 
     public void stopButton(int delay){
         TimerForcedSleep timerForcedSleep = new TimerForcedSleep(currentFamiliar,delay,gamePanel);

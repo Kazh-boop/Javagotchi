@@ -5,7 +5,7 @@ import app.controller.*;
 
 public class Main {
     public static void main(String[] args) {
-        new MainMenu();
+        //new MainMenu();
         GamePanel gamePanel = new GamePanel();
         gamePanel.init();
         Familiar familiar = new Rabbit("Panpan");
