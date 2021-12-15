@@ -1,9 +1,9 @@
 package app.model;
 
 public enum Rooms {
-    GARDEN(0,"", "", new Integer[]{1,2}),
-	LIVING_ROOM(1, "", "", new Integer[] {3,4}),
-	KITCHEN(2, "", "", new Integer[] {5,6});
+    GARDEN(0,"Jardin", "", new Integer[]{1,2}),
+	LIVING_ROOM(1, "Salon", "", new Integer[] {3,4}),
+	KITCHEN(2, "Cuisine", "", new Integer[] {5,6});
 	
 	private int id;
 	private String name;

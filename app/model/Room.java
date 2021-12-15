@@ -1,7 +1,6 @@
 package app.model;
 
-
-
+import java.util.Random;
 
 public class Room { 
 
@@ -11,6 +10,7 @@ public class Room {
 
     public Room(Rooms selectedRoom) {
         this.currentRoom = selectedRoom;
+        this.currentWeather = Weather.SUNNY;
     }
 
     public String getWeatherName() {
@@ -25,11 +25,16 @@ public class Room {
         return currentWeather.getCoef();
     }
 
-    public String changeWeather(){
-        int newWeather = (int) (Math.random()*100 + 1);
+    public void changeWeather() {
+         Random ran = new Random();
+
+        int newWeather = (int) (ran.nextInt(100));
         if(newWeather < AMOUNT_OF_WEATHER ) {
-            
+            currentWeather = Weather.getWeatherById(newWeather);
         }
-        return null;
+    }
+
+    public String getName() {
+        return currentRoom.getName();
     }
 }

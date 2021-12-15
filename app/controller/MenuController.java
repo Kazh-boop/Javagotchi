@@ -53,8 +53,8 @@ public class MenuController implements ActionListener {
         	turnRightFamiliar();
         	
         }else if(e.getSource() == this.newGameMenu.getLaunchGame()) {
-        	System.exit(1);
-        	
+			
+
         // JButton from savesMenu        	
         }else if(e.getSource() == this.savesMenu.getBackMenu()) {
 			mainMenuDisplay();

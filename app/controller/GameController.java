@@ -15,11 +15,19 @@ public class GameController {
     public GameController(Familiar selectedFamiliar, MainFrame mainFrame) {
         currentFamiliar = selectedFamiliar;
         currentRoom = new Room(Rooms.LIVING_ROOM);
-        this.gameView = new GameView(mainFrame);
+        this.gameView = new GameView(mainFrame, this);
+
     }
 
     public float calculateDecreaseValue(float currentValue) {
         return Math.abs(currentValue - (1*currentRoom.getWeatherCoef()*currentFamiliar.getMoodCoef()));
     }
 
+    public Familiar getFamiliar() {
+        return this.currentFamiliar;
+    }
+
+    public Room getCurrentRoom() {
+        return this.currentRoom;
+    }
 }

@@ -1,5 +1,7 @@
 package app.model;
 
+import javax.swing.BoundedRangeModel;
+
 public abstract class Familiar {
 
 
@@ -50,7 +52,7 @@ public abstract class Familiar {
         this.hungriness = f.hungriness;
         this.vitality = f.vitality;
         this.mood = f.mood;
-        this.url = 
+        this.urlIcon = f.urlIcon;
     }
 
     // Accessors
@@ -97,5 +99,21 @@ public abstract class Familiar {
 
     public String getFamiliarType() {
         return familiarType;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getHygiene() {
+        return hygiene;
+    }
+
+    public int getEnergy() {
+        return energy;
+    }
+
+    public int getVitality() {
+        return vitality;
     }
 }
