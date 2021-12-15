@@ -8,6 +8,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
+import app.model.Cat;
+import app.model.*;
 import app.view.*;
 import app.model.*;
 
@@ -23,6 +25,8 @@ public class MenuController implements ActionListener {
 	private int cursorImage = 0;
 	private final String[] familiarType = {"Chat", "Chien", "Robot", "Lapin"};
 	private final String[] familiarTypeURL = {"../image/cat.png", "../image/dog.png", "../image/robot.png", "../image/rabbit.png"};
+	private GameController gameController;
+
 	
 	private static Pattern invalidPattern;
     private static Matcher invalidMatcher;
@@ -36,11 +40,12 @@ public class MenuController implements ActionListener {
 	 */
 	public MenuController() {
 		this.mainFrame = new MainFrame();
-		this.mainMenu = new MainMenu(mainFrame);
-		this.newGameMenu = new NewGameMenu(mainFrame);
-		this.savesMenu = new SavesMenu(mainFrame);
+		this.mainMenu = new MainMenu();
+		this.newGameMenu = new NewGameMenu();
+		this.savesMenu = new SavesMenu();
 		
 		mainMenuDisplay();
+		firstMainMenuDisplay(this.mainFrame);
 	}
 	
 	/* actionPerformed()
@@ -54,30 +59,42 @@ public class MenuController implements ActionListener {
 		
 		// JButton form MainMenu
         if(e.getSource() == this.mainMenu.getNewGame()) {
-        	newGameMenuDisplay();
+        	newGameMenuDisplay(this.mainFrame);
         	
         }else if(e.getSource() == this.mainMenu.getSaves()) {
-            savesMenuDisplay();
+            savesMenuDisplay(this.mainFrame);
         	
         }else if(e.getSource() == this.mainMenu.getQuit()) {
         	System.exit(1);
         
         // JButton from newGameMenu
         }else if(e.getSource() == this.newGameMenu.getBackMenu()) {
-			mainMenuDisplay();
+			mainMenuDisplay(this.mainFrame);
 			
         }else if(e.getSource() == this.newGameMenu.getLeftFamiliarType()) {
-        	turnLeftFamiliar();
         	
         }else if(e.getSource() == this.newGameMenu.getRightFamiliarType()) {
-        	turnRightFamiliar();
-        	
-        }else if(e.getSource() == this.newGameMenu.getLaunchGame()) {
-        	launchNewGame();
-	        	
-        // JButton from savesMenu        	
+            
+        }else if(e.getSource() == this.newGameMenu.getLaunchGame()) {	
+        // JButton from savesMenu     
+		Familiar fam;
+		/*switch(newGameMenu.getChoosenFamiliar()) {
+			case "Cat" :
+				fam = new Cat(newGameMenu.getFamiliarName());
+				break;
+			case "Dog" :
+				// fam = new Dog(newGameMenu.getFamiliarName());
+				break;
+			case "Robot" :
+				fam = new Robot(newGameMenu.getFamiliarName());
+				break;
+			case "Rabbit" :
+				fam = new Rabbit(newGameMenu.getFamiliarName());
+				break;
+		}*/
+		
         }else if(e.getSource() == this.savesMenu.getBackMenu()) {
-			mainMenuDisplay();
+			mainMenuDisplay(this.mainFrame);
         }
 	}
 	
@@ -130,6 +147,29 @@ public class MenuController implements ActionListener {
 	 * Affiche le menu des sauvegardes sur la mainFrame
 	 */
 	public void savesMenuDisplay() {
+		flush();
+		savesMenu.display(this);
+	}
+	
+	public void firstMainMenuDisplay(MainFrame nFrame) {
+		this.mainFrame = nFrame;
+		mainMenu.display(this);
+	}
+	
+	public void mainMenuDisplay(MainFrame nFrame) {
+		this.mainFrame = nFrame;
+		flush();
+		mainMenu.display(this);
+	}
+	
+	public void newGameMenuDisplay(MainFrame nFrame) {
+		this.mainFrame = nFrame;
+		flush();
+		newGameMenu.display(this);
+	}
+	
+	public void savesMenuDisplay(MainFrame nFrame) {
+		this.mainFrame = nFrame;
 		flush();
 		savesMenu.display(this);
 	}

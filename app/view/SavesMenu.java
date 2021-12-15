@@ -15,6 +15,8 @@ public class SavesMenu {
 	
 	JButton backMenu;
 	JLabel title;
+
+    public SavesMenu(){}
 	
 	/** SavesMenu(MainFrame)
 	 * 

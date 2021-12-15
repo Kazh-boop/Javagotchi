@@ -19,6 +19,8 @@ public class MainMenu {
     JButton saves;
     JButton quit;
     
+    public MainMenu(){}
+
     /** MainMenu(MainFrame)
      * 
      * Constructeur de MainMenu

@@ -12,5 +12,15 @@ public class Rabbit extends Familiar {
         super(r);
         this.food = "Carottes";
     }
+    
+    /**
+     * Constructeur pour les tests avec un timer
+     */
+    public Rabbit(String name, long period) {
+    	super(period);
+        this.name = name;
+        this.food = "Carottes";
+        this.familiarType = "Lapin";
+    }
 }
 

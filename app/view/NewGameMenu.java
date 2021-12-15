@@ -25,6 +25,8 @@ public class NewGameMenu {
 	private JButton rightFamiliar;
 	private JButton launchGame;
 	
+    public NewGameMenu(){}
+
 	/** NewGameMenu(MainFrame)
 	 * 
 	 * Constructeur de NewGameMenu

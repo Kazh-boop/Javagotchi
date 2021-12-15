@@ -19,10 +19,9 @@ public class GameController {
     GamePanel gamePanel;
     GameView gameView;
 
-    public GameController(Familiar selectedFamiliar, MainFrame mainFrame) {
+    public GameController(Familiar selectedFamiliar) {
         currentFamiliar = selectedFamiliar;
         currentRoom = new Room(Rooms.LIVING_ROOM);
-        this.gameView = new GameView(mainFrame);
     }
 
     public GameController(GamePanel gamePanel) {
