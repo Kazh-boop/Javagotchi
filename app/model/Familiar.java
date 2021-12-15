@@ -17,12 +17,25 @@ public abstract class Familiar {
     protected TimerPortions timerPortions;
     protected TimerEnergy timerEnergy;
 
+    protected int moodValue;
+
     protected String familiarType;
     
+    protected String urlIcon;
+
+    // Constants
+
     private static final int MAX_STATS = 100;
     private static final int MAX_FEED_PORTION = 35;
     private static final int DECREASE_STATS_PER_ACTION = 5;
     private static final int MAX_PORTIONS = 4;
+
+    private static final int AMOUNT_OF_STATS = 5;
+
+    private static final int HAPPY_THRESHOLD = 85;
+    private static final int JOY_THRESHOLD = 70;
+    private static final int FINE_THRESHOLD = 55;
+    private static final int SAD_THRESHOLD = 35;
 
     // Constructor called by childs class to init attributes value
     protected Familiar() {
@@ -140,13 +153,20 @@ public abstract class Familiar {
         return mood.getName();
     }
 
-    public Mood calculateMood(Weather currentWeather, Room currentRoom) {
-        int moodValue = (hungriness + hygiene + energy + vitality) / 5;
 
-        if(moodValue >= 85) return Mood.HAPPY;
-        else if(moodValue >= 70) return Mood.JOYFUL;
-        else if(moodValue >= 50) return Mood.FINE;
-        else if(moodValue >= 30) return Mood.SAD;
+    public void recalculateMood(Weather currentWeather, Rooms currentRoom) {
+        moodValue = (int)((hungriness + hygiene + energy + vitality) / AMOUNT_OF_STATS);
+        if(currentRoom == Rooms.GARDEN) moodValue*=currentWeather.getCoef();
+        
+        this.mood = changeMood();
+    }
+
+    public Mood changeMood() {
+
+        if(moodValue >= HAPPY_THRESHOLD) return Mood.HAPPY;
+        else if(moodValue >= JOY_THRESHOLD) return Mood.JOYFUL;
+        else if(moodValue >= FINE_THRESHOLD) return Mood.FINE;
+        else if(moodValue >= SAD_THRESHOLD) return Mood.SAD;
 
         return Mood.MISERABLE;
     }

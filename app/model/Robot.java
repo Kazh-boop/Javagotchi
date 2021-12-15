@@ -2,8 +2,9 @@ package app.model;
 
 public class Robot extends Familiar {
     
-    public Robot() {
+    public Robot(String name) {
         super();
+        this.name = name;
         this.food = "Electricité";
         this.familiarType = "Robot";
     }
