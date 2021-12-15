@@ -1,10 +1,7 @@
 package app.view;
 
 import javax.swing.*;
-
-import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.Insets;
 
 import app.controller.*;
 
@@ -18,23 +15,12 @@ public class MainMenu {
     JButton newGame;
     JButton saves;
     JButton quit;
+
+    public MainMenu(){}
     
-    /** MainMenu(MainFrame)
-     * 
-     * Constructeur de MainMenu
-     * @param nFrame
-     */
-    public MainMenu(MainFrame nFrame){
-    	this.mainFrame = nFrame;
-    }
-    
-    /** display(MenuController)
-     * 
-     * Affiche le menu principal
-     * @param nController
-     */
-    public void display(MenuController nController) {
+    public void display(MenuController nController, MainFrame nFrame) {
     	this.mainController = nController;
+        this.mainFrame = nFrame;
         
         this.mainPanel = new JPanel();
         
@@ -47,11 +33,9 @@ public class MainMenu {
         // placement des JComponent
         
         // habillage des JComponent 
-        Color red = new Color(255,50,50);
-        Insets button = new Insets(100,100,100,100);
-        newGame.setBackground(red);
-        newGame.setBorderPainted(false);
-        newGame.setMargin(button);
+        //newGame.setPreferredSize(new Dimension(150,100));
+        //saves.setPreferredSize(new Dimension(150,100));
+        //quit.setPreferredSize(new Dimension(150,100));
         
         // creation des eventListener pour les JButton
         this.newGame.addActionListener(this.mainController);
@@ -69,34 +53,18 @@ public class MainMenu {
         mainFrame.setVisible(true);
     }
     
-    /** getNewGame()
-     * 
-     * @return Boutton newGame
-     */
     public JButton getNewGame(){
         return newGame;
     }
     
-    /** getSaves()
-     * 
-     * @return Boutton saves
-     */
     public JButton getSaves(){
         return saves;
     }
     
-    /** getQuit()
-     * 
-     * @return Boutton quit
-     */
     public JButton getQuit(){
         return quit;
     }
     
-    /** getMainFrame()
-     * 
-     * @return mainFrame
-     */
     public JFrame getMainFrame(){
         return this.mainFrame;
     }

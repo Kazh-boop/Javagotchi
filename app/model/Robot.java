@@ -13,4 +13,14 @@ public class Robot extends Familiar {
         super(r);
         this.food = "Electricité";
     }
+    
+    /**
+     * Constructeur pour les tests avec un timer
+     */
+    public Robot(String name, long period) {
+    	super(period);
+        this.name = name;
+        this.food = "Electricité";
+        this.familiarType = "Robot";
+    }
 }

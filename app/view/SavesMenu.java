@@ -15,23 +15,12 @@ public class SavesMenu {
 	
 	JButton backMenu;
 	JLabel title;
-	
-	/** SavesMenu(MainFrame)
-	 * 
-	 * Constructeur de SavesMenu
-	 * @param nFrame
-	 */
-    public SavesMenu(MainFrame nFrame){
-    	this.mainFrame = nFrame;
-    }
+
+    public SavesMenu(){}
     
-    /** display(MenuController)
-     * 
-     * Affiche le menu des sauvegardes
-     * @param nController
-     */
-    public void display(MenuController nController) {
+    public void display(MenuController nController, MainFrame nFrame) {
     	this.mainController = nController;
+        this.mainFrame = nFrame;
         
         this.mainPanel = new JPanel();
         
@@ -54,18 +43,10 @@ public class SavesMenu {
         mainFrame.setVisible(true);
     }
     
-    /** getMainFrame()
-     * 
-     * @return JFrame mainFrame
-     */
     public JFrame getMainFrame(){
         return this.mainFrame;
     }
-    
-    /** getBackMenu()
-     * 
-     * @return Boutton backMenu
-     */
+
     public JButton getBackMenu(){
     	return this.backMenu;
 	}
