@@ -7,9 +7,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 
-public class SaveManager implements Serializable {
+public class SaveManager {
     
     private ObjectOutputStream saveDatas;
     private ObjectInputStream loadDatas;
@@ -43,9 +42,17 @@ public class SaveManager implements Serializable {
 
     public void loadSave() throws ClassNotFoundException, IOException {
         loadDatas = new ObjectInputStream(dataInStream);
+        currentFamiliar = ((Familiar)loadDatas.readObject()); // recuperation de l'objet / du familier
+        /*
+         * Ce qui l'y a en dessous provoque un EOFException parce qu'on recupere l'objet une premiere fois dans 
+         * la condition du switch puis on essaie de recuperer un autre objet qui n'est pas enregistre
+         */
+        
+        /*
         switch(((Familiar)loadDatas.readObject()).getFamiliarType()) {
             case "Chat" : 
-                currentFamiliar = new Cat((Cat) loadDatas.readObject());
+            	System.out.println("here");
+                currentFamiliar = new Cat((Cat) loadDatas.readObject()); // End Of File Exception
                 break;
             case "Robot":
                 currentFamiliar = new Robot((Robot) loadDatas.readObject());
@@ -53,7 +60,10 @@ public class SaveManager implements Serializable {
             case "Lapin":
                 currentFamiliar = new Rabbit((Rabbit) loadDatas.readObject());
                 break;
-        }
+            case "Chien":
+            	currentFamiliar = new Dog((Dog) loadDatas.readObject());
+        }*/
+        
         loadDatas.close();
     }
 
