@@ -4,8 +4,11 @@ import app.model.Familiar;
 import app.model.Room;
 import app.model.Rooms;
 import app.view.GamePanel;
-import app.model.*;
 import app.view.GameView;
+
+import app.model.TimerEnergy;
+import app.model.TimerForcedSleep;
+import app.model.TimerPortions;
 
 public class GameController {
     
@@ -13,10 +16,16 @@ public class GameController {
     Room currentRoom;
     GamePanel gamePanel;
     GameView gameView;
+    TimerEnergy timerEnergy;
+    TimerPortions timerPortions;
 
     public GameController(Familiar selectedFamiliar) {
         currentFamiliar = selectedFamiliar;
         currentRoom = new Room(Rooms.LIVING_ROOM);
+        timerEnergy = new TimerEnergy(selectedFamiliar);
+        timerEnergy.run();
+        timerPortions = new TimerPortions(selectedFamiliar);
+        timerPortions.run();
     }
 
     public GameController(GamePanel gamePanel) {
@@ -59,6 +68,15 @@ public class GameController {
         gamePanel.getSleepButton().setEnabled(false);
         // désactiver également les boutons de déplacements !
         
+    }
+    
+    public TimerEnergy getTimerEnergy()
+    {
+    	return this.timerEnergy;
+    }
+    
+    public TimerPortions getTimerPortion() {
+    	return this.timerPortions;
     }
         
 }

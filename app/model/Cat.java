@@ -13,12 +13,4 @@ public class Cat extends Familiar {
         super(cat);
         this.food = "Patée";
     }
-    
-    // Constructeur de test
-    public Cat(String name, long period) {
-    	super(period);
-        this.name = name;
-        this.food = "Patée";
-        this.familiarType = "Chat";
-    }
 }

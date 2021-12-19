@@ -13,10 +13,4 @@ public class Dog extends Familiar {
         this.food = "Croquette";
 	}
 
-	public Dog(long period) {
-		super(period);
-        this.food = "Croquette";
-        this.familiarType = "Chien";
-    }
-
 }

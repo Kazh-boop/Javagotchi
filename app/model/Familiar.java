@@ -17,9 +17,6 @@ public abstract class Familiar {
     protected int moodValue;
 
     protected String familiarType;
-    
-    protected TimerPortions timerPortions;
-    protected TimerEnergy timerEnergy;
 
     // Constants
 
@@ -47,10 +44,6 @@ public abstract class Familiar {
         this.mood = Mood.HAPPY;
         this.room = new Room(Rooms.LIVING_ROOM);
         this.portions = 2;
-        this.timerPortions = new TimerPortions(this);
-        this.timerPortions.run();
-        this.timerEnergy = new TimerEnergy(this);
-        this.timerEnergy.run();
     }
 
     protected Familiar(Familiar f) {
@@ -61,26 +54,6 @@ public abstract class Familiar {
         this.mood = f.mood;
         this.room = f.room;
         this.portions = f.portions;
-        this.timerPortions = new TimerPortions(f);
-        this.timerPortions.run();
-        this.timerEnergy = new TimerEnergy(f);
-        this.timerEnergy.run();
-
-        this.portions = f.portions;
-    }
-    
-    /**
-     * Constructeur pour test Timer
-     */
-    protected Familiar(long period) {
-        this.energy = MAX_STATS;
-        this.hungriness = MAX_STATS;
-        this.hygiene = MAX_STATS;
-        this.vitality = MAX_STATS;
-        this.mood = Mood.HAPPY;
-        this.portions = 2;
-        this.timerPortions = new TimerPortions(this, period);
-        this.timerEnergy = new TimerEnergy(this, period);
     }
 
     // Accessors
@@ -147,11 +120,6 @@ public abstract class Familiar {
     public void ResetPortion() {
     	this.portions = 0;
     }
-    
-    // utilisee pour les tests
-    public TimerPortions getTimerPortion() {
-    	return this.timerPortions;
-    }
 
 
     public Mood getMood() {
@@ -201,10 +169,6 @@ public abstract class Familiar {
     	this.energy = energy;
     	if (this.energy > MAX_STATS)
     		this.energy = MAX_STATS;
-    }
-    
-    public TimerEnergy getTimerEnergy() {
-    	return this.timerEnergy;
     }
     
     public int getHygiene() {

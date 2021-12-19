@@ -5,50 +5,27 @@ import java.util.TimerTask;
 
 public class TimerEnergy extends TimerTask {
     private Familiar familiar;
-    private static final int MINUTES_PER_PORTION = 10 *60 * 1000;
-    
-    // attributs tests
-    private final long period;
+    private static int MINUTES_PER_PORTION;
+
 
     public TimerEnergy(Familiar familiar){
         this.familiar = familiar;
-        this.period = MINUTES_PER_PORTION;
+        MINUTES_PER_PORTION =  10 * 60 * 1000;
     }
     
-    /**
-     * Constructeur tests
-     */
-    public TimerEnergy(Familiar familiar, long period) {
-    	this.familiar = familiar;
-    	this.period = period;
+    public TimerEnergy(Familiar familiar, int period){
+        this.familiar = familiar;
+        MINUTES_PER_PORTION = period;
     }
 
     @Override
     public void run() {
-        Timer timer;
-        timer = new Timer();
+        Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                System.out.println(familiar.getEnergy());
                 familiar.setEnergy(familiar.getEnergy()-1);
             }
           }, 0, MINUTES_PER_PORTION); 
-    }
-    
-    
-    /**
-     * utilisee pour les tests pour avoir un controle sur le temps
-     */
-    public void start() {
-        Timer timer;
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                System.out.println(familiar.getEnergy());
-                familiar.setEnergy(familiar.getEnergy()-1);
-            }
-          }, 0, period); 
     }
 }
