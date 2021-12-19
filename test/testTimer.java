@@ -1,11 +1,13 @@
 package test;
 
-import app.model.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+
+import app.model.Cat;
+import app.model.Familiar;
 
 public class testTimer {
 	

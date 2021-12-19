@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
 import app.model.Cat;
 import app.model.*;
 import app.view.*;
-import app.model.*;
 
 public class MenuController implements ActionListener {
 	

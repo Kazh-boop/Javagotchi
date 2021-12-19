@@ -5,12 +5,7 @@ import app.model.Room;
 import app.model.Rooms;
 import app.view.GamePanel;
 import app.model.*;
-
-//private GamePanel gamePanel;
-import javax.swing.JButton;
-//import app.*;
 import app.view.GameView;
-import app.view.MainFrame;
 
 public class GameController {
     
