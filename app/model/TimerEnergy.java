@@ -1,9 +1,13 @@
 package app.model;
 			
+import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class TimerEnergy extends TimerTask {
+public class TimerEnergy extends TimerTask implements Serializable {
+	
+    private static final long serialVersionUID = 1L;
+
     private Familiar familiar;
     private static final int MINUTES_PER_PORTION = 10 *60 * 1000;
     

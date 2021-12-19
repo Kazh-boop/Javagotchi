@@ -1,8 +1,12 @@
 package app.model;
 
-public abstract class Familiar {
+import java.io.Serializable;
 
+public abstract class Familiar implements Serializable {
 
+	// attribut pour la serialisation pour le fonction d'ObjectOutputStream	
+    private static final long serialVersionUID = 1L;
+	
     // Familiar attributes
     protected String name;
 
@@ -189,5 +193,9 @@ public abstract class Familiar {
     
     public int getHygiene() {
     	return this.hygiene;
+    }
+    
+    public String getName() {
+    	return this.name;
     }
 }
