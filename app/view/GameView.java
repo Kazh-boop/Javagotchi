@@ -2,11 +2,11 @@ package app.view;
 
 
 import javax.swing.*;
-
+import java.awt.GridBagLayout;
 import app.controller.GameController;
 
 import java.awt.GridLayout;
-import java.lang.System.Logger;
+import java.awt.BorderLayout;
 
 
 public class GameView {
@@ -37,9 +37,10 @@ public class GameView {
     }
 
     public void display(){
-        mainFrame.setLayout(new GridLayout(2, 2));
+        mainFrame.setLayout(new BorderLayout());
+
         this.leftPanel = new JPanel();
-        this.leftPanel.setLayout(new GridLayout(0,1));
+        this.leftPanel.setLayout(new GridLayout(0,2));
         this.rightPanel = new JPanel();
         this.bottomPanel = new JPanel();
 
@@ -83,9 +84,9 @@ public class GameView {
         bottomPanel.add(hunger);
         bottomPanel.add(pbHunger);
 
-        mainFrame.add(leftPanel);
-        mainFrame.add(rightPanel);
-        mainFrame.add(bottomPanel);
+        mainFrame.add(leftPanel, BorderLayout.LINE_START);
+        mainFrame.add(rightPanel, BorderLayout.CENTER);
+        mainFrame.add(bottomPanel, BorderLayout.PAGE_END);
 
         mainFrame.setVisible(true);
     }
