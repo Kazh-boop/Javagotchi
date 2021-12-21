@@ -53,15 +53,19 @@ public class NewGameMenuController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == this.newGameMenu.getBackMenu()) {
+			menuController.playsound(menuController.getClickSound());
 			menuController.mainMenuDisplay();
 			
         }else if(e.getSource() == this.newGameMenu.getLeftFamiliarType()) {
+        	menuController.playsound(menuController.getClickSound());
         	turnLeftFamiliar();
         	
         }else if(e.getSource() == this.newGameMenu.getRightFamiliarType()) {
+        	menuController.playsound(menuController.getClickSound());
         	turnRightFamiliar();
         	
         }else if(e.getSource() == this.newGameMenu.getLaunchGame()) {
+        	menuController.playsound(menuController.getClickSound());
         	launchNewGame();
         }
 		

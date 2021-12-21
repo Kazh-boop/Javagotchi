@@ -98,4 +98,8 @@ public class MenuController implements ActionListener {
 	public MainFrame getMainFrame() {
 		return this.mainFrame;
 	}
+
+	public String getClickSound() {
+		return MenuController.SOUNDS_MENU_CLICK;
+	}
 }

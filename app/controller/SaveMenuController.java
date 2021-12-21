@@ -55,6 +55,7 @@ public class SaveMenuController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
     	if (e.getSource().equals(this.savesMenu.getBackMenu())) { // retour menu principal
+    		menuController.playsound(menuController.getClickSound());
     		menuController.mainMenuDisplay();
     		
     	}else if(e.getSource().equals(this.savesMenu.getDeleteFamiliar())) { // suppression familier
