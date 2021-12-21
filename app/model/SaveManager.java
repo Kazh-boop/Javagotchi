@@ -13,6 +13,14 @@ import java.util.Vector;
 
 /**
  * Classe permettant de gerer les sauvegardes du jeu
+ * Fonctionnement:
+ * <ul>
+ * 		<li>creation du SaveManager 		-> new SaveManager(absolutePath)</li>
+ * 		<li>ouverture du fichier courant	-> openFile(nameSave)</li>
+ * 		<li>ecriture dans le fichier		-> writeSave(saveFamiliar)</li>
+ * 		<li>lecture du fichier/donnees		-> loadSave()
+ * 		<li>recuperation des donnes			-> loadFamiliar = this.getFamiliar() 
+ * </ul>
  */
 public class SaveManager {
 	
