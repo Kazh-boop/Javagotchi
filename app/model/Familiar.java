@@ -1,6 +1,14 @@
 package app.model;
 
-public abstract class Familiar {
+import java.io.Serializable;
+import java.util.UUID;
+
+public abstract class Familiar implements Serializable {
+	
+	// permet d'identifier chaque Familiar de maniere unique
+	private final UUID serialVersionUID = UUID.randomUUID();
+
+	//private static final long serialVersionUID = 1L;
 
     // Familiar attributes
     protected String name;
@@ -11,7 +19,7 @@ public abstract class Familiar {
     protected int hygiene;
     protected int vitality;
     protected Mood mood;
-    protected Room room;
+    protected transient Room room;
     protected int portions;
 
     protected int moodValue;
@@ -178,5 +186,18 @@ public abstract class Familiar {
     public int getEnergy()
     {
         return this.energy;
+    }
+    
+    public String getName() {
+    	return this.name;
+    }
+    
+    public String getUID() {
+    	return serialVersionUID.toString();
+    }
+    
+    @Override
+    public String toString() {
+    	return "Nom : " + name + " Type : " + familiarType;
     }
 }
