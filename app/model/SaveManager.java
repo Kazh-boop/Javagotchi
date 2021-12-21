@@ -12,7 +12,7 @@ import java.util.Vector;
 
 
 /**
- * Classe permettant de gerer les sauvegardes du jeu
+ * Classe permettant de gerer les sauvegardes du jeu<br>
  * Fonctionnement:
  * <ul>
  * 		<li>creation du SaveManager 		-> new SaveManager(absolutePath)</li>
