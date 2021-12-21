@@ -5,11 +5,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import app.controller.MenuController;
+import app.controller.SaveMenuController;
 
 public class SavesMenu {
 	
-	MenuController mainController;
+	SaveMenuController mainController;
 	MainFrame mainFrame;
 	JPanel mainPanel;
 	
@@ -21,8 +21,9 @@ public class SavesMenu {
 	 * Constructeur de SavesMenu
 	 * @param nFrame
 	 */
-    public SavesMenu(MainFrame nFrame){
-    	this.mainFrame = nFrame;
+    public SavesMenu(SaveMenuController nController){
+    	this.mainController = nController;
+    	this.mainFrame = mainController.getMainFrame();
     }
     
     /** display(MenuController)
@@ -30,18 +31,12 @@ public class SavesMenu {
      * Affiche le menu des sauvegardes
      * @param nController
      */
-    public void display(MenuController nController) {
-    	this.mainController = nController;
-        
+    public void display() {        
         this.mainPanel = new JPanel();
         
         // composition des JComponent
         this.title = new JLabel("Sauvegardes");
         this.backMenu = new JButton("Retour");
-        
-        // placement des JComponent
-        
-        // habillage des JComponent
         
         // creation des eventListener pour les JButton
         this.backMenu.addActionListener(this.mainController);
@@ -54,16 +49,14 @@ public class SavesMenu {
         mainFrame.setVisible(true);
     }
     
-    /** getMainFrame()
-     * 
+    /**
      * @return JFrame mainFrame
      */
     public JFrame getMainFrame(){
         return this.mainFrame;
     }
     
-    /** getBackMenu()
-     * 
+    /**
      * @return Boutton backMenu
      */
     public JButton getBackMenu(){

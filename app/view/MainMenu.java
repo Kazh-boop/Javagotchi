@@ -4,7 +4,6 @@ import javax.swing.*;
 
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.Insets;
 
 import app.controller.*;
 
@@ -14,24 +13,23 @@ public class MainMenu {
 	MainFrame mainFrame;
 	JPanel mainPanel;
 	
-	JLabel title;
-    JButton newGame;
-    JButton saves;
-    JButton quit;
+	CustomMenuLabel title;
+    CustomMenuButton newGame;
+    CustomMenuButton saves;
+    CustomMenuButton quit;
     
-    /** MainMenu(MainFrame)
-     * 
-     * Constructeur de MainMenu
-     * @param nFrame
+    /**
+     * Constructeur
+     * @param nController MenuController
      */
-    public MainMenu(MainFrame nFrame){
-    	this.mainFrame = nFrame;
+    public MainMenu(MenuController nController){
+    	this.mainController = nController;
+    	this.mainFrame = mainController.getMainFrame();
     }
     
-    /** display(MenuController)
-     * 
+    /**
      * Affiche le menu principal
-     * @param nController
+     * @param nController MenuController
      */
     public void display(MenuController nController) {
     	this.mainController = nController;
@@ -39,19 +37,20 @@ public class MainMenu {
         this.mainPanel = new JPanel();
         
         // composition des JComponent
-        this.title = new JLabel("Titre");
-        this.newGame = new JButton("Nouvelle Partie");
-        this.saves = new JButton("Sauvegardes");
-        this.quit = new JButton("Quitter");
+        this.title = new CustomMenuLabel("Tamagotchi", 96f, SwingConstants.CENTER);
+        this.newGame = new CustomMenuButton("Nouvelle Partie");
+        this.saves = new CustomMenuButton("Sauvegardes");
+        this.quit = new CustomMenuButton("Quitter");
         
-        // placement des JComponent
-        
-        // habillage des JComponent 
-        Color red = new Color(255,50,50);
-        Insets button = new Insets(100,100,100,100);
-        newGame.setBackground(red);
-        newGame.setBorderPainted(false);
-        newGame.setMargin(button);
+        // habillage personalise        
+        Color cactus_green = new Color(104, 131, 53);
+        Color pearl = new Color(245, 235, 218);
+        newGame.setForeground(cactus_green);
+        newGame.setBackground(pearl);
+        saves.setForeground(cactus_green);
+        saves.setBackground(pearl);
+        quit.setForeground(Color.red);
+        quit.setBackground(pearl);
         
         // creation des eventListener pour les JButton
         this.newGame.addActionListener(this.mainController);
@@ -59,7 +58,7 @@ public class MainMenu {
         this.quit.addActionListener(this.mainController);
         
         // ajout des elements dans la mainFrame
-        mainPanel.setLayout(new GridLayout(4,1,0,50));
+        mainPanel.setLayout(new GridLayout(4,1,50,50));
         mainPanel.add(title);
         mainPanel.add(newGame);
         mainPanel.add(saves);
@@ -69,33 +68,29 @@ public class MainMenu {
         mainFrame.setVisible(true);
     }
     
-    /** getNewGame()
-     * 
-     * @return Boutton newGame
+    /**
+     * @return newGame JButton
      */
     public JButton getNewGame(){
         return newGame;
     }
     
-    /** getSaves()
-     * 
-     * @return Boutton saves
+    /**
+     * @return saves JButton
      */
     public JButton getSaves(){
         return saves;
     }
     
-    /** getQuit()
-     * 
-     * @return Boutton quit
+    /**
+     * @return quit JButton
      */
     public JButton getQuit(){
         return quit;
     }
     
-    /** getMainFrame()
-     * 
-     * @return mainFrame
+    /**
+     * @return mainFrame JFrame
      */
     public JFrame getMainFrame(){
         return this.mainFrame;
