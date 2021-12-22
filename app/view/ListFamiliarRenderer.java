@@ -2,23 +2,14 @@ package app.view;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.GridLayout;
-import java.io.IOException;
-import java.io.InputStream;
 
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.DefaultListSelectionModel;
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
-import javax.swing.SwingConstants;
-import javax.swing.border.Border;
+
 
 import app.model.Familiar;
 
@@ -29,8 +20,6 @@ import app.model.Familiar;
  */
 public class ListFamiliarRenderer implements ListCellRenderer<Familiar> {
 	
-	private static final String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
-
 
 	@Override
 	public Component getListCellRendererComponent(JList<? extends Familiar> list, Familiar familiar, int index,
@@ -64,23 +53,6 @@ public class ListFamiliarRenderer implements ListCellRenderer<Familiar> {
         list.setSelectionBackground(Color.blue);
         
 		return box;
-	}
-	
-	/**
-	 * Definit une nouvelle police
-	 * @param jc JComponent
-	 * @param fontSize float
-	 */
-	protected void setCustomFont(JComponent jc, float fontSize){
-		InputStream inStrm = CustomMenuButton.class.getResourceAsStream(FONT_LIKE_SNOW);
-		try {
-			Font font = Font.createFont(Font.TRUETYPE_FONT, inStrm);
-			Font sizedFont = font.deriveFont(fontSize);
-			jc.setFont(sizedFont);
-			
-		} catch (FontFormatException | IOException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	/**
