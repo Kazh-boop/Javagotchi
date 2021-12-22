@@ -82,13 +82,15 @@ public class SaveManager {
      * @throws IOException
      */
     public void writeSave(Familiar f) throws IOException {
-    	dataOutStream = new FileOutputStream(currentFile); // ouverture du fichier en ecriture seule
-        saveDatas = new ObjectOutputStream(dataOutStream);
-        
-        saveDatas.writeObject(f);
-        
-        saveDatas.close();
-        dataOutStream.close();
+    	if (isEnableToSave()) {
+    		dataOutStream = new FileOutputStream(currentFile); // ouverture du fichier en ecriture seule
+    		saveDatas = new ObjectOutputStream(dataOutStream);
+
+    		saveDatas.writeObject(f);
+
+    		saveDatas.close();
+    		dataOutStream.close();
+    	}
     }
 
     /**
@@ -165,6 +167,22 @@ public class SaveManager {
 		}
 		
 		return listFamiliar;
+    }
+    
+    /**
+     * Permet de s'assurer qu'il y est moins de 3 sauvegardes
+     * @return
+     */
+    public boolean isEnableToSave() {
+    	return getNbSave() < 3;
+    }
+    
+    /**
+     * Permet de connaitre le nombre de sauvegarde dans le dossier meme si l'utilisateur le supprime "a la main"
+     * @return nombre de sauvegarde int
+     */
+    private int getNbSave() {
+    	return getNameSave().length;
     }
     
     /**
