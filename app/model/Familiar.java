@@ -188,6 +188,7 @@ public abstract class Familiar implements Serializable {
     public int getVitality()
     {
     	return vitality;
+    }
 
     public String getName() {
     	return this.name;

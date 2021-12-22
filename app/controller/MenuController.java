@@ -26,7 +26,6 @@ public class MenuController implements ActionListener {
 	private final String[] familiarTypeURL = {"../image/cat.png", "../image/dog.png", "../image/robot.png", "../image/rabbit.png"};
 	private GameController gameController;
 
-	
 	private static Pattern invalidPattern;
     private static Matcher invalidMatcher;
 	private static Pattern emptyPattern;
