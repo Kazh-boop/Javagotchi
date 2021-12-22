@@ -23,16 +23,16 @@ public class NewGameMenuController implements ActionListener {
 	private NewGameMenu newGameMenu;
 	private MenuController menuController;
 	
-	private final int CURSOR_MAX = 3;
-	private final int CURSOR_MIN = 0;
+	private static final int CURSOR_MAX = 3;
+	private static final int CURSOR_MIN = 0;
 	private int cursorImage = 0;
 	private final String[] familiarType = {"Chat", "Chien", "Robot", "Lapin"};
 	private final String[] familiarTypeURL = {"../assets/images/cat.png", "../assets/images/dog.png", "../assets/images/robot.png", "../assets/images/rabbit.png"};
 	
-	private static Pattern invalidPattern;
-    private static Matcher invalidMatcher;
-	private static Pattern emptyPattern;
-    private static Matcher emptyMatcher;
+	private Pattern invalidPattern;
+    private Matcher invalidMatcher;
+	private Pattern emptyPattern;
+    private Matcher emptyMatcher;
 	
 	/**
 	 * Constructeur
@@ -108,30 +108,30 @@ public class NewGameMenuController implements ActionListener {
 		
     	// verification de la validite du nom
     	// recherche en fonction du matcher
-    	invalidPattern = Pattern.compile("<|>|:|\"|/");
+    	invalidPattern = Pattern.compile("[<>:\"/]");
     	invalidMatcher = invalidPattern.matcher(fName);
     	
     	emptyPattern = Pattern.compile("^(\s{1,21})");
     	emptyMatcher = emptyPattern.matcher(fName);
     	
     	if(fName.length()>=20){
-    		JOptionPane maxLenghtProb = new JOptionPane("Le nom du familier ne peut pas dépasser 20 caractères.",JOptionPane.WARNING_MESSAGE);
+    		JOptionPane maxLenghtProb = new JOptionPane("Le nom du familier ne peut pas depasser 20 caracteres.",JOptionPane.WARNING_MESSAGE);
     		setOptionBoxVisual(maxLenghtProb);
     		
     	}else if((fName.isEmpty()) || (emptyMatcher.find())) {
-    		JOptionPane emptyNameProb = new JOptionPane("Le nom du familier doit comporter au moins 1 caractère et ne pas commencer par des espaces.",JOptionPane.WARNING_MESSAGE);
+    		JOptionPane emptyNameProb = new JOptionPane("Le nom du familier doit comporter au moins 1 caractere et ne pas commencer par des espaces.",JOptionPane.WARNING_MESSAGE);
     		setOptionBoxVisual(emptyNameProb);
     		
     	}else if((invalidMatcher.find())) {
-    		JOptionPane invalidNameProb = new JOptionPane("Les caractères <, >, :, \", /, \\, |, ?, * sont interdits dans le nom du familier.",JOptionPane.WARNING_MESSAGE);
+    		JOptionPane invalidNameProb = new JOptionPane("Les caracteres <, >, :, \", /, \\, |, ?, * sont interdits dans le nom du familier.",JOptionPane.WARNING_MESSAGE);
     		setOptionBoxVisual(invalidNameProb);
     	
     	}else {
-    		String confirm_msg = "Création de "+fName+" le "+fType+" ?";
-    		String[] confirm_options = {"Oui", "Non"};
-    		int confirm_answer = JOptionPane.showOptionDialog(null, confirm_msg, "Tamagotchi", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, confirm_options, confirm_options[0]);
+    		String confirmMsg = "Creation de "+fName+" le "+fType+" ?";
+    		String[] confirmOptions = {"Oui", "Non"};
+    		int confirmAnswer = JOptionPane.showOptionDialog(null, confirmMsg, "Tamagotchi", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, confirmOptions, confirmOptions[0]);
     		
-    		switch(confirm_answer){
+    		switch(confirmAnswer){
 	    		case 0:
 	    		    // create a new Familiar
 	    	        	// attributes for the new Familiar
@@ -164,7 +164,7 @@ public class NewGameMenuController implements ActionListener {
 	    	        			setOptionBoxVisual(launchProb);
 	    	        			break;
 	    	        	}
-	    		
+					break;
 	    		case 1:
 	    			break;
     		
@@ -181,7 +181,7 @@ public class NewGameMenuController implements ActionListener {
 	 * @return pane JOptionPane
 	 */
 	private JOptionPane setOptionBoxVisual(JOptionPane pane) {
-		JDialog boite = pane.createDialog("Robot vérificateur");
+		JDialog boite = pane.createDialog("Robot vï¿½rificateur");
 	    boite.setVisible(true);
 		return pane;
 	}

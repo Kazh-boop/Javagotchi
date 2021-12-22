@@ -1,8 +1,9 @@
 package app.model;
 
-import javax.swing.BoundedRangeModel;
+import java.io.Serializable;
+import java.util.UUID;
 
-public abstract class Familiar {
+public abstract class Familiar implements Serializable{
 
 
     // Familiar attributes
@@ -37,6 +38,9 @@ public abstract class Familiar {
     private static final int FINE_THRESHOLD = 55;
     private static final int SAD_THRESHOLD = 35;
 
+    private final UUID serialVersionUID = UUID.randomUUID();
+
+    
     // Constructor called by childs class to init attributes value
     protected Familiar() {
         this.energy = MAX_STATS;
@@ -77,7 +81,7 @@ public abstract class Familiar {
 
 
     public void recalculateMood(Weather currentWeather, Rooms currentRoom) {
-        moodValue = (int)((hungriness + hygiene + energy + vitality) / AMOUNT_OF_STATS);
+        moodValue = (hungriness + hygiene + energy + vitality) / AMOUNT_OF_STATS;
         if(currentRoom == Rooms.GARDEN) moodValue*=currentWeather.getCoef();
         
         this.mood = changeMood();
@@ -116,4 +120,14 @@ public abstract class Familiar {
     public int getVitality() {
         return vitality;
     }
+    
+    public String getUID() {
+    	return serialVersionUID.toString();
+    }
+    
+    @Override
+    public String toString() {
+    	return "Nom : " + name + " Type : " + familiarType;
+    }
+
 }

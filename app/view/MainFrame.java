@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame {
@@ -23,7 +24,7 @@ public class MainFrame extends JFrame {
         int y = (int) ((userScreenSize.getHeight()-720) / 2);
         setBounds(x, y, 0, 0);
         
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //ends program when JFrame closed
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //ends program when JFrame closed
         setTitle("Tamagotchi");
         
         pack();

@@ -2,7 +2,6 @@ package app.controller;
 
 import app.model.SaveManager;
 import app.view.MainFrame;
-import app.view.MainMenu;
 import app.view.SavesMenu;
 import app.model.Familiar;
 
@@ -29,7 +28,7 @@ public class SaveMenuController implements ActionListener {
 		this.mainFrame = nFrame;
 		this.menuController = menuController;
 		this.saveManager = new SaveManager("save/");
-		this.savesMenu = new SavesMenu(this);
+		this.savesMenu = new SavesMenu(nFrame);
 	}
 	
 	/**
@@ -39,7 +38,7 @@ public class SaveMenuController implements ActionListener {
 	 */
 	public void savesMenuDisplay() throws ClassNotFoundException, IOException {
 		flush();
-		savesMenu.display();
+		savesMenu.display(this);
 	}
 	
 	public String[] getSaveName() {

@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 @SuppressWarnings("serial")
 public class CustomMenuLabel extends JLabel {
 	
-private final static String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
+private static final String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
 	
 	/**
 	 * Fait un habillage par defaut pour les JLabel du menu

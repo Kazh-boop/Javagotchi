@@ -19,7 +19,7 @@ public class MenuController implements ActionListener {
 	private SaveMenuController saveMenuController;
 	private MainMenu mainMenu;
 	
-	protected final static String SOUNDS_MENU_CLICK = "../assets/sounds/click.wav";
+	protected static final String SOUNDS_MENU_CLICK = "../assets/sounds/click.wav";
 	
     /**
 	 * Initialise les 3 controller des menu ainsi que la mainFrame,

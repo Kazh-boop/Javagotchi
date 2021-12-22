@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.util.Vector;
 
 import javax.swing.DefaultListModel;
-import javax.swing.DefaultListSelectionModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.ListSelectionModel;
 
 import app.controller.SaveMenuController;
 import app.model.Familiar;
@@ -54,12 +54,12 @@ public class SavesMenu {
         this.mainPanel = new JPanel();
         
         // recuperation des informations des familiers
-        this.modelFamiliar = new DefaultListModel<Familiar>();
+        this.modelFamiliar = new DefaultListModel<>();
         this.allFamiliar = saveMController.getAllFamiliar();
         for (Familiar f : allFamiliar) modelFamiliar.addElement(f);
 
         // composition des JComponent
-        this.listSave = new JList<Familiar>(modelFamiliar);
+        this.listSave = new JList<>(modelFamiliar);
         this.title = new JLabel("Sauvegardes");
         this.backMenu = new JButton("Retour");
         this.deleteFamiliar = new JButton("Supprimer le familier sélectionné");
@@ -70,7 +70,7 @@ public class SavesMenu {
         // habillage des JComponent
         // listSave
         this.listSave.setFixedCellHeight(100);
-        this.listSave.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION); // selectionner seul 1 element
+        this.listSave.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // selectionner seul 1 element
         
         // creation des eventListener pour les JButton
         this.backMenu.addActionListener(this.saveMController);

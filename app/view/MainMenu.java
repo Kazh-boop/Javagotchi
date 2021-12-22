@@ -43,11 +43,11 @@ public class MainMenu {
         this.quit = new CustomMenuButton("Quitter");
         
         // habillage personalise        
-        Color cactus_green = new Color(104, 131, 53);
+        Color cactusGreen = new Color(104, 131, 53);
         Color pearl = new Color(245, 235, 218);
-        newGame.setForeground(cactus_green);
+        newGame.setForeground(cactusGreen);
         newGame.setBackground(pearl);
-        saves.setForeground(cactus_green);
+        saves.setForeground(cactusGreen);
         saves.setBackground(pearl);
         quit.setForeground(Color.red);
         quit.setBackground(pearl);

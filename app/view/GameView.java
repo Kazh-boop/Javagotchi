@@ -2,7 +2,6 @@ package app.view;
 
 
 import javax.swing.*;
-import java.awt.GridBagLayout;
 import app.controller.GameController;
 
 import java.awt.GridLayout;
