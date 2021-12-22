@@ -46,7 +46,6 @@ public class NewGameMenuController implements ActionListener {
 	}
 	
 	public void newGameMenuDisplay() {
-		flush();
 		newGameMenu.display();
 	}
 	
@@ -135,27 +134,22 @@ public class NewGameMenuController implements ActionListener {
 	    		case 0:
 	    		    // create a new Familiar
 	    	        	// attributes for the new Familiar
-	    	        	Familiar newFamiliar;
+	    	        	Familiar newFamiliar = null;
 	    	        	
 	    	        	switch(fType) {
 	    	        		case "Chat":
 	    	        			newFamiliar = new Cat(fName);
-	    	        			new GameController(newFamiliar, mainFrame);
 	    	        			break;
 	    	        			
 	    	        		case "Chien":
 	    	        			newFamiliar = new Dog(fName);
-	    	        			new GameController(newFamiliar, mainFrame);
 	    	        			break;
 	    	        		
 	    	        		case "Robot":
-	    	        			newFamiliar = new Robot(fName);
-	    	        			new GameController(newFamiliar, mainFrame);
 	    	        			break;
 	    	        			
 	    	        		case "Lapin":
 	    	        			newFamiliar = new Rabbit(fName);
-	    	        			new GameController(newFamiliar, mainFrame);
 	    	        			break;
 	    	        		
 	    	        		default:
@@ -164,6 +158,7 @@ public class NewGameMenuController implements ActionListener {
 	    	        			setOptionBoxVisual(launchProb);
 	    	        			break;
 	    	        	}
+						if(newFamiliar != null) new GameController(newFamiliar, mainFrame);
 					break;
 	    		case 1:
 	    			break;

@@ -12,7 +12,7 @@ import javax.swing.JComponent;
 @SuppressWarnings("serial")
 public class CustomMenuButton extends JButton {
 	
-	private final static String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
+	private static final String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
 	
 	/**
 	 * Fait un habillage par defaut pour les JButton du menu

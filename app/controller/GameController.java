@@ -11,10 +11,13 @@ public class GameController {
     Familiar currentFamiliar;
     Room currentRoom;
     GameView gameView;
+    MainFrame  mainFrame;
 
     public GameController(Familiar selectedFamiliar, MainFrame mainFrame) {
         currentFamiliar = selectedFamiliar;
         currentRoom = new Room(Rooms.LIVING_ROOM);
+        this.mainFrame = mainFrame;
+        flush();
         this.gameView = new GameView(mainFrame, this);
 
     }
@@ -30,4 +33,12 @@ public class GameController {
     public Room getCurrentRoom() {
         return this.currentRoom;
     }
+
+    /** 
+	 * Vide la mainFrame de tous ses composants
+	 */
+	private void flush() {
+		mainFrame.getContentPane().removeAll();
+		mainFrame.repaint();
+	}
 }
