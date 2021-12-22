@@ -38,7 +38,9 @@ public abstract class Familiar implements Serializable{
     private static final int FINE_THRESHOLD = 55;
     private static final int SAD_THRESHOLD = 35;
 
-    private final UUID serialVersionUID = UUID.randomUUID();
+    private final UUID UID = UUID.randomUUID();
+    
+    private static final long serialVersionUID = 1L;
 
     
     // Constructor called by childs class to init attributes value
@@ -122,7 +124,7 @@ public abstract class Familiar implements Serializable{
     }
     
     public String getUID() {
-    	return serialVersionUID.toString();
+    	return UID.toString();
     }
     
     @Override
