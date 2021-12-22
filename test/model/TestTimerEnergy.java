@@ -12,13 +12,12 @@ import app.model.TimerEnergy;
 
 public class TestTimerEnergy {
 	
-	private Familiar familiar;
-	private TimerEnergy timerEnergy;
+	Familiar familiar;
+	TimerEnergy timerEnergy;
 	
 	@Before
 	public void setUp() throws Exception {
 		this.familiar = new Cat("Filou");
-		// creation d'un timer avec une periode de 10ms
 		this.timerEnergy = new TimerEnergy(this.familiar, 10);
 	}
 	
@@ -30,7 +29,7 @@ public class TestTimerEnergy {
 	
 	@Test
 	public void timerLoseEnergy() throws InterruptedException {
-		this.timerEnergy.run();
+		timerEnergy.run();
 		Thread.sleep(50);
 		assertEquals(95, this.familiar.getEnergy());
 	}
