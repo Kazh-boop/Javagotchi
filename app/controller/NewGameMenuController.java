@@ -13,7 +13,6 @@ import app.model.Cat;
 import app.model.Dog;
 import app.model.Familiar;
 import app.model.Rabbit;
-import app.model.Robot;
 import app.view.MainFrame;
 import app.view.NewGameMenu;
 
@@ -203,14 +202,6 @@ public class NewGameMenuController implements ActionListener {
 	 */
 	public MainFrame getMainFrame() {
 		return this.mainFrame;
-	}
-	
-	/** 
-	 * Vide la mainFrame de tous ses composants
-	 */
-	private void flush() {
-		mainFrame.getContentPane().removeAll();
-		mainFrame.repaint();
 	}
 
 }

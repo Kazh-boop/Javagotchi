@@ -2,23 +2,18 @@ package app.view;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
-import java.awt.GridLayout;
 import java.io.IOException;
 import java.io.InputStream;
 
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.DefaultListSelectionModel;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
-import javax.swing.SwingConstants;
-import javax.swing.border.Border;
 
 import app.model.Familiar;
 

@@ -4,14 +4,9 @@ package app.view;
 import javax.swing.*;
 import app.controller.GameController;
 
-import java.awt.GridLayout;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Color;
 public class GameView {
-    
-    private static final String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
 
     private GameController gC;
     private JFrame mainFrame;
@@ -100,4 +95,6 @@ public class GameView {
 
         mainFrame.setVisible(true);
     }
+    
+    
 }
