@@ -9,6 +9,7 @@ import app.view.GameView;
 import app.model.TimerEnergy;
 import app.model.TimerForcedSleep;
 import app.model.TimerPortions;
+import app.model.TimerVitality;
 
 public class GameController {
     
@@ -18,6 +19,7 @@ public class GameController {
     GameView gameView;
     TimerEnergy timerEnergy;
     TimerPortions timerPortions;
+    TimerVitality timerVitality;
 
     public GameController(Familiar selectedFamiliar) {
         currentFamiliar = selectedFamiliar;
@@ -26,6 +28,8 @@ public class GameController {
         timerEnergy.run();
         timerPortions = new TimerPortions(selectedFamiliar);
         timerPortions.run();
+        timerVitality = new TimerVitality(selectedFamiliar);
+        timerVitality.run();
     }
 
     public GameController(GamePanel gamePanel) {

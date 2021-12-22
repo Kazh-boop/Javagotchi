@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import app.model.Cat;
 import app.model.Familiar;
@@ -30,7 +30,7 @@ public class TestTimerEnergy {
 	
 	@Test
 	public void timerLoseEnergy() throws InterruptedException {
-		//this.timerEnergy.run();
+		this.timerEnergy.run();
 		Thread.sleep(50);
 		assertEquals(95, this.familiar.getEnergy());
 	}

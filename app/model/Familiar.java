@@ -121,11 +121,9 @@ public abstract class Familiar {
     	this.portions = 0;
     }
 
-
     public Mood getMood() {
         return mood;
     }
-
 
     public void recalculateMood(Weather currentWeather, Rooms currentRoom) {
         moodValue = (int)((hungriness + hygiene + energy + vitality) / AMOUNT_OF_STATS);
@@ -164,7 +162,6 @@ public abstract class Familiar {
     	this.mood = mood;
     }
     
-    
     public void setEnergy(int energy) {
     	this.energy = energy;
     	if (this.energy > MAX_STATS)
@@ -178,5 +175,10 @@ public abstract class Familiar {
     public int getEnergy()
     {
         return this.energy;
+    }
+    
+    public int getVitality()
+    {
+    	return vitality;
     }
 }
