@@ -3,6 +3,7 @@ package app.controller;
 import app.model.SaveManager;
 import app.view.MainFrame;
 import app.view.SavesMenu;
+import app.model.Cat;
 import app.model.Familiar;
 
 import java.awt.event.ActionEvent;
@@ -54,12 +55,19 @@ public class SaveMenuController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
     	if (e.getSource().equals(this.savesMenu.getBackMenu())) { // retour menu principal
-    		menuController.playsound(menuController.getClickSound());
-    		menuController.mainMenuDisplay();
-    		
-    	}else if(e.getSource().equals(this.savesMenu.getDeleteFamiliar())) { // suppression familier
+    		this.onClickBackMenu();
+    	}
+    	else if (e.getSource().equals(this.savesMenu.getDeleteFamiliar())) { // suppression familier
     		this.onClickDeleteFamiliarButton();
         }
+    	else if (e.getSource().equals(this.savesMenu.getLoadSave())) {
+    		this.onClickLoadSave();
+    	}
+	}
+	
+	private void onClickBackMenu() {
+		menuController.playsound(menuController.getClickSound());
+		menuController.mainMenuDisplay();
 	}
 	
 	private void onClickDeleteFamiliarButton() {
@@ -72,6 +80,10 @@ public class SaveMenuController implements ActionListener {
 				e1.printStackTrace();
 			}
     	}
+	}
+	
+	private void onClickLoadSave() {
+		// TODO lancer GameView
 	}
 	
 	/**
@@ -88,5 +100,13 @@ public class SaveMenuController implements ActionListener {
 	private void flush() {
 		mainFrame.getContentPane().removeAll();
 		mainFrame.repaint();
+	}
+	
+	public static void main(String[] args) throws IOException {
+		SaveManager sm = new SaveManager("save/");
+		Familiar f = new Cat("Filou");
+		sm.openFile(f.getUID());
+		sm.writeSave(f);
+		
 	}
 }
