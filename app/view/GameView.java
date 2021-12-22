@@ -6,16 +6,19 @@ import app.controller.GameController;
 
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
-
-
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Color;
 public class GameView {
     
+    private static final String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
+
     private GameController gC;
     private JFrame mainFrame;
 	private JPanel leftPanel;
     private JPanel rightPanel;
     private JPanel bottomPanel;
-    private JButton save;
+    private CustomMenuButton save;
     private JLabel name;
     private JLabel mood;
     private JLabel room;
@@ -39,42 +42,50 @@ public class GameView {
         mainFrame.setLayout(new BorderLayout());
 
         this.leftPanel = new JPanel();
-        this.leftPanel.setLayout(new GridLayout(0,2));
+        this.leftPanel.setLayout(new BoxLayout(leftPanel, 1));
         this.rightPanel = new JPanel();
         this.bottomPanel = new JPanel();
 
-        save = new JButton("Sauvegarder");
-        name = new JLabel(gC.getFamiliar().getName());
-        mood = new JLabel("Humeur : ");
-        room = new JLabel(" Piece : " + gC.getCurrentRoom().getName());
-        weather = new JLabel("Meteo : " + gC.getCurrentRoom().getWeatherName());
-        vitality = new JLabel(" Vitalite : ");
-        energy = new JLabel("Energie : ");
-        hygiene = new JLabel(" Hygiene : ");
-        hunger = new JLabel(" Faim : ");
+        save = new CustomMenuButton("Sauvegarder");
+        name = new CustomMenuLabel(gC.getFamiliar().getName());
+        mood = new CustomMenuLabel("Humeur : ");
+        room = new CustomMenuLabel(" Piece : " + gC.getCurrentRoom().getName());
+        weather = new CustomMenuLabel("Meteo : " + gC.getCurrentRoom().getWeatherName());
+        vitality = new CustomMenuLabel(" Vitalite : ");
+        energy = new CustomMenuLabel("Energie : ");
+        hygiene = new CustomMenuLabel(" Hygiene : ");
+        hunger = new CustomMenuLabel(" Faim : ");
 
-        pbVitality = new JProgressBar();
-        pbVitality.setValue(gC.getFamiliar().getVitality());
-        pbVitality.setStringPainted(true);
-
-        pbEnergy = new JProgressBar();
+        pbEnergy = new JProgressBar(0, 100);
         pbEnergy.setValue(gC.getFamiliar().getEnergy());
         pbEnergy.setStringPainted(true);
 
-        pbHygiene = new JProgressBar();
+        pbHygiene = new JProgressBar(0, 100);
         pbHygiene.setValue(gC.getFamiliar().getHygiene());
         pbHygiene.setStringPainted(true);
 
-        pbHunger = new JProgressBar();
+        pbHunger = new JProgressBar(0, 100);
         pbHunger.setValue(gC.getFamiliar().getHungriness());
         pbHunger.setStringPainted(true);
 
+        pbVitality = new JProgressBar(0, 100);
+        pbVitality.setValue(gC.getFamiliar().getVitality());
+        pbVitality.setForeground(Color.white);
+        pbVitality.setStringPainted(true);
+       
+        leftPanel.add(Box.createVerticalStrut(50));
         leftPanel.add(save);
+        leftPanel.add(Box.createVerticalStrut(50));
         leftPanel.add(name);
+        leftPanel.add(Box.createVerticalStrut(50));
         leftPanel.add(mood);
+        leftPanel.add(Box.createVerticalStrut(50));
         leftPanel.add(room);
+        leftPanel.add(Box.createVerticalStrut(50));
         leftPanel.add(weather);
+        leftPanel.add(Box.createVerticalStrut(50));
         leftPanel.add(vitality);
+        leftPanel.add(Box.createVerticalStrut(10));
         leftPanel.add(pbVitality);
         bottomPanel.add(energy);
         bottomPanel.add(pbEnergy);

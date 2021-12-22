@@ -1,5 +1,6 @@
 package app.view;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.IOException;
@@ -35,7 +36,9 @@ public class CustomMenuButton extends JButton {
 	}
 	
 	protected void setCustomSize() {
-		//TODO Definir une taille pour les boutons, surtout pour pas qu'ils ne prennent toutes la largeur de la page
+	
+    	setMaximumSize(new Dimension(1000, 100));
+
 	}
 	
 	protected void setCustomBorder() {

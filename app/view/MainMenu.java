@@ -1,8 +1,11 @@
 package app.view;
 
 import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import app.controller.*;
@@ -58,11 +61,22 @@ public class MainMenu {
         this.quit.addActionListener(this.mainController);
         
         // ajout des elements dans la mainFrame
-        mainPanel.setLayout(new GridLayout(4,1,50,50));
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+   
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        mainPanel.add(Box.createVerticalGlue());
         mainPanel.add(title);
+        newGame.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        mainPanel.add(Box.createVerticalGlue());
         mainPanel.add(newGame);
+        saves.setAlignmentX(Component.CENTER_ALIGNMENT);
+        mainPanel.add(Box.createVerticalGlue());
         mainPanel.add(saves);
+        quit.setAlignmentX(Component.CENTER_ALIGNMENT);
+        mainPanel.add(Box.createVerticalGlue());
         mainPanel.add(quit);
+        mainPanel.add(Box.createVerticalGlue());
         mainFrame.add(mainPanel);
         
         mainFrame.setVisible(true);
