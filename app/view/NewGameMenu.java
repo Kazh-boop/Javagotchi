@@ -6,8 +6,8 @@ import app.controller.*;
 
 public class NewGameMenu {
 	
-	private final int NAME_MAX_CHAR = 16;
-	private MenuController mainController;
+	private static final int NAME_MAX_CHAR = 16;
+	private NewGameMenuController mainController;
 	
 	private MainFrame mainFrame;
 	private JPanel backPanel;
@@ -16,34 +16,28 @@ public class NewGameMenu {
 	private JPanel speciesPanel;
 	private JPanel gamePanel;
 	
-	private JLabel textName;
+	private CustomMenuLabel textName;
 	private JTextField name;
-	private JLabel textType;
+	private CustomMenuLabel textType;
 	private JLabel speciesIcon;
-	private JButton backMenu;
+	private CustomMenuButton backMenu;
 	private JButton leftFamiliar;
 	private JButton rightFamiliar;
-	private JButton launchGame;
+	private CustomMenuButton launchGame;
 	
-    public NewGameMenu(){}
-
-	/** NewGameMenu(MainFrame)
-	 * 
-	 * Constructeur de NewGameMenu
-	 * @param nFrame
+	/**
+	 * Constructeur
+	 * @param nController NewGameMenuController
 	 */
-    public NewGameMenu(MainFrame nFrame){
-    	this.mainFrame = nFrame;
+    public NewGameMenu(NewGameMenuController nController){
+    	this.mainController = nController;
+    	this.mainFrame = mainController.getMainFrame();
     }
 
-    /** display(MenuController)
-     * 
-     * Affiche le menu de création de familier
-     * @param nController
+    /**
+     * Affiche le menu de creation de familier
      */
-    public void display(MenuController nController) {
-    	this.mainController = nController;
-    	
+    public void display() {    	
         this.backPanel = new JPanel();
         this.namePanel = new JPanel();
         this.speciesNamePanel = new JPanel();
@@ -51,18 +45,14 @@ public class NewGameMenu {
         this.gamePanel = new JPanel();
         
         // composition des JComponent
-        this.textName = new JLabel("Nom du familier :");
+        this.textName = new CustomMenuLabel("Nom du familier :");
         this.name = new JTextField("",NAME_MAX_CHAR);
-        this.textType = new JLabel("Choix de l'espèce de votre familier");
-        this.backMenu = new JButton("Retour");
-        this.leftFamiliar = new JButton(createImageIcon("../image/left.png"));
-        this.speciesIcon = new JLabel(createImageIcon("../image/cat.png"));
-        this.rightFamiliar = new JButton(createImageIcon("../image/right.png"));
-        this.launchGame = new JButton("Lancer la partie");
-        
-        // placement des JComponent
-        
-        // habillage des JComponent 
+        this.textType = new CustomMenuLabel("Choix de l'esp�ce de votre familier");
+        this.backMenu = new CustomMenuButton("Retour",32f);
+        this.leftFamiliar = new JButton(createImageIcon("../assets/images/left.png"));
+        this.speciesIcon = new JLabel(createImageIcon("../assets/images/cat.png"));
+        this.rightFamiliar = new JButton(createImageIcon("../assets/images/right.png"));
+        this.launchGame = new CustomMenuButton("Lancer la partie",32f);
         
         // creation des eventListener pour les JButton
         this.backMenu.addActionListener(this.mainController);
@@ -93,66 +83,59 @@ public class NewGameMenu {
     }
     
 // getter
-    /** getMainFrame()
-     * 
+    /**
      * @return mainFrame
      */
     public JFrame getMainFrame(){
         return this.mainFrame;
     }
     
-    /** getMainFrame()
-     * 
+    /**
      * @return textField pour le nom du familier
      */
     public JTextField getName(){
         return this.name;
     }
     
-    /** getMainFrame()
-     * 
+    /**
      * @return Bouton correspondant a l'action de retour au menu principal
      */
     public JButton getBackMenu(){
     	return this.backMenu;
     }
 
-    /** getMainFrame()
-     * 
+    /**
      * @return Bouton correspondant a l'action de changement de familier
      */
     public JButton getRightFamiliarType(){
     	return this.rightFamiliar;
     }
     
-    /** getMainFrame()
-     * 
-     * @return Bouton correspondant a l'action de changement de familier
+    /**
+     * @return leftFamiliar JButton
      */
     public JButton getLeftFamiliarType(){
     	return this.leftFamiliar;
     }
     
-    /** getMainFrame()
-     * 
-     * @return JLabel correspondant à l'image du familier selectionne
+    /**
+     * @return speciesIcon JLabel
      */
     public JLabel getSpeciesIcon(){
     	return this.speciesIcon;
     }
     
-    /** getLaunchGame()
-     * 
-     * @return Buton correspondant a l'action launchGame
+    /**
+     * @return launchGame JButton
      */
     public JButton getLaunchGame(){
     	return this.launchGame;
     }
     
-    /** createImageIcon(String)
-	 * 
+    /**
 	 * Verifie que l'URL rentree mene bien vers un fichier
-	 * @return ImageIcon à partir du fichier source
+	 * @param path String
+	 * @return imgURL ImageIcon
 	 */
     private static ImageIcon createImageIcon(String path) {
         java.net.URL imgURL = NewGameMenu.class.getResource(path);

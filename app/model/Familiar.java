@@ -25,6 +25,7 @@ public abstract class Familiar implements Serializable {
     protected int moodValue;
 
     protected String familiarType;
+    protected String urlIcon;
 
     // Constants
 
@@ -42,7 +43,7 @@ public abstract class Familiar implements Serializable {
     private static final int JOY_THRESHOLD = 70;
     private static final int FINE_THRESHOLD = 55;
     private static final int SAD_THRESHOLD = 35;
-
+    
     // Constructor called by childs class to init attributes value
     protected Familiar() {
         this.energy = MAX_STATS;
@@ -62,6 +63,7 @@ public abstract class Familiar implements Serializable {
         this.mood = f.mood;
         this.room = f.room;
         this.portions = f.portions;
+        this.urlIcon = f.urlIcon;
     }
 
     // Accessors
@@ -134,7 +136,7 @@ public abstract class Familiar implements Serializable {
     }
 
     public void recalculateMood(Weather currentWeather, Rooms currentRoom) {
-        moodValue = (int)((hungriness + hygiene + energy + vitality) / AMOUNT_OF_STATS);
+        moodValue = (hungriness + hygiene + energy + vitality) / AMOUNT_OF_STATS;
         if(currentRoom == Rooms.GARDEN) moodValue*=currentWeather.getCoef();
         
         this.mood = changeMood();
@@ -176,22 +178,21 @@ public abstract class Familiar implements Serializable {
     		this.energy = MAX_STATS;
     }
     
-    public int getHygiene() {
-    	return this.hygiene;
-    }
-
-    public int getEnergy()
-    {
-        return this.energy;
-    }
-    
     public int getVitality()
     {
     	return vitality;
     }
 
     public String getName() {
-    	return this.name;
+        return name;
+    }
+
+    public int getHygiene() {
+        return hygiene;
+    }
+
+    public int getEnergy() {
+        return energy;
     }
     
     public String getUID() {
@@ -202,4 +203,5 @@ public abstract class Familiar implements Serializable {
     public String toString() {
     	return "Nom : " + name + " Type : " + familiarType;
     }
+
 }

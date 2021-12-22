@@ -2,7 +2,6 @@ package app.controller;
 
 import app.model.SaveManager;
 import app.view.MainFrame;
-import app.view.MainMenu;
 import app.view.SavesMenu;
 import app.model.Familiar;
 
@@ -18,17 +17,29 @@ public class SaveMenuController implements ActionListener {
 	private MainFrame mainFrame;
 	private SaveManager saveManager;
 	private SavesMenu savesMenu;
-
-	public SaveMenuController(MainFrame mf) {
-		this.mainFrame = mf;
+	private MenuController menuController;
+	
+	/**
+	 * Constructeur
+	 * @param menuController MenuController
+	 * @param nFrame MainFrame
+	 */
+	public SaveMenuController(MenuController menuController, MainFrame nFrame) {
+		this.mainFrame = nFrame;
+		this.menuController = menuController;
 		this.saveManager = new SaveManager("save/");
-		this.savesMenu = new SavesMenu(mainFrame);
+		this.savesMenu = new SavesMenu(nFrame);
 	}
 	
+	/**
+	 * Affiche le menu des sauvegardes
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
 	public void savesMenuDisplay() throws ClassNotFoundException, IOException {
+		flush();
 		savesMenu.display(this);
 	}
-
 	
 	public String[] getSaveName() {
 		return saveManager.getNameSave();
@@ -43,10 +54,10 @@ public class SaveMenuController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
     	if (e.getSource().equals(this.savesMenu.getBackMenu())) { // retour menu principal
-    		// TODO revenir au menu principal
-    	}
-
-    	else if(e.getSource().equals(this.savesMenu.getDeleteFamiliar())) { // suppression familier
+    		menuController.playsound(menuController.getClickSound());
+    		menuController.mainMenuDisplay();
+    		
+    	}else if(e.getSource().equals(this.savesMenu.getDeleteFamiliar())) { // suppression familier
     		this.onClickDeleteFamiliarButton();
         }
 	}
@@ -63,4 +74,19 @@ public class SaveMenuController implements ActionListener {
     	}
 	}
 	
+	/**
+	 * Donne la mainFrame
+	 * @return mainFrame MainFrame
+	 */
+	public MainFrame getMainFrame() {
+		return this.mainFrame;
+	}
+	
+	/** 
+	 * Vide la mainFrame de tous ses composants
+	 */
+	private void flush() {
+		mainFrame.getContentPane().removeAll();
+		mainFrame.repaint();
+	}
 }
