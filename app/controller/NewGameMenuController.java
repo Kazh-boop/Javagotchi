@@ -2,6 +2,7 @@ package app.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,6 +15,7 @@ import app.model.Dog;
 import app.model.Familiar;
 import app.model.Rabbit;
 import app.model.Robot;
+import app.model.SaveManager;
 import app.view.MainFrame;
 import app.view.NewGameMenu;
 
@@ -22,6 +24,7 @@ public class NewGameMenuController implements ActionListener {
 	private MainFrame mainFrame;
 	private NewGameMenu newGameMenu;
 	private MenuController menuController;
+	private SaveManager saveManager;
 	
 	private static final int CURSOR_MAX = 3;
 	private static final int CURSOR_MIN = 0;
@@ -43,6 +46,7 @@ public class NewGameMenuController implements ActionListener {
 		this.mainFrame = nFrame;
 		this.menuController = menuController;
 		this.newGameMenu = new NewGameMenu(this);
+		this.saveManager = new SaveManager("save/");
 	}
 	
 	public void newGameMenuDisplay() {
@@ -123,22 +127,22 @@ public class NewGameMenuController implements ActionListener {
     	emptyMatcher = emptyPattern.matcher(fName);
     	
     	if(fName.length()>=20){
-    		JOptionPane maxLenghtProb = new JOptionPane("Le nom du familier ne peut pas depasser 20 caractères.",JOptionPane.WARNING_MESSAGE);
+    		JOptionPane maxLenghtProb = new JOptionPane("Le nom du familier ne peut pas depasser 20 caracteres.",JOptionPane.WARNING_MESSAGE);
     		setOptionBoxVisual(maxLenghtProb);
     		
     	}else if((fName.isEmpty()) || (emptyMatcher.find())) {
-    		JOptionPane emptyNameProb = new JOptionPane("Le nom du familier doit comporter au moins 1 caractère et ne pas commencer par des espaces.",JOptionPane.WARNING_MESSAGE);
+    		JOptionPane emptyNameProb = new JOptionPane("Le nom du familier doit comporter au moins 1 caractï¿½re et ne pas commencer par des espaces.",JOptionPane.WARNING_MESSAGE);
     		setOptionBoxVisual(emptyNameProb);
     		
     	}else if((invalidMatcher.find())) {
-    		JOptionPane invalidNameProb = new JOptionPane("Les caractères <, >, :, \", /, \\, |, ?, * sont interdits dans le nom du familier.",JOptionPane.WARNING_MESSAGE);
+    		JOptionPane invalidNameProb = new JOptionPane("Les caracteres <, >, :, \", /, \\, |, ?, * sont interdits dans le nom du familier.",JOptionPane.WARNING_MESSAGE);
     		setOptionBoxVisual(invalidNameProb);
     		
-    	/*
-    	}else if() {
-    		String saveListFullMsg = "Vous ne pouvez pas créer de nouveau familier. Limite de 3 familiers sauvegardés atteinte.";
-    		String[] saveListFullOptions = {"Ok", "Sauvegardes", "Retour"};
-    		int saveListFullAnswer = JOptionPane.showOptionDialog(null, saveListFullMsg, "Tamagotchi", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, saveListFullOptions, saveListFullOptions[1]);
+    	
+    	}else if(!(saveManager.isEnableToSave())) {
+    		String saveListFullMsg = "Vous ne pouvez pas creer de nouveau familier. Limite de 3 familiers sauvegardes atteinte.";
+    		String[] saveListFullOptions = {"Ok", "Menu sauvegardes", "Menu principal"};
+    		int saveListFullAnswer = JOptionPane.showOptionDialog(null, saveListFullMsg, "Erreur nombre maximal de familier atteint", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, saveListFullOptions, saveListFullOptions[1]);
     		
     		switch(saveListFullAnswer){
     			case 0: // ok
@@ -147,7 +151,11 @@ public class NewGameMenuController implements ActionListener {
     				
 	    		case 1: // sauvegardes
 	    			menuController.playsound(menuController.getClickSound());
-	    			menuController.saveMenuController.savesMenuDisplay();
+	    			try {
+	    				menuController.saveMenuController.savesMenuDisplay();
+	    			} catch (ClassNotFoundException | IOException e) {
+	    				e.printStackTrace();
+	    			}
 	    			break;
 	    			
 	    		case 2: // retour
@@ -160,11 +168,11 @@ public class NewGameMenuController implements ActionListener {
     				menuController.mainMenuDisplay();
     				break;
     		}
-    		*/
+    		
     	}else {
     		String confirmMsg = "Creation de "+fName+" le "+fType+" ?";
     		String[] confirmOptions = {"Oui", "Non"};
-    		int confirmAnswer = JOptionPane.showOptionDialog(null, confirmMsg, "Tamagotchi", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, confirmOptions, confirmOptions[0]);
+    		int confirmAnswer = JOptionPane.showOptionDialog(null, confirmMsg, "Confirmer creation", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, confirmOptions, confirmOptions[0]);
     		
     		switch(confirmAnswer){
 	    		case 0:
@@ -197,6 +205,12 @@ public class NewGameMenuController implements ActionListener {
 	    	        	}
 						if(newFamiliar != null) {
 							menuController.playsound(menuController.getClickSound());
+							try { 
+								saveManager.openFile(newFamiliar.getUID());
+								saveManager.writeSave(newFamiliar);
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
 							new GameController(newFamiliar, mainFrame);
 						}
 					break;
@@ -219,7 +233,7 @@ public class NewGameMenuController implements ActionListener {
 	 * @return pane JOptionPane
 	 */
 	private JOptionPane setOptionBoxVisual(JOptionPane pane) {
-		JDialog boite = pane.createDialog("Robot vérificateur");
+		JDialog boite = pane.createDialog("Robot verificateur");
 	    boite.setVisible(true);
 		return pane;
 	}
