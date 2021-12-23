@@ -15,9 +15,9 @@ import java.awt.Shape;
 
 public class CustomMenuButton extends JButton {
 	
-	private static final String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
-	public static final Color COLOR_CACTUS_GREEN = new Color(104, 131, 53);
-	public static final Color COLOR_PEARL = new Color(245, 235, 218);
+	protected static final String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
+	protected static final Color COLOR_CACTUS_GREEN = new Color(104, 131, 53);
+	protected static final Color COLOR_PEARL = new Color(245, 235, 218);
 	private final RoundedBorder border;	
 	
     public CustomMenuButton() {

@@ -43,10 +43,7 @@ public class SavesMenu {
 	// suppression du familier
 	private JButton deleteFamiliar;
 	// chargement de la sauvegarde
-	private JButton loadSave;
-	
-	private static final float DEFAULT_BUTTON_SIZE = 32f;
-	
+	private JButton loadSave;	
 
     public SavesMenu(){}
 	
@@ -83,10 +80,10 @@ public class SavesMenu {
 
         // composition des JComponent
         this.title = new CustomMenuLabel("Sauvegardes", 100f);
-        this.backMenu = new CustomMenuButton("Retour", DEFAULT_BUTTON_SIZE);
+        this.backMenu = new CustomMenuButton("Retour",MainMenu.DEFAULT_BUTTON_SIZE);
         this.listSave = new JList<>(modelFamiliar);
-        this.deleteFamiliar = new CustomMenuButton("Supprimer", DEFAULT_BUTTON_SIZE);
-        this.loadSave = new CustomMenuButton("Charger", DEFAULT_BUTTON_SIZE);
+        this.deleteFamiliar = new CustomMenuButton("Supprimer",MainMenu.DEFAULT_BUTTON_SIZE);
+        this.loadSave = new CustomMenuButton("Charger",MainMenu.DEFAULT_BUTTON_SIZE);
         
         // placement des JComponent
         this.mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));

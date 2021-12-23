@@ -10,14 +10,17 @@ import app.controller.*;
 
 public class MainMenu {
 	
-	MenuController mainController;
-	MainFrame mainFrame;
-	JPanel mainPanel;
+	protected static final float DEFAULT_BUTTON_SIZE = 32f;
+	protected static final float DEFAULT_MAIN_BUTTON_SIZE = 48f;
 	
-	CustomMenuLabel title;
-    CustomMenuButton newGame;
-    CustomMenuButton saves;
-    CustomMenuButton quit;
+	private MenuController mainController;
+	private MainFrame mainFrame;
+	private JPanel mainPanel;
+	
+	private CustomMenuLabel title;
+	private CustomMenuButton newGame;
+	private CustomMenuButton saves;
+	private CustomMenuButton quit;
     
     /**
      * Constructeur
@@ -39,9 +42,9 @@ public class MainMenu {
         
         // composition des JComponent
         this.title = new CustomMenuLabel("Tamagotchi", 96f, SwingConstants.CENTER);
-        this.newGame = new CustomMenuButton("Nouvelle Partie");
-        this.saves = new CustomMenuButton("Sauvegardes");
-        this.quit = new CustomMenuButton("Quitter");
+        this.newGame = new CustomMenuButton("Nouvelle Partie", DEFAULT_MAIN_BUTTON_SIZE);
+        this.saves = new CustomMenuButton("Sauvegardes", DEFAULT_MAIN_BUTTON_SIZE);
+        this.quit = new CustomMenuButton("Quitter", DEFAULT_MAIN_BUTTON_SIZE);
         
         // habillage personalise
         newGame.setForeground(CustomMenuButton.COLOR_CACTUS_GREEN);

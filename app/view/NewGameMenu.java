@@ -51,7 +51,7 @@ public class NewGameMenu {
         this.gamePanel = new JPanel();
         
         // composition des JComponent
-        this.backMenu = new CustomMenuButton("Retour",32f);
+        this.backMenu = new CustomMenuButton("Retour",MainMenu.DEFAULT_BUTTON_SIZE);
         this.title = new CustomMenuLabel("Nouvelle Partie", 100f);
         this.textName = new CustomMenuLabel("Nom du familier :");
         this.name = new JTextField(null,NAME_MAX_CHAR);
@@ -59,7 +59,7 @@ public class NewGameMenu {
         this.leftFamiliar = new CustomMenuButton(createImageIcon("../assets/images/left.png"));
         this.speciesIcon = new JLabel(createImageIcon("../assets/images/cat.png"));
         this.rightFamiliar = new CustomMenuButton(createImageIcon("../assets/images/right.png"));
-        this.launchGame = new CustomMenuButton("Lancer la partie",32f);
+        this.launchGame = new CustomMenuButton("Lancer la partie",MainMenu.DEFAULT_BUTTON_SIZE);
         
         // habillage des JComponent
         this.launchGame.setForeground(CustomMenuButton.COLOR_CACTUS_GREEN);

@@ -9,8 +9,6 @@ import javax.swing.JLabel;
 
 public class CustomMenuLabel extends JLabel {
 	
-private static final String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
-	
 	/**
 	 * Fait un habillage par defaut pour les JLabel du menu
 	 * @param name String
@@ -44,7 +42,7 @@ private static final String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
 	 * @param fontSize float
 	 */
 	protected void setCustomFont(float fontSize){
-		InputStream inStrm = CustomMenuButton.class.getResourceAsStream(FONT_LIKE_SNOW);
+		InputStream inStrm = CustomMenuButton.class.getResourceAsStream(CustomMenuButton.FONT_LIKE_SNOW);
 		try {
 			Font font = Font.createFont(Font.TRUETYPE_FONT, inStrm);
 			Font sizedFont = font.deriveFont(fontSize);
