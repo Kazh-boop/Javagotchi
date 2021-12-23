@@ -4,12 +4,11 @@ import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.Box;
-import javax.swing.DefaultListSelectionModel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
-
+import javax.swing.ListSelectionModel;
 
 import app.model.Familiar;
 
@@ -20,6 +19,7 @@ import app.model.Familiar;
  */
 public class ListFamiliarRenderer implements ListCellRenderer<Familiar> {
 	
+	private static final float DEFAULT_BUTTON_SIZE = 32f;
 
 	@Override
 	public Component getListCellRendererComponent(JList<? extends Familiar> list, Familiar familiar, int index,
@@ -33,11 +33,11 @@ public class ListFamiliarRenderer implements ListCellRenderer<Familiar> {
 		image.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		// nom du familier
-		JLabel texteName = new CustomMenuLabel("Nom : "+familiar.getName(), 32f);
+		JLabel texteName = new CustomMenuLabel("Nom : "+familiar.getName(), DEFAULT_BUTTON_SIZE);
 		texteName.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		// type du familier
-		JLabel textType = new CustomMenuLabel("Type : "+familiar.getFamiliarType(), 32f);
+		JLabel textType = new CustomMenuLabel("Type : "+familiar.getFamiliarType(), DEFAULT_BUTTON_SIZE);
 		textType.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		// ajout des elements dans la box
@@ -48,7 +48,7 @@ public class ListFamiliarRenderer implements ListCellRenderer<Familiar> {
 		list.setOpaque(true);
 		list.setLayoutOrientation(JList.VERTICAL_WRAP);
 		list.setVisibleRowCount(-1);
-        list.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION); // selectionner seul 1 element
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // selectionner seul 1 element
         list.setBorder(null);
         list.setSelectionBackground(Color.blue);
         

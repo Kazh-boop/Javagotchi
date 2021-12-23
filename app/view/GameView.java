@@ -2,16 +2,14 @@ package app.view;
 
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import app.controller.GameController;
 
-import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Color;
 public class GameView {
     
-    private static final String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
 
     private GameController gC;
     private JFrame mainFrame;
@@ -47,14 +45,16 @@ public class GameView {
         this.bottomPanel = new JPanel();
 
         save = new CustomMenuButton("Sauvegarder");
-        name = new CustomMenuLabel(gC.getFamiliar().getName());
-        mood = new CustomMenuLabel("Humeur : ");
-        room = new CustomMenuLabel(" Piece : " + gC.getCurrentRoom().getName());
-        weather = new CustomMenuLabel("Meteo : " + gC.getCurrentRoom().getWeatherName());
-        vitality = new CustomMenuLabel(" Vitalite : ");
-        energy = new CustomMenuLabel("Energie : ");
-        hygiene = new CustomMenuLabel(" Hygiene : ");
-        hunger = new CustomMenuLabel(" Faim : ");
+        save.setCustomSize(500, 200);
+        name = new CustomMenuLabel(gC.getFamiliar().getName(), 20f);
+        mood = new CustomMenuLabel("Humeur : " + gC.getFamiliar().getMood(), 20f);
+        room = new CustomMenuLabel(" Piece : " + gC.getCurrentRoom().getName(), 20f);
+        weather = new CustomMenuLabel("Meteo : " + gC.getCurrentRoom().getWeatherName(), 20f);
+        vitality = new CustomMenuLabel(" Vitalite : ", 20f);
+        vitality.setBorder(new EmptyBorder(0, 25, 0, 0));
+        energy = new CustomMenuLabel("Energie : ", 20f);
+        hygiene = new CustomMenuLabel(" Hygiene : ",20f);
+        hunger = new CustomMenuLabel(" Faim : ", 20f);
 
         pbEnergy = new JProgressBar(0, 100);
         pbEnergy.setValue(gC.getFamiliar().getEnergy());
@@ -70,9 +70,11 @@ public class GameView {
 
         pbVitality = new JProgressBar(0, 100);
         pbVitality.setValue(gC.getFamiliar().getVitality());
-        pbVitality.setForeground(Color.white);
+        pbVitality.setMaximumSize(new Dimension(300,20));
+        pbVitality.setSize(new Dimension(10,10));
         pbVitality.setStringPainted(true);
-       
+        
+        leftPanel.setBorder(new EmptyBorder(0, 20, 0, 0));        
         leftPanel.add(Box.createVerticalStrut(50));
         leftPanel.add(save);
         leftPanel.add(Box.createVerticalStrut(50));
@@ -87,6 +89,7 @@ public class GameView {
         leftPanel.add(vitality);
         leftPanel.add(Box.createVerticalStrut(10));
         leftPanel.add(pbVitality);
+        leftPanel.add(Box.createVerticalStrut(50));
         bottomPanel.add(energy);
         bottomPanel.add(pbEnergy);
         bottomPanel.add(hygiene);

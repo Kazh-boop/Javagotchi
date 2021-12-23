@@ -2,9 +2,8 @@ package app.view;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.io.IOException;
-import java.util.Vector;
+import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -35,7 +34,7 @@ public class SavesMenu {
 	private JPanel panList;
 	private DefaultListModel<Familiar> modelFamiliar;
 	private JList<Familiar> listSave;
-	private Vector<Familiar> allFamiliar;
+	private List<Familiar> allFamiliar;
 	
 	// Actions sur le familier
 	private JPanel panActionOnFamiliar;
@@ -74,13 +73,13 @@ public class SavesMenu {
         this.panActionOnFamiliar = new JPanel(new FlowLayout(FlowLayout.CENTER, 100, 0));
         
         // recuperation des informations des familiers
-        this.modelFamiliar = new DefaultListModel<Familiar>();
+        this.modelFamiliar = new DefaultListModel<>();
         this.allFamiliar = saveMController.getAllFamiliar();
         for (Familiar f : allFamiliar) modelFamiliar.addElement(f);
 
         // composition des JComponent
         this.title = new CustomMenuLabel("Sauvegardes", 100f);
-        this.listSave = new JList<Familiar>(modelFamiliar);
+        this.listSave = new JList<>(modelFamiliar);
         this.backMenu = new CustomMenuButton("Retour", 32f);
         this.deleteFamiliar = new CustomMenuButton("Supprimer", 32f);
         this.loadSave = new CustomMenuButton("Charger", 32f);
@@ -136,7 +135,7 @@ public class SavesMenu {
     
     /** getBackMenu()
      * 
-     * @return Boutton backMenu
+     * @return Button backMenu
      */
     public JButton getBackMenu(){
     	return this.backMenu;

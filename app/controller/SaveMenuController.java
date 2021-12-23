@@ -8,10 +8,8 @@ import app.model.Familiar;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Vector;
-
+import java.util.List;
 
 public class SaveMenuController implements ActionListener {
 
@@ -46,7 +44,7 @@ public class SaveMenuController implements ActionListener {
 		return saveManager.getNameSave();
 	}
 	
-	public Vector<Familiar> getAllFamiliar() throws ClassNotFoundException, IOException {
+	public List<Familiar> getAllFamiliar() throws ClassNotFoundException, IOException {
 		return saveManager.getAllFamiliar();
 	}
 
@@ -74,16 +72,15 @@ public class SaveMenuController implements ActionListener {
     	if (!(this.savesMenu.getListSave().isSelectionEmpty())) { // verification d'une selection
     		Familiar f = this.savesMenu.getListSave().getSelectedValue(); // recuperation de la selcetion
     		this.savesMenu.getModelFamiliar().removeElement(f); // suppression de l'affichage
-    		try {
-				this.saveManager.deleteSave(f.getUID()); // suppression du fichier de sauvegarde
-			} catch (FileNotFoundException e1) {
-				e1.printStackTrace();
-			}
+    		this.saveManager.deleteSave(f.getUID()); // suppression du fichier de sauvegarde
     	}
 	}
 	
 	private void onClickLoadSave() {
 		// TODO lancer GameView
+		// Faire un switch case comme dans le new game menu avec le type de familier
+		// sauf qu'ici on passera directement le familier à charger au constructeur
+		// Ensuite il y aura juste à faire l'appel de la vue exactement comme dans new game menu
 	}
 	
 	/**

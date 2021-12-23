@@ -7,10 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.swing.JButton;
-import javax.swing.JComponent;
 
-
-@SuppressWarnings("serial")
 public class CustomMenuButton extends JButton {
 	
 	private static final String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
@@ -22,22 +19,22 @@ public class CustomMenuButton extends JButton {
 	CustomMenuButton(String name) {
 		super(name);
 		
-		setCustomSize();
+		setCustomSize(1000,100);
 		setCustomBorder();
-		setCustomFont(this,48f);
+		setCustomFont(48f);
 	}
 	
 	CustomMenuButton(String name, float size) {
 		super(name);
 		
-		setCustomSize();
+		setCustomSize(1000, 100);
 		setCustomBorder();
-		setCustomFont(this,size);
+		setCustomFont(size);
 	}
 	
-	protected void setCustomSize() {
+	protected void setCustomSize(int width, int height) {
 	
-    	setMaximumSize(new Dimension(1000, 100));
+    	setMaximumSize(new Dimension(width, height));
 
 	}
 	
@@ -50,12 +47,12 @@ public class CustomMenuButton extends JButton {
 	 * @param jc JComponent
 	 * @param path String
 	 */
-	protected void setCustomFont(JComponent jc, float fontSize){
+	protected void setCustomFont(float fontSize){
 		InputStream inStrm = CustomMenuButton.class.getResourceAsStream(FONT_LIKE_SNOW);
 		try {
 			Font font = Font.createFont(Font.TRUETYPE_FONT, inStrm);
 			Font sizedFont = font.deriveFont(fontSize);
-			jc.setFont(sizedFont);
+			setFont(sizedFont);
 			
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();

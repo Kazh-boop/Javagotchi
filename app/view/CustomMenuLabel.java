@@ -5,10 +5,8 @@ import java.awt.FontFormatException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 
-@SuppressWarnings("serial")
 public class CustomMenuLabel extends JLabel {
 	
 private static final String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
@@ -22,7 +20,7 @@ private static final String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
 		
 		setCustomSize();
 		setCustomBorder();
-		setCustomFont(this,32f);
+		setCustomFont(32f);
 	}
 	
 	CustomMenuLabel(String name, int position) {
@@ -30,7 +28,7 @@ private static final String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
 		
 		setCustomSize();
 		setCustomBorder();
-		setCustomFont(this,24f);
+		setCustomFont(24f);
 	}
 	
 	CustomMenuLabel(String name, float size) {
@@ -38,7 +36,7 @@ private static final String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
 		
 		setCustomSize();
 		setCustomBorder();
-		setCustomFont(this,size);
+		setCustomFont(size);
 	}
 	
 	CustomMenuLabel(String name, float size, int position) {
@@ -46,7 +44,7 @@ private static final String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
 		
 		setCustomSize();
 		setCustomBorder();
-		setCustomFont(this,size);
+		setCustomFont(size);
 	}
 	
 	protected void setCustomSize() {
@@ -59,15 +57,14 @@ private static final String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
 	
 	/**
 	 * Definit une nouvelle police
-	 * @param jc JComponent
 	 * @param fontSize float
 	 */
-	protected void setCustomFont(JComponent jc, float fontSize){
+	protected void setCustomFont(float fontSize){
 		InputStream inStrm = CustomMenuButton.class.getResourceAsStream(FONT_LIKE_SNOW);
 		try {
 			Font font = Font.createFont(Font.TRUETYPE_FONT, inStrm);
 			Font sizedFont = font.deriveFont(fontSize);
-			jc.setFont(sizedFont);
+			this.setFont(sizedFont);
 			
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();

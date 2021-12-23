@@ -1,12 +1,10 @@
 package app.view;
 
 import javax.swing.*;
-import javax.swing.GroupLayout.Alignment;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.GridLayout;
+
 
 import app.controller.*;
 

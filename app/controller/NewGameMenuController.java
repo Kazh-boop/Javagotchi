@@ -146,6 +146,7 @@ public class NewGameMenuController implements ActionListener {
 	    	        			break;
 	    	        		
 	    	        		case "Robot":
+								newFamiliar = new Robot(fName);
 	    	        			break;
 	    	        			
 	    	        		case "Lapin":
@@ -203,14 +204,6 @@ public class NewGameMenuController implements ActionListener {
 	 */
 	public MainFrame getMainFrame() {
 		return this.mainFrame;
-	}
-	
-	/** 
-	 * Vide la mainFrame de tous ses composants
-	 */
-	private void flush() {
-		mainFrame.getContentPane().removeAll();
-		mainFrame.repaint();
 	}
 
 }
