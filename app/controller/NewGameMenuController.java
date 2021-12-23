@@ -46,6 +46,7 @@ public class NewGameMenuController implements ActionListener {
 	}
 	
 	public void newGameMenuDisplay() {
+		flush();
 		newGameMenu.display();
 	}
 	
@@ -68,6 +69,14 @@ public class NewGameMenuController implements ActionListener {
         	launchNewGame();
         }
 		
+	}
+	
+	/** 
+	 * Vide la mainFrame de tous ses composants
+	 */
+	private void flush() {
+		mainFrame.getContentPane().removeAll();
+		mainFrame.repaint();
 	}
 	
 	/** turnRightFamiliar()
