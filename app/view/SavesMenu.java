@@ -45,6 +45,8 @@ public class SavesMenu {
 	// chargement de la sauvegarde
 	private JButton loadSave;
 	
+	private static final float DEFAULT_BUTTON_SIZE = 32f;
+	
 
     public SavesMenu(){}
 	
@@ -81,10 +83,10 @@ public class SavesMenu {
 
         // composition des JComponent
         this.title = new CustomMenuLabel("Sauvegardes", 100f);
-        this.backMenu = new CustomMenuButton("Retour", 32f);
+        this.backMenu = new CustomMenuButton("Retour", DEFAULT_BUTTON_SIZE);
         this.listSave = new JList<>(modelFamiliar);
-        this.deleteFamiliar = new CustomMenuButton("Supprimer", 32f);
-        this.loadSave = new CustomMenuButton("Charger", 32f);
+        this.deleteFamiliar = new CustomMenuButton("Supprimer", DEFAULT_BUTTON_SIZE);
+        this.loadSave = new CustomMenuButton("Charger", DEFAULT_BUTTON_SIZE);
         
         // placement des JComponent
         this.mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -93,15 +95,18 @@ public class SavesMenu {
         
         // habillage des JComponent
         // listSave
-        this.listSave.setCellRenderer(new ListFamiliarRenderer());
-        // boutons
+        this.listSave.setCellRenderer(new ListFamiliarRenderer()); 
+        // boutons d'actions du familier
         this.deleteFamiliar.setForeground(Color.RED);
+        this.deleteFamiliar.setEnabled(false);
         this.loadSave.setForeground(CustomMenuButton.COLOR_CACTUS_GREEN);
+        this.loadSave.setEnabled(false);
         
-        // creation des eventListener pour les JButton
+        // creation des eventListener
         this.backMenu.addActionListener(this.saveMController);
         this.deleteFamiliar.addActionListener(this.saveMController);
         this.loadSave.addActionListener(this.saveMController);
+        this.listSave.addListSelectionListener(this.saveMController);
         
         // ajout des elements dans la mainFrame
         // affichage au top
@@ -125,14 +130,20 @@ public class SavesMenu {
         mainPanel.add(panActionOnFamiliar);
         // ajout du mainPanel dans la frame
         mainFrame.add(mainPanel);
-                
+        
         mainFrame.setVisible(true);
     }
     
+    /**
+     * @return the modelFamiliar
+     */
     public DefaultListModel<Familiar> getModelFamiliar() {
 		return modelFamiliar;
 	}
-
+    
+    /**
+     * @return the listSave
+     */
 	public JList<Familiar> getListSave() {
 		return listSave;
 	}
@@ -153,8 +164,11 @@ public class SavesMenu {
     	return this.backMenu;
 	}
     
+    /**
+     * @return the deleteFamiliar
+     */
 	public JButton getDeleteFamiliar() {
-		return this.deleteFamiliar;
+		return deleteFamiliar;
 	}
 
 	/**
@@ -162,6 +176,22 @@ public class SavesMenu {
 	 */
 	public JButton getLoadSave() {
 		return loadSave;
+	}
+	
+	/**
+	 * Parametres d'affichage des boutons d'actions sur les sauvegardes lors d'une selection dans la liste
+	 */
+	public void enableToAction() {
+        this.deleteFamiliar.setEnabled(true);
+        this.loadSave.setEnabled(true);
+	}
+	
+	/**
+	 * Parametres d'affichage des boutons d'actions sur les sauvegardes lorsqu'il n'y a pas de selections dans la liste
+	 */
+	public void disableToAction() {
+        this.deleteFamiliar.setEnabled(false);
+        this.loadSave.setEnabled(false);
 	}
 
 }

@@ -11,7 +11,11 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.List;
 
-public class SaveMenuController implements ActionListener {
+import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+public class SaveMenuController implements ActionListener, ListSelectionListener {
 
 	private MainFrame mainFrame;
 	private SaveManager saveManager;
@@ -63,6 +67,14 @@ public class SaveMenuController implements ActionListener {
     	}
 	}
 	
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+        if (!(e.getValueIsAdjusting())) {
+        	this.menuController.playsound(menuController.getClickSound());
+        	this.savesMenu.enableToAction();
+        }
+	}
+	
 	private void onClickBackMenu() {
 		menuController.playsound(menuController.getClickSound());
 		menuController.mainMenuDisplay();
@@ -70,9 +82,22 @@ public class SaveMenuController implements ActionListener {
 	
 	private void onClickDeleteFamiliarButton() {
     	if (!(this.savesMenu.getListSave().isSelectionEmpty())) { // verification d'une selection
+    		
     		Familiar f = this.savesMenu.getListSave().getSelectedValue(); // recuperation de la selcetion
-    		this.savesMenu.getModelFamiliar().removeElement(f); // suppression de l'affichage
-    		this.saveManager.deleteSave(f.getUID()); // suppression du fichier de sauvegarde
+    		
+    		int confirmDelete = JOptionPane.showConfirmDialog(
+    				null, 
+    				"Supprimer "+f.getName()+" le "+f.getFamiliarType()+" ?",
+    				"Supprimer", 
+    				JOptionPane.YES_NO_OPTION);
+    		
+    		if (confirmDelete == 0) { // oui == 0
+    			this.savesMenu.getModelFamiliar().removeElement(f); // suppression de l'affichage
+    			this.saveManager.deleteSave(f.getUID()); // suppression du fichier de sauvegarde
+
+    			this.savesMenu.getListSave().clearSelection(); // maj selection
+    			this.savesMenu.disableToAction(); // desactivation des boutons d'actions sur la sauvegarde
+    		}
     	}
 	}
 	
@@ -107,4 +132,5 @@ public class SaveMenuController implements ActionListener {
 		sm.writeSave(f);
 		
 	}
+	
 }
