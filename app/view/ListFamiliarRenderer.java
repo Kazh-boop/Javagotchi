@@ -3,10 +3,13 @@ package app.view;
 import java.awt.Color;
 import java.awt.Component;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
 
@@ -26,33 +29,42 @@ public class ListFamiliarRenderer implements ListCellRenderer<Familiar> {
 			boolean isSelected, boolean cellHasFocus) {
 		
 
-		Box box = Box.createVerticalBox();
+		JPanel panFam = new JPanel();
+		panFam.setLayout(new BoxLayout(panFam, BoxLayout.Y_AXIS));
 		
 		// image du familier
 		JLabel image = new JLabel(createImageIcon("../assets/images/cat.png"));
 		image.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		// nom du familier
-		JLabel texteName = new CustomMenuLabel("Nom : "+familiar.getName(), DEFAULT_BUTTON_SIZE);
-		texteName.setAlignmentX(Component.CENTER_ALIGNMENT);
+		JLabel textName = new CustomMenuLabel("Nom : "+familiar.getName(), DEFAULT_BUTTON_SIZE);
+		textName.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		// type du familier
 		JLabel textType = new CustomMenuLabel("Type : "+familiar.getFamiliarType(), DEFAULT_BUTTON_SIZE);
 		textType.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		// ajout des elements dans la box
-		box.add(image);
-		box.add(texteName);
-		box.add(textType);
+		JLabel textClass = new CustomMenuLabel("Classe : "+familiar.getClass(), DEFAULT_BUTTON_SIZE);
+		textClass.setAlignmentX(Component.LEFT_ALIGNMENT);
+		
+		
+		// ajout des elements dans le panel
+		panFam.add(image);
+		panFam.add(textName);
+		panFam.add(textType);
+		panFam.add(textClass);
 
-		list.setOpaque(true);
+		// parametrage de la list
 		list.setLayoutOrientation(JList.VERTICAL_WRAP);
 		list.setVisibleRowCount(-1);
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // selectionner seul 1 element
-        list.setBorder(null);
-        list.setSelectionBackground(Color.blue);
         
-		return box;
+        if (isSelected) {
+    		panFam.setBackground(Color.WHITE);
+        	panFam.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        }
+        
+		return panFam;
 	}
 	
 	/**
