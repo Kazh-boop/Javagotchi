@@ -96,7 +96,7 @@ public class SavesMenu {
         this.listSave.setCellRenderer(new ListFamiliarRenderer());
         // boutons
         this.deleteFamiliar.setForeground(Color.RED);
-        this.loadSave.setForeground(new Color(104, 131, 53));
+        this.loadSave.setForeground(CustomMenuButton.COLOR_CACTUS_GREEN);
         
         // creation des eventListener pour les JButton
         this.backMenu.addActionListener(this.saveMController);
