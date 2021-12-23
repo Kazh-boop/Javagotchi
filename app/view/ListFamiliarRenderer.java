@@ -43,15 +43,11 @@ public class ListFamiliarRenderer implements ListCellRenderer<Familiar> {
 		JLabel textType = new CustomMenuLabel("Type : "+familiar.getFamiliarType(), DEFAULT_BUTTON_SIZE);
 		textType.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		JLabel textClass = new CustomMenuLabel("Classe : "+familiar.getClass(), DEFAULT_BUTTON_SIZE);
-		textClass.setAlignmentX(Component.LEFT_ALIGNMENT);
-		
 		
 		// ajout des elements dans le panel
 		panFam.add(image);
 		panFam.add(textName);
 		panFam.add(textType);
-		panFam.add(textClass);
 
 		// parametrage de la list
 		list.setLayoutOrientation(JList.VERTICAL_WRAP);
