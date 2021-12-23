@@ -20,13 +20,15 @@ public class TestSave {
 	private SaveManager saveManager;
 	
 	private static String nameSaveCat, nameSaveDog;
-	private static final String ABSOLUTEPATH = "save/";
+	private static final String ABSOLUTEPATH = "save/test/";
 	private static final String EXTENSION = ".dat";
+	private static final File rep = new File(ABSOLUTEPATH);
 
 
 	@Before
 	public void setUp() throws Exception {
 		saveManager = new SaveManager(ABSOLUTEPATH);
+		rep.mkdirs();
 		
 		// Cat save
 		saveFamiliarCat = new Cat("Filou");
@@ -41,6 +43,7 @@ public class TestSave {
 	public void tearDown() throws Exception {
 		saveManager.deleteSave(nameSaveCat);
 		saveManager.deleteSave(nameSaveDog);
+		rep.delete();
 		saveFamiliarCat = saveFamiliarDog = null;
 		saveManager = null;
 	}
@@ -54,7 +57,6 @@ public class TestSave {
 		// Dog
 		saveManager.openFile(nameSaveDog);
 		saveManager.writeSave(saveFamiliarDog);
-		
 		
 		assertEquals(true, new File(ABSOLUTEPATH+nameSaveCat+EXTENSION).exists()); // Check Cat
 		assertEquals(true, new File(ABSOLUTEPATH+nameSaveDog+EXTENSION).exists()); // Check Dog

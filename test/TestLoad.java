@@ -2,6 +2,7 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.junit.jupiter.api.AfterEach;
@@ -18,12 +19,14 @@ class TestLoad {
 	private SaveManager saveManager;
 	
 	private static String nameSave;
-	private static final String ABSOLUTEPATH = "save/";
+	private static final String ABSOLUTEPATH = "save/test/";
+	private static final File rep = new File(ABSOLUTEPATH);
 	
 	@BeforeEach
 	public void setUp() throws Exception {
 		saveManager = new SaveManager(ABSOLUTEPATH);
-		
+		rep.mkdirs();
+
 		// Cat save
 		saveFamiliar = new Cat("Filou");
 		nameSave = saveFamiliar.getUID();
@@ -34,6 +37,7 @@ class TestLoad {
 	@AfterEach
 	public void tearDown() throws Exception {
 		saveManager.deleteSave(nameSave);
+		rep.delete();
 		saveFamiliar = loadFamiliar = null;
 		saveManager = null;
 	}
@@ -51,14 +55,15 @@ class TestLoad {
 		loadFamiliar = saveManager.getFamiliar(); // recuperation du familier charge
 		
 		// comparaison des informations du familier sauvegarde et celui charger
-		assertEquals(loadFamiliar.getUID(), saveFamiliar.getUID());
-		assertEquals(loadFamiliar.getName(), saveFamiliar.getName());
-		assertEquals(loadFamiliar.getHungriness(), saveFamiliar.getHungriness());
-		assertEquals(loadFamiliar.getEnergy(), saveFamiliar.getEnergy());
-		assertEquals(loadFamiliar.getHygiene(), saveFamiliar.getHygiene());
-		assertEquals(loadFamiliar.getMood(), saveFamiliar.getMood());
-		assertEquals(loadFamiliar.getPortions(), saveFamiliar.getPortions());
-		assertEquals(loadFamiliar.getFamiliarType(), saveFamiliar.getFamiliarType());
+		assertEquals(saveFamiliar.getUID(), loadFamiliar.getUID());
+		assertEquals(saveFamiliar.getName(), loadFamiliar.getName());
+		assertEquals(saveFamiliar.getHungriness(), loadFamiliar.getHungriness());
+		assertEquals(saveFamiliar.getEnergy(), loadFamiliar.getEnergy());
+		assertEquals(saveFamiliar.getHygiene(), loadFamiliar.getHygiene());
+		assertEquals(saveFamiliar.getMood(), loadFamiliar.getMood());
+		assertEquals(saveFamiliar.getPortions(), loadFamiliar.getPortions());
+		assertEquals(saveFamiliar.getFamiliarType(), loadFamiliar.getFamiliarType());
+		
 	}
 	
 	/**
@@ -77,7 +82,7 @@ class TestLoad {
 		saveManager.loadSave();
 		loadFamiliar = saveManager.getFamiliar(); // actualisation donnees de loadFamiliar
 		
-		assertEquals(loadFamiliar.getPortions(), saveFamiliar.getPortions());
+		assertEquals(saveFamiliar.getPortions(), loadFamiliar.getPortions());
 		
 	}
 
