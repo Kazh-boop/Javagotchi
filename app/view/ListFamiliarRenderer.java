@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;

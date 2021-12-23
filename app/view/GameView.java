@@ -44,8 +44,8 @@ public class GameView {
         this.rightPanel = new JPanel();
         this.bottomPanel = new JPanel();
 
-        save = new CustomMenuButton("Sauvegarder");
-        save.setCustomSize(500, 200);
+        save = new CustomMenuButton("Sauvegarder", 25f);
+        save.setMaximumSize(new Dimension(200, 50));
         name = new CustomMenuLabel(gC.getFamiliar().getName(), 20f);
         mood = new CustomMenuLabel("Humeur : " + gC.getFamiliar().getMood(), 20f);
         room = new CustomMenuLabel(" Piece : " + gC.getCurrentRoom().getName(), 20f);

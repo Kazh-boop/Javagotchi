@@ -125,8 +125,7 @@ public class SavesMenu {
         mainPanel.add(panActionOnFamiliar);
         // ajout du mainPanel dans la frame
         mainFrame.add(mainPanel);
-        
-        
+                
         mainFrame.setVisible(true);
     }
     

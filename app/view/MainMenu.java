@@ -45,13 +45,9 @@ public class MainMenu {
         
         // habillage personalise        
         Color cactusGreen = new Color(104, 131, 53);
-        Color pearl = new Color(245, 235, 218);
         newGame.setForeground(cactusGreen);
-        newGame.setBackground(pearl);
         saves.setForeground(cactusGreen);
-        saves.setBackground(pearl);
         quit.setForeground(Color.red);
-        quit.setBackground(pearl);
         
         // creation des eventListener pour les JButton
         this.newGame.addActionListener(this.mainController);

@@ -7,6 +7,11 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.swing.JButton;
+import javax.swing.border.Border;
+import java.awt.Insets;
+import java.awt.Graphics;
+import java.awt.Component;
+import java.awt.Color;
 
 public class CustomMenuButton extends JButton {
 	
@@ -19,6 +24,7 @@ public class CustomMenuButton extends JButton {
 	CustomMenuButton(String name) {
 		super(name);
 		
+		setCustomBackground();
 		setCustomSize(1000,100);
 		setCustomBorder();
 		setCustomFont(48f);
@@ -27,11 +33,17 @@ public class CustomMenuButton extends JButton {
 	CustomMenuButton(String name, float size) {
 		super(name);
 		
+		setCustomBackground();
 		setCustomSize(1000, 100);
 		setCustomBorder();
 		setCustomFont(size);
 	}
 	
+	private void setCustomBackground() {
+		Color pearl = new Color(245, 235, 218);
+		setBackground(pearl);
+	}
+
 	protected void setCustomSize(int width, int height) {
 	
     	setMaximumSize(new Dimension(width, height));
@@ -39,7 +51,8 @@ public class CustomMenuButton extends JButton {
 	}
 	
 	protected void setCustomBorder() {
-		//TODO faire une bordure arroundi un peu cool
+
+		setBorder(new RoundedBorder(20));
 	}
 	
 	/**
@@ -58,4 +71,29 @@ public class CustomMenuButton extends JButton {
 			e.printStackTrace();
 		}
 	}
+}
+
+class RoundedBorder implements Border {
+
+    private int radius;
+
+
+    RoundedBorder(int radius) {
+        this.radius = radius;
+    }
+
+
+    public Insets getBorderInsets(Component c) {
+        return new Insets(this.radius+1, this.radius+1, this.radius+2, this.radius);
+    }
+
+
+    public boolean isBorderOpaque() {
+        return true;
+    }
+
+
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+        g.drawRoundRect(x, y, width-1, height-1, radius, radius);
+    }
 }

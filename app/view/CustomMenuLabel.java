@@ -18,41 +18,25 @@ private static final String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
 	CustomMenuLabel(String name) {
 		super(name);
 		
-		setCustomSize();
-		setCustomBorder();
 		setCustomFont(32f);
 	}
 	
 	CustomMenuLabel(String name, int position) {
 		super(name);
 		
-		setCustomSize();
-		setCustomBorder();
 		setCustomFont(24f);
 	}
 	
 	CustomMenuLabel(String name, float size) {
 		super(name);
 		
-		setCustomSize();
-		setCustomBorder();
 		setCustomFont(size);
 	}
 	
 	CustomMenuLabel(String name, float size, int position) {
 		super(name, position);
-		
-		setCustomSize();
-		setCustomBorder();
+	
 		setCustomFont(size);
-	}
-	
-	protected void setCustomSize() {
-		//TODO Definir une taille pour les boutons, surtout pour pas qu'ils ne prennent toutes la largeur de la page
-	}
-	
-	protected void setCustomBorder() {
-		//TODO faire une bordure arroundi un peu cool
 	}
 	
 	/**
