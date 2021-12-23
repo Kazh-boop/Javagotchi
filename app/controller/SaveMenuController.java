@@ -77,10 +77,11 @@ public class SaveMenuController implements ActionListener {
 	}
 	
 	private void onClickLoadSave() {
-		// TODO lancer GameView
-		// Faire un switch case comme dans le new game menu avec le type de familier
-		// sauf qu'ici on passera directement le familier à charger au constructeur
-		// Ensuite il y aura juste à faire l'appel de la vue exactement comme dans new game menu
+		menuController.playsound(menuController.getClickSound());
+		if (!(this.savesMenu.getListSave().isSelectionEmpty())) { // verification d'une selection
+    		Familiar familiarToLoad = this.savesMenu.getListSave().getSelectedValue(); // recuperation de la selcetion
+			new GameController(familiarToLoad, mainFrame);
+		}
 	}
 	
 	/**
