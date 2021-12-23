@@ -50,6 +50,11 @@ public class SaveManager {
     private String directoryPath;
     
     /**
+     * Repertoire ou se trouve les sauvegardes
+     */
+    private File repSave;
+    
+    /**
      * Fichier courant dans lequel les donnes vont ecrites/lues
      */
     private File currentFile;
@@ -65,6 +70,9 @@ public class SaveManager {
      */
     public SaveManager(String directoryPath) {
         this.directoryPath = directoryPath;
+        this.repSave = new File(this.directoryPath);
+        if (!(repSave.exists()))
+        	repSave.mkdir();
     }
 
     /**
