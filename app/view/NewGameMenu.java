@@ -47,7 +47,7 @@ public class NewGameMenu {
         // composition des JComponent
         this.textName = new CustomMenuLabel("Nom du familier :");
         this.name = new JTextField("",NAME_MAX_CHAR);
-        this.textType = new CustomMenuLabel("Choix de l'espï¿½ce de votre familier");
+        this.textType = new CustomMenuLabel("Choix de l'espèce de votre familier");
         this.backMenu = new CustomMenuButton("Retour",32f);
         this.leftFamiliar = new JButton(createImageIcon("../assets/images/left.png"));
         this.speciesIcon = new JLabel(createImageIcon("../assets/images/cat.png"));
