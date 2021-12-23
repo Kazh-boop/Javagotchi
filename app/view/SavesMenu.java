@@ -1,10 +1,12 @@
 package app.view;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.io.IOException;
 import java.util.List;
 
+import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -66,11 +68,11 @@ public class SavesMenu {
 
     	this.saveMController = smController;
         
-        this.mainPanel = new JPanel(new BorderLayout(0, 100));
-        this.panTop = new JPanel(new FlowLayout(FlowLayout.LEADING, 100, 0));
+        this.mainPanel = new JPanel();
+        this.panTop = new JPanel();
         this.panBackMenu = new JPanel();
         this.panList = new JPanel();
-        this.panActionOnFamiliar = new JPanel(new FlowLayout(FlowLayout.CENTER, 100, 0));
+        this.panActionOnFamiliar = new JPanel();
         
         // recuperation des informations des familiers
         this.modelFamiliar = new DefaultListModel<>();
@@ -79,17 +81,22 @@ public class SavesMenu {
 
         // composition des JComponent
         this.title = new CustomMenuLabel("Sauvegardes", 100f);
-        this.listSave = new JList<>(modelFamiliar);
         this.backMenu = new CustomMenuButton("Retour", 32f);
+        this.listSave = new JList<>(modelFamiliar);
         this.deleteFamiliar = new CustomMenuButton("Supprimer", 32f);
         this.loadSave = new CustomMenuButton("Charger", 32f);
         
-        
         // placement des JComponent
+        this.mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        this.panTop.setLayout(new FlowLayout(FlowLayout.LEADING, 100, 0));
+        this.panActionOnFamiliar.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 0));
         
         // habillage des JComponent
         // listSave
         this.listSave.setCellRenderer(new ListFamiliarRenderer());
+        // boutons
+        this.deleteFamiliar.setForeground(Color.RED);
+        this.loadSave.setForeground(new Color(104, 131, 53));
         
         // creation des eventListener pour les JButton
         this.backMenu.addActionListener(this.saveMController);
@@ -101,16 +108,22 @@ public class SavesMenu {
         panBackMenu.add(backMenu);
         panTop.add(panBackMenu);
         panTop.add(title);
+        panTop.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         // affichage au centre
         panList.add(listSave);
+        panList.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
         // affichage en bas
         panActionOnFamiliar.add(deleteFamiliar);
         panActionOnFamiliar.add(loadSave);
+        panActionOnFamiliar.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
         // ajout des elements dans la mainPanel
-        mainPanel.add(panTop, BorderLayout.NORTH);
-        mainPanel.add(panList, BorderLayout.CENTER);
-        mainPanel.add(panActionOnFamiliar, BorderLayout.SOUTH);
-        // ajout du mainPanel dans la fram
+        mainPanel.add(panTop);
+        mainPanel.add(panList);
+        mainPanel.add(panActionOnFamiliar);
+        // ajout du mainPanel dans la frame
         mainFrame.add(mainPanel);
         
         
