@@ -46,6 +46,9 @@ public class GameView {
 
         save = new CustomMenuButton("Sauvegarder", 25f);
         save.setMaximumSize(new Dimension(200, 50));
+        save.setBackground(CustomMenuButton.COLOR_PEARL);
+        save.setForeground(CustomMenuButton.COLOR_CACTUS_GREEN);
+        
         name = new CustomMenuLabel(gC.getFamiliar().getName(), 20f);
         mood = new CustomMenuLabel("Humeur : " + gC.getFamiliar().getMood(), 20f);
         room = new CustomMenuLabel(" Piece : " + gC.getCurrentRoom().getName(), 20f);

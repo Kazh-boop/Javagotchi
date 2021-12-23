@@ -1,5 +1,6 @@
 package app.view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -16,6 +17,8 @@ import java.awt.Color;
 public class CustomMenuButton extends JButton {
 	
 	private static final String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
+	public static final Color COLOR_CACTUS_GREEN = new Color(104, 131, 53);
+	public static final Color COLOR_PEARL = new Color(245, 235, 218);
 	
 	/**
 	 * Fait un habillage par defaut pour les JButton du menu
@@ -23,8 +26,7 @@ public class CustomMenuButton extends JButton {
 	 */
 	CustomMenuButton(String name) {
 		super(name);
-		
-		setCustomBackground();
+	
 		setCustomSize(1000,100);
 		setCustomBorder();
 		setCustomFont(48f);
@@ -33,15 +35,9 @@ public class CustomMenuButton extends JButton {
 	CustomMenuButton(String name, float size) {
 		super(name);
 		
-		setCustomBackground();
 		setCustomSize(1000, 100);
 		setCustomBorder();
 		setCustomFont(size);
-	}
-	
-	private void setCustomBackground() {
-		Color pearl = new Color(245, 235, 218);
-		setBackground(pearl);
 	}
 
 	protected void setCustomSize(int width, int height) {
@@ -70,6 +66,7 @@ public class CustomMenuButton extends JButton {
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();
 		}
+        setBackground(COLOR_PEARL);
 	}
 }
 

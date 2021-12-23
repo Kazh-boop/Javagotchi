@@ -54,6 +54,9 @@ public class NewGameMenu {
         this.rightFamiliar = new JButton(createImageIcon("../assets/images/right.png"));
         this.launchGame = new CustomMenuButton("Lancer la partie",32f);
         
+        // habillage des JComponent
+        this.launchGame.setForeground(CustomMenuButton.COLOR_CACTUS_GREEN);
+        
         // creation des eventListener pour les JButton
         this.backMenu.addActionListener(this.mainController);
         this.rightFamiliar.addActionListener(this.mainController);

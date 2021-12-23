@@ -43,10 +43,9 @@ public class MainMenu {
         this.saves = new CustomMenuButton("Sauvegardes");
         this.quit = new CustomMenuButton("Quitter");
         
-        // habillage personalise        
-        Color cactusGreen = new Color(104, 131, 53);
-        newGame.setForeground(cactusGreen);
-        saves.setForeground(cactusGreen);
+        // habillage personalise
+        newGame.setForeground(CustomMenuButton.COLOR_CACTUS_GREEN);
+        saves.setForeground(CustomMenuButton.COLOR_CACTUS_GREEN);
         quit.setForeground(Color.red);
         
         // creation des eventListener pour les JButton
