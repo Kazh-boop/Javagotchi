@@ -177,7 +177,7 @@ public class SaveManager {
      * @return nombre de sauvegarde int
      */
     private int getNbSave() {
-    	return getNameSave().length;
+    	return (getNameSave() != null) ? getNameSave().length : 0;
     }
     
     /**
