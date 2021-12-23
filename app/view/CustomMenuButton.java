@@ -7,54 +7,75 @@ import java.awt.FontFormatException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.swing.Icon;
 import javax.swing.JButton;
-import javax.swing.border.Border;
-import java.awt.Insets;
 import java.awt.Graphics;
-import java.awt.Component;
-import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Shape;
 
 public class CustomMenuButton extends JButton {
 	
 	private static final String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
 	public static final Color COLOR_CACTUS_GREEN = new Color(104, 131, 53);
 	public static final Color COLOR_PEARL = new Color(245, 235, 218);
+	private final RoundedBorder border;	
 	
-	/**
-	 * Fait un habillage par defaut pour les JButton du menu
-	 * @param name String
-	 */
+    public CustomMenuButton() {
+        this(null, null, 48f);
+    }
+
+    public CustomMenuButton(Icon icon) {
+        this(null, icon, 48f);
+    }
+    
 	CustomMenuButton(String name) {
-		super(name);
-	
-		setCustomSize(1000,100);
-		setCustomBorder();
-		setCustomFont(48f);
+		this(name,null,48f);
 	}
 	
-	CustomMenuButton(String name, float size) {
-		super(name);
+    public CustomMenuButton(String text, Icon icon) {
+        this(text, icon, 48f);
+    }
+	
+    public CustomMenuButton(String name, Float size) {
+		this(name,null,size);
+	}
+    
+    /**
+     * Creer un JButton selon des criteres particuliers
+     * @param name String
+     * @param icon Icon
+     * @param size float
+     */
+    public CustomMenuButton(String name, Icon icon, float size) {
+		super(name,icon);
 		
+		this.border = new RoundedBorder(20);
+		setBorder(border);
 		setCustomSize(1000, 100);
-		setCustomBorder();
 		setCustomFont(size);
 	}
 
-	protected void setCustomSize(int width, int height) {
-	
-    	setMaximumSize(new Dimension(width, height));
-
-	}
-	
-	protected void setCustomBorder() {
-
-		setBorder(new RoundedBorder(20));
+	@Override
+	public void paint(Graphics g) {
+		Graphics2D g2 = (Graphics2D)g;
+		Shape oldClip = g2.getClip();
+		g2.clip(border.createRoundrect(0, 0, getWidth(), getHeight()));
+		super.paint(g);
+		g2.clip(oldClip);
 	}
 	
 	/**
-	 * Definit une nouvelle police a l'objet en parametre
-	 * @param jc JComponent
-	 * @param path String
+	 * Definit une taille pour le composant
+	 * @param width
+	 * @param height
+	 */
+	protected void setCustomSize(int width, int height) {
+    	setMaximumSize(new Dimension(width, height));
+	}
+	
+	/**
+	 * Definit une nouvelle police de taille a definir
+	 * @param fontSize float
 	 */
 	protected void setCustomFont(float fontSize){
 		InputStream inStrm = CustomMenuButton.class.getResourceAsStream(FONT_LIKE_SNOW);
@@ -68,29 +89,4 @@ public class CustomMenuButton extends JButton {
 		}
         setBackground(COLOR_PEARL);
 	}
-}
-
-class RoundedBorder implements Border {
-
-    private int radius;
-
-
-    RoundedBorder(int radius) {
-        this.radius = radius;
-    }
-
-
-    public Insets getBorderInsets(Component c) {
-        return new Insets(this.radius+1, this.radius+1, this.radius+2, this.radius);
-    }
-
-
-    public boolean isBorderOpaque() {
-        return true;
-    }
-
-
-    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-        g.drawRoundRect(x, y, width-1, height-1, radius, radius);
-    }
 }
