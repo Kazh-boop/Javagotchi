@@ -82,22 +82,23 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
 	
 	private void onClickDeleteFamiliarButton() {
     	if (!(this.savesMenu.getListSave().isSelectionEmpty())) { // verification d'une selection
-    		
+    		menuController.playsound(menuController.getClickSound());
     		Familiar f = this.savesMenu.getListSave().getSelectedValue(); // recuperation de la selcetion
-    		
     		int confirmDelete = JOptionPane.showConfirmDialog(
     				null, 
     				"Supprimer "+f.getName()+" le "+f.getFamiliarType()+" ?",
-    				"Supprimer", 
+    				"Confirmer suppression",
     				JOptionPane.YES_NO_OPTION);
     		
     		if (confirmDelete == 0) { // oui == 0
+        		menuController.playsound(menuController.getClickSound());
     			this.savesMenu.getModelFamiliar().removeElement(f); // suppression de l'affichage
     			this.saveManager.deleteSave(f.getUID()); // suppression du fichier de sauvegarde
 
     			this.savesMenu.getListSave().clearSelection(); // maj selection
     			this.savesMenu.disableToAction(); // desactivation des boutons d'actions sur la sauvegarde
-    		}
+    		} else // non
+    			menuController.playsound(menuController.getClickSound());
     	}
 	}
 	
