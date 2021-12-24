@@ -6,10 +6,10 @@ public class Room {
 
     private Weather currentWeather;
     private static final int AMOUNT_OF_WEATHER = 5;
-    public Rooms currentRoom;
+    public Rooms currentRooms;
 
     public Room(Rooms selectedRoom) {
-        this.currentRoom = selectedRoom;
+        this.currentRooms = selectedRoom;
         this.currentWeather = Weather.SUNNY;
     }
 
@@ -24,6 +24,16 @@ public class Room {
     public float getWeatherCoef() {
         return currentWeather.getCoef();
     }
+    
+    public Rooms getRooms()
+    {
+    	return currentRooms;
+    }
+    
+    public void setRooms(Rooms rooms)
+    {
+    	this.currentRooms = rooms;
+    }
 
     public void changeWeather() {
          Random ran = new Random();
@@ -35,6 +45,24 @@ public class Room {
     }
 
     public String getName() {
-        return currentRoom.getName();
+        return currentRooms.getName();
+    }
+    
+    public void moveLeft()
+    {
+    	int id = currentRooms.getId();
+    	if(id > 0) {
+    		id--;
+    		currentRooms = currentRooms.getRoomByID(id);
+    	}
+    }
+    
+    public void moveRight()
+    {
+    	int id = currentRooms.getId();
+    	if(id < 2) {
+    		id++;
+    		currentRooms = currentRooms.getRoomByID(id);
+    	}
     }
 }

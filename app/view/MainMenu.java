@@ -1,10 +1,8 @@
 package app.view;
 
 import javax.swing.*;
-
 import java.awt.Color;
 import java.awt.Component;
-
 
 import app.controller.*;
 

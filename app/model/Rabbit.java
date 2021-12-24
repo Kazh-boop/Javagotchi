@@ -9,8 +9,10 @@ public class Rabbit extends Familiar {
     }
 
     public Rabbit(Rabbit r) {
-        super(r);
+        super();
+        r.name = name;
         this.food = "Carottes";
+        this.familiarType = "Lapin";
     }
 }
 

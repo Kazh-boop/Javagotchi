@@ -8,8 +8,8 @@ import app.controller.GameController;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+
 public class GameView {
-    
 
     private GameController gC;
     private JFrame mainFrame;
@@ -106,4 +106,6 @@ public class GameView {
 
         mainFrame.setVisible(true);
     }
+    
+    
 }
