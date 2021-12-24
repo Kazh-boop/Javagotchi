@@ -150,6 +150,16 @@ public abstract class Familiar implements Serializable {
     	this.room.setRooms(rooms);
     }
     
+    public void moveLeft()
+    {
+    	room.moveLeft();
+    }
+    
+    public void moveRight()
+    {
+    	room.moveRight();
+    }
+    
     public int getEnergy() {
         return energy;
     }

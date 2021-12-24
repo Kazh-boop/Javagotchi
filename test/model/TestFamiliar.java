@@ -297,4 +297,22 @@ class TestFamiliar {
 		assertEquals(Mood.JOYFUL, familiar.getMood());
 	}
 	
+//==========================================================================//
+//																			//
+//								TESTS ROOMS									//
+//																			//
+//==========================================================================//
+	
+	@Test
+	public void testMooveLeft() {
+		familiar.moveLeft();
+		assertEquals(Rooms.GARDEN, familiar.getRoom());
+	}
+	
+	@Test
+	public void testMooveRight() {
+		familiar.moveRight();
+		assertEquals(Rooms.KITCHEN, familiar.getRoom());
+	}
+	
 }

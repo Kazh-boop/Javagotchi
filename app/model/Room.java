@@ -47,4 +47,22 @@ public class Room {
     public String getName() {
         return currentRooms.getName();
     }
+    
+    public void moveLeft()
+    {
+    	int id = currentRooms.getId();
+    	if(id > 0) {
+    		id--;
+    		currentRooms = currentRooms.getRoomByID(id);
+    	}
+    }
+    
+    public void moveRight()
+    {
+    	int id = currentRooms.getId();
+    	if(id < 2) {
+    		id++;
+    		currentRooms = currentRooms.getRoomByID(id);
+    	}
+    }
 }
