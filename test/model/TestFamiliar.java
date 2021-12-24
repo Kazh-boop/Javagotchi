@@ -162,6 +162,12 @@ class TestFamiliar {
 	}
 	
 	@Test
+	public void testSetVitality() {
+		familiar.setVitality(5);
+		assertEquals(5, familiar.getVitality());
+	}
+	
+	@Test
 	public void testGetName() {
 		assertEquals("Filou", familiar.getName());
 	}

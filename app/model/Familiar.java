@@ -172,6 +172,10 @@ public abstract class Familiar implements Serializable {
     public int getVitality() {
     	return vitality;
     }
+    
+    public void setVitality(int vitality) {
+    	if (vitality <= MAX_STATS) this.vitality = vitality;
+    }
 
     public String getName() {
         return name;
