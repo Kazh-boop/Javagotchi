@@ -6,7 +6,8 @@ import java.util.UUID;
 public abstract class Familiar implements Serializable {
 	
 	// permet d'identifier chaque Familiar de maniere unique
-	private static final UUID serialVersionUID = UUID.randomUUID();
+	private final UUID uid = UUID.randomUUID();
+	private static final long serialVersionUID = 1L;
 
 	//private static final long serialVersionUID = 1L;
 
@@ -196,7 +197,7 @@ public abstract class Familiar implements Serializable {
     }
     
     public String getUID() {
-    	return serialVersionUID.toString();
+    	return uid.toString();
     }
     
     @Override

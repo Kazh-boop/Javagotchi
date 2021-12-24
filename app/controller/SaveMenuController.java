@@ -8,12 +8,14 @@ import app.model.Familiar;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Vector;
+import java.util.List;
 
+import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
-public class SaveMenuController implements ActionListener {
+public class SaveMenuController implements ActionListener, ListSelectionListener {
 
 	private MainFrame mainFrame;
 	private SaveManager saveManager;
@@ -46,7 +48,7 @@ public class SaveMenuController implements ActionListener {
 		return saveManager.getNameSave();
 	}
 	
-	public Vector<Familiar> getAllFamiliar() throws ClassNotFoundException, IOException {
+	public List<Familiar> getAllFamiliar() throws ClassNotFoundException, IOException {
 		return saveManager.getAllFamiliar();
 	}
 
@@ -65,6 +67,14 @@ public class SaveMenuController implements ActionListener {
     	}
 	}
 	
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+        if (!(e.getValueIsAdjusting())) {
+        	this.menuController.playsound(menuController.getClickSound());
+        	this.savesMenu.enableToAction();
+        }
+	}
+	
 	private void onClickBackMenu() {
 		menuController.playsound(menuController.getClickSound());
 		menuController.mainMenuDisplay();
@@ -72,18 +82,32 @@ public class SaveMenuController implements ActionListener {
 	
 	private void onClickDeleteFamiliarButton() {
     	if (!(this.savesMenu.getListSave().isSelectionEmpty())) { // verification d'une selection
+    		menuController.playsound(menuController.getClickSound());
     		Familiar f = this.savesMenu.getListSave().getSelectedValue(); // recuperation de la selcetion
-    		this.savesMenu.getModelFamiliar().removeElement(f); // suppression de l'affichage
-    		try {
-				this.saveManager.deleteSave(f.getUID()); // suppression du fichier de sauvegarde
-			} catch (FileNotFoundException e1) {
-				e1.printStackTrace();
-			}
+    		int confirmDelete = JOptionPane.showConfirmDialog(
+    				null, 
+    				"Supprimer "+f.getName()+" le "+f.getFamiliarType()+" ?",
+    				"Confirmer suppression",
+    				JOptionPane.YES_NO_OPTION);
+    		
+    		if (confirmDelete == 0) { // oui == 0
+        		menuController.playsound(menuController.getClickSound());
+    			this.savesMenu.getModelFamiliar().removeElement(f); // suppression de l'affichage
+    			this.saveManager.deleteSave(f.getUID()); // suppression du fichier de sauvegarde
+
+    			this.savesMenu.getListSave().clearSelection(); // maj selection
+    			this.savesMenu.disableToAction(); // desactivation des boutons d'actions sur la sauvegarde
+    		} else // non
+    			menuController.playsound(menuController.getClickSound());
     	}
 	}
 	
 	private void onClickLoadSave() {
-		// TODO lancer GameView
+		menuController.playsound(menuController.getClickSound());
+		if (!(this.savesMenu.getListSave().isSelectionEmpty())) { // verification d'une selection
+    		Familiar familiarToLoad = this.savesMenu.getListSave().getSelectedValue(); // recuperation de la selcetion
+			new GameController(familiarToLoad, mainFrame);
+		}
 	}
 	
 	/**
@@ -109,4 +133,5 @@ public class SaveMenuController implements ActionListener {
 		sm.writeSave(f);
 		
 	}
+	
 }

@@ -1,7 +1,7 @@
 package app.model;
 
 public enum Mood {
-    HAPPY(0.6f, "Épanoui"),
+    HAPPY(0.6f, "Epanoui"),
     JOYFUL(0.8f, "Joyeux"),
     FINE(1f, "Neutre"),
     SAD(1.2f, "Maussade"),

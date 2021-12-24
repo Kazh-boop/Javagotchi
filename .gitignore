@@ -1,5 +1,8 @@
 /target
 
+### Sauvegardes du jeu ###
+*.dat
+
 ### Eclipse ###
 .metadata
 bin/

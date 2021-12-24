@@ -8,14 +8,17 @@ import app.controller.*;
 
 public class MainMenu {
 	
-	MenuController mainController;
-	MainFrame mainFrame;
-	JPanel mainPanel;
+	protected static final float DEFAULT_BUTTON_SIZE = 32f;
+	protected static final float DEFAULT_MAIN_BUTTON_SIZE = 48f;
 	
-	CustomMenuLabel title;
-    CustomMenuButton newGame;
-    CustomMenuButton saves;
-    CustomMenuButton quit;
+	private MenuController mainController;
+	private MainFrame mainFrame;
+	private JPanel mainPanel;
+	
+	private CustomMenuLabel title;
+	private CustomMenuButton newGame;
+	private CustomMenuButton saves;
+	private CustomMenuButton quit;
     
     /**
      * Constructeur
@@ -37,19 +40,14 @@ public class MainMenu {
         
         // composition des JComponent
         this.title = new CustomMenuLabel("Tamagotchi", 96f, SwingConstants.CENTER);
-        this.newGame = new CustomMenuButton("Nouvelle Partie");
-        this.saves = new CustomMenuButton("Sauvegardes");
-        this.quit = new CustomMenuButton("Quitter");
+        this.newGame = new CustomMenuButton("Nouvelle Partie", DEFAULT_MAIN_BUTTON_SIZE);
+        this.saves = new CustomMenuButton("Sauvegardes", DEFAULT_MAIN_BUTTON_SIZE);
+        this.quit = new CustomMenuButton("Quitter", DEFAULT_MAIN_BUTTON_SIZE);
         
-        // habillage personalise        
-        Color cactusGreen = new Color(104, 131, 53);
-        Color pearl = new Color(245, 235, 218);
-        newGame.setForeground(cactusGreen);
-        newGame.setBackground(pearl);
-        saves.setForeground(cactusGreen);
-        saves.setBackground(pearl);
+        // habillage personalise
+        newGame.setForeground(CustomMenuButton.COLOR_CACTUS_GREEN);
+        saves.setForeground(CustomMenuButton.COLOR_CACTUS_GREEN);
         quit.setForeground(Color.red);
-        quit.setBackground(pearl);
         
         // creation des eventListener pour les JButton
         this.newGame.addActionListener(this.mainController);

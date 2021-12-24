@@ -2,18 +2,15 @@ package app.view;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.io.IOException;
-import java.io.InputStream;
 
-import javax.swing.Box;
-import javax.swing.DefaultListSelectionModel;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
+import javax.swing.ListSelectionModel;
 
 import app.model.Familiar;
 
@@ -24,58 +21,45 @@ import app.model.Familiar;
  */
 public class ListFamiliarRenderer implements ListCellRenderer<Familiar> {
 	
-	private static final String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
-
+	private static final float DEFAULT_BUTTON_SIZE = 32f;
 
 	@Override
 	public Component getListCellRendererComponent(JList<? extends Familiar> list, Familiar familiar, int index,
 			boolean isSelected, boolean cellHasFocus) {
 		
 
-		Box box = Box.createVerticalBox();
+		JPanel panFam = new JPanel();
+		panFam.setLayout(new BoxLayout(panFam, BoxLayout.Y_AXIS));
 		
 		// image du familier
 		JLabel image = new JLabel(createImageIcon("../assets/images/cat.png"));
 		image.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		// nom du familier
-		JLabel texteName = new CustomMenuLabel("Nom : "+familiar.getName(), 32f);
-		texteName.setAlignmentX(Component.CENTER_ALIGNMENT);
+		JLabel textName = new CustomMenuLabel("Nom : "+familiar.getName(), DEFAULT_BUTTON_SIZE);
+		textName.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		// type du familier
-		JLabel textType = new CustomMenuLabel("Type : "+familiar.getFamiliarType(), 32f);
+		JLabel textType = new CustomMenuLabel("Type : "+familiar.getFamiliarType(), DEFAULT_BUTTON_SIZE);
 		textType.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		// ajout des elements dans la box
-		box.add(image);
-		box.add(texteName);
-		box.add(textType);
+		
+		// ajout des elements dans le panel
+		panFam.add(image);
+		panFam.add(textName);
+		panFam.add(textType);
 
-		list.setOpaque(true);
+		// parametrage de la list
 		list.setLayoutOrientation(JList.VERTICAL_WRAP);
 		list.setVisibleRowCount(-1);
-        list.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION); // selectionner seul 1 element
-        list.setBorder(null);
-        list.setSelectionBackground(Color.blue);
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // selectionner seul 1 element
         
-		return box;
-	}
-	
-	/**
-	 * Definit une nouvelle police
-	 * @param jc JComponent
-	 * @param fontSize float
-	 */
-	protected void setCustomFont(JComponent jc, float fontSize){
-		InputStream inStrm = CustomMenuButton.class.getResourceAsStream(FONT_LIKE_SNOW);
-		try {
-			Font font = Font.createFont(Font.TRUETYPE_FONT, inStrm);
-			Font sizedFont = font.deriveFont(fontSize);
-			jc.setFont(sizedFont);
-			
-		} catch (FontFormatException | IOException e) {
-			e.printStackTrace();
-		}
+        if (isSelected) {
+    		panFam.setBackground(Color.WHITE);
+        	panFam.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        }
+        
+		return panFam;
 	}
 	
 	/**

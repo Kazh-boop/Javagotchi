@@ -12,5 +12,9 @@ public class Dog extends Familiar {
 		super(f);
         this.food = "Croquette";
 	}
-
+	
+    public Dog(Dog dog) {
+        super(dog);
+        this.food = "Croquette";
+    }
 }

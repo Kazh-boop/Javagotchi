@@ -4,12 +4,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Vector;
-
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe permettant de gerer les sauvegardes du jeu<br>
@@ -50,6 +50,11 @@ public class SaveManager {
     private String directoryPath;
     
     /**
+     * Repertoire ou se trouve les sauvegardes
+     */
+    private File repSave;
+    
+    /**
      * Fichier courant dans lequel les donnes vont ecrites/lues
      */
     private File currentFile;
@@ -65,6 +70,9 @@ public class SaveManager {
      */
     public SaveManager(String directoryPath) {
         this.directoryPath = directoryPath;
+        this.repSave = new File(this.directoryPath);
+        if (!(repSave.exists()))
+        	repSave.mkdir();
     }
 
     /**
@@ -72,7 +80,7 @@ public class SaveManager {
      * @param saveName String, base du nom du fichier a sauvegarder
      * @throws FileNotFoundException
      */
-    public void openFile(String saveName) throws FileNotFoundException {
+    public void openFile(String saveName) {
     	currentFile = new File(directoryPath + saveName + ".dat");
     }
 
@@ -96,12 +104,15 @@ public class SaveManager {
     /**
      * Supprimer un fichier de sauvegarde
      * @param saveName String, nom du fichier a supprimer
-     * @throws FileNotFoundException
-     */
-    public void deleteSave(String saveName) throws FileNotFoundException {
+     **/
+    public void deleteSave(String saveName) {
         openFile(saveName);
         if (currentFile.exists())
-        	currentFile.delete();
+            try {
+                Files.delete(currentFile.toPath());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         else
         	System.err.println("le nom du fichier rentré n'est pas bon");
     }
@@ -136,15 +147,7 @@ public class SaveManager {
      */
     public String[] getNameSave() {
     	File rep = new File(directoryPath);
-    	String[] listFileName = rep.list(new FilenameFilter() {
-			
-			@Override
-			public boolean accept(File dir, String name) {
-				return name.endsWith(".dat");
-			}
-			
-		});
-    	return listFileName;
+    	return rep.list((dir, name) -> name.endsWith(".dat"));
     	
     }
     
@@ -154,8 +157,8 @@ public class SaveManager {
      * @throws ClassNotFoundException
      * @throws IOException
      */
-    public Vector<Familiar> getAllFamiliar() throws ClassNotFoundException, IOException {
-    	Vector<Familiar> listFamiliar = new Vector<Familiar>();
+    public List<Familiar> getAllFamiliar() throws ClassNotFoundException, IOException {
+    	ArrayList<Familiar> listFamiliar = new ArrayList<>();
     	String[] listFileName = getNameSave();
     	
 		for (String fileName: listFileName) {
@@ -182,7 +185,7 @@ public class SaveManager {
      * @return nombre de sauvegarde int
      */
     private int getNbSave() {
-    	return getNameSave().length;
+    	return (getNameSave() != null) ? getNameSave().length : 0;
     }
     
     /**
