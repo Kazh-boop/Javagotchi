@@ -9,8 +9,6 @@ public abstract class Familiar implements Serializable {
 	private final UUID uid = UUID.randomUUID();
 	private static final long serialVersionUID = 1L;
 
-	//private static final long serialVersionUID = 1L;
-
     // Familiar attributes
     protected String name;
     protected String food;
@@ -49,6 +47,7 @@ public abstract class Familiar implements Serializable {
     protected Familiar() {
         this.energy = MAX_STATS;
         this.hungriness = MAX_STATS;
+        this.happiness = 100;
         this.hygiene = MAX_STATS;
         this.vitality = MAX_STATS;
         this.mood = Mood.HAPPY;
@@ -56,34 +55,8 @@ public abstract class Familiar implements Serializable {
         this.portions = 2;
     }
 
-    protected Familiar(Familiar f) {
-        this.energy = f.energy;
-        this.hygiene = f.hygiene;
-        this.hungriness = f.hungriness;
-        this.vitality = f.vitality;
-        this.mood = f.mood;
-        this.room = f.room;
-        this.portions = f.portions;
-        this.urlIcon = f.urlIcon;
-    }
-
-    // Accessors
-    public String getFood() {
-        return food;
-    }
-
-    public int getHungriness() {
-        return hungriness;
-    }
-
-    public void setHungriness(int hungriness) {
-        this.hungriness = hungriness;
-        if (this.hungriness > MAX_STATS)
-    		this.hungriness = MAX_STATS;
-    }
-
     public void feed(Rooms currentRoom) {
-        if(hungriness < MAX_STATS &&  currentRoom == Rooms.KITCHEN && this.portions > 0){
+        if(hungriness < MAX_STATS && currentRoom == Rooms.KITCHEN && this.portions > 0){
             // we can only feed him with 35% of the hungriness
             setHungriness(this.hungriness + MAX_FEED_PORTION);
             this.energy -= DECREASE_STATS_PER_ACTION;
@@ -94,19 +67,22 @@ public abstract class Familiar implements Serializable {
         }
     }
 
-    public void addPortion()
-    {
-        if(this.portions < MAX_PORTIONS)
-        {
-            this.portions++;
-        }
+    public void addPortion() {
+        if(this.portions < MAX_PORTIONS) this.portions++;
     }
 
-    public int getPortions()
-    {
+    // utilisee pour les tests
+    public void ResetPortion() {
+    	this.portions = 0;
+    }
+    
+    public int getPortions() {
         return this.portions;
     }
-
+    
+    public void setPortions(int portions) {
+    	if(portions <= MAX_PORTIONS) this.portions = portions;
+    }
 
     public int getHappiness() {
         return happiness;
@@ -117,25 +93,17 @@ public abstract class Familiar implements Serializable {
             this.happiness = happiness;
         }
     }
-
+    
+    public int getHygiene() {
+        return hygiene;
+    }
+    
     public void setHygiene(int hygiene){
         if(hygiene < MAX_STATS){
             this.hygiene = hygiene;
         }
-        if (hygiene < 10){
-            //this.moodValue -= 10;  TODO quand hygiene moins de 10% baise du mood
-        }
     }
     
-    // utilisee pour les tests
-    public void ResetPortion() {
-    	this.portions = 0;
-    }
-
-    public Mood getMood() {
-        return mood;
-    }
-
     public void recalculateMood(Weather currentWeather, Rooms currentRoom) {
         moodValue = (hungriness + hygiene + energy + vitality) / AMOUNT_OF_STATS;
         if(currentRoom == Rooms.GARDEN) moodValue*=currentWeather.getCoef();
@@ -152,48 +120,60 @@ public abstract class Familiar implements Serializable {
 
         return Mood.MISERABLE;
     }
-
+    
+    public void setMoodValue(int moodValue) {
+    	this.moodValue = moodValue;
+    }
+    
     public float getMoodCoef() {
         return mood.getCoef();
+    }
+    
+    public Mood getMood() {
+        return mood;
+    }
+    
+    public void setMood(Mood mood) {
+    	this.mood = mood;
     }
 
     public String getFamiliarType() {
         return familiarType;
     }
 
-    public Rooms getRooms() {
-        return room.getRoom();
+    public Rooms getRoom() {
+        return room.getRooms();
     }
     
-    public void setMoodValue(int moodValue) {
-    	this.moodValue = moodValue;
+    public void setRoom(Rooms rooms)
+    {
+    	this.room.setRooms(rooms);
     }
     
-    public void setMood(Mood mood) {
-    	this.mood = mood;
+    public int getEnergy() {
+        return energy;
     }
     
     public void setEnergy(int energy) {
     	this.energy = energy;
-    	if (this.energy > MAX_STATS)
-    		this.energy = MAX_STATS;
+    	if (this.energy > MAX_STATS) this.energy = MAX_STATS;
     }
     
-    public int getVitality()
-    {
+    public int getVitality() {
     	return vitality;
     }
 
     public String getName() {
         return name;
     }
-
-    public int getHygiene() {
-        return hygiene;
+    
+    public int getHungriness() {
+        return hungriness;
     }
 
-    public int getEnergy() {
-        return energy;
+    public void setHungriness(int hungriness) {
+        this.hungriness = hungriness;
+        if (this.hungriness > MAX_STATS) this.hungriness = MAX_STATS;
     }
     
     public String getUID() {
@@ -204,5 +184,12 @@ public abstract class Familiar implements Serializable {
     public String toString() {
     	return "Nom : " + name + " Type : " + familiarType;
     }
-
+    
+    @Override
+    public boolean equals(Object obj) {
+    	if(obj == null) return false;
+    	if(obj == this) return true;
+    	Familiar fam = (Familiar) obj;
+    	return this.name.equals(fam.getName());
+    }
 }

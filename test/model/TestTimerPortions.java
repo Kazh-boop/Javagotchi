@@ -1,6 +1,7 @@
 package test.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.After;
 import org.junit.Before;
@@ -12,25 +13,36 @@ import app.model.TimerPortions;;
 
 public class TestTimerPortions {
 	private Familiar familiar;
-	private TimerPortions timerPortions;
-
+	
 	@Before
 	public void setUp() throws Exception {
 		this.familiar = new Cat("Filou");
-		// creation d'un timer avec une periode de 10ms
-		this.timerPortions = new TimerPortions(this.familiar, 10);
 	}
 	
 	@After
 	public void tearDown() throws Exception {
 		this.familiar = null;
-		this.timerPortions = null;
+	}
+	
+	@Test
+	public void testNewTimerPortions()
+	{
+		TimerPortions timerPortions = new TimerPortions(this.familiar);
+		assertNotNull(timerPortions);
+	}
+	
+	@Test
+	public void testNewTimerPortionsPeriod()
+	{
+		TimerPortions timerPortions = new TimerPortions(this.familiar, 10);
+		assertNotNull(timerPortions);
 	}
 	
 	@Test
 	public void timerAddPortion() throws InterruptedException {
 		familiar.ResetPortion();
-		this.timerPortions.run();
+		TimerPortions timerPortions = new TimerPortions(this.familiar, 10);
+		timerPortions.run();
 		Thread.sleep(50);
 		assertEquals(4, familiar.getPortions());
 	}

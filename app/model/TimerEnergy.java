@@ -7,7 +7,6 @@ public class TimerEnergy extends TimerTask {
     private Familiar familiar;
     private static int MINUTES_PER_PORTION;
 
-
     public TimerEnergy(Familiar familiar){
         this.familiar = familiar;
         MINUTES_PER_PORTION =  10 * 60 * 1000;

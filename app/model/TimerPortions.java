@@ -7,7 +7,6 @@ public class TimerPortions extends TimerTask {
     private Familiar familiar;
     private static int MINUTES_PER_PORTION;
 
-
     public TimerPortions(Familiar familiar){
         this.familiar = familiar;
         MINUTES_PER_PORTION = 30 * 60 * 1000;
@@ -27,7 +26,7 @@ public class TimerPortions extends TimerTask {
                 System.out.println(familiar.getPortions());
                 familiar.addPortion();
             }
-          }, 0, MINUTES_PER_PORTION); //wait 0 ms before doing the action and do it every 30 minutes
+          }, 0, MINUTES_PER_PORTION); //aucune attente entre chaque actions, 1 actions toutes les x minutes
     }
    
 }
