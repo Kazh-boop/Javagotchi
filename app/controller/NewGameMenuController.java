@@ -51,9 +51,10 @@ public class NewGameMenuController implements ActionListener {
 	
 	public void newGameMenuDisplay() {
 		flush();
+		setCursorImage(0);
 		newGameMenu.display();
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == this.newGameMenu.getBackMenu()) {
@@ -140,7 +141,7 @@ public class NewGameMenuController implements ActionListener {
     		
     	
     	}else if(!(saveManager.isEnableToSave())) {
-    		String saveListFullMsg = "Vous ne pouvez pas creer de nouveau familier. Limite de 3 familiers sauvegardes atteinte.";
+    		String saveListFullMsg = "Vous ne pouvez pas creer de nouveau familier. Limite de 3 sauvegardes atteintes.";
     		String[] saveListFullOptions = {"Ok", "Menu sauvegardes", "Menu principal"};
     		int saveListFullAnswer = JOptionPane.showOptionDialog(null, saveListFullMsg, "Erreur nombre maximal de familier atteint", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, saveListFullOptions, saveListFullOptions[1]);
     		
@@ -261,5 +262,11 @@ public class NewGameMenuController implements ActionListener {
 	public MainFrame getMainFrame() {
 		return this.mainFrame;
 	}
-
+	
+	/**
+	 * @param i int
+	 */
+	private void setCursorImage(int i) {
+		cursorImage=0;
+	}
 }
