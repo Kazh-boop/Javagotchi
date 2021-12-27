@@ -15,12 +15,12 @@ public class TestTimerPortions {
 	private Familiar familiar;
 	
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		this.familiar = new Cat("Filou");
 	}
 	
 	@After
-	public void tearDown() throws Exception {
+	public void tearDown() {
 		this.familiar = null;
 	}
 	
@@ -40,7 +40,7 @@ public class TestTimerPortions {
 	
 	@Test
 	public void timerAddPortion() throws InterruptedException {
-		familiar.ResetPortion();
+		familiar.resetPortion();
 		TimerPortions timerPortions = new TimerPortions(this.familiar, 10);
 		timerPortions.run();
 		Thread.sleep(50);

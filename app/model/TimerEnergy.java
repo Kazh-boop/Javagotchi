@@ -5,16 +5,16 @@ import java.util.TimerTask;
 
 public class TimerEnergy extends TimerTask {
     private Familiar familiar;
-    private static int MINUTES_PER_ENERGY;
+    private int minutesPerEnergy;
 
     public TimerEnergy(Familiar familiar){
         this.familiar = familiar;
-        MINUTES_PER_ENERGY =  10 * 60 * 1000;
+        minutesPerEnergy = 10 * 60 * 1000;
     }
     
     public TimerEnergy(Familiar familiar, int period){
         this.familiar = familiar;
-        MINUTES_PER_ENERGY = period;
+        minutesPerEnergy = period;
     }
 
     @Override
@@ -25,6 +25,6 @@ public class TimerEnergy extends TimerTask {
             public void run() {
                 familiar.setEnergy(familiar.getEnergy()-1);
             }
-          }, 0, MINUTES_PER_ENERGY); 
+          }, 0, minutesPerEnergy); 
     }
 }

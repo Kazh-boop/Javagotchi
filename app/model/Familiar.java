@@ -72,7 +72,7 @@ public abstract class Familiar implements Serializable {
     }
 
     // utilisee pour les tests
-    public void ResetPortion() {
+    public void resetPortion() {
     	this.portions = 0;
     }
     
@@ -201,7 +201,11 @@ public abstract class Familiar implements Serializable {
     
     @Override
     public boolean equals(Object obj) {
-    	if(obj == null) return false;
+    	
+        if(obj == null || this.getClass() != obj.getClass()) {
+            return false;
+        }
+
     	if(obj == this) return true;
     	Familiar fam = (Familiar) obj;
     	return this.name.equals(fam.getName());

@@ -5,16 +5,16 @@ import java.util.TimerTask;
 
 public class TimerPortions extends TimerTask {
     private Familiar familiar;
-    private static int MINUTES_PER_PORTION;
+    private int minutesPerPortion;
 
     public TimerPortions(Familiar familiar){
         this.familiar = familiar;
-        MINUTES_PER_PORTION = 30 * 60 * 1000;
+        minutesPerPortion = 30 * 60 * 1000;
     }
     
     public TimerPortions(Familiar familiar, int period){
         this.familiar = familiar;
-        MINUTES_PER_PORTION = period;
+        minutesPerPortion = period;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class TimerPortions extends TimerTask {
                 System.out.println(familiar.getPortions());
                 familiar.addPortion();
             }
-          }, 0, MINUTES_PER_PORTION); //aucune attente entre chaque actions, 1 actions toutes les x minutes
+          }, 0, minutesPerPortion); //aucune attente entre chaque actions, 1 actions toutes les x minutes
     }
    
 }

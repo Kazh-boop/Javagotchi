@@ -236,7 +236,7 @@ class TestFamiliar {
 	@Test
 	public void testFeedNoPortion() {
 		setUpFeed();
-		familiar.ResetPortion();
+		familiar.resetPortion();
 		familiar.feed(familiar.getRoom());
 		// pas de changement
 		assertEquals(TEST_HUNGRINESS, familiar.getHungriness());
@@ -244,7 +244,7 @@ class TestFamiliar {
 	
 	@Test
 	public void testAddPortion() {
-		familiar.ResetPortion();
+		familiar.resetPortion();
 		familiar.addPortion();
 		assertEquals(1, familiar.getPortions());
 	}

@@ -16,17 +16,19 @@ import app.model.SaveManager;
 
 public class TestSave {
 	
-	private Familiar saveFamiliarCat, saveFamiliarDog;
+	private Familiar saveFamiliarCat;
+	private Familiar saveFamiliarDog;
 	private SaveManager saveManager;
 	
-	private static String nameSaveCat, nameSaveDog;
+	private String nameSaveCat;
+	private String nameSaveDog;
 	private static final String ABSOLUTEPATH = "save/test/";
 	private static final String EXTENSION = ".dat";
 	private static final File rep = new File(ABSOLUTEPATH);
 
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		saveManager = new SaveManager();
 		rep.mkdirs();
 		
@@ -40,7 +42,7 @@ public class TestSave {
 	}
 
 	@After
-	public void tearDown() throws Exception {
+	public void tearDown() {
 		saveManager.deleteSave(nameSaveCat);
 		saveManager.deleteSave(nameSaveDog);
 		rep.delete();
@@ -49,7 +51,7 @@ public class TestSave {
 	}
 
 	@Test
-	public void saveFamiliar() throws IOException, ClassNotFoundException {
+	public void saveFamiliar() throws IOException {
 		// Cat
 		saveManager.openFile(nameSaveCat); // ouverture du fichier
 		saveManager.writeSave(saveFamiliarCat); // ecriture des infos de saveFamiliar dans TestSave.dat

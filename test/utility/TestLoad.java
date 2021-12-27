@@ -1,5 +1,6 @@
 package test.utility;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.File;
@@ -15,10 +16,11 @@ import app.model.SaveManager;
 
 class TestLoad {
 
-	private Familiar saveFamiliar, loadFamiliar;
+	private Familiar saveFamiliar;
+	private Familiar loadFamiliar;
 	private SaveManager saveManager;
 	
-	private static String nameSave;
+	private String nameSave;
 	private static final String ABSOLUTEPATH = "save/test/";
 	private static final File rep = new File(ABSOLUTEPATH);
 	
@@ -35,7 +37,7 @@ class TestLoad {
 	}
 
 	@AfterEach
-	public void tearDown() throws Exception {
+	public void tearDown() {
 		saveManager.deleteSave(nameSave);
 		rep.delete();
 		saveFamiliar = loadFamiliar = null;
@@ -76,7 +78,7 @@ class TestLoad {
 		saveManager.loadSave();
 		loadFamiliar = saveManager.getFamiliar();
 		
-		saveFamiliar.ResetPortion(); // changement de valeur : portion == 0
+		saveFamiliar.resetPortion(); // changement de valeur : portion == 0
 		saveManager.writeSave(saveFamiliar); // on sauvegarde le changement
 		
 		saveManager.loadSave();
