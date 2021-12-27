@@ -10,7 +10,9 @@ public class Cat extends Familiar {
     }
 
     public Cat(Cat cat) {
-        super(cat);
+        super();
+        this.name = cat.name;
         this.food = "Patée";
+        this.familiarType = "Chat";
     }
 }

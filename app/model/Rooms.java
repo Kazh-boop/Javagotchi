@@ -32,6 +32,26 @@ public enum Rooms {
 	public Integer[] getActionsAvailable() {
 		return actionsAvailable;
 	}
+	
+	public Rooms getRoomByID(int id)
+	{
+		Rooms rooms = null;
+		switch(id) {
+			case 0 : 
+				rooms = Rooms.GARDEN;
+				break;
+			case 1 :
+				rooms = Rooms.LIVING_ROOM;
+				break;
+			case 2 :
+				rooms = Rooms.KITCHEN;
+				break;
+			default:
+				break;
+		}
+		
+		return rooms;
+	}
 
     
 }

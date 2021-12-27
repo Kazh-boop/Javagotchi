@@ -1,16 +1,18 @@
 package app.model;
 
 public class Dog extends Familiar {
-    
-    public Dog(String name) {
-        super();
+
+	public Dog(String name) {
+		super();
         this.name = name;
         this.food = "Croquette";
         this.familiarType = "Chien";
     }
-
+	
     public Dog(Dog dog) {
-        super(dog);
+		super();
+        dog.name = name;
         this.food = "Croquette";
+        this.familiarType = "Chien";
     }
 }
