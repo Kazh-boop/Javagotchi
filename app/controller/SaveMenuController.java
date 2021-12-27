@@ -30,7 +30,7 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
 	public SaveMenuController(MenuController menuController, MainFrame nFrame) {
 		this.mainFrame = nFrame;
 		this.menuController = menuController;
-		this.saveManager = new SaveManager("save/");
+		this.saveManager = new SaveManager();
 		this.savesMenu = new SavesMenu(nFrame);
 	}
 	
@@ -127,7 +127,7 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
 	}
 	
 	public static void main(String[] args) throws IOException {
-		SaveManager sm = new SaveManager("save/");
+		SaveManager sm = new SaveManager();
 		Familiar f = new Cat("Filou");
 		sm.openFile(f.getUID());
 		sm.writeSave(f);

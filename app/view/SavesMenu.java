@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 
 import app.controller.SaveMenuController;
 import app.model.Familiar;
+import app.util.*;
 
 
 public class SavesMenu {
@@ -96,7 +97,7 @@ public class SavesMenu {
         // boutons d'actions du familier
         this.deleteFamiliar.setForeground(Color.RED);
         this.deleteFamiliar.setEnabled(false);
-        this.loadSave.setForeground(CustomMenuButton.COLOR_CACTUS_GREEN);
+        this.loadSave.setForeground(CustomMenuButton.getColorGreen());
         this.loadSave.setEnabled(false);
         
         // creation des eventListener

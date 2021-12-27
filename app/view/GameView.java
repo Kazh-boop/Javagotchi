@@ -5,7 +5,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import app.controller.GameController;
-
+import app.util.*;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 public class GameView {
@@ -46,8 +46,8 @@ public class GameView {
 
         save = new CustomMenuButton("Sauvegarder", 25f);
         save.setMaximumSize(new Dimension(200, 50));
-        save.setBackground(CustomMenuButton.COLOR_PEARL);
-        save.setForeground(CustomMenuButton.COLOR_CACTUS_GREEN);
+        save.setBackground(CustomMenuButton.getPearl());
+        save.setForeground(CustomMenuButton.getColorGreen());
         
         name = new CustomMenuLabel(gC.getFamiliar().getName(), 20f);
         mood = new CustomMenuLabel("Humeur : " + gC.getFamiliar().getMood(), 20f);
@@ -106,4 +106,21 @@ public class GameView {
 
         mainFrame.setVisible(true);
     }
+
+    public JButton getSave() {
+        return this.save;
+    }
+
+    public void successfulSave() {
+        JOptionPane.showMessageDialog(
+            mainFrame, 
+    	    "Votre progression a bien été sauvegarder", "Succès", JOptionPane.INFORMATION_MESSAGE
+            );
+    }
+    public void errorSave(String error) {
+        JOptionPane.showMessageDialog(
+            null, 
+            "Erreur lors de la sauvegarde : " + error);
+        mainFrame.repaint();
+     }
 }

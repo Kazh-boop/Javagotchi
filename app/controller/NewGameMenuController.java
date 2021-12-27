@@ -46,7 +46,7 @@ public class NewGameMenuController implements ActionListener {
 		this.mainFrame = nFrame;
 		this.menuController = menuController;
 		this.newGameMenu = new NewGameMenu(this);
-		this.saveManager = new SaveManager("save/");
+		this.saveManager = new SaveManager();
 	}
 	
 	public void newGameMenuDisplay() {
@@ -156,11 +156,6 @@ public class NewGameMenuController implements ActionListener {
 	    			} catch (ClassNotFoundException | IOException e) {
 	    				e.printStackTrace();
 	    			}
-	    			break;
-	    			
-	    		case 2: // retour
-	    			menuController.playsound(menuController.getClickSound());
-	    			menuController.mainMenuDisplay();
 	    			break;
     		
     			default:

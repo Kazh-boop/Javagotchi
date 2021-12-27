@@ -3,6 +3,7 @@ package app.view;
 import java.awt.*;
 import javax.swing.*;
 import app.controller.*;
+import app.util.*;
 
 public class NewGameMenu {
 	
@@ -55,14 +56,14 @@ public class NewGameMenu {
         this.title = new CustomMenuLabel("Nouvelle Partie", 100f);
         this.textName = new CustomMenuLabel("Nom du familier :");
         this.name = new JTextField(null,NAME_MAX_CHAR);
-        this.textType = new CustomMenuLabel("Choix de l'espèce de votre familier");
+        this.textType = new CustomMenuLabel("Choix de l'espï¿½ce de votre familier");
         this.leftFamiliar = new CustomMenuButton(createImageIcon("../assets/images/left.png"));
         this.speciesIcon = new JLabel(createImageIcon("../assets/images/cat.png"));
         this.rightFamiliar = new CustomMenuButton(createImageIcon("../assets/images/right.png"));
         this.launchGame = new CustomMenuButton("Lancer la partie",MainMenu.DEFAULT_BUTTON_SIZE);
         
         // habillage des JComponent
-        this.launchGame.setForeground(CustomMenuButton.COLOR_CACTUS_GREEN);
+        this.launchGame.setForeground(CustomMenuButton.getColorGreen());
         this.leftFamiliar.setOpaque(false);
         this.leftFamiliar.setBorderPainted(false);
         this.rightFamiliar.setOpaque(false);

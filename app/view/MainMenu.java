@@ -7,6 +7,7 @@ import java.awt.Component;
 
 
 import app.controller.*;
+import app.util.*;
 
 public class MainMenu {
 	
@@ -47,8 +48,8 @@ public class MainMenu {
         this.quit = new CustomMenuButton("Quitter", DEFAULT_MAIN_BUTTON_SIZE);
         
         // habillage personalise
-        newGame.setForeground(CustomMenuButton.COLOR_CACTUS_GREEN);
-        saves.setForeground(CustomMenuButton.COLOR_CACTUS_GREEN);
+        newGame.setForeground(CustomMenuButton.getColorGreen());
+        saves.setForeground(CustomMenuButton.getColorGreen());
         quit.setForeground(Color.red);
         
         // creation des eventListener pour les JButton

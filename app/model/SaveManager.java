@@ -47,7 +47,7 @@ public class SaveManager {
     /**
      * Chemin designant l'emplacement des sauvegardes
      */
-    private String directoryPath;
+    private static final String DIRECTORY_PATH = "./save/";
     
     /**
      * Repertoire ou se trouve les sauvegardes
@@ -68,9 +68,8 @@ public class SaveManager {
      * Constructeur
      * @param directoryPath String, initialise l'attribut directoryPath 
      */
-    public SaveManager(String directoryPath) {
-        this.directoryPath = directoryPath;
-        this.repSave = new File(this.directoryPath);
+    public SaveManager() {
+        this.repSave = new File(DIRECTORY_PATH);
         if (!(repSave.exists()))
         	repSave.mkdir();
     }
@@ -81,7 +80,7 @@ public class SaveManager {
      * @throws FileNotFoundException
      */
     public void openFile(String saveName) {
-    	currentFile = new File(directoryPath + saveName + ".dat");
+    	currentFile = new File(DIRECTORY_PATH + saveName + ".dat");
     }
 
     /**
@@ -90,6 +89,7 @@ public class SaveManager {
      * @throws IOException
      */
     public void writeSave(Familiar f) throws IOException {
+
     	if (isEnableToSave()) {
     		dataOutStream = new FileOutputStream(currentFile); // ouverture du fichier en ecriture seule
     		saveDatas = new ObjectOutputStream(dataOutStream);
@@ -146,7 +146,7 @@ public class SaveManager {
      * @return listFileName String[], noms des sauvegardes
      */
     public String[] getNameSave() {
-    	File rep = new File(directoryPath);
+    	File rep = new File(DIRECTORY_PATH);
     	return rep.list((dir, name) -> name.endsWith(".dat"));
     	
     }
