@@ -15,11 +15,11 @@ public enum Mood {
         this.name = name;
     }
 
-    protected float getCoef() {
+    public float getCoef() {
         return coef;
     }
 
-    protected String getName() {
+    public String getName() {
         return name;
     }
 }

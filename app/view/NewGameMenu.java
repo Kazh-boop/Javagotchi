@@ -7,7 +7,10 @@ import app.util.*;
 
 public class NewGameMenu {
 	
-	private static final int NAME_MAX_CHAR = 16;
+	private static final int TOP_PANEL_HGAP = 50;
+    private static final float TITLE_FONT_SIZE = 100f;
+    private static final int NAME_MAX_CHAR = 16;
+
 	private NewGameMenuController mainController;
 	
 	private MainFrame mainFrame;
@@ -53,7 +56,7 @@ public class NewGameMenu {
         
         // composition des JComponent
         this.backMenu = new CustomMenuButton("Retour",MainMenu.DEFAULT_BUTTON_SIZE);
-        this.title = new CustomMenuLabel("Nouvelle Partie", 100f);
+        this.title = new CustomMenuLabel("Nouvelle Partie", TITLE_FONT_SIZE);
         this.textName = new CustomMenuLabel("Nom du familier :");
         this.name = new JTextField(null,NAME_MAX_CHAR);
         this.textType = new CustomMenuLabel("Choix de l'esp�ce de votre familier");
@@ -71,7 +74,7 @@ public class NewGameMenu {
         
         // placement des JComponent
         this.mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-        this.topPanel.setLayout(new FlowLayout(FlowLayout.LEADING, 50, 0));
+        this.topPanel.setLayout(new FlowLayout(FlowLayout.LEADING, TOP_PANEL_HGAP, 0));
         
         // creation des eventListener pour les JButton
         this.backMenu.addActionListener(this.mainController);

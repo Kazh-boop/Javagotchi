@@ -89,7 +89,7 @@ public class SaveManager {
      * @throws IOException
      */
     public void writeSave(Familiar f) throws IOException {
-
+        if(currentFile == null) openFile(f.getUID());
     	if (isEnableToSave()) {
     		dataOutStream = new FileOutputStream(currentFile); // ouverture du fichier en ecriture seule
     		saveDatas = new ObjectOutputStream(dataOutStream);

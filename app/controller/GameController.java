@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+
 public class GameController implements ActionListener {
     
     Familiar currentFamiliar;
@@ -49,14 +50,12 @@ public class GameController implements ActionListener {
 
     @Override
 	public void actionPerformed(ActionEvent e) {
-		
-    	if (e.getSource().equals(this.gameView.getSave())) { // retour menu principal
-    		this.onClickSave();
+    	if (e.getSource() == this.gameView.getSave()) { 
+            this.onClickSave();
     	}
 	}
 
     private void onClickSave() {
-
         try {
             saveManager.writeSave(currentFamiliar);
             gameView.successfulSave();
