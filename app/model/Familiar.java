@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public abstract class Familiar implements Serializable {
 	
-	// permet d'identifier chaque Familiar de maniere unique
+	// allows to identify each Familiar in a unique way
 	private final UUID uid = UUID.randomUUID();
 	private static final long serialVersionUID = 1L;
 
@@ -67,43 +67,49 @@ public abstract class Familiar implements Serializable {
         }
     }
 
+    /**
+     * method for adding portions
+     */
     public void addPortion() {
         if(this.portions < MAX_PORTIONS) this.portions++;
     }
 
-    // utilisee pour les tests
+    // used for testing
     public void resetPortion() {
     	this.portions = 0;
     }
     
     public int getPortions() {
-        return this.portions;
+        return this.portions; // return the number of available portions
     }
     
+
     public void setPortions(int portions) {
-    	if(portions <= MAX_PORTIONS) this.portions = portions;
+    	if(portions <= MAX_PORTIONS) this.portions = portions; // allows you to change the number of portions
     }
 
     public int getHappiness() {
-        return happiness;
+        return happiness; // return if the familiar is happy or not
     }
 
     public void setHappiness(int happiness) {
         if(happiness < MAX_STATS) {
-            this.happiness = happiness;
+            this.happiness = happiness; // allows you to change the hapiness of the familiar
         }
     }
     
     public int getHygiene() {
-        return hygiene;
+        return hygiene; // return the hygiene of the familiar
     }
     
     public void setHygiene(int hygiene){
         if(hygiene < MAX_STATS){
-            this.hygiene = hygiene;
+            this.hygiene = hygiene; // allows you to change the percentage of hygiene
         }
     }
     
+
+    // calculates the mood of the familiar according to its characteristics (hunger, hygiene, energy, vitality)
     public void recalculateMood(Weather currentWeather, Rooms currentRoom) {
         moodValue = (hungriness + hygiene + energy + vitality) / AMOUNT_OF_STATS;
         if(currentRoom == Rooms.GARDEN) moodValue*=currentWeather.getCoef();
@@ -111,6 +117,7 @@ public abstract class Familiar implements Serializable {
         this.mood = changeMood();
     }
 
+    // changes the mood according to the value of moodValue
     public Mood changeMood() {
 
         if(moodValue >= HAPPY_THRESHOLD) return Mood.HAPPY;
@@ -122,72 +129,72 @@ public abstract class Familiar implements Serializable {
     }
     
     public void setMoodValue(int moodValue) {
-    	this.moodValue = moodValue;
+    	this.moodValue = moodValue; // change the value of mood
     }
     
     public float getMoodCoef() {
-        return mood.getCoef();
+        return mood.getCoef(); // return the coefficient used to define the familiar's mood
     }
     
     public Mood getMood() {
-        return mood;
+        return mood; // return the mood of the familiar
     }
     
     public void setMood(Mood mood) {
-    	this.mood = mood;
+    	this.mood = mood; // allows you to change mood of the familiar
     }
 
     public String getFamiliarType() {
-        return familiarType;
+        return familiarType; // return the type of the famailiar
     }
 
     public Rooms getRoom() {
-        return room.getRooms();
+        return room.getRooms(); // return the room in which the familiar is located
     }
     
     public void setRoom(Rooms rooms)
     {
-    	this.room.setRooms(rooms);
+    	this.room.setRooms(rooms);  // allows you to change rooms
     }
     
     public void moveLeft()
     {
-    	room.moveLeft();
+    	room.moveLeft(); // move to the left
     }
     
     public void moveRight()
     {
-    	room.moveRight();
+    	room.moveRight(); // move to the right
     }
     
     public int getEnergy() {
-        return energy;
+        return energy; // returns the energy of the familiar
     }
     
     public void setEnergy(int energy) {
     	this.energy = energy;
-    	if (this.energy > MAX_STATS) this.energy = MAX_STATS;
+    	if (this.energy > MAX_STATS) this.energy = MAX_STATS; // allows you to change the percentage of energy
     }
     
     public int getVitality() {
-    	return vitality;
-    }
+    	return vitality; // return the vitality of the familiar
+    } 
     
     public void setVitality(int vitality) {
     	if (vitality <= MAX_STATS) this.vitality = vitality;
     }
 
     public String getName() {
-        return name;
+        return name; // return the name of the familiar
     }
     
     public int getHungriness() {
-        return hungriness;
+        return hungriness; // return the percentage representing the familiar's hunger
     }
 
     public void setHungriness(int hungriness) {
         this.hungriness = hungriness;
-        if (this.hungriness > MAX_STATS) this.hungriness = MAX_STATS;
+        if (this.hungriness > MAX_STATS) this.hungriness = MAX_STATS; // allows you to change the percentage reprenting the familiar's hunger
     }
     
     public String getUID() {

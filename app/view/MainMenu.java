@@ -22,7 +22,7 @@ public class MainMenu {
 	private CustomMenuButton quit;
     
     /**
-     * Constructeur
+     * Constructor
      * @param nController MenuController
      */
     public MainMenu(MenuController nController){
@@ -31,7 +31,7 @@ public class MainMenu {
     }
     
     /**
-     * Affiche le menu principal
+     * Displays the main menu
      * @param nController MenuController
      */
     public void display(MenuController nController) {
@@ -39,23 +39,23 @@ public class MainMenu {
         
         this.mainPanel = new JPanel();
         
-        // composition des JComponent
+        // composition of JComponent
         this.title = new CustomMenuLabel("Tamagotchi", 96f, SwingConstants.CENTER);
         this.newGame = new CustomMenuButton("Nouvelle Partie", DEFAULT_MAIN_BUTTON_SIZE);
         this.saves = new CustomMenuButton("Sauvegardes", DEFAULT_MAIN_BUTTON_SIZE);
         this.quit = new CustomMenuButton("Quitter", DEFAULT_MAIN_BUTTON_SIZE);
         
-        // habillage personalise
+        // customised clothing
         newGame.setForeground(CustomMenuButton.getColorGreen());
         saves.setForeground(CustomMenuButton.getColorGreen());
         quit.setForeground(Color.red);
         
-        // creation des eventListener pour les JButton
+        // creating eventListener for JButton
         this.newGame.addActionListener(this.mainController);
         this.saves.addActionListener(this.mainController);
         this.quit.addActionListener(this.mainController);
         
-        // ajout des elements dans la mainFrame
+        // adding elements to the mainFrame
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
    
         title.setAlignmentX(Component.CENTER_ALIGNMENT);

@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+
+
 public class GameController implements ActionListener {
     
     Familiar currentFamiliar;
@@ -18,6 +20,8 @@ public class GameController implements ActionListener {
     MainFrame  mainFrame;
     SaveManager saveManager;
 
+
+    // constructor
     public GameController(Familiar selectedFamiliar, MainFrame mainFrame) {
         currentFamiliar = selectedFamiliar;
         currentRoom = new Room(Rooms.LIVING_ROOM);
@@ -31,16 +35,18 @@ public class GameController implements ActionListener {
         return Math.abs(currentValue - (1*currentRoom.getWeatherCoef()*currentFamiliar.getMoodCoef()));
     }
 
+    // return the familiar
     public Familiar getFamiliar() {
         return this.currentFamiliar;
     }
 
+    //return the room you are in
     public Room getCurrentRoom() {
         return this.currentRoom;
     }
 
     /** 
-	 * Vide la mainFrame de tous ses composants
+	 * empties the mainFrame of all its components
 	 */
 	private void flush() {
 		mainFrame.getContentPane().removeAll();
@@ -50,11 +56,12 @@ public class GameController implements ActionListener {
     @Override
 	public void actionPerformed(ActionEvent e) {
 		
-    	if (e.getSource().equals(this.gameView.getSave())) { // retour menu principal
+    	if (e.getSource().equals(this.gameView.getSave())) { // back to main menu
     		this.onClickSave();
     	}
 	}
-
+    
+    // method to create a backup when a button is clicked
     private void onClickSave() {
 
         try {

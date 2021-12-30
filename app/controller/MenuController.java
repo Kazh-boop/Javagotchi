@@ -22,8 +22,8 @@ public class MenuController implements ActionListener {
 	private static final String SOUNDS_MENU_CLICK = "../assets/sounds/click.wav";
 	
     /**
-	 * Initialise les 3 controller des menu ainsi que la mainFrame,
-	 * Affiche le menu principal
+	 * initializes the 3 Controller menus and the mainFrame,
+	 * displays the main menu
 	 */
 	public MenuController() {
 		this.mainFrame = new MainFrame();
@@ -35,7 +35,7 @@ public class MenuController implements ActionListener {
 	}
 	
 	/**
-	 * Affiche le menu principal sur la mainFrame
+	 * Displays the main menu on the MainFrame
 	 */
 	public void mainMenuDisplay() {
 		flush();
@@ -43,7 +43,7 @@ public class MenuController implements ActionListener {
 	}
 	
 	/** 
-	 * Vide la mainFrame de tous ses composants
+	 * empties the mainframe of all its components
 	 */
 	private void flush() {
 		mainFrame.getContentPane().removeAll();
@@ -51,9 +51,9 @@ public class MenuController implements ActionListener {
 	}
 	
 	/** 
-	 * Reception des actions lors de clics sur des boutons,
-	 * Comparaison de la source de l'action et des differents boutons,
-	 * Execution de l'action correspondante
+	 * reception of actions when clicking on buttons,
+	 * Comparison of the source of the action and the different buttons,
+	 * execution of the corresponding action
 	 * @param e ActionEvent
 	 */
 	@Override
@@ -78,6 +78,9 @@ public class MenuController implements ActionListener {
         }
 	}
 	
+	/**
+	 * method for starting the sound clip
+	  */
 	protected void playsound(String path) {
 		try {
 			Clip clip = AudioSystem.getClip();
@@ -92,7 +95,8 @@ public class MenuController implements ActionListener {
 	}
 	
 	/**
-	 * Donne la mainFrame
+	 * 
+	 * Give the mainFrame
 	 * @return mainFrame MainFrame
 	 */
 	public MainFrame getMainFrame() {

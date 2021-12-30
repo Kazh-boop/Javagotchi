@@ -13,7 +13,7 @@ public class CustomMenuLabel extends JLabel {
 
 
 	/**
-	 * Fait un habillage par defaut pour les JLabel du menu
+	 * Make a default skin for the JLabel menu
 	 * @param name String
 	 */
 	public CustomMenuLabel(String name) {
@@ -41,7 +41,7 @@ public class CustomMenuLabel extends JLabel {
 	}
 	
 	/**
-	 * Definit une nouvelle police
+	 * Defines a new font
 	 * @param fontSize float
 	 */
 	protected void setCustomFont(float fontSize){

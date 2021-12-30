@@ -31,7 +31,7 @@ public class NewGameMenu {
 	private CustomMenuButton launchGame;
 	
 	/**
-	 * Constructeur
+	 * Constructor
 	 * @param nController NewGameMenuController
 	 */
     public NewGameMenu(NewGameMenuController nController){
@@ -40,7 +40,7 @@ public class NewGameMenu {
     }
 
     /**
-     * Affiche le menu de creation de familier
+     * Displays the familiar creation menu
      */
     public void display() {
     	this.mainPanel = new JPanel();
@@ -51,7 +51,7 @@ public class NewGameMenu {
         this.speciesPanel = new JPanel();
         this.gamePanel = new JPanel();
         
-        // composition des JComponent
+        // composition of JComponent
         this.backMenu = new CustomMenuButton("Retour",MainMenu.DEFAULT_BUTTON_SIZE);
         this.title = new CustomMenuLabel("Nouvelle Partie", 100f);
         this.textName = new CustomMenuLabel("Nom du familier :");
@@ -62,14 +62,14 @@ public class NewGameMenu {
         this.rightFamiliar = new CustomMenuButton(createImageIcon("../assets/images/right.png"));
         this.launchGame = new CustomMenuButton("Lancer la partie",MainMenu.DEFAULT_BUTTON_SIZE);
         
-        // habillage des JComponent
+        // JComponent wrapping
         this.launchGame.setForeground(CustomMenuButton.getColorGreen());
         this.leftFamiliar.setOpaque(false);
         this.leftFamiliar.setBorderPainted(false);
         this.rightFamiliar.setOpaque(false);
         this.rightFamiliar.setBorderPainted(false);
         
-        // placement des JComponent
+        // placement of JComponent
         this.mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         this.topPanel.setLayout(new FlowLayout(FlowLayout.LEADING, 50, 0));
         
@@ -79,7 +79,7 @@ public class NewGameMenu {
         this.leftFamiliar.addActionListener(this.mainController);
         this.launchGame.addActionListener(this.mainController);
         
-        // ajout des elements dans la mainFrame
+        // adding elements to the mainFrame
         backPanel.add(backMenu);
         topPanel.add(backPanel);
         topPanel.add(title);
@@ -114,21 +114,21 @@ public class NewGameMenu {
     }
     
     /**
-     * @return textField pour le nom du familier
+     * @return textField for the name of the familiar
      */
     public JTextField getName(){
         return this.name;
     }
     
     /**
-     * @return Bouton correspondant a l'action de retour au menu principal
+     * @return Button corresponding to the action of returning to the main menu
      */
     public JButton getBackMenu(){
     	return this.backMenu;
     }
 
     /**
-     * @return Bouton correspondant a l'action de changement de familier
+     * @return Button corresponding to the familiar change action
      */
     public JButton getRightFamiliarType(){
     	return this.rightFamiliar;
@@ -156,7 +156,7 @@ public class NewGameMenu {
     }
     
     /**
-	 * Verifie que l'URL rentree mene bien vers un fichier
+	 * Check that the entered URL leads to a file
 	 * @param path String
 	 * @return imgURL ImageIcon
 	 */

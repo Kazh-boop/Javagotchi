@@ -17,7 +17,7 @@ import app.util.*;
 
 /**
  * 
- * Permet de personnaliser une JList
+ * Allows you to customise a JList
  *
  */
 public class ListFamiliarRenderer implements ListCellRenderer<Familiar> {
@@ -32,28 +32,28 @@ public class ListFamiliarRenderer implements ListCellRenderer<Familiar> {
 		JPanel panFam = new JPanel();
 		panFam.setLayout(new BoxLayout(panFam, BoxLayout.Y_AXIS));
 		
-		// image du familier
+		// picture of the familiar
 		JLabel image = new JLabel(createImageIcon("../assets/images/cat.png"));
 		image.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		// nom du familier
+		// name of the familiar
 		JLabel textName = new CustomMenuLabel("Nom : "+familiar.getName(), DEFAULT_BUTTON_SIZE);
 		textName.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		// type du familier
+		// type of the familiar
 		JLabel textType = new CustomMenuLabel("Type : "+familiar.getFamiliarType(), DEFAULT_BUTTON_SIZE);
 		textType.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		
-		// ajout des elements dans le panel
+		// adding elements to the panel
 		panFam.add(image);
 		panFam.add(textName);
 		panFam.add(textType);
 
-		// parametrage de la list
+		// setting up the list
 		list.setLayoutOrientation(JList.VERTICAL_WRAP);
 		list.setVisibleRowCount(-1);
-        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // selectionner seul 1 element
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // select only 1 item
         
         if (isSelected) {
     		panFam.setBackground(Color.WHITE);
@@ -64,8 +64,8 @@ public class ListFamiliarRenderer implements ListCellRenderer<Familiar> {
 	}
 	
 	/**
-	 * Verifie que l'URL rentree mene bien vers un fichier
-	 * Creer et retourne un ImageIcon a partir du fichier source
+	 * Check that the entered URL leads to a file
+	 * Create and return an ImageIcon from the source file
 	 * 
 	 * @param path String
 	 * @return imgURL static ImageIcon

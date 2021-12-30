@@ -38,7 +38,7 @@ public class NewGameMenuController implements ActionListener {
     private Matcher emptyMatcher;
 	
 	/**
-	 * Constructeur
+	 * Constructor
 	 * @param menuController MenuController
 	 * @param nFrame MainFrame
 	 */
@@ -49,12 +49,20 @@ public class NewGameMenuController implements ActionListener {
 		this.saveManager = new SaveManager();
 	}
 	
+	/**
+	 * Displays the new main menu on the MainFrame
+	  */
 	public void newGameMenuDisplay() {
 		flush();
 		setCursorImage(0);
 		newGameMenu.display();
 	}
 
+
+	/**
+	 * reception of actions when clicking on buttons,
+	 * execution of the corresponding action
+	  */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == this.newGameMenu.getBackMenu()) {
@@ -77,7 +85,7 @@ public class NewGameMenuController implements ActionListener {
 	}
 	
 	/** 
-	 * Vide la mainFrame de tous ses composants
+	 * empties the MainFrame of all its components
 	 */
 	private void flush() {
 		mainFrame.getContentPane().removeAll();
@@ -86,7 +94,7 @@ public class NewGameMenuController implements ActionListener {
 	
 	/** turnRightFamiliar()
 	 * 
-	 * Change le choix du familier avec celui a sa droite
+	 * Change the choice of the familiar with the one on his right
 	 */
 	private void turnRightFamiliar() {
 		if(cursorImage < CURSOR_MAX) {
@@ -99,7 +107,7 @@ public class NewGameMenuController implements ActionListener {
 	
 	/** turnLeftFamiliar()
 	 * 
-	 * Change le choix du familier avec celui a sa gauche
+	 * Change the choice of the familiar with the one on his left
 	 */
 	private void turnLeftFamiliar() {
 	if(cursorImage > CURSOR_MIN) {
@@ -112,15 +120,15 @@ public class NewGameMenuController implements ActionListener {
 	
 	/** launchNewGame()
 	 * 
-	 * Verifie la validite du nom rentre
-	 * Creer un familier et lance le jeu
+	 * checks the validity of the name entered
+	 * create a familiar and start the game
 	 */
 	private void launchNewGame() {
 		String fName = this.newGameMenu.getName().getText();
 		String fType = familiarType[cursorImage];
 		
-    	// verification de la validite du nom
-    	// recherche en fonction du matcher
+    	// verification of the validity of the name
+    	// search according to the matcher
     	invalidPattern = Pattern.compile("[<>:\"/]");
     	invalidMatcher = invalidPattern.matcher(fName);
     	
@@ -150,7 +158,7 @@ public class NewGameMenuController implements ActionListener {
     				menuController.playsound(menuController.getClickSound());
     				break;
     				
-	    		case 1: // sauvegardes
+	    		case 1: // backups
 	    			menuController.playsound(menuController.getClickSound());
 	    			try {
 	    				menuController.saveMenuController.savesMenuDisplay();
@@ -224,7 +232,7 @@ public class NewGameMenuController implements ActionListener {
 	}
 	
 	/**
-	 * Fait un habillage standard d'un JOptionPane
+	 * makes a standard dressing of a JOptionPane
 	 * @param pane JOptionPane
 	 * @return pane JOptionPane
 	 */
@@ -235,8 +243,8 @@ public class NewGameMenuController implements ActionListener {
 	}
 	
 	/**
-	 * Verifie que l'URL rentree mene bien vers un fichier
-	 * Creer et retourne un ImageIcon a partir du fichier source
+	 * Check that the entered URL leads to a file
+	 * Create and return an ImageIcon from the source file
 	 * 
 	 * @param path String
 	 * @return imgURL static ImageIcon

@@ -2,10 +2,11 @@ package app.model;
 
 public class Cat extends Familiar {
     
+    //constructor
     public Cat(String name) {
         super();
         this.name = name;
-        this.food = "Patée";
+        this.food = "Patée"; // the cat could only eat pate
         this.familiarType = "Chat";
     }
 

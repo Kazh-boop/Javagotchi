@@ -26,6 +26,10 @@ public enum Weather {
 
     protected String getUrl() { return url; }
 
+
+    /**
+     * returns the weather according to the ID 
+    */
     protected static Weather getWeatherById(int id) {
        if( id == 1) {
         return CLOUDY;

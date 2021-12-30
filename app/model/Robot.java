@@ -2,10 +2,11 @@ package app.model;
 
 public class Robot extends Familiar {
     
+    // constructor
     public Robot(String name) {
         super();
         this.name = name;
-        this.food = "Electricité";
+        this.food = "Electricité"; //the robot can only "eat" electricity
         this.familiarType = "Robot";
     }
 

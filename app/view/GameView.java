@@ -36,6 +36,10 @@ public class GameView {
         display();
     }
 
+    /**
+     * layout of the different items in the game, such as the progressive bars 
+      */
+
     public void display(){
         mainFrame.setLayout(new BorderLayout());
 

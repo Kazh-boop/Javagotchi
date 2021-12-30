@@ -42,7 +42,7 @@ public class CustomMenuButton extends JButton {
 	}
     
     /**
-     * Creer un JButton selon des criteres particuliers
+     * Create a JButton according to specific criteria
      * @param name String
      * @param icon Icon
      * @param size float
@@ -66,7 +66,7 @@ public class CustomMenuButton extends JButton {
 	}
 	
 	/**
-	 * Definit une taille pour le composant
+	 * Defines a size for the component
 	 * @param width
 	 * @param height
 	 */
@@ -75,7 +75,7 @@ public class CustomMenuButton extends JButton {
 	}
 	
 	/**
-	 * Definit une nouvelle police de taille a definir
+	 * Defines a new font size to be defined
 	 * @param fontSize float
 	 */
 	protected void setCustomFont(float fontSize){
@@ -90,11 +90,13 @@ public class CustomMenuButton extends JButton {
 		}
         setBackground(COLOR_PEARL);
 	}
-
+	
+	// return the pearl color
 	public static Color getPearl() {
 		return COLOR_PEARL;
 	}
 
+	// return the green color
 	public static Color getColorGreen() {
 		return COLOR_CACTUS_GREEN;
 	}

@@ -17,13 +17,13 @@ public class MainFrame extends JFrame {
     public MainFrame() {
         super();
         
-        // Creer une MainFrame de taille fixe 
+        // Creating a fixed-size MainFrame 
         Dimension frame = new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT);
         setPreferredSize(frame);
         setSize(frame);
         setResizable(false);
         
-        // Centre la fenetre
+        // Centre the window
         Dimension userScreenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((userScreenSize.getWidth()-DEFAULT_WIDTH) / SCREEN_RATIO);
         int y = (int) ((userScreenSize.getHeight()-DEFAULT_HEIGHT) / SCREEN_RATIO);

@@ -12,61 +12,61 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classe permettant de gerer les sauvegardes du jeu<br>
- * Fonctionnement:
+ * Class allowing to manage the game saves<br>.
+ * operating:
  * <ul>
- * 		<li>creation du SaveManager 		-> new SaveManager(absolutePath)</li>
- * 		<li>ouverture du fichier courant	-> openFile(nameSave)</li>
- * 		<li>ecriture dans le fichier		-> writeSave(saveFamiliar)</li>
+ * 		<li>creation of the SaveManager 		-> new SaveManager(absolutePath)</li>
+ * 		<li>opening the current file	-> openFile(nameSave)</li>
+ * 		<li>writing to the file		-> writeSave(saveFamiliar)</li>
  * 		<li>lecture du fichier/donnees		-> loadSave()
- * 		<li>recuperation des donnes			-> loadFamiliar = this.getFamiliar() 
+ * 		<li>data recovery			-> loadFamiliar = this.getFamiliar() 
  * </ul>
  */
 public class SaveManager {
 	
     /**
-     * Permet d'ecrire un objet (Familiar) serialise
+     * allows you to write a serialized object (Familiar)
      */
     private ObjectOutputStream saveDatas;
     
     /**
-     * Permet de lire un objet (Familiar) serialise
+     * Allows you to read a serialized object (Familiar)
      */
     private ObjectInputStream loadDatas;
 
     /**
-     * Flux d'ecriture dans un fichier / gere aussi la creation de fichier automatiquement
+     * Flow of writing to a file / also handles file creation automatically
      */
     private FileOutputStream dataOutStream;
     
     /**
-     * Flux de lecture dans un fichier
+     * Reading flow in a file
      */
     private FileInputStream dataInStream;
     
     /**
-     * Chemin designant l'emplacement des sauvegardes
+     * Path designating the location of the backups
      */
     private static final String DIRECTORY_PATH = "./save/";
     
     /**
-     * Repertoire ou se trouve les sauvegardes
+     * Directory where the backups are located
      */
     private File repSave;
     
     /**
-     * Fichier courant dans lequel les donnes vont ecrites/lues
+     * Current file in which the data will be written/read
      */
     private File currentFile;
     
     /**
-     * Familier dont les informations ont ete recuperees
+     * Familiar whose information has been retrieved
      */
     private Familiar currentFamiliar;
 
     /**
-     * Constructeur
-     * @param directoryPath String, initialise l'attribut directoryPath 
+     * Constructor
+     * @param directoryPath String, initializes the directoryPath attribute 
      */
     public SaveManager() {
         this.repSave = new File(DIRECTORY_PATH);
@@ -75,8 +75,8 @@ public class SaveManager {
     }
 
     /**
-     * Permet de designer sur quel fichier on va travailler
-     * @param saveName String, base du nom du fichier a sauvegarder
+     * Allows you to design which file you are going to work on
+     * @param saveName String, base of the name of the file to be saved
      * @throws FileNotFoundException
      */
     public void openFile(String saveName) {
@@ -84,14 +84,14 @@ public class SaveManager {
     }
 
     /**
-     * Permet de creer un fichier si inexistant et ecrire les donnees de f dedans
-     * @param f Familiar, familier dont on veut enregistrer les donnees
+     * Allows you to create a file if none exists and write the data from f into it
+     * @param f Familiar, familiar whose data is to be recorded
      * @throws IOException
      */
     public void writeSave(Familiar f) throws IOException {
 
     	if (isEnableToSave()) {
-    		dataOutStream = new FileOutputStream(currentFile); // ouverture du fichier en ecriture seule
+    		dataOutStream = new FileOutputStream(currentFile); // opening the file in write-only mode
     		saveDatas = new ObjectOutputStream(dataOutStream);
 
     		saveDatas.writeObject(f);
@@ -102,8 +102,8 @@ public class SaveManager {
     }
 
     /**
-     * Supprimer un fichier de sauvegarde
-     * @param saveName String, nom du fichier a supprimer
+     * Delete a backup file
+     * @param saveName String, name of the file to be deleted
      **/
     public void deleteSave(String saveName) {
         openFile(saveName);
@@ -118,13 +118,13 @@ public class SaveManager {
     }
 
     /**
-     * Permet de recuperer les informations a partir du fichier currentFile et
-     * de les copier dans currentFamiliar
+     * Allows you to retrieve information from the currentFile and
+     * copy them to currentFamiliar
      * @throws ClassNotFoundException
      * @throws IOException
      */
     public void loadSave() throws ClassNotFoundException, IOException {
-        dataInStream = new FileInputStream(currentFile); // ouverture du fichier en lecture seule
+        dataInStream = new FileInputStream(currentFile); // open the file in read-only mode
         loadDatas = new ObjectInputStream(dataInStream);
         
         currentFamiliar = (Familiar)loadDatas.readObject();
@@ -134,7 +134,7 @@ public class SaveManager {
     }
 
     /**
-     * accesseur de l'attribut currentFamilier
+     * accessor of the attribute currentFamiliar
      * @return currentFamiliar Familiar
      */
     public Familiar getFamiliar() {
@@ -142,8 +142,8 @@ public class SaveManager {
     }
     
     /**
-     * Recupere tous les noms de sauvegarde dans le directoryPath en les filtrant
-     * @return listFileName String[], noms des sauvegardes
+     * Retrieves all backup names in the directoryPath by filtering them
+     * @return listFileName String[], name of saves
      */
     public String[] getNameSave() {
     	File rep = new File(DIRECTORY_PATH);
@@ -152,8 +152,8 @@ public class SaveManager {
     }
     
     /**
-     * Recupere tous les familier de chaque fichier et les place dans un vecteur
-     * @return listFamiliar Vector<Familiar>, vecteur contenant les donnees sauvegardees dans chaque fichier
+     * Retrieves all familiar from each file and places them in a vector
+     * @return listFamiliar Vector<Familiar>, vector containing the data saved in each file
      * @throws ClassNotFoundException
      * @throws IOException
      */
@@ -162,10 +162,10 @@ public class SaveManager {
     	String[] listFileName = getNameSave();
     	
 		for (String fileName: listFileName) {
-			// recuperation des infos du familier
+			// retrieving information from the familiar
 			openFile(getBaseName(fileName));
 			loadSave();
-			// on l'ajoute au vecteur
+			// is added to the vector
 			listFamiliar.add(currentFamiliar);
 		}
 		
@@ -173,7 +173,7 @@ public class SaveManager {
     }
     
     /**
-     * Permet de s'assurer qu'il y est moins de 3 sauvegardes
+     * Ensures that there are less than 3 backups
      * @return
      */
     public boolean isEnableToSave() {
@@ -181,17 +181,17 @@ public class SaveManager {
     }
     
     /**
-     * Permet de connaitre le nombre de sauvegarde dans le dossier meme si l'utilisateur le supprime "a la main"
-     * @return nombre de sauvegarde int
+     * Allows to know the number of backup in the folder even if the user deletes it "by hand"
+     * @return numbre of saves int
      */
     private int getNbSave() {
     	return (getNameSave() != null) ? getNameSave().length : 0;
     }
     
     /**
-     * Permet de recuperer le nom de base d'un nom de fichier / enlever l'extension
-     * @param name String, nom du fichier
-     * @return nom du fichier sans l'extension
+     * Allows you to retrieve the base name of a file name / remove the extension
+     * @param name String, file name
+     * @return file name without extension
      */
 	private String getBaseName(String name) {
 		return name.substring(0, name.lastIndexOf("."));

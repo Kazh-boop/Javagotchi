@@ -1,5 +1,9 @@
 package app.model;
 
+/**
+ * enumeration to know the different moods of the familiar
+ */
+
 public enum Mood {
     HAPPY(0.6f, "Epanoui"),
     JOYFUL(0.8f, "Joyeux"),
@@ -16,10 +20,10 @@ public enum Mood {
     }
 
     protected float getCoef() {
-        return coef;
+        return coef; // return the coefficient used to define the familiar's mood
     }
 
     protected String getName() {
-        return name;
+        return name; // return the name 
     }
 }

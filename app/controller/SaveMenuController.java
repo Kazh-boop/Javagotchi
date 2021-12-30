@@ -23,7 +23,7 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
 	private MenuController menuController;
 	
 	/**
-	 * Constructeur
+	 * Constructor
 	 * @param menuController MenuController
 	 * @param nFrame MainFrame
 	 */
@@ -35,7 +35,7 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
 	}
 	
 	/**
-	 * Affiche le menu des sauvegardes
+	 * displays the backup menu
 	 * @throws ClassNotFoundException
 	 * @throws IOException
 	 */
@@ -56,10 +56,10 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-    	if (e.getSource().equals(this.savesMenu.getBackMenu())) { // retour menu principal
+    	if (e.getSource().equals(this.savesMenu.getBackMenu())) { // back to main menu
     		this.onClickBackMenu();
     	}
-    	else if (e.getSource().equals(this.savesMenu.getDeleteFamiliar())) { // suppression familier
+    	else if (e.getSource().equals(this.savesMenu.getDeleteFamiliar())) { // deletion of the familiar
     		this.onClickDeleteFamiliarButton();
         }
     	else if (e.getSource().equals(this.savesMenu.getLoadSave())) {
@@ -75,43 +75,54 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
         }
 	}
 	
+	/**
+	 * action when the button BackMenu is clicked
+	  */
 	private void onClickBackMenu() {
 		menuController.playsound(menuController.getClickSound());
 		menuController.mainMenuDisplay();
 	}
 	
+
+	/**
+	 * Action when the button DeleteFamiliar is clicked
+	  */
 	private void onClickDeleteFamiliarButton() {
-    	if (!(this.savesMenu.getListSave().isSelectionEmpty())) { // verification d'une selection
+    	if (!(this.savesMenu.getListSave().isSelectionEmpty())) { // checking a selection
     		menuController.playsound(menuController.getClickSound());
-    		Familiar f = this.savesMenu.getListSave().getSelectedValue(); // recuperation de la selcetion
+    		Familiar f = this.savesMenu.getListSave().getSelectedValue(); // recovery of a selection
     		int confirmDelete = JOptionPane.showConfirmDialog(
     				null, 
     				"Supprimer "+f.getName()+" le "+f.getFamiliarType()+" ?",
     				"Confirmer suppression",
     				JOptionPane.YES_NO_OPTION);
     		
-    		if (confirmDelete == 0) { // oui == 0
+    		if (confirmDelete == 0) { // yes == 0
         		menuController.playsound(menuController.getClickSound());
-    			this.savesMenu.getModelFamiliar().removeElement(f); // suppression de l'affichage
-    			this.saveManager.deleteSave(f.getUID()); // suppression du fichier de sauvegarde
+    			this.savesMenu.getModelFamiliar().removeElement(f); // removal of the display
+    			this.saveManager.deleteSave(f.getUID()); // deleting the backup file
 
-    			this.savesMenu.getListSave().clearSelection(); // maj selection
-    			this.savesMenu.disableToAction(); // desactivation des boutons d'actions sur la sauvegarde
-    		} else // non
+    			this.savesMenu.getListSave().clearSelection(); // update selection
+    			this.savesMenu.disableToAction(); // disabling the action buttons on the backup
+    		} else // no
     			menuController.playsound(menuController.getClickSound());
     	}
 	}
+
+	/**
+	 * Action when the button LoadSave is clicked
+	  */
 	
 	private void onClickLoadSave() {
 		menuController.playsound(menuController.getClickSound());
-		if (!(this.savesMenu.getListSave().isSelectionEmpty())) { // verification d'une selection
-    		Familiar familiarToLoad = this.savesMenu.getListSave().getSelectedValue(); // recuperation de la selcetion
+		if (!(this.savesMenu.getListSave().isSelectionEmpty())) { // checking a selection
+    		Familiar familiarToLoad = this.savesMenu.getListSave().getSelectedValue(); // recovery of a selection
 			new GameController(familiarToLoad, mainFrame);
 		}
 	}
 	
 	/**
-	 * Donne la mainFrame
+	 * Give the mainFrame
 	 * @return mainFrame MainFrame
 	 */
 	public MainFrame getMainFrame() {
@@ -119,7 +130,7 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
 	}
 	
 	/** 
-	 * Vide la mainFrame de tous ses composants
+	 * Empty the mainFrame of all its components
 	 */
 	private void flush() {
 		mainFrame.getContentPane().removeAll();

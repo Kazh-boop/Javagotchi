@@ -1,5 +1,9 @@
 package app.model;
 
+
+/**
+ * enumeration of the different rooms
+  */
 public enum Rooms {
     GARDEN(0,"Jardin", "", new Integer[]{1,2}),
 	LIVING_ROOM(1, "Salon", "", new Integer[] {3,4}),
@@ -33,6 +37,10 @@ public enum Rooms {
 		return actionsAvailable;
 	}
 	
+
+	/**
+	* each room is associated with an ID
+	  */
 	public Rooms getRoomByID(int id)
 	{
 		Rooms rooms = null;

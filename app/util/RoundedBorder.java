@@ -12,6 +12,10 @@ import javax.swing.border.Border;
 
 public class RoundedBorder implements Border {
 
+	/**
+	 * defines the shape and opacity of the borders 
+	  */
+
 	    private int radius;
 
 
