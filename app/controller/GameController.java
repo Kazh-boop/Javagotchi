@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 
-
 public class GameController implements ActionListener {
     
     Familiar currentFamiliar;
@@ -55,15 +54,13 @@ public class GameController implements ActionListener {
 
     @Override
 	public void actionPerformed(ActionEvent e) {
-		
-    	if (e.getSource().equals(this.gameView.getSave())) { // back to main menu
-    		this.onClickSave();
+    	if (e.getSource() == this.gameView.getSave()) { 
+            this.onClickSave();
     	}
 	}
     
     // method to create a backup when a button is clicked
     private void onClickSave() {
-
         try {
             saveManager.writeSave(currentFamiliar);
             gameView.successfulSave();

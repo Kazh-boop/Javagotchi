@@ -11,6 +11,35 @@ import java.awt.Dimension;
 
 public class GameView {
 
+    
+
+
+    private static final int LEFT_PANEL_ROW = 1;
+
+    private static final float SAVE_BUTTON_FONT_SIZE = 25f;
+    private static final int SAVE_BUTTON_WIDTH = 200;
+    private static final int SAVE_BUTTON_HEIGHT = 200;
+
+    private static final float LABEL_FONT_SIZE = 20f;
+
+    private static final int RIGHT_BORDER_VITALITY = 25;
+    private static final int VITALITY_PB_WIDTH = 300;
+    private static final int VITALITY_PB_HEIGHT = 20;
+
+    private static final int LOWER_BOUND_PBAR = 0;
+    private static final int HIGHER_BOUND_PBAR = 100;
+
+    private static final int LEFT_PANEL_SPACING = 50;
+    private static final int LEFT_PANEL_BORDER = 20;
+
+    private static final int BOTTOM_BUTTON_WIDTH = 100;
+    private static final int BOTTOM_BUTTON_HEIGHT = 50;
+    private static final float BOTTOM_LABEL_FONT_SIZE = 16f;
+    private static final int BOTTOM_PANEL_BORDER = 20;
+
+    private static final int RIGHT_BORDER_PBAR = 20;
+
+
     private GameController gC;
     private JFrame mainFrame;
 	private JPanel leftPanel;
@@ -25,11 +54,14 @@ public class GameView {
     private JLabel energy;
     private JLabel hygiene;
     private JLabel hunger;
-    JProgressBar pbVitality;
-    JProgressBar pbEnergy;
-    JProgressBar pbHygiene;
-    JProgressBar pbHunger;
-
+    private JProgressBar pbVitality;
+    private JProgressBar pbEnergy;
+    private JProgressBar pbHygiene;
+    private JProgressBar pbHunger;
+    private CustomMenuButton feedButton;
+    private CustomMenuButton sleepButton;
+    private CustomMenuButton washButton;
+    
     public GameView(JFrame nFrame, GameController g){
         this.mainFrame = nFrame;
         this.gC = g;
@@ -44,66 +76,93 @@ public class GameView {
         mainFrame.setLayout(new BorderLayout());
 
         this.leftPanel = new JPanel();
-        this.leftPanel.setLayout(new BoxLayout(leftPanel, 1));
+        this.leftPanel.setLayout(new BoxLayout(leftPanel, LEFT_PANEL_ROW));
         this.rightPanel = new JPanel();
         this.bottomPanel = new JPanel();
 
-        save = new CustomMenuButton("Sauvegarder", 25f);
-        save.setMaximumSize(new Dimension(200, 50));
+        save = new CustomMenuButton("Sauvegarder", SAVE_BUTTON_FONT_SIZE);
+        save.setMaximumSize(new Dimension(SAVE_BUTTON_WIDTH, SAVE_BUTTON_HEIGHT));
         save.setBackground(CustomMenuButton.getPearl());
         save.setForeground(CustomMenuButton.getColorGreen());
         
-        name = new CustomMenuLabel(gC.getFamiliar().getName(), 20f);
-        mood = new CustomMenuLabel("Humeur : " + gC.getFamiliar().getMood(), 20f);
-        room = new CustomMenuLabel(" Piece : " + gC.getCurrentRoom().getName(), 20f);
-        weather = new CustomMenuLabel("Meteo : " + gC.getCurrentRoom().getWeatherName(), 20f);
-        vitality = new CustomMenuLabel(" Vitalite : ", 20f);
-        vitality.setBorder(new EmptyBorder(0, 25, 0, 0));
-        energy = new CustomMenuLabel("Energie : ", 20f);
-        hygiene = new CustomMenuLabel(" Hygiene : ",20f);
-        hunger = new CustomMenuLabel(" Faim : ", 20f);
+        name = new CustomMenuLabel(gC.getFamiliar().getName(), LABEL_FONT_SIZE);
+        mood = new CustomMenuLabel("Humeur : " + gC.getFamiliar().getMood().getName(), LABEL_FONT_SIZE);
+        room = new CustomMenuLabel("Piece : " + gC.getCurrentRoom().getName(), LABEL_FONT_SIZE);
+        weather = new CustomMenuLabel("Meteo : " + gC.getCurrentRoom().getWeatherName(), LABEL_FONT_SIZE);
+        vitality = new CustomMenuLabel(" Vitalite : ", LABEL_FONT_SIZE);
+        vitality.setBorder(new EmptyBorder(0, RIGHT_BORDER_VITALITY, 0, 0));
+        energy = new CustomMenuLabel("Energie : ", LABEL_FONT_SIZE);
+        hygiene = new CustomMenuLabel(" Hygiene : ",LABEL_FONT_SIZE);
+        hunger = new CustomMenuLabel(" Faim : ", LABEL_FONT_SIZE);
 
-        pbEnergy = new JProgressBar(0, 100);
+        pbEnergy = new JProgressBar(LOWER_BOUND_PBAR, HIGHER_BOUND_PBAR);
         pbEnergy.setValue(gC.getFamiliar().getEnergy());
         pbEnergy.setStringPainted(true);
+        pbEnergy.setBorder(new EmptyBorder(0,0,0,RIGHT_BORDER_PBAR));
 
-        pbHygiene = new JProgressBar(0, 100);
+        pbHygiene = new JProgressBar(LOWER_BOUND_PBAR, HIGHER_BOUND_PBAR);
         pbHygiene.setValue(gC.getFamiliar().getHygiene());
         pbHygiene.setStringPainted(true);
+        pbHygiene.setBorder(new EmptyBorder(0,0,0,RIGHT_BORDER_PBAR));
 
-        pbHunger = new JProgressBar(0, 100);
+        pbHunger = new JProgressBar(LOWER_BOUND_PBAR, HIGHER_BOUND_PBAR);
         pbHunger.setValue(gC.getFamiliar().getHungriness());
         pbHunger.setStringPainted(true);
 
-        pbVitality = new JProgressBar(0, 100);
+        pbVitality = new JProgressBar(LOWER_BOUND_PBAR, HIGHER_BOUND_PBAR);
         pbVitality.setValue(gC.getFamiliar().getVitality());
-        pbVitality.setMaximumSize(new Dimension(300,20));
+        pbVitality.setMaximumSize(new Dimension(VITALITY_PB_WIDTH,VITALITY_PB_HEIGHT));
         pbVitality.setSize(new Dimension(10,10));
         pbVitality.setStringPainted(true);
         
-        leftPanel.setBorder(new EmptyBorder(0, 20, 0, 0));        
-        leftPanel.add(Box.createVerticalStrut(50));
+        feedButton = new CustomMenuButton("Nourrir", BOTTOM_LABEL_FONT_SIZE);
+        feedButton.setPreferredSize(new Dimension(BOTTOM_BUTTON_WIDTH, BOTTOM_BUTTON_HEIGHT));
+        feedButton.setBackground(CustomMenuButton.getPearl());
+        feedButton.setForeground(CustomMenuButton.getColorGreen());
+
+        sleepButton = new CustomMenuButton("Dormir", BOTTOM_LABEL_FONT_SIZE);
+        sleepButton.setPreferredSize(new Dimension(BOTTOM_BUTTON_WIDTH, BOTTOM_BUTTON_HEIGHT));
+        sleepButton.setBackground(CustomMenuButton.getPearl());
+        sleepButton.setForeground(CustomMenuButton.getColorGreen());
+
+        washButton = new CustomMenuButton("Laver", BOTTOM_LABEL_FONT_SIZE);
+        washButton.setPreferredSize(new Dimension(BOTTOM_BUTTON_WIDTH, BOTTOM_BUTTON_HEIGHT));
+        washButton.setBackground(CustomMenuButton.getPearl());
+        washButton.setForeground(CustomMenuButton.getColorGreen());
+
+        save.addActionListener(gC);
+        washButton.addActionListener(gC);
+        sleepButton.addActionListener(gC);
+        feedButton.addActionListener(gC);
+
+        leftPanel.setBorder(new EmptyBorder(0, LEFT_PANEL_BORDER, 0, 0));        
+        leftPanel.add(Box.createVerticalStrut(LEFT_PANEL_SPACING));
         leftPanel.add(save);
-        leftPanel.add(Box.createVerticalStrut(50));
+        leftPanel.add(Box.createVerticalStrut(LEFT_PANEL_SPACING));
         leftPanel.add(name);
-        leftPanel.add(Box.createVerticalStrut(50));
+        leftPanel.add(Box.createVerticalStrut(LEFT_PANEL_SPACING));
         leftPanel.add(mood);
-        leftPanel.add(Box.createVerticalStrut(50));
+        leftPanel.add(Box.createVerticalStrut(LEFT_PANEL_SPACING));
         leftPanel.add(room);
-        leftPanel.add(Box.createVerticalStrut(50));
+        leftPanel.add(Box.createVerticalStrut(LEFT_PANEL_SPACING));
         leftPanel.add(weather);
-        leftPanel.add(Box.createVerticalStrut(50));
+        leftPanel.add(Box.createVerticalStrut(LEFT_PANEL_SPACING));
         leftPanel.add(vitality);
         leftPanel.add(Box.createVerticalStrut(10));
         leftPanel.add(pbVitality);
-        leftPanel.add(Box.createVerticalStrut(50));
+        leftPanel.add(Box.createVerticalStrut(LEFT_PANEL_SPACING));
+
+        bottomPanel.add(sleepButton);
         bottomPanel.add(energy);
         bottomPanel.add(pbEnergy);
+        bottomPanel.add(washButton);
         bottomPanel.add(hygiene);
         bottomPanel.add(pbHygiene);
+        bottomPanel.add(feedButton);
         bottomPanel.add(hunger);
         bottomPanel.add(pbHunger);
 
+        bottomPanel.setBorder(new EmptyBorder(0,0,BOTTOM_PANEL_BORDER,0));
         mainFrame.add(leftPanel, BorderLayout.LINE_START);
         mainFrame.add(rightPanel, BorderLayout.CENTER);
         mainFrame.add(bottomPanel, BorderLayout.PAGE_END);
@@ -118,8 +177,9 @@ public class GameView {
     public void successfulSave() {
         JOptionPane.showMessageDialog(
             mainFrame, 
-    	    "Votre progression a bien été sauvegarder", "Succès", JOptionPane.INFORMATION_MESSAGE
-            );
+    	    "Votre progression a bien ete sauvegarder", "Succès", JOptionPane.INFORMATION_MESSAGE
+        );
+ 
     }
     public void errorSave(String error) {
         JOptionPane.showMessageDialog(

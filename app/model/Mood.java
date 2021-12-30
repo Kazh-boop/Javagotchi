@@ -19,11 +19,11 @@ public enum Mood {
         this.name = name;
     }
 
-    protected float getCoef() {
-        return coef; // return the coefficient used to define the familiar's mood
+    public float getCoef() {
+        return coef;
     }
 
-    protected String getName() {
-        return name; // return the name 
+    public String getName() {
+        return name;
     }
 }
