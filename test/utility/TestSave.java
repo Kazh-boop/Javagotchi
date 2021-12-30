@@ -1,13 +1,13 @@
 package test.utility;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import app.model.Cat;
 import app.model.Dog;
@@ -27,7 +27,7 @@ public class TestSave {
 	private static final File rep = new File(ABSOLUTEPATH);
 
 
-	@Before
+	@BeforeAll
 	public void setUp() {
 		saveManager = new SaveManager();
 		rep.mkdirs();
@@ -41,7 +41,7 @@ public class TestSave {
 		nameSaveDog = saveFamiliarDog.getUID();
 	}
 
-	@After
+	@AfterAll
 	public void tearDown() {
 		saveManager.deleteSave(nameSaveCat);
 		saveManager.deleteSave(nameSaveDog);

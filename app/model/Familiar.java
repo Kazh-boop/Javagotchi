@@ -55,7 +55,7 @@ public abstract class Familiar implements Serializable {
         this.portions = 2;
     }
 
-    public void feed(Rooms currentRoom) {
+    public void feed(final Rooms currentRoom) {
         if(hungriness < MAX_STATS && currentRoom == Rooms.KITCHEN && this.portions > 0){
             // we can only feed him with 35% of the hungriness
             setHungriness(this.hungriness + MAX_FEED_PORTION);
@@ -67,9 +67,7 @@ public abstract class Familiar implements Serializable {
         }
     }
 
-    /**
-     * method for adding portions
-     */
+    
     public void addPortion() {
         if(this.portions < MAX_PORTIONS) this.portions++;
     }
@@ -84,7 +82,7 @@ public abstract class Familiar implements Serializable {
     }
     
 
-    public void setPortions(int portions) {
+    public void setPortions(final int portions) {
     	if(portions <= MAX_PORTIONS) this.portions = portions; // allows you to change the number of portions
     }
 
@@ -92,7 +90,7 @@ public abstract class Familiar implements Serializable {
         return happiness; // return if the familiar is happy or not
     }
 
-    public void setHappiness(int happiness) {
+    public void setHappiness(final int happiness) {
         if(happiness < MAX_STATS) {
             this.happiness = happiness; // allows you to change the hapiness of the familiar
         }
@@ -102,7 +100,7 @@ public abstract class Familiar implements Serializable {
         return hygiene; // return the hygiene of the familiar
     }
     
-    public void setHygiene(int hygiene){
+    public void setHygiene(final int hygiene){
         if(hygiene < MAX_STATS){
             this.hygiene = hygiene; // allows you to change the percentage of hygiene
         }
@@ -110,7 +108,7 @@ public abstract class Familiar implements Serializable {
     
 
     // calculates the mood of the familiar according to its characteristics (hunger, hygiene, energy, vitality)
-    public void recalculateMood(Weather currentWeather, Rooms currentRoom) {
+    public void recalculateMood(final Weather currentWeather, final Rooms currentRoom) {
         moodValue = (hungriness + hygiene + energy + vitality) / AMOUNT_OF_STATS;
         if(currentRoom == Rooms.GARDEN) moodValue*=currentWeather.getCoef();
         
@@ -128,7 +126,7 @@ public abstract class Familiar implements Serializable {
         return Mood.MISERABLE;
     }
     
-    public void setMoodValue(int moodValue) {
+    public void setMoodValue(final int moodValue) {
     	this.moodValue = moodValue; // change the value of mood
     }
     
@@ -140,7 +138,7 @@ public abstract class Familiar implements Serializable {
         return mood; // return the mood of the familiar
     }
     
-    public void setMood(Mood mood) {
+    public void setMood(final Mood mood) {
     	this.mood = mood; // allows you to change mood of the familiar
     }
 
@@ -152,7 +150,7 @@ public abstract class Familiar implements Serializable {
         return room.getRooms(); // return the room in which the familiar is located
     }
     
-    public void setRoom(Rooms rooms)
+    public void setRoom(final Rooms rooms)
     {
     	this.room.setRooms(rooms);  // allows you to change rooms
     }
@@ -171,7 +169,7 @@ public abstract class Familiar implements Serializable {
         return energy; // returns the energy of the familiar
     }
     
-    public void setEnergy(int energy) {
+    public void setEnergy(final int energy) {
     	this.energy = energy;
     	if (this.energy > MAX_STATS) this.energy = MAX_STATS; // allows you to change the percentage of energy
     }
@@ -180,7 +178,7 @@ public abstract class Familiar implements Serializable {
     	return vitality; // return the vitality of the familiar
     } 
     
-    public void setVitality(int vitality) {
+    public void setVitality(final int vitality) {
     	if (vitality <= MAX_STATS) this.vitality = vitality;
     }
 
@@ -192,7 +190,7 @@ public abstract class Familiar implements Serializable {
         return hungriness; // return the percentage representing the familiar's hunger
     }
 
-    public void setHungriness(int hungriness) {
+    public void setHungriness(final int hungriness) {
         this.hungriness = hungriness;
         if (this.hungriness > MAX_STATS) this.hungriness = MAX_STATS; // allows you to change the percentage reprenting the familiar's hunger
     }
@@ -207,14 +205,14 @@ public abstract class Familiar implements Serializable {
     }
     
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
     	
         if(obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
 
     	if(obj == this) return true;
-    	Familiar fam = (Familiar) obj;
+    	final Familiar fam = (Familiar) obj;
     	return this.name.equals(fam.getName());
     }
 }

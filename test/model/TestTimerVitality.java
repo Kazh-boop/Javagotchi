@@ -1,11 +1,11 @@
 package test.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import app.model.Cat;
 import app.model.Familiar;
@@ -15,12 +15,12 @@ public class TestTimerVitality {
 
 	Familiar familiar;
 	
-	@Before
+	@BeforeAll
 	public void setUp() {
 		this.familiar = new Cat("Filou");
 	}
 	
-	@After
+	@AfterAll
 	public void tearDown() {
 		this.familiar = null;
 	}

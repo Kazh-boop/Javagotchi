@@ -43,7 +43,7 @@ public class Room {
     public void changeWeather() {
          Random ran = new Random();
 
-        int newWeather = (int) (ran.nextInt(100));
+        int newWeather = ran.nextInt(100);
         if(newWeather < AMOUNT_OF_WEATHER ) {
             currentWeather = Weather.getWeatherById(newWeather);
         }

@@ -6,14 +6,14 @@ public class Robot extends Familiar {
     public Robot(String name) {
         super();
         this.name = name;
-        this.food = "Electricité"; //the robot can only "eat" electricity
+        this.food = "Electricite"; //the robot can only "eat" electricity
         this.familiarType = "Robot";
     }
 
     public Robot(Robot r) {
         super();
         r.name = name;
-        this.food = "Electricité";
+        this.food = "Electricite";
         this.familiarType = "Robot";
     }
 }

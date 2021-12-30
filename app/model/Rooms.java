@@ -48,13 +48,11 @@ public enum Rooms {
 			case 0 : 
 				rooms = Rooms.GARDEN;
 				break;
-			case 1 :
-				rooms = Rooms.LIVING_ROOM;
-				break;
 			case 2 :
 				rooms = Rooms.KITCHEN;
 				break;
 			default:
+				rooms = Rooms.LIVING_ROOM;
 				break;
 		}
 		

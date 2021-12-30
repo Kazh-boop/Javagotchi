@@ -1,10 +1,11 @@
 package test.model;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.AfterEach;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.junit.jupiter.api.AfterEach;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,12 +19,12 @@ class TestFamiliar {
 	
     private static final int MAX_STATS = 100;
     private static final int TEST_HUNGRINESS = 50;
-    
+    private static final String CAT_NAME = "Filou";
     Familiar familiar;
     
     @BeforeEach
     public void initEach() {
-    	familiar = new Cat("Filou");
+    	familiar = new Cat(CAT_NAME);
     }
     
 	@AfterEach
@@ -38,13 +39,13 @@ class TestFamiliar {
 	
 	@Test
 	public void newFamiliar() {
-		Familiar familiar = new Cat("Filou");
-		assertNotNull(familiar);
+		Familiar familiar2 = new Cat(CAT_NAME);
+		assertNotNull(familiar2);
 	}
 	
 	@Test
 	public void newFamiliarCopy( ){
-		Cat familiar1 = new Cat("Filou");
+		Cat familiar1 = new Cat(CAT_NAME);
 		Cat familiar2 = new Cat(familiar1);
 		assertEquals(familiar1, familiar2);
 	}
@@ -169,7 +170,7 @@ class TestFamiliar {
 	
 	@Test
 	public void testGetName() {
-		assertEquals("Filou", familiar.getName());
+		assertEquals(CAT_NAME, familiar.getName());
 	}
 	
 	@Test
