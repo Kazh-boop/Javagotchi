@@ -13,16 +13,16 @@ import app.model.TimerEnergy;
 
 public class TestTimerEnergy {
 	
-	Familiar familiar;
+	private static Familiar familiar;
 	
 	@BeforeAll
-	public void setUp() throws Exception {
-		this.familiar = new Cat("Filou");
+	public static void setUp() throws Exception {
+		familiar = new Cat("Filou");
 	}
 	
 	@AfterAll
-	public void tearDown() throws Exception {
-		this.familiar = null;
+	public static void tearDown() throws Exception {
+		familiar = null;
 	}
 	
 	@Test

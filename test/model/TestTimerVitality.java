@@ -13,16 +13,16 @@ import app.model.TimerVitality;
 
 public class TestTimerVitality {
 
-	Familiar familiar;
+	private static Familiar familiar;
 	
 	@BeforeAll
-	public void setUp() {
-		this.familiar = new Cat("Filou");
+	public static void setUp() {
+		familiar = new Cat("Filou");
 	}
 	
 	@AfterAll
-	public void tearDown() {
-		this.familiar = null;
+	public static void tearDown() {
+		familiar = null;
 	}
 	
 	@Test

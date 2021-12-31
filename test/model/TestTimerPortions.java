@@ -12,16 +12,17 @@ import app.model.Familiar;
 import app.model.TimerPortions;;
 
 public class TestTimerPortions {
-	private Familiar familiar;
+	
+	private static Familiar familiar;
 	
 	@BeforeAll
 	public void setUp() {
-		this.familiar = new Cat("Filou");
+		familiar = new Cat("Filou");
 	}
 	
 	@AfterAll
-	public void tearDown() {
-		this.familiar = null;
+	public static void tearDown() {
+		familiar = null;
 	}
 	
 	@Test

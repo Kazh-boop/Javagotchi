@@ -4,6 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class TimerEnergy extends TimerTask {
+	
     private Familiar familiar;
     private int minutesPerEnergy;
 
