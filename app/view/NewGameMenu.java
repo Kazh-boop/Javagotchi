@@ -60,9 +60,9 @@ public class NewGameMenu {
         this.textName = new CustomMenuLabel("Nom du familier :");
         this.name = new JTextField(null,NAME_MAX_CHAR);
         this.textType = new CustomMenuLabel("Choix de l'esp�ce de votre familier");
-        this.leftFamiliar = new CustomMenuButton(createImageIcon("../assets/images/left.png"));
-        this.speciesIcon = new JLabel(createImageIcon("../assets/images/cat.png"));
-        this.rightFamiliar = new CustomMenuButton(createImageIcon("../assets/images/right.png"));
+        this.leftFamiliar = new CustomMenuButton(IconUtil.createImageIcon("../assets/images/left.png"));
+        this.speciesIcon = new JLabel(IconUtil.createImageIcon("../assets/images/cat.png"));
+        this.rightFamiliar = new CustomMenuButton(IconUtil.createImageIcon("../assets/images/right.png"));
         this.launchGame = new CustomMenuButton("Lancer la partie",MainMenu.DEFAULT_BUTTON_SIZE);
         
         // JComponent wrapping
@@ -157,19 +157,5 @@ public class NewGameMenu {
     public JButton getLaunchGame(){
     	return this.launchGame;
     }
-    
-    /**
-	 * Check that the entered URL leads to a file
-	 * @param path String
-	 * @return imgURL ImageIcon
-	 */
-    private static ImageIcon createImageIcon(String path) {
-        java.net.URL imgURL = NewGameMenu.class.getResource(path);
-        if (imgURL != null) {
-            return new ImageIcon(imgURL);
-        } else {
-            System.err.println("Couldn't find file: " + path);
-            return null;
-        }
-    }
+
 }

@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 import app.controller.GameController;
 import app.util.*;
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
 
 public class GameView {
@@ -14,7 +15,6 @@ public class GameView {
     
 
 
-    private static final int LEFT_PANEL_ROW = 1;
 
     private static final float SAVE_BUTTON_FONT_SIZE = 25f;
     private static final int SAVE_BUTTON_WIDTH = 200;
@@ -43,12 +43,17 @@ public class GameView {
     private GameController gC;
     private JFrame mainFrame;
 	private JPanel leftPanel;
-    private JPanel rightPanel;
+    private JPanel middlePanel;
     private JPanel bottomPanel;
     private CustomMenuButton save;
     private JLabel name;
     private JLabel mood;
-    private JLabel room;
+    
+    private JPanel roomSelector;
+    private JLabel currentRoom;
+    private JButton goLeft;
+    private JButton goRight;
+    
     private JLabel weather;
     private JLabel vitality;
     private JLabel energy;
@@ -66,6 +71,7 @@ public class GameView {
         this.mainFrame = nFrame;
         this.gC = g;
         display();
+
     }
 
     /**
@@ -76,23 +82,33 @@ public class GameView {
         mainFrame.setLayout(new BorderLayout());
 
         this.leftPanel = new JPanel();
-        this.leftPanel.setLayout(new BoxLayout(leftPanel, LEFT_PANEL_ROW));
-        this.rightPanel = new JPanel();
+        this.leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.PAGE_AXIS));
+        this.middlePanel = new JPanel();
         this.bottomPanel = new JPanel();
 
         save = new CustomMenuButton("Sauvegarder", SAVE_BUTTON_FONT_SIZE);
         save.setMaximumSize(new Dimension(SAVE_BUTTON_WIDTH, SAVE_BUTTON_HEIGHT));
         save.setBackground(CustomMenuButton.getPearl());
         save.setForeground(CustomMenuButton.getColorGreen());
-        
+        save.setAlignmentX(Component.LEFT_ALIGNMENT);
+
         name = new CustomMenuLabel(gC.getFamiliar().getName(), LABEL_FONT_SIZE);
+        name.setAlignmentX(Component.LEFT_ALIGNMENT);
+
         mood = new CustomMenuLabel("Humeur : " + gC.getFamiliar().getMood().getName(), LABEL_FONT_SIZE);
-        room = new CustomMenuLabel("Piece : " + gC.getCurrentRoom().getName(), LABEL_FONT_SIZE);
+        mood.setAlignmentX(Component.LEFT_ALIGNMENT);
+
         weather = new CustomMenuLabel("Meteo : " + gC.getCurrentRoom().getWeatherName(), LABEL_FONT_SIZE);
+        weather.setAlignmentX(Component.LEFT_ALIGNMENT);
+
         vitality = new CustomMenuLabel(" Vitalite : ", LABEL_FONT_SIZE);
         vitality.setBorder(new EmptyBorder(0, RIGHT_BORDER_VITALITY, 0, 0));
+        vitality.setAlignmentX(Component.LEFT_ALIGNMENT);
+
         energy = new CustomMenuLabel("Energie : ", LABEL_FONT_SIZE);
+        
         hygiene = new CustomMenuLabel(" Hygiene : ",LABEL_FONT_SIZE);
+
         hunger = new CustomMenuLabel(" Faim : ", LABEL_FONT_SIZE);
 
         pbEnergy = new JProgressBar(LOWER_BOUND_PBAR, HIGHER_BOUND_PBAR);
@@ -135,7 +151,32 @@ public class GameView {
         sleepButton.addActionListener(gC);
         feedButton.addActionListener(gC);
 
-        leftPanel.setBorder(new EmptyBorder(0, LEFT_PANEL_BORDER, 0, 0));        
+        roomSelector = new JPanel();
+        roomSelector.setLayout(new BoxLayout(roomSelector, BoxLayout.LINE_AXIS));
+        goLeft = new CustomMenuButton(IconUtil.createSizedImageIcon("../assets/images/left.png",30,30));
+        goRight = new CustomMenuButton(IconUtil.createSizedImageIcon("../assets/images/right.png",30,30));
+        
+        goLeft.setPreferredSize(new Dimension(20,30));
+        goRight.setPreferredSize(new Dimension(20,30));
+
+        goLeft.setMaximumSize(new Dimension(20,30));
+        goRight.setMaximumSize(new Dimension(20,30));
+        
+        goLeft.setBorderPainted(false);
+        goRight.setBorderPainted(false);
+
+        goLeft.addActionListener(gC);
+        goRight.addActionListener(gC);
+        
+        currentRoom = new CustomMenuLabel("Piece : " + gC.getCurrentRoom().getName(), LABEL_FONT_SIZE);
+        currentRoom.setBorder(new EmptyBorder(0,10,0,10));
+
+        roomSelector.add(goLeft);
+        roomSelector.add(currentRoom);
+        roomSelector.add(goRight);
+        roomSelector.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        leftPanel.setBorder(new EmptyBorder(0, LEFT_PANEL_BORDER, 0, 0));     
         leftPanel.add(Box.createVerticalStrut(LEFT_PANEL_SPACING));
         leftPanel.add(save);
         leftPanel.add(Box.createVerticalStrut(LEFT_PANEL_SPACING));
@@ -143,7 +184,7 @@ public class GameView {
         leftPanel.add(Box.createVerticalStrut(LEFT_PANEL_SPACING));
         leftPanel.add(mood);
         leftPanel.add(Box.createVerticalStrut(LEFT_PANEL_SPACING));
-        leftPanel.add(room);
+        leftPanel.add(roomSelector);
         leftPanel.add(Box.createVerticalStrut(LEFT_PANEL_SPACING));
         leftPanel.add(weather);
         leftPanel.add(Box.createVerticalStrut(LEFT_PANEL_SPACING));
@@ -152,6 +193,7 @@ public class GameView {
         leftPanel.add(pbVitality);
         leftPanel.add(Box.createVerticalStrut(LEFT_PANEL_SPACING));
 
+     
         bottomPanel.add(sleepButton);
         bottomPanel.add(energy);
         bottomPanel.add(pbEnergy);
@@ -164,10 +206,12 @@ public class GameView {
 
         bottomPanel.setBorder(new EmptyBorder(0,0,BOTTOM_PANEL_BORDER,0));
         mainFrame.add(leftPanel, BorderLayout.LINE_START);
-        mainFrame.add(rightPanel, BorderLayout.CENTER);
+        mainFrame.add(middlePanel, BorderLayout.CENTER);
         mainFrame.add(bottomPanel, BorderLayout.PAGE_END);
 
         mainFrame.setVisible(true);
+
+        
     }
 
     public JButton getSave() {
