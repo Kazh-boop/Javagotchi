@@ -55,18 +55,19 @@ public abstract class Familiar implements Serializable {
         this.portions = 2;
     }
 
-    public void feed(final Rooms currentRoom) {
-        if(hungriness < MAX_STATS && currentRoom == Rooms.KITCHEN && this.portions > 0){
-            // we can only feed him with 35% of the hungriness
+    public void feed() {
+            if(!canBeFeed()) return;
+
             setHungriness(this.hungriness + MAX_FEED_PORTION);
             this.energy -= DECREASE_STATS_PER_ACTION;
             this.hygiene -= DECREASE_STATS_PER_ACTION;
             this.portions--;
-        }else{
-            // TODO indiquer à l'utilisateur qu'il ne peut pas le nourrir
-        }
     }
 
+
+    public boolean canBeFeed() {
+        return hungriness < MAX_STATS && room.currentRooms == Rooms.KITCHEN && this.portions > 0;
+    }
     
     public void addPortion() {
         if(this.portions < MAX_PORTIONS) this.portions++;

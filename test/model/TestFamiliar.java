@@ -204,7 +204,7 @@ class TestFamiliar {
 	@Test
 	public void testFeed() {
 		setUpFeed();
-		familiar.feed(familiar.getRoom());
+		familiar.feed();
 		assertEquals(85, familiar.getHungriness());
 		assertEquals(95, familiar.getEnergy());
 		assertEquals(95, familiar.getHygiene());
@@ -216,7 +216,7 @@ class TestFamiliar {
 	public void testFeedMaxStats() {
 		setUpFeed();
 		familiar.setHungriness(100);
-		familiar.feed(familiar.getRoom());
+		familiar.feed();
 		// pas de changement
 		assertEquals(MAX_STATS, familiar.getHungriness());
 	}
@@ -225,7 +225,7 @@ class TestFamiliar {
 	public void testFeedWrongPlace() {
 		setUpFeed();
 		familiar.setRoom(Rooms.LIVING_ROOM);
-		familiar.feed(familiar.getRoom());
+		familiar.feed();
 		// pas de changement
 		assertEquals(TEST_HUNGRINESS, familiar.getHungriness());
 		assertEquals(MAX_STATS, familiar.getEnergy());
@@ -238,7 +238,7 @@ class TestFamiliar {
 	public void testFeedNoPortion() {
 		setUpFeed();
 		familiar.resetPortion();
-		familiar.feed(familiar.getRoom());
+		familiar.feed();
 		// pas de changement
 		assertEquals(TEST_HUNGRINESS, familiar.getHungriness());
 	}

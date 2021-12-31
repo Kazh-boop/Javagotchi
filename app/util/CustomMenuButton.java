@@ -10,16 +10,13 @@ import java.io.InputStream;
 import javax.swing.Icon;
 import javax.swing.JButton;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Shape;
 
 public class CustomMenuButton extends JButton {
 	
 	private static final String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
 	private static final Color COLOR_CACTUS_GREEN = new Color(104, 131, 53);
 	private static final Color COLOR_PEARL = new Color(245, 235, 218);
-	private final transient RoundedBorder border;	
+	private transient RoundedBorder border;	
 	
     public CustomMenuButton() {
         this(null, null, 48f);
@@ -29,7 +26,7 @@ public class CustomMenuButton extends JButton {
         this(null, icon, 48f);
     }
     
-	CustomMenuButton(String name) {
+	public CustomMenuButton(String name) {
 		this(name,null,48f);
 	}
 	
@@ -54,15 +51,6 @@ public class CustomMenuButton extends JButton {
 		setBorder(border);
 		setCustomSize(1000, 100);
 		setCustomFont(size);
-	}
-
-	@Override
-	public void paint(Graphics g) {
-		Graphics2D g2 = (Graphics2D)g;
-		Shape oldClip = g2.getClip();
-		g2.clip(border.createRoundRect(0, 0, getWidth(), getHeight()));
-		super.paint(g);
-		g2.clip(oldClip);
 	}
 	
 	/**
