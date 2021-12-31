@@ -11,9 +11,6 @@ import java.awt.Dimension;
 
 public class GameView {
 
-    
-
-
     private static final int LEFT_PANEL_ROW = 1;
 
     private static final float SAVE_BUTTON_FONT_SIZE = 25f;
@@ -172,6 +169,18 @@ public class GameView {
 
     public JButton getSave() {
         return this.save;
+    }
+    
+    public JButton getSleepButton() {
+    	return sleepButton;
+    }
+    
+    public JButton getFeedButton() {
+    	return feedButton;
+    }
+    
+    public JButton getWashButton() {
+    	return washButton;
     }
 
     public void successfulSave() {
