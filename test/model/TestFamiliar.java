@@ -9,6 +9,7 @@ import org.junit.jupiter.api.AfterEach;
 
 import org.junit.jupiter.api.Test;
 
+import app.exceptions.FeedException;
 import app.model.Cat;
 import app.model.Familiar;
 import app.model.Mood;
@@ -202,7 +203,7 @@ class TestFamiliar {
 //==========================================================================//
 
 	@Test
-	public void testFeed() {
+	public void testFeed() throws FeedException {
 		setUpFeed();
 		familiar.feed();
 		assertEquals(85, familiar.getHungriness());
@@ -213,7 +214,7 @@ class TestFamiliar {
 	
 	 // Test nourrir familier quand les stats sont au max, pas de depassement de MAX_STATS
 	@Test
-	public void testFeedMaxStats() {
+	public void testFeedMaxStats() throws FeedException {
 		setUpFeed();
 		familiar.setHungriness(100);
 		familiar.feed();
@@ -222,7 +223,7 @@ class TestFamiliar {
 	}
 	
 	@Test
-	public void testFeedWrongPlace() {
+	public void testFeedWrongPlace() throws FeedException {
 		setUpFeed();
 		familiar.setRoom(Rooms.LIVING_ROOM);
 		familiar.feed();
@@ -235,7 +236,7 @@ class TestFamiliar {
 	
 	// Test nourrir familier quand il n'y a plus de portion
 	@Test
-	public void testFeedNoPortion() {
+	public void testFeedNoPortion() throws FeedException {
 		setUpFeed();
 		familiar.resetPortion();
 		familiar.feed();

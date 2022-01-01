@@ -1,11 +1,12 @@
 package app.view;
 
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import app.controller.GameController;
 import app.util.*;
+import app.model.TimerEnergy;
+
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -49,18 +50,21 @@ public class GameView {
     
     private JPanel roomSelector;
     private JLabel currentRoom;
-    private JButton goLeft;
-    private JButton goRight;
+    private JButton goLeftButton;
+    private JButton goRightButton;
+    
     
     private JLabel weather;
     private JLabel vitality;
     private JLabel energy;
     private JLabel hygiene;
     private JLabel hunger;
+    
     private JProgressBar pbVitality;
     private JProgressBar pbEnergy;
     private JProgressBar pbHygiene;
     private JProgressBar pbHunger;
+    
     private CustomMenuButton feedButton;
     private CustomMenuButton sleepButton;
     private CustomMenuButton washButton;
@@ -69,7 +73,6 @@ public class GameView {
         this.mainFrame = nFrame;
         this.gC = g;
         display();
-
     }
 
     /**
@@ -96,16 +99,16 @@ public class GameView {
         mood = new CustomMenuLabel("Humeur : " + gC.getFamiliar().getMood().getName(), LABEL_FONT_SIZE);
         mood.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        weather = new CustomMenuLabel("Meteo : " + gC.getCurrentRoom().getWeatherName(), LABEL_FONT_SIZE);
+        weather = new CustomMenuLabel("Météo : " + gC.getCurrentRoom().getWeatherName(), LABEL_FONT_SIZE);
         weather.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        vitality = new CustomMenuLabel(" Vitalite : ", LABEL_FONT_SIZE);
+        vitality = new CustomMenuLabel(" Vitalité : ", LABEL_FONT_SIZE);
         vitality.setBorder(new EmptyBorder(0, RIGHT_BORDER_VITALITY, 0, 0));
         vitality.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        energy = new CustomMenuLabel("Energie : ", LABEL_FONT_SIZE);
+        energy = new CustomMenuLabel(" Énergie : ", LABEL_FONT_SIZE);
         
-        hygiene = new CustomMenuLabel(" Hygiene : ",LABEL_FONT_SIZE);
+        hygiene = new CustomMenuLabel(" Hygiène : ",LABEL_FONT_SIZE);
 
         hunger = new CustomMenuLabel(" Faim : ", LABEL_FONT_SIZE);
 
@@ -151,27 +154,27 @@ public class GameView {
 
         roomSelector = new JPanel();
         roomSelector.setLayout(new BoxLayout(roomSelector, BoxLayout.LINE_AXIS));
-        goLeft = new CustomMenuButton(IconUtil.createSizedImageIcon("../assets/images/left.png",30,30));
-        goRight = new CustomMenuButton(IconUtil.createSizedImageIcon("../assets/images/right.png",30,30));
+        goLeftButton = new CustomMenuButton(IconUtil.createSizedImageIcon("../assets/images/left.png",30,30));
+        goRightButton = new CustomMenuButton(IconUtil.createSizedImageIcon("../assets/images/right.png",30,30));
         
-        goLeft.setPreferredSize(new Dimension(20,30));
-        goRight.setPreferredSize(new Dimension(20,30));
+        goLeftButton.setPreferredSize(new Dimension(20,30));
+        goRightButton.setPreferredSize(new Dimension(20,30));
 
-        goLeft.setMaximumSize(new Dimension(20,30));
-        goRight.setMaximumSize(new Dimension(20,30));
+        goLeftButton.setMaximumSize(new Dimension(20,30));
+        goRightButton.setMaximumSize(new Dimension(20,30));
         
-        goLeft.setBorderPainted(false);
-        goRight.setBorderPainted(false);
+        goLeftButton.setBorderPainted(false);
+        goRightButton.setBorderPainted(false);
 
-        goLeft.addActionListener(gC);
-        goRight.addActionListener(gC);
+        goLeftButton.addActionListener(gC);
+        goRightButton.addActionListener(gC);
         
         currentRoom = new CustomMenuLabel("Piece : " + gC.getCurrentRoom().getName(), LABEL_FONT_SIZE);
         currentRoom.setBorder(new EmptyBorder(0,10,0,10));
 
-        roomSelector.add(goLeft);
+        roomSelector.add(goLeftButton);
         roomSelector.add(currentRoom);
-        roomSelector.add(goRight);
+        roomSelector.add(goRightButton);
         roomSelector.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         leftPanel.setBorder(new EmptyBorder(0, LEFT_PANEL_BORDER, 0, 0));     
@@ -208,7 +211,6 @@ public class GameView {
         mainFrame.add(bottomPanel, BorderLayout.PAGE_END);
 
         mainFrame.setVisible(true);
-
         
     }
 
@@ -227,17 +229,79 @@ public class GameView {
     public JButton getWashButton() {
     	return washButton;
     }
+    
+    public JButton getGoLeftButton() {
+    	return goLeftButton;
+    }
+    
+    public JButton getGoRightButton() {
+    	return goRightButton;
+    }
+    
+    public JLabel getCurrentRoomLabel() {
+    	return currentRoom;
+    }
+    
+    public JProgressBar getPbEnergy() {
+    	return pbEnergy;
+    }
+    
+    public JProgressBar getPbHunger() {
+    	return pbHunger;
+    }
+    
+    public JProgressBar getPbVitality() {
+    	return pbVitality;
+    }
+    
+    public JProgressBar getPbhygiene() {
+    	return pbHygiene;
+    }
 
     public void successfulSave() {
         JOptionPane.showMessageDialog(
             mainFrame, 
-    	    "Votre progression a bien ete sauvegarder", "Succès", JOptionPane.INFORMATION_MESSAGE
+    	    "Votre progression à bien été sauvegardé", "Succès", JOptionPane.INFORMATION_MESSAGE
         );
- 
     }
+    
     public void errorSave(String error) {
         JOptionPane.showMessageDialog(
             null, 
             "Erreur lors de la sauvegarde : " + error);
+    }
+    
+    public void errorFeed(String error) {
+        JOptionPane.showMessageDialog(
+            null, 
+            "Le familier ne peut pas être nourri : " + error);
+    }
+    
+    public void errorWash(String error) {
+        JOptionPane.showMessageDialog(
+            null, 
+            "Le familier ne peut pas être lavé : " + error);
+    }
+    
+    public void errorSleep(String error) {
+        JOptionPane.showMessageDialog(
+            null, 
+            "Le familier ne peut pas dormir : " + error);
+    }
+    
+    public void enableAll() {
+    	sleepButton.setEnabled(true);
+    	feedButton.setEnabled(true);
+    	washButton.setEnabled(true);
+    	goLeftButton.setEnabled(true);
+    	goRightButton.setEnabled(true);
+    }
+    
+    public void disableAll() {
+    	sleepButton.setEnabled(false);
+    	feedButton.setEnabled(false);
+    	washButton.setEnabled(false);
+    	goLeftButton.setEnabled(false);
+    	goRightButton.setEnabled(false);
     }
 }

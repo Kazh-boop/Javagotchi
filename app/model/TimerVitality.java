@@ -3,13 +3,17 @@ package app.model;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import app.view.GameView;
+
 public class TimerVitality extends TimerTask {
     private Familiar familiar;
     private int minutesPerVitality;
+    private GameView gameView;
 
 
-    public TimerVitality(Familiar familiar){
+    public TimerVitality(Familiar familiar, GameView gameView){
         this.familiar = familiar;
+        this.gameView = gameView;
         minutesPerVitality = 6 * 60 * 1000;
     }
     
@@ -59,11 +63,13 @@ public class TimerVitality extends TimerTask {
                 {
                 	System.out.println("Energie UP");
                 	familiar.setVitality(familiar.getVitality() + 1);
+                	gameView.getPbVitality().setValue(familiar.getVitality());
                 }
                 if(Boolean.TRUE.equals(decreased()))
                 {
                 	System.out.println("Energie DOWN");
                 	familiar.setVitality(familiar.getVitality() - 1);
+                	gameView.getPbVitality().setValue(familiar.getVitality());
                 }
                 
             }

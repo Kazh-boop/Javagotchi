@@ -4,12 +4,21 @@ import app.model.Familiar;
 import app.model.Room;
 import app.model.Rooms;
 import app.model.SaveManager;
+
+import app.model.TimerSleep;
+import app.model.TimerEnergy;
+import app.model.TimerVitality;
+import app.model.TimerHungriness;
+import app.model.TimerPortions;
+
 import app.view.GameView;
 import app.view.MainFrame;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
+import java.io.IOException;
+import app.exceptions.*;
 
 public class GameController implements ActionListener {
     
@@ -18,7 +27,11 @@ public class GameController implements ActionListener {
     GameView gameView;
     MainFrame  mainFrame;
     SaveManager saveManager;
-
+    
+    TimerEnergy timerEnergy;
+    TimerVitality timerVitality;
+    TimerHungriness timerHungriness;
+    TimerPortions timerPortions;
 
     // constructor
     public GameController(Familiar selectedFamiliar, MainFrame mainFrame) {
@@ -28,6 +41,18 @@ public class GameController implements ActionListener {
         flush();
         this.gameView = new GameView(mainFrame, this);
         this.saveManager = new SaveManager();
+        
+        timerEnergy = new TimerEnergy(currentFamiliar, gameView);
+        timerEnergy.run();
+        
+        timerVitality = new TimerVitality(currentFamiliar, gameView);
+        timerVitality.run();
+        
+        timerHungriness = new TimerHungriness(currentFamiliar, gameView);
+        timerHungriness.run();
+        
+        timerPortions = new TimerPortions(currentFamiliar);
+        timerPortions.run();
     }
 
     public float calculateDecreaseValue(float currentValue) {
@@ -57,6 +82,21 @@ public class GameController implements ActionListener {
     	if (e.getSource() == this.gameView.getSave()) { 
             this.onClickSave();
     	}
+    	else if(e.getSource() == this.gameView.getFeedButton()) {
+    		onClickFeed();
+    	}
+    	else if(e.getSource() == this.gameView.getWashButton()) {
+    		onClickWash();
+    	}
+    	else if(e.getSource() == this.gameView.getSleepButton()) {
+				onClickSleep();
+    	}
+    	else if(e.getSource() == this.gameView.getGoLeftButton()) {
+    		onClickGoLeft();
+    	}
+    	else if(e.getSource() == this.gameView.getGoRightButton()) {
+    		onClickGoRight();
+    	}
 	}
     
     // method to create a backup when a button is clicked
@@ -68,5 +108,47 @@ public class GameController implements ActionListener {
             e.printStackTrace();
             gameView.errorSave(e.toString());
         }
+    }
+    
+    private void onClickFeed() {
+    	try {
+    		currentFamiliar.feed();
+    	}
+    	catch (FeedException e) {
+    		gameView.errorFeed(e.getMessage());
+    	}
+    }
+    
+    private void onClickWash() {
+    	try {
+    		currentFamiliar.wash();
+    	}
+    	catch (WashException e) {
+    		gameView.errorWash(e.getMessage());
+    	}
+    }
+    
+    private void onClickSleep() {
+    	try {
+			currentFamiliar.sleep();
+			gameView.disableAll();
+			TimerSleep timerSleep = new TimerSleep(currentFamiliar, gameView);
+	    	timerSleep.run();
+	    	timerEnergy.TimerSleepUp();
+		} catch (SleepException e) {
+			gameView.errorSleep(e.getMessage());
+		}	
+    }
+    
+    private void onClickGoLeft() {
+    	currentFamiliar.moveLeft();
+    	gameView.getCurrentRoomLabel().setText("Pièce : " + currentFamiliar.getRoom().getName());
+    	gameView.getPbhygiene().setValue(currentFamiliar.getHygiene());
+    }
+    
+    private void onClickGoRight() {
+    	currentFamiliar.moveRight();
+    	gameView.getCurrentRoomLabel().setText("Pièce : " + currentFamiliar.getRoom().getName());
+    	gameView.getPbhygiene().setValue(currentFamiliar.getHygiene());
     }
 }

@@ -3,6 +3,9 @@ package app.model;
 import java.io.Serializable;
 import java.util.UUID;
 
+import app.exceptions.*;
+
+
 public abstract class Familiar implements Serializable {
 	
 	// allows to identify each Familiar in a unique way
@@ -33,7 +36,7 @@ public abstract class Familiar implements Serializable {
     private static final int AMOUNT_OF_STATS = 5;
     
     // food
-    private static final int MAX_FEED_PORTION = 35;
+    private static final int MAX_RETRIEVE_STAT = 35;
     private static final int DECREASE_STATS_PER_ACTION = 5;
     private static final int MAX_PORTIONS = 4;
 
@@ -55,18 +58,25 @@ public abstract class Familiar implements Serializable {
         this.portions = 2;
     }
 
-    public void feed() {
-            if(!canBeFeed()) return;
-
-            setHungriness(this.hungriness + MAX_FEED_PORTION);
+    public void feed() throws FeedException {
+            canBeFeed();
+            setHungriness(this.hungriness + MAX_RETRIEVE_STAT);
             this.energy -= DECREASE_STATS_PER_ACTION;
             this.hygiene -= DECREASE_STATS_PER_ACTION;
             this.portions--;
     }
 
-
-    public boolean canBeFeed() {
-        return hungriness < MAX_STATS && room.currentRooms == Rooms.KITCHEN && this.portions > 0;
+    public void canBeFeed() throws FeedException {
+    	if(hungriness == MAX_STATS)
+    	{
+    		throw new FeedException("Le familier est répu !");
+    	}
+    	else if(room.getRooms() != Rooms.KITCHEN) {
+    		throw new FeedException("Le familier ne peut être nourri que dans la cuisine !");
+    	}
+    	else if(this.portions <= 0) {
+    		throw new FeedException("Vous n'avez plus de portions !");
+    	}
     }
     
     public void addPortion() {
@@ -82,7 +92,6 @@ public abstract class Familiar implements Serializable {
         return this.portions; // return the number of available portions
     }
     
-
     public void setPortions(final int portions) {
     	if(portions <= MAX_PORTIONS) this.portions = portions; // allows you to change the number of portions
     }
@@ -97,6 +106,21 @@ public abstract class Familiar implements Serializable {
         }
     }
     
+    public void wash() throws WashException {
+    	canWash();
+    	
+    	setHygiene(hygiene + MAX_RETRIEVE_STAT);
+    }
+    
+    public void canWash() throws WashException {
+    	if(hygiene == MAX_STATS) {
+    		throw new WashException(name + " est déjà tout propre !");
+    	}
+    	else if(room.getRooms() != Rooms.LIVING_ROOM) {
+    		throw new WashException(name + "ne peut pas être lavé dans le salon !");
+    	}
+    }
+    
     public int getHygiene() {
         return hygiene; // return the hygiene of the familiar
     }
@@ -106,7 +130,6 @@ public abstract class Familiar implements Serializable {
             this.hygiene = hygiene; // allows you to change the percentage of hygiene
         }
     }
-    
 
     // calculates the mood of the familiar according to its characteristics (hunger, hygiene, energy, vitality)
     public void recalculateMood(final Weather currentWeather, final Rooms currentRoom) {
@@ -151,19 +174,24 @@ public abstract class Familiar implements Serializable {
         return room.getRooms(); // return the room in which the familiar is located
     }
     
-    public void setRoom(final Rooms rooms)
-    {
+    public void setRoom(final Rooms rooms ){
     	this.room.setRooms(rooms);  // allows you to change rooms
     }
     
-    public void moveLeft()
-    {
+    public void moveLeft() {
     	room.moveLeft(); // move to the left
+    	hygiene--;
     }
     
-    public void moveRight()
-    {
+    public void moveRight() {
     	room.moveRight(); // move to the right
+    	hygiene--;
+    }
+    
+    public void sleep() throws SleepException {
+    	if(energy == MAX_STATS) {
+    		throw new SleepException(name + " est plein d'énergie !");
+    	}
     }
     
     public int getEnergy() {
