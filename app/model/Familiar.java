@@ -170,6 +170,12 @@ public abstract class Familiar implements Serializable {
         return familiarType; // return the type of the famailiar
     }
 
+    public void resetPosition() {
+        if(room == null) {
+            this.room = new Room(Rooms.LIVING_ROOM);
+        }
+    }
+
     public Rooms getRoom() {
         return room.getRooms(); // return the room in which the familiar is located
     }
@@ -202,7 +208,7 @@ public abstract class Familiar implements Serializable {
     	this.energy = energy;
     	if (this.energy > MAX_STATS) this.energy = MAX_STATS; // allows you to change the percentage of energy
     }
-    
+
     public int getVitality() {
     	return vitality; // return the vitality of the familiar
     } 

@@ -134,7 +134,7 @@ public class GameController implements ActionListener {
 			gameView.disableAll();
 			TimerSleep timerSleep = new TimerSleep(currentFamiliar, gameView);
 	    	timerSleep.run();
-	    	timerEnergy.TimerSleepUp();
+	    	timerEnergy.timerSleepUp();
 		} catch (SleepException e) {
 			gameView.errorSleep(e.getMessage());
 		}	

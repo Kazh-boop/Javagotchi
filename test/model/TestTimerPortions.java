@@ -9,11 +9,11 @@ import org.junit.jupiter.api.Test;
 
 import app.model.Cat;
 import app.model.Familiar;
-import app.model.TimerPortions;;
+import app.model.TimerPortions;
 
 public class TestTimerPortions {
 	
-	private static Familiar familiar;
+	private Familiar familiar;
 	
 	@BeforeAll
 	public void setUp() {
@@ -21,7 +21,7 @@ public class TestTimerPortions {
 	}
 	
 	@AfterAll
-	public static void tearDown() {
+	public void tearDown() {
 		familiar = null;
 	}
 	

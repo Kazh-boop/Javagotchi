@@ -21,7 +21,7 @@ class TestFamiliar {
     private static final int MAX_STATS = 100;
     private static final int TEST_HUNGRINESS = 50;
     private static final String CAT_NAME = "Filou";
-    private static Familiar familiar;
+    private Familiar familiar;
     
     @BeforeEach
     public void initEach() {

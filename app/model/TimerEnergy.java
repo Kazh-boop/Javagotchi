@@ -28,7 +28,7 @@ public class TimerEnergy extends TimerTask {
         this.gameView = gameView;
     }
     
-    public void TimerSleepUp() {
+    public void timerSleepUp() {
     	isTimerSleepUp = true;
     }
     /**
@@ -40,7 +40,7 @@ public class TimerEnergy extends TimerTask {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-            	if(!isTimerSleepUp) {
+            	if(Boolean.FALSE.equals(isTimerSleepUp)) {
                     familiar.setEnergy(familiar.getEnergy()-1);
                     gameView.getPbEnergy().setValue(familiar.getEnergy());
             	}

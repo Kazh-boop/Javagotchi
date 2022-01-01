@@ -117,6 +117,7 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
 		menuController.playsound(menuController.getClickSound());
 		if (!(this.savesMenu.getListSave().isSelectionEmpty())) { // checking a selection
     		Familiar familiarToLoad = this.savesMenu.getListSave().getSelectedValue(); // recovery of a selection
+			familiarToLoad.resetPosition();
 			new GameController(familiarToLoad, mainFrame);
 		}
 	}

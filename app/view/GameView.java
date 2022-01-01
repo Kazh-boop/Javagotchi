@@ -5,15 +5,12 @@ import javax.swing.border.EmptyBorder;
 
 import app.controller.GameController;
 import app.util.*;
-import app.model.TimerEnergy;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 
 public class GameView {
-
-    private static final int LEFT_PANEL_ROW = 1;
 
     private static final float SAVE_BUTTON_FONT_SIZE = 25f;
     private static final int SAVE_BUTTON_WIDTH = 200;
