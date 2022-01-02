@@ -6,8 +6,7 @@ public class Room {
 
     private Weather currentWeather;
     private static final int AMOUNT_OF_WEATHER = 5;
-    public Rooms currentRooms;
-
+    private Rooms currentRooms;
 
     // constructor
     public Room(Rooms selectedRoom) {

@@ -3,13 +3,17 @@ package app.model;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import app.view.GameView;
+
 public class TimerHungriness extends TimerTask {
     private Familiar familiar;
     private int minutesPerHungriness;
+    private GameView gameView;
 
     // By default lose 1% every 10 minutes
-    public TimerHungriness (Familiar familiar){
+    public TimerHungriness (Familiar familiar,GameView gameView){
         this.familiar = familiar;
+        this.gameView = gameView;
         minutesPerHungriness = 10 * 60 * 1000;
     }
     
@@ -26,6 +30,7 @@ public class TimerHungriness extends TimerTask {
             @Override
             public void run() {
                 familiar.setHungriness(familiar.getHungriness() - 1);
+                gameView.getPbHunger().setValue(familiar.getHungriness());
             }
           }, 0, minutesPerHungriness ); 
     }

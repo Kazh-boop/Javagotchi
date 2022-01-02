@@ -33,13 +33,10 @@ public class TimerForcedSleep extends TimerTask{
             @Override
             public void run(){
                 familiar.setEnergy(100);
-                gameView.getWashButton().setEnabled(true);
-                gameView.getFeedButton().setEnabled(true);
-                gameView.getSleepButton().setEnabled(true);
+                gameView.enableAll();
                 timer.cancel();
                 timer.purge();
-                
             }
         },0,delay);
     }
-    }
+}

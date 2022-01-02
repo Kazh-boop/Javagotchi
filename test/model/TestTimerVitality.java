@@ -28,14 +28,14 @@ public class TestTimerVitality {
 	@Test
 	public void testNewTimerVitality()
 	{
-		TimerVitality timerVitality = new TimerVitality(this.familiar);
+		TimerVitality timerVitality = new TimerVitality(familiar);
 		assertNotNull(timerVitality);
 	}
 	
 	@Test
 	public void testNewTimerVitalityPeriod()
 	{
-		TimerVitality timerVitality = new TimerVitality(this.familiar, 10);
+		TimerVitality timerVitality = new TimerVitality(familiar, 10);
 		assertNotNull(timerVitality);
 	}
 	
@@ -43,10 +43,10 @@ public class TestTimerVitality {
 	public void testTimerGainVitality() throws InterruptedException {
 		// on definit un timer avec une intervalle de 10ms
 		familiar.setVitality(98);
-		TimerVitality timerVitality = new TimerVitality(this.familiar, 10);
+		TimerVitality timerVitality = new TimerVitality(familiar, 10);
 		timerVitality.run();
 		Thread.sleep(20);
-		assertEquals(100, this.familiar.getVitality());
+		assertEquals(100, familiar.getVitality());
 	}
 	
 	@Test
@@ -57,10 +57,10 @@ public class TestTimerVitality {
 		familiar.setHappiness(14);
 		familiar.setHungriness(14);
 		familiar.setVitality(100);
-		TimerVitality timerVitality = new TimerVitality(this.familiar, 10);
+		TimerVitality timerVitality = new TimerVitality(familiar, 10);
 		timerVitality.run();
 		Thread.sleep(20);
-		assertEquals(98, this.familiar.getVitality());
+		assertEquals(98, familiar.getVitality());
 	}
 
 }
