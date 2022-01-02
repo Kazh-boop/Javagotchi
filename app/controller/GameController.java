@@ -18,6 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import java.io.IOException;
+import java.util.Objects;
 import app.exceptions.*;
 
 public class GameController implements ActionListener {
@@ -53,10 +54,6 @@ public class GameController implements ActionListener {
         
         timerPortions = new TimerPortions(currentFamiliar);
         timerPortions.run();
-    }
-
-    public float calculateDecreaseValue(float currentValue) {
-        return Math.abs(currentValue - (1*currentRoom.getWeatherCoef()*currentFamiliar.getMoodCoef()));
     }
 
     // return the familiar
@@ -113,6 +110,7 @@ public class GameController implements ActionListener {
     private void onClickFeed() {
     	try {
     		currentFamiliar.feed();
+            gameView.getFeedButton().setToolTipText(currentFamiliar.getPortions() + " portions de " + currentFamiliar.getFood() + " restantes ");
     	}
     	catch (FeedException e) {
     		gameView.errorFeed(e.getMessage());
@@ -142,13 +140,26 @@ public class GameController implements ActionListener {
     
     private void onClickGoLeft() {
     	currentFamiliar.moveLeft();
-    	gameView.getCurrentRoomLabel().setText("Pièce : " + currentFamiliar.getRoom().getName());
-    	gameView.getPbhygiene().setValue(currentFamiliar.getHygiene());
+        updateRoom();
+        updateWeather();
     }
-    
+
     private void onClickGoRight() {
     	currentFamiliar.moveRight();
-    	gameView.getCurrentRoomLabel().setText("Pièce : " + currentFamiliar.getRoom().getName());
+        updateRoom();
+        updateWeather();
+    }
+    
+    private void updateWeather() {
+        if(getCurrentRoom().changeWeather()) {
+            gameView.getCurrentWeatherLabel().setText("Météo : " + currentRoom.getWeatherName());
+            gameView.getPbhygiene().setValue(currentFamiliar.getHygiene());
+        }
+    }
+
+    private void updateRoom() {
+        currentFamiliar.changeMood();
+        gameView.getCurrentRoomLabel().setText("Pièce : " + currentFamiliar.getRoom().getName());
     	gameView.getPbhygiene().setValue(currentFamiliar.getHygiene());
     }
 }

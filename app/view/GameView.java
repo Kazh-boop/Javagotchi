@@ -133,6 +133,7 @@ public class GameView {
         feedButton.setPreferredSize(new Dimension(BOTTOM_BUTTON_WIDTH, BOTTOM_BUTTON_HEIGHT));
         feedButton.setBackground(CustomMenuButton.getPearl());
         feedButton.setForeground(CustomMenuButton.getColorGreen());
+        feedButton.setToolTipText(gC.getFamiliar().getPortions() + " portions de " + gC.getFamiliar().getFood() + " restantes ");
 
         sleepButton = new CustomMenuButton("Dormir", BOTTOM_LABEL_FONT_SIZE);
         sleepButton.setPreferredSize(new Dimension(BOTTOM_BUTTON_WIDTH, BOTTOM_BUTTON_HEIGHT));
@@ -166,7 +167,7 @@ public class GameView {
         goLeftButton.addActionListener(gC);
         goRightButton.addActionListener(gC);
         
-        currentRoom = new CustomMenuLabel("Piece : " + gC.getCurrentRoom().getName(), LABEL_FONT_SIZE);
+        currentRoom = new CustomMenuLabel("Pièce : " + gC.getCurrentRoom().getName(), LABEL_FONT_SIZE);
         currentRoom.setBorder(new EmptyBorder(0,10,0,10));
 
         roomSelector.add(goLeftButton);
@@ -300,5 +301,13 @@ public class GameView {
     	washButton.setEnabled(false);
     	goLeftButton.setEnabled(false);
     	goRightButton.setEnabled(false);
+    }
+
+    public JLabel getCurrentWeatherLabel() {
+        return this.weather;
+    }
+
+    public JButton getCurrentFeedButton() {
+        return feedButton;
     }
 }

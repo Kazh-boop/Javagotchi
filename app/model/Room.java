@@ -39,13 +39,14 @@ public class Room {
     /**
      * method to change the weather randomly
      */
-    public void changeWeather() {
-         Random ran = new Random();
+    public boolean changeWeather() {
+        int newWeather = new Random().nextInt(100);
 
-        int newWeather = ran.nextInt(100);
         if(newWeather < AMOUNT_OF_WEATHER ) {
             currentWeather = Weather.getWeatherById(newWeather);
+            return true;
         }
+        return false;
     }
 
     /**

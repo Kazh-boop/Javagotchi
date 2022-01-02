@@ -250,4 +250,8 @@ public abstract class Familiar implements Serializable {
     	final Familiar fam = (Familiar) obj;
     	return this.name.equals(fam.getName());
     }
+
+    public String getFood() {
+        return food;
+    }
 }
