@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.AfterEach;
 
@@ -72,28 +73,6 @@ class TestFamiliar {
 	public void testSetPortionsWrongValue() {
 		familiar.setPortions(5);
 		assertEquals(2, familiar.getPortions());
-	}
-	
-	@Test
-	public void testGetHappiness() {
-		assertEquals(100, familiar.getHappiness());
-	}
-	
-	@Test
-	public void testSetHappiness() {
-		familiar.setHappiness(5);
-		assertEquals(5, familiar.getHappiness());
-	}
-	
-	@Test
-	public void testSetHappinessWrongValue() {
-		familiar.setHappiness(150);
-		assertEquals(100, familiar.getHappiness());
-	}
-	
-	@Test
-	public void testGetHygiene() {
-		assertEquals(100, familiar.getHappiness());
 	}
 	
 	@Test
@@ -217,21 +196,16 @@ class TestFamiliar {
 	public void testFeedMaxStats() throws FeedException {
 		setUpFeed();
 		familiar.setHungriness(100);
-		familiar.feed();
-		// pas de changement
-		assertEquals(MAX_STATS, familiar.getHungriness());
+		Throwable exception = assertThrows(FeedException.class, () -> familiar.feed());
+		assertEquals("Le familier est repu !", exception.getMessage());
 	}
 	
 	@Test
 	public void testFeedWrongPlace() throws FeedException {
 		setUpFeed();
 		familiar.setRoom(Rooms.LIVING_ROOM);
-		familiar.feed();
-		// pas de changement
-		assertEquals(TEST_HUNGRINESS, familiar.getHungriness());
-		assertEquals(MAX_STATS, familiar.getEnergy());
-		assertEquals(MAX_STATS, familiar.getHygiene());
-		assertEquals(2, familiar.getPortions());
+		Throwable exception = assertThrows(FeedException.class, () -> familiar.feed());
+		assertEquals("Le familier ne peut etre nourri que dans la cuisine !", exception.getMessage());
 	}
 	
 	// Test nourrir familier quand il n'y a plus de portion
@@ -239,9 +213,8 @@ class TestFamiliar {
 	public void testFeedNoPortion() throws FeedException {
 		setUpFeed();
 		familiar.resetPortion();
-		familiar.feed();
-		// pas de changement
-		assertEquals(TEST_HUNGRINESS, familiar.getHungriness());
+		Throwable exception = assertThrows(FeedException.class, () -> familiar.feed());
+		assertEquals("Vous n'avez plus de portions !", exception.getMessage());
 	}
 	
 	@Test
@@ -293,7 +266,7 @@ class TestFamiliar {
 	}
 	
 	@Test
-	public void testModMiserable() {
+	public void testMoodMiserable() {
 		familiar.setMoodValue(10);
 		familiar.setMood(familiar.changeMood());
 		assertEquals(Mood.MISERABLE, familiar.getMood());

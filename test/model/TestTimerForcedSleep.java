@@ -2,8 +2,8 @@ package test.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import app.model.Cat;
@@ -16,13 +16,13 @@ class TestTimerForcedSleep {
 	private static Familiar familiar;
 	private static GameView gameView;
 	
-	@BeforeAll
-	public static void setUp() {
+	@BeforeEach
+	public void setUp() {
 		familiar = new Cat("Filou");
 	}
 	
-	@AfterAll
-	public static void tearDown() {
+	@AfterEach
+	public void tearDown() {
 		familiar = null;
 	}
 	

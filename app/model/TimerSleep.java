@@ -39,6 +39,8 @@ public class TimerSleep extends TimerTask{
             	if (count <= 5)
             	{
             		familiar.setEnergy(familiar.getEnergy() + 7);
+            		if (gameView != null)
+            			gameView.getPbEnergy().setValue(familiar.getEnergy());
             	}
             	else {
             		gameView.enableAll();
