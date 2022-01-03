@@ -17,8 +17,9 @@ public class TimerHungriness extends TimerTask {
         minutesPerHungriness = 10 * 60 * 1000;
     }
     
-    public TimerHungriness (Familiar familiar, int period){
+    public TimerHungriness (Familiar familiar, GameView gameView, int period){
         this.familiar = familiar;
+        this.gameView = gameView;
         minutesPerHungriness = period;
     }
     
@@ -30,7 +31,8 @@ public class TimerHungriness extends TimerTask {
             @Override
             public void run() {
                 familiar.setHungriness(familiar.getHungriness() - 1);
-                gameView.getPbHunger().setValue(familiar.getHungriness());
+                if (gameView != null)
+                	gameView.getPbHunger().setValue(familiar.getHungriness());
             }
           }, 0, minutesPerHungriness ); 
     }

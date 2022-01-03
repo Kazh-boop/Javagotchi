@@ -17,8 +17,9 @@ public class TimerVitality extends TimerTask {
         minutesPerVitality = 6 * 60 * 1000;
     }
     
-    public TimerVitality(Familiar familiar, int period){
+    public TimerVitality(Familiar familiar, GameView gameView, int period){
         this.familiar = familiar;
+        this.gameView = gameView;
         minutesPerVitality = period;
     }
     
@@ -28,7 +29,7 @@ public class TimerVitality extends TimerTask {
     	if	(
     		familiar.getEnergy() > 90 &&
     		familiar.getHygiene() > 90 &&
-    		familiar.getHappiness() > 90 &&
+    		familiar.getMood().equals(Mood.HAPPY) &&
     		familiar.getHungriness() > 90
     		)
     	{
@@ -43,7 +44,7 @@ public class TimerVitality extends TimerTask {
     	if	(
     		familiar.getEnergy() < 15 &&
     		familiar.getHygiene() < 15 &&
-    		familiar.getHappiness() < 15 &&
+    		familiar.getMood().equals(Mood.MISERABLE) &&
     		familiar.getHungriness() < 15
     		)
     	{
@@ -62,15 +63,15 @@ public class TimerVitality extends TimerTask {
                 if(Boolean.TRUE.equals(increased()))
                 {
                 	System.out.println("Energie UP");
-                	familiar.setVitality(familiar.getVitality() + 1);
-                	gameView.getPbVitality().setValue(familiar.getVitality());
+                	familiar.setVitality(familiar.getVitality() + 1);	
                 }
                 if(Boolean.TRUE.equals(decreased()))
                 {
                 	System.out.println("Energie DOWN");
                 	familiar.setVitality(familiar.getVitality() - 1);
-                	gameView.getPbVitality().setValue(familiar.getVitality());
                 }
+                if (gameView != null)
+                	gameView.getPbVitality().setValue(familiar.getVitality());
                 
             }
           }, 0, minutesPerVitality); //wait 0 ms before doing the action and do it every 30 minutes
