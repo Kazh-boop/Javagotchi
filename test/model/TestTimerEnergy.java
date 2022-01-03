@@ -28,21 +28,21 @@ public class TestTimerEnergy {
 	@Test
 	public void testNewTimerEnergy()
 	{
-		TimerEnergy timerEnergy = new TimerEnergy(familiar);
+		TimerEnergy timerEnergy = new TimerEnergy(familiar, null);
 		assertNotNull(timerEnergy);
 	}
 	
 	@Test
 	public void testNewTimerEnergyPeriod()
 	{
-		TimerEnergy timerEnergy = new TimerEnergy(familiar, 10);
+		TimerEnergy timerEnergy = new TimerEnergy(familiar, null, 10);
 		assertNotNull(timerEnergy);
 	}
 	
 	@Test
 	public void testTimerLoseEnergy() throws InterruptedException {
 		// on definit un timer avec une intervalle de 10ms
-		TimerEnergy timerEnergy = new TimerEnergy(familiar, 10);
+		TimerEnergy timerEnergy = new TimerEnergy(familiar, null, 10);
 		timerEnergy.run();
 		Thread.sleep(50);
 		assertEquals(95, familiar.getEnergy());

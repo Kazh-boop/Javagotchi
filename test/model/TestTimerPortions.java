@@ -3,8 +3,8 @@ package test.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import app.model.Cat;
@@ -15,12 +15,12 @@ public class TestTimerPortions {
 	
 	private Familiar familiar;
 	
-	@BeforeAll
+	@BeforeEach
 	public void setUp() {
 		familiar = new Cat("Filou");
 	}
 	
-	@AfterAll
+	@AfterEach
 	public void tearDown() {
 		familiar = null;
 	}
