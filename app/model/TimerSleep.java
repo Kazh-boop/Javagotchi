@@ -36,10 +36,10 @@ public class TimerSleep extends TimerTask{
             @Override
             public void run() {
             	count++;
-            	if (count <= 5)
+            	if (count <= 5)  
             	{
             		familiar.setEnergy(familiar.getEnergy() + 7);
-            		if (gameView != null)
+                    if (gameView != null)
             			gameView.getPbEnergy().setValue(familiar.getEnergy());
             	}
             	else {
