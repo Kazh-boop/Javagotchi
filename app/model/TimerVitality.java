@@ -11,6 +11,10 @@ public class TimerVitality extends TimerTask {
     private GameView gameView;
 
 
+    /**
+     * constructor 
+     */
+
     public TimerVitality(Familiar familiar, GameView gameView){
         this.familiar = familiar;
         this.gameView = gameView;
@@ -21,6 +25,10 @@ public class TimerVitality extends TimerTask {
         this.familiar = familiar;
         minutesPerVitality = period;
     }
+
+    /**
+     * returns true if vitality is above 90%
+     */
     
     private Boolean increased()
     {
@@ -36,6 +44,10 @@ public class TimerVitality extends TimerTask {
     	}
     	return result;
     }
+
+    /**
+    * returns true if vitality is below 15% 
+    */
     
     private Boolean decreased()
     {

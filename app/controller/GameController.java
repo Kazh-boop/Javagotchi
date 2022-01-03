@@ -107,6 +107,10 @@ public class GameController implements ActionListener {
         }
     }
     
+    /**
+    * action taken when FeedButton is clicked
+    */
+
     private void onClickFeed() {
     	try {
     		currentFamiliar.feed();
@@ -116,6 +120,10 @@ public class GameController implements ActionListener {
     		gameView.errorFeed(e.getMessage());
     	}
     }
+
+    /**
+    * action taken when WashButton is clicked
+    */
     
     private void onClickWash() {
     	try {
@@ -125,6 +133,10 @@ public class GameController implements ActionListener {
     		gameView.errorWash(e.getMessage());
     	}
     }
+
+    /**
+    * action taken when SleepButton is clicked
+    */
     
     private void onClickSleep() {
     	try {
@@ -137,6 +149,10 @@ public class GameController implements ActionListener {
 			gameView.errorSleep(e.getMessage());
 		}	
     }
+
+    /**
+    * action taken when GoLeftButton is clicked
+    */
     
     private void onClickGoLeft() {
     	currentFamiliar.moveLeft();
@@ -144,11 +160,19 @@ public class GameController implements ActionListener {
         updateWeather();
     }
 
+    /**
+    * action taken when GoRightButton is clicked
+    */
+
     private void onClickGoRight() {
     	currentFamiliar.moveRight();
         updateRoom();
         updateWeather();
     }
+
+    /**
+    * change the weather
+    */
     
     private void updateWeather() {
         if(getCurrentRoom().changeWeather()) {
@@ -156,6 +180,10 @@ public class GameController implements ActionListener {
             gameView.getPbhygiene().setValue(currentFamiliar.getHygiene());
         }
     }
+
+    /**
+    * change room
+    */
 
     private void updateRoom() {
         currentFamiliar.changeMood();

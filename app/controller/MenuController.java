@@ -103,6 +103,9 @@ public class MenuController implements ActionListener {
 		return this.mainFrame;
 	}
 
+	/**
+	 * return the sound to make when clicked
+	 */
 	public String getClickSound() {
 		return MenuController.SOUNDS_MENU_CLICK;
 	}

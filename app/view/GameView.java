@@ -73,7 +73,7 @@ public class GameView {
     }
 
     /**
-     * layout of the different items in the game, such as the progressive bars 
+     * layout of the different items in the game
       */
 
     public void display(){
@@ -99,6 +99,8 @@ public class GameView {
         weather = new CustomMenuLabel("Météo : " + gC.getCurrentRoom().getWeatherName(), LABEL_FONT_SIZE);
         weather.setAlignmentX(Component.LEFT_ALIGNMENT);
 
+        // representation of the vitality of the familiar
+
         vitality = new CustomMenuLabel(" Vitalité : ", LABEL_FONT_SIZE);
         vitality.setBorder(new EmptyBorder(0, RIGHT_BORDER_VITALITY, 0, 0));
         vitality.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -108,6 +110,8 @@ public class GameView {
         hygiene = new CustomMenuLabel(" Hygiène : ",LABEL_FONT_SIZE);
 
         hunger = new CustomMenuLabel(" Faim : ", LABEL_FONT_SIZE);
+
+        // progressive bar
 
         pbEnergy = new JProgressBar(LOWER_BOUND_PBAR, HIGHER_BOUND_PBAR);
         pbEnergy.setValue(gC.getFamiliar().getEnergy());
@@ -128,6 +132,8 @@ public class GameView {
         pbVitality.setMaximumSize(new Dimension(VITALITY_PB_WIDTH,VITALITY_PB_HEIGHT));
         pbVitality.setSize(new Dimension(10,10));
         pbVitality.setStringPainted(true);
+
+        // feedButton
         
         feedButton = new CustomMenuButton("Nourrir", BOTTOM_LABEL_FONT_SIZE);
         feedButton.setPreferredSize(new Dimension(BOTTOM_BUTTON_WIDTH, BOTTOM_BUTTON_HEIGHT));
@@ -135,10 +141,14 @@ public class GameView {
         feedButton.setForeground(CustomMenuButton.getColorGreen());
         feedButton.setToolTipText(gC.getFamiliar().getPortions() + " portions de " + gC.getFamiliar().getFood() + " restantes ");
 
+        // sleepButton
+
         sleepButton = new CustomMenuButton("Dormir", BOTTOM_LABEL_FONT_SIZE);
         sleepButton.setPreferredSize(new Dimension(BOTTOM_BUTTON_WIDTH, BOTTOM_BUTTON_HEIGHT));
         sleepButton.setBackground(CustomMenuButton.getPearl());
         sleepButton.setForeground(CustomMenuButton.getColorGreen());
+
+        // washButton
 
         washButton = new CustomMenuButton("Laver", BOTTOM_LABEL_FONT_SIZE);
         washButton.setPreferredSize(new Dimension(BOTTOM_BUTTON_WIDTH, BOTTOM_BUTTON_HEIGHT));
@@ -175,6 +185,10 @@ public class GameView {
         roomSelector.add(goRightButton);
         roomSelector.setAlignmentX(Component.LEFT_ALIGNMENT);
 
+        /**
+         * addition of the different items on the left of the screen
+         */
+
         leftPanel.setBorder(new EmptyBorder(0, LEFT_PANEL_BORDER, 0, 0));     
         leftPanel.add(Box.createVerticalStrut(LEFT_PANEL_SPACING));
         leftPanel.add(save);
@@ -192,6 +206,9 @@ public class GameView {
         leftPanel.add(pbVitality);
         leftPanel.add(Box.createVerticalStrut(LEFT_PANEL_SPACING));
 
+        /**
+         * addition of the different items on the bottom of the screen
+         */
      
         bottomPanel.add(sleepButton);
         bottomPanel.add(energy);
@@ -212,49 +229,98 @@ public class GameView {
         
     }
 
+    /**
+     * @return save JButton
+     */
+
     public JButton getSave() {
         return this.save;
     }
+
+    /**
+     * @return SleepButton JButton
+     */
     
     public JButton getSleepButton() {
-    	return sleepButton;
+    	return sleepButton; 
     }
+
+    /**
+     * @return FeedButton JButton
+     */
     
     public JButton getFeedButton() {
-    	return feedButton;
+    	return feedButton; 
     }
+
+    /**
+     * @return WashButton JButton
+     */
     
     public JButton getWashButton() {
-    	return washButton;
+    	return washButton; 
     }
+
+    /**
+     * @return GoLeftButton JButton 
+     */
     
     public JButton getGoLeftButton() {
-    	return goLeftButton;
+    	return goLeftButton; 
     }
+
+    /**
+     * @return GoRightButton JButton
+     */
     
     public JButton getGoRightButton() {
     	return goRightButton;
     }
+
+    /**
+     * @return CurrentRoom JLabel
+     */
     
     public JLabel getCurrentRoomLabel() {
     	return currentRoom;
     }
+
+    /**
+     * @return pbEnergy JProgressBar
+     */
     
     public JProgressBar getPbEnergy() {
     	return pbEnergy;
     }
+
+    /**
+     * @return pbHunger JProgressBar
+     */
     
     public JProgressBar getPbHunger() {
     	return pbHunger;
     }
+
+    /**
+     * @return pbVitality JProgressBar
+     */
     
     public JProgressBar getPbVitality() {
     	return pbVitality;
     }
     
+    /**
+     * @return pbHygiene JProgressBar
+     */
+
     public JProgressBar getPbhygiene() {
     	return pbHygiene;
     }
+
+
+    /** 
+     * displays a message to say that the backup was successful
+     */
 
     public void successfulSave() {
         JOptionPane.showMessageDialog(
@@ -263,6 +329,11 @@ public class GameView {
         );
     }
     
+
+    /**
+     * display of error messages
+     */
+
     public void errorSave(String error) {
         JOptionPane.showMessageDialog(
             null, 
@@ -286,6 +357,10 @@ public class GameView {
             null, 
             "Le familier ne peut pas dormir : " + error);
     }
+
+    /**
+     * enable of the various buttons
+     */
     
     public void enableAll() {
     	sleepButton.setEnabled(true);
@@ -294,6 +369,10 @@ public class GameView {
     	goLeftButton.setEnabled(true);
     	goRightButton.setEnabled(true);
     }
+
+    /**
+     * disable of thne various buttons
+     */
     
     public void disableAll() {
     	sleepButton.setEnabled(false);
@@ -302,6 +381,10 @@ public class GameView {
     	goLeftButton.setEnabled(false);
     	goRightButton.setEnabled(false);
     }
+
+    /**
+     * return the weather
+     */
 
     public JLabel getCurrentWeatherLabel() {
         return this.weather;

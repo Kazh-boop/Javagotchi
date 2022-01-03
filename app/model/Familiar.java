@@ -58,6 +58,10 @@ public abstract class Familiar implements Serializable {
         this.portions = 2;
     }
 
+    /**
+     * method of feeding the familiar
+     */
+
     public void feed() throws FeedException {
             canBeFeed();
             setHungriness(this.hungriness + MAX_RETRIEVE_STAT);
@@ -66,6 +70,10 @@ public abstract class Familiar implements Serializable {
             this.portions--;
     }
 
+
+    /**
+     * method of determining whether the familiar can be fed or not
+     */
     public void canBeFeed() throws FeedException {
     	if(hungriness == MAX_STATS)
     	{
@@ -79,6 +87,10 @@ public abstract class Familiar implements Serializable {
     	}
     }
     
+    /**
+     * method for add a portion
+     */ 
+
     public void addPortion() {
         if(this.portions < MAX_PORTIONS) this.portions++;
     }
@@ -105,6 +117,10 @@ public abstract class Familiar implements Serializable {
             this.happiness = happiness; // allows you to change the hapiness of the familiar
         }
     }
+
+    /**
+     * method of washing the familiar
+     */
     
     public void wash() throws WashException {
     	canWash();
@@ -112,6 +128,9 @@ public abstract class Familiar implements Serializable {
     	setHygiene(hygiene + MAX_RETRIEVE_STAT);
     }
     
+    /**
+     * method of determining whether the familiar can be wash or not
+     */
     public void canWash() throws WashException {
     	if(hygiene == MAX_STATS) {
     		throw new WashException(name + " est déjà tout propre !");
@@ -170,6 +189,10 @@ public abstract class Familiar implements Serializable {
         return familiarType; // return the type of the famailiar
     }
 
+    /**
+     * method for resetting the familiar's position
+     */ 
+
     public void resetPosition() {
         if(room == null) {
             this.room = new Room(Rooms.LIVING_ROOM);
@@ -194,6 +217,12 @@ public abstract class Familiar implements Serializable {
     	hygiene--;
     }
     
+
+    /**
+     * method of allowing the familiar to sleep,
+     * unless it is full of energy
+     */
+
     public void sleep() throws SleepException {
     	if(energy == MAX_STATS) {
     		throw new SleepException(name + " est plein d'énergie !");
@@ -250,6 +279,10 @@ public abstract class Familiar implements Serializable {
     	final Familiar fam = (Familiar) obj;
     	return this.name.equals(fam.getName());
     }
+
+    /**
+     * return the familiar's food
+     */
 
     public String getFood() {
         return food;

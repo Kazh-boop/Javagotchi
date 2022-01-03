@@ -11,7 +11,12 @@ public class TimerSleep extends TimerTask{
     private int minutesPerEnergy;
     private GameView gameView;
     private int count = 0;
-	
+
+
+	/**
+     * constructor
+     */
+
     public TimerSleep(Familiar familiar, GameView gameView){
         this.familiar = familiar;
         minutesPerEnergy = 2 * 60 * 1000;
