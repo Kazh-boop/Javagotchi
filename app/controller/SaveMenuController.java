@@ -1,6 +1,7 @@
 package app.controller;
 
 import app.model.SaveManager;
+import app.util.SoundManager;
 import app.view.MainFrame;
 import app.view.SavesMenu;
 import app.model.Familiar;
@@ -77,7 +78,7 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
         if (!(e.getValueIsAdjusting())) {
-        	this.menuController.playsound(menuController.getClickSound());
+        	SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
         	this.savesMenu.enableToAction();
         }
 	}
@@ -86,7 +87,7 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
 	 * action when the button BackMenu is clicked
 	  */
 	private void onClickBackMenu() {
-		menuController.playsound(menuController.getClickSound());
+		SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
 		menuController.mainMenuDisplay();
 	}
 	
@@ -96,7 +97,7 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
 	  */
 	private void onClickDeleteFamiliarButton() {
     	if (!(this.savesMenu.getListSave().isSelectionEmpty())) { // checking a selection
-    		menuController.playsound(menuController.getClickSound());
+    		SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
     		Familiar f = this.savesMenu.getListSave().getSelectedValue(); // recovery of a selection
     		int confirmDelete = JOptionPane.showConfirmDialog(
     				null, 
@@ -105,15 +106,16 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
     				JOptionPane.YES_NO_OPTION);
     		
     		if (confirmDelete == 0) { // yes == 0
-        		menuController.playsound(menuController.getClickSound());
+        		SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
     			this.savesMenu.getModelFamiliar().removeElement(f); // removal of the display
     			this.saveManager.deleteSave(f.getUID()); // deleting the backup file
 
     			this.savesMenu.getListSave().clearSelection(); // update selection
     			this.savesMenu.disableToAction(); // disabling the action buttons on the backup
-    		} else // no
-    			menuController.playsound(menuController.getClickSound());
-    	}
+    		} else { // no
+			SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
+    		}
+		}
 	}
 
 	/**
@@ -121,7 +123,7 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
 	  */
 	
 	private void onClickLoadSave() {
-		menuController.playsound(menuController.getClickSound());
+		SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
 		if (!(this.savesMenu.getListSave().isSelectionEmpty())) { // checking a selection
     		Familiar familiarToLoad = this.savesMenu.getListSave().getSelectedValue(); // recovery of a selection
     		if (!(familiarToLoad.isDead())) {
