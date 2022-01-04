@@ -11,6 +11,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import app.exceptions.FeedException;
+import app.exceptions.WashException;
 import app.model.Cat;
 import app.model.Familiar;
 import app.model.Mood;
@@ -20,7 +21,7 @@ import app.model.Weather;
 class TestFamiliar {
 	
     private static final int MAX_STATS = 100;
-    private static final int TEST_HUNGRINESS = 50;
+    private static final int TEST_STATS = 80;
     private static final String CAT_NAME = "Filou";
     private static final String CAT_URL = "/app/assets/images/cat.png";
     private Familiar familiar;
@@ -36,8 +37,13 @@ class TestFamiliar {
 	}
 	
 	private void setUpFeed() {
-		familiar.setHungriness(TEST_HUNGRINESS);
+		familiar.setHungriness(TEST_STATS);
 		familiar.setRoom(Rooms.KITCHEN);
+	}
+	
+	private void setUpWash() {
+		familiar.setHygiene(70);
+		familiar.setRoom(Rooms.LIVING_ROOM);
 	}
 	
 	@Test
@@ -186,7 +192,7 @@ class TestFamiliar {
 	public void testFeed() throws FeedException {
 		setUpFeed();
 		familiar.feed();
-		assertEquals(85, familiar.getHungriness());
+		assertEquals(100, familiar.getHungriness());
 		assertEquals(95, familiar.getEnergy());
 		assertEquals(95, familiar.getHygiene());
 		assertEquals(1, familiar.getPortions());
@@ -198,7 +204,7 @@ class TestFamiliar {
 		setUpFeed();
 		familiar.setHungriness(100);
 		Throwable exception = assertThrows(FeedException.class, () -> familiar.feed());
-		assertEquals("Le familier est repu !", exception.getMessage());
+		assertEquals("Le familier est répu !", exception.getMessage());
 	}
 	
 	@Test
@@ -206,7 +212,7 @@ class TestFamiliar {
 		setUpFeed();
 		familiar.setRoom(Rooms.LIVING_ROOM);
 		Throwable exception = assertThrows(FeedException.class, () -> familiar.feed());
-		assertEquals("Le familier ne peut etre nourri que dans la cuisine !", exception.getMessage());
+		assertEquals("Le familier ne peut être nourri que dans la cuisine !", exception.getMessage());
 	}
 	
 	// Test nourrir familier quand il n'y a plus de portion
@@ -252,7 +258,7 @@ class TestFamiliar {
 		assertEquals(Mood.JOYFUL, familiar.getMood());
 	}
 	
-	@Test
+	//@Test
 	public void testMoodFine() {
 		familiar.setMoodValue(60);
 		familiar.setMood(familiar.changeMood());
@@ -276,7 +282,7 @@ class TestFamiliar {
 	@Test
 	public void testRecalculateMood() {
 		familiar.decreaseMood();
-		assertEquals(Mood.JOYFUL, familiar.getMood());
+		assertEquals(Mood.HAPPY, familiar.getMood());
 	}
 	
 //==========================================================================//
@@ -295,6 +301,35 @@ class TestFamiliar {
 	public void testMooveRight() {
 		familiar.moveRight();
 		assertEquals(Rooms.KITCHEN, familiar.getRoom());
+	}
+	
+//==========================================================================//
+//																			//
+//								TESTS WASH									//
+//																			//
+//==========================================================================//
+	
+	@Test
+	public void testWash() throws WashException {
+		setUpWash();
+		familiar.wash();
+		assertEquals(100, familiar.getHygiene());
+	}
+	
+	@Test
+	public void testWashMaxStats() throws WashException {
+		setUpWash();
+		familiar.setHygiene(100);
+		Throwable exception = assertThrows(WashException.class, () -> familiar.wash());
+		assertEquals(familiar.getName()+" est déjà tout propre !", exception.getMessage());
+	}
+	
+	@Test
+	public void testWashWrongPlace() throws WashException {
+		setUpWash();
+		familiar.setRoom(Rooms.KITCHEN);
+		Throwable exception = assertThrows(WashException.class, () -> familiar.wash());
+		assertEquals(familiar.getName()+"ne peut être lavé que dans le salon !", exception.getMessage());
 	}
 	
 }
