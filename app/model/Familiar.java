@@ -48,7 +48,7 @@ public abstract class Familiar implements Serializable {
     private static final int JOY_THRESHOLD = 70;
     private static final int FINE_THRESHOLD = 55;
     private static final int SAD_THRESHOLD = 35;
-    
+        
     // Constructor called by childs class to init attributes value
     protected Familiar() {
         this.energy = MAX_STATS;
@@ -132,7 +132,7 @@ public abstract class Familiar implements Serializable {
     		throw new WashException(name + " est déjà tout propre !");
     	}
     	else if(room.getRooms() != Rooms.LIVING_ROOM) {
-    		throw new WashException(name + "ne peut pas être lavé dans le salon !");
+    		throw new WashException(name + "ne peut être lavé que dans le salon !");
     	}
     }
     
@@ -140,9 +140,11 @@ public abstract class Familiar implements Serializable {
         return hygiene; // return the hygiene of the familiar
     }
     
+    // allows you to change the percentage of hygiene
     public void setHygiene(final int hygiene){
-        if(hygiene < MAX_STATS){
-            this.hygiene = hygiene; // allows you to change the percentage of hygiene
+    	this.hygiene = hygiene;
+        if(this.hygiene > MAX_STATS){
+            this.hygiene = MAX_STATS; 
         }
     }
 
