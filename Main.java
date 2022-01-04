@@ -1,3 +1,4 @@
+
 import app.controller.*;
 
 public class Main {
@@ -5,3 +6,4 @@ public class Main {
         new MenuController();
     }
 }
+

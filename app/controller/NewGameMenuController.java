@@ -16,6 +16,7 @@ import app.model.Familiar;
 import app.model.Rabbit;
 import app.model.Robot;
 import app.model.SaveManager;
+import app.util.SoundManager;
 import app.view.MainFrame;
 import app.view.NewGameMenu;
 
@@ -66,19 +67,19 @@ public class NewGameMenuController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == this.newGameMenu.getBackMenu()) {
-			menuController.playsound(menuController.getClickSound());
+			SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
 			menuController.mainMenuDisplay();
 			
         }else if(e.getSource() == this.newGameMenu.getLeftFamiliarType()) {
-        	menuController.playsound(menuController.getClickSound());
+        	SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
         	turnLeftFamiliar();
         	
         }else if(e.getSource() == this.newGameMenu.getRightFamiliarType()) {
-        	menuController.playsound(menuController.getClickSound());
+        	SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
         	turnRightFamiliar();
         	
         }else if(e.getSource() == this.newGameMenu.getLaunchGame()) {
-        	menuController.playsound(menuController.getClickSound());
+        	SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
         	launchNewGame();
         }
 		
@@ -155,11 +156,11 @@ public class NewGameMenuController implements ActionListener {
     		
     		switch(saveListFullAnswer){
     			case 0: // ok
-    				menuController.playsound(menuController.getClickSound());
+					SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
     				break;
     				
 	    		case 1: // backups
-	    			menuController.playsound(menuController.getClickSound());
+					SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
 	    			try {
 	    				menuController.saveMenuController.savesMenuDisplay();
 	    			} catch (ClassNotFoundException | IOException e) {
@@ -168,7 +169,7 @@ public class NewGameMenuController implements ActionListener {
 	    			break;
     		
     			default:
-    				menuController.playsound(menuController.getClickSound());
+					SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
     				menuController.mainMenuDisplay();
     				break;
     		}
@@ -208,7 +209,7 @@ public class NewGameMenuController implements ActionListener {
 	    	        			break;
 	    	        	}
 						if(newFamiliar != null) {
-							menuController.playsound(menuController.getClickSound());
+							SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
 							try { 
 								saveManager.openFile(newFamiliar.getUID());
 								saveManager.writeSave(newFamiliar);
@@ -220,11 +221,11 @@ public class NewGameMenuController implements ActionListener {
 					break;
 					
 	    		case 1:
-	    			menuController.playsound(menuController.getClickSound());
+				SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
 	    			break;
     		
     			default:
-    				menuController.playsound(menuController.getClickSound());
+					SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
     				menuController.mainMenuDisplay();
     				break;
     		}

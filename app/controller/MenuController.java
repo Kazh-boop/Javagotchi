@@ -10,6 +10,7 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import app.util.SoundManager;
 import app.view.*;
 
 public class MenuController implements ActionListener {
@@ -19,9 +20,7 @@ public class MenuController implements ActionListener {
 	protected SaveMenuController saveMenuController;
 	private MainMenu mainMenu;
 	
-	private static final String SOUNDS_MENU_CLICK = "../assets/sounds/click.wav";
-	private static final String SOUNDS_DOOR = "../assets/sounds/door.wav";
-	private static final String SOUNDS_SAVE = "../assets/sounds/save.wav";
+
 	
     /**
 	 * initializes the 3 Controller menus and the mainFrame,
@@ -63,38 +62,24 @@ public class MenuController implements ActionListener {
 		
 		// JButton form MainMenu
         if(e.getSource() == this.mainMenu.getNewGame()) {
-        	playsound(SOUNDS_MENU_CLICK);
+        	SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
         	newGameMenuController.newGameMenuDisplay();
         	
         }else if(e.getSource() == this.mainMenu.getSaves()) {
             try {
-            	playsound(SOUNDS_MENU_CLICK);
+            	SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
 				saveMenuController.savesMenuDisplay();
 			} catch (ClassNotFoundException | IOException e1) {
 				e1.printStackTrace();
 			}
         	
         }else if(e.getSource() == this.mainMenu.getQuit()) {
-        	playsound(SOUNDS_MENU_CLICK);
+        	SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
         	System.exit(1);
         }
 	}
 	
-	/**
-	 * method for starting the sound clip
-	  */
-	protected void playsound(String path) {
-		try {
-			Clip clip = AudioSystem.getClip();
-			clip.open(AudioSystem.getAudioInputStream(getClass().getResourceAsStream(path)));
-			FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-			gainControl.setValue(-20.0f);
-            clip.setFramePosition(0);
-            clip.start();
-		} catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
-			e.printStackTrace();
-		}
-	}
+
 	
 	/**
 	 * 
@@ -105,24 +90,5 @@ public class MenuController implements ActionListener {
 		return this.mainFrame;
 	}
 
-	/**
-	 * @return the sound to make when clicked
-	 */
-	public String getClickSound() {
-		return MenuController.SOUNDS_MENU_CLICK;
-	}
-	
-	/**
-	 * @return the sound to make when the room is changed
-	 */
-	public String getDoorSound() {
-		return MenuController.SOUNDS_DOOR;
-	}
-	
-	/**
-	 * @return the sound to make when the game is saved
-	 */
-	public String getSaveSound() {
-		return MenuController.SOUNDS_SAVE;
-	}
+
 }

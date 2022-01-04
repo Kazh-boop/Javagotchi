@@ -8,6 +8,7 @@ import app.model.SaveManager;
 import app.model.TimerSleep;
 import app.model.TimerEnergy;
 import app.model.TimerVitality;
+import app.util.SoundManager;
 import app.model.TimerHungriness;
 import app.model.TimerPortions;
 
@@ -81,27 +82,27 @@ public class GameController implements ActionListener {
     @Override
 	public void actionPerformed(ActionEvent e) {
     	if (e.getSource() == this.gameView.getSave()) { 
-    		menuController.playsound(menuController.getClickSound());
+    		SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
             this.onClickSave();
     	}
     	else if(e.getSource() == this.gameView.getFeedButton()) {
-    		menuController.playsound(menuController.getClickSound());
+    		SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
     		onClickFeed();
     	}
     	else if(e.getSource() == this.gameView.getWashButton()) {
-    		menuController.playsound(menuController.getClickSound());
+    		SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
     		onClickWash();
     	}
     	else if(e.getSource() == this.gameView.getSleepButton()) {
-    		menuController.playsound(menuController.getClickSound());
+    		SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
 			onClickSleep();
     	}
     	else if(e.getSource() == this.gameView.getGoLeftButton()) {
-    		menuController.playsound(menuController.getDoorSound());
+    		SoundManager.playsound(SoundManager.SOUNDS_DOOR);
     		onClickGoLeft();
     	}
     	else if(e.getSource() == this.gameView.getGoRightButton()) {
-    		menuController.playsound(menuController.getDoorSound());
+    		SoundManager.playsound(SoundManager.SOUNDS_DOOR);
     		onClickGoRight();
     	}
 	}
@@ -112,7 +113,7 @@ public class GameController implements ActionListener {
     private void onClickSave() {
         try {
             saveManager.writeSave(currentFamiliar);
-    		menuController.playsound(menuController.getSaveSound());
+    		SoundManager.playsound(SoundManager.SOUNDS_SAVE);
             gameView.successfulSave();
         } catch (IOException e) {
             e.printStackTrace();
