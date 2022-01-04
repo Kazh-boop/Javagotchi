@@ -310,7 +310,8 @@ public class GameView {
     }    
 
     /**
-     * display of error messages
+     * display an error message
+     * @param error
      */
     public void errorSave(String error) {
         JOptionPane.showMessageDialog(
@@ -318,18 +319,30 @@ public class GameView {
             "Erreur lors de la sauvegarde : " + error);
     }
     
+    /**
+     * display an error message
+     * @param error
+     */
     public void errorFeed(String error) {
         JOptionPane.showMessageDialog(
             null, 
             "Le familier ne peut pas être nourri : " + error);
     }
     
+    /**
+     * display an error message
+     * @param error
+     */
     public void errorWash(String error) {
         JOptionPane.showMessageDialog(
             null, 
             "Le familier ne peut pas être lavé : " + error);
     }
     
+    /**
+     * display an error message
+     * @param error
+     */
     public void errorSleep(String error) {
         JOptionPane.showMessageDialog(
             null, 
@@ -339,7 +352,6 @@ public class GameView {
     /**
      * enable all buttons of GameView
      */
-    
     public void enableAll() {
     	sleepButton.setEnabled(true);
     	feedButton.setEnabled(true);
@@ -351,7 +363,6 @@ public class GameView {
     /**
      * disable all buttons of GameView
      */
-    
     public void disableAll() {
     	sleepButton.setEnabled(false);
     	feedButton.setEnabled(false);
@@ -361,13 +372,15 @@ public class GameView {
     }
 
     /**
-     * return the weather
+     * @return the weather
      */
-
     public JLabel getCurrentWeatherLabel() {
         return this.weather;
     }
 
+    /**
+     * @return MiddlePanel
+     */
     public MiddlePanel getMiddlePanel() {
         return this.middlePanel;
     }
