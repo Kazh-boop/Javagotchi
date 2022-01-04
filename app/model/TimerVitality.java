@@ -65,6 +65,10 @@ public class TimerVitality extends TimerTask {
     	return result;
     }
 
+    /**
+     * starting the timer and changing setVitality
+     */
+
     @Override
     public void run() {
         Timer timer = new Timer();

@@ -42,11 +42,19 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
 		flush();
 		savesMenu.display(this);
 	}
+
+	/**
+	 * return all Name of familiar saved
+	 */
 	
 	public String[] getSaveName() {
 		return saveManager.getNameSave();
 	}
 	
+	/**
+	 * return all Familiar saved
+	 */
+
 	public List<Familiar> getAllFamiliar() throws ClassNotFoundException, IOException {
 		return saveManager.getAllFamiliar();
 	}

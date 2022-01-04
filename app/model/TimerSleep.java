@@ -29,6 +29,10 @@ public class TimerSleep extends TimerTask{
         this.gameView = gameView;
     }
     
+    /**
+     * starting the timer and changing setEnergy and setMoodValue
+     */
+
     @Override
     public void run() {
         Timer timer = new Timer();

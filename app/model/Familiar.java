@@ -155,10 +155,18 @@ public abstract class Familiar implements Serializable {
         calculateMood(decreaseValue);
     }
 
+    /**
+     * method of lowering the value of the mood
+     */
+
     public void decreaseMood(int times) {
         int decreaseValue = times/NB_STATS;
         calculateMood(decreaseValue);
     }
+
+    /**
+     * method for change the mood of the familiar 
+     */
 
     private void calculateMood(int decreaseValue) {
         if(room.getRooms() == Rooms.GARDEN) {
@@ -178,6 +186,10 @@ public abstract class Familiar implements Serializable {
 
         return Mood.MISERABLE;
     }
+
+    /**
+     * @return  moodvalue int
+     */
 
     public int getMoodValue() {
         return moodValue;
@@ -258,6 +270,10 @@ public abstract class Familiar implements Serializable {
     public int getVitality() {
     	return vitality; // return the vitality of the familiar
     } 
+
+    /**
+     * allows you to change the percentage of the vitality
+     */
     
     public void setVitality(final int vitality) {
     	if (vitality <= MAX_STATS) this.vitality = vitality;

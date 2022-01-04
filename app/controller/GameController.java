@@ -95,7 +95,9 @@ public class GameController implements ActionListener {
     	}
 	}
     
-    // method to create a backup when a button is clicked
+    /**
+     * method to create a backup when a button is clicked
+     */ 
     private void onClickSave() {
         try {
             saveManager.writeSave(currentFamiliar);
@@ -172,6 +174,10 @@ public class GameController implements ActionListener {
         updateWeather();
         updateMood();
     }
+
+    /**
+     * update the familiar's mood
+     */
 
     private void updateMood() {
         if(currentFamiliar.getHygiene()%3 == 1) {
