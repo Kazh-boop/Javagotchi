@@ -42,9 +42,14 @@ public class TimerEnergy extends TimerTask {
             public void run() {
             	if(Boolean.FALSE.equals(isTimerSleepUp)) {
                     familiar.setEnergy(familiar.getEnergy()-1);
-                    if (gameView != null)
+                    if (gameView != null) {
+                        if(familiar.getEnergy()%3 == 1) {
+                            familiar.decreaseMood();
+                            gameView.getMoodLabel().setText("Humeur : " + familiar.getMood().getName());
+                        }
                     	gameView.getPbEnergy().setValue(familiar.getEnergy());
-            	}
+                    }
+                }
             	else {
             		isTimerSleepUp = false;
             	}

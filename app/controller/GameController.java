@@ -18,7 +18,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import java.io.IOException;
-import java.util.Objects;
 import app.exceptions.*;
 
 public class GameController implements ActionListener {
@@ -114,6 +113,7 @@ public class GameController implements ActionListener {
     private void onClickFeed() {
     	try {
     		currentFamiliar.feed();
+            gameView.getPbHunger().setValue(currentFamiliar.getHungriness());
             gameView.getFeedButton().setToolTipText(currentFamiliar.getPortions() + " portions de " + currentFamiliar.getFood() + " restantes ");
     	}
     	catch (FeedException e) {
@@ -128,6 +128,7 @@ public class GameController implements ActionListener {
     private void onClickWash() {
     	try {
     		currentFamiliar.wash();
+            gameView.getPbhygiene().setValue(currentFamiliar.getHygiene());
     	}
     	catch (WashException e) {
     		gameView.errorWash(e.getMessage());
@@ -158,6 +159,7 @@ public class GameController implements ActionListener {
     	currentFamiliar.moveLeft();
         updateRoom();
         updateWeather();
+        updateMood();
     }
 
     /**
@@ -168,6 +170,14 @@ public class GameController implements ActionListener {
     	currentFamiliar.moveRight();
         updateRoom();
         updateWeather();
+        updateMood();
+    }
+
+    private void updateMood() {
+        if(currentFamiliar.getHygiene()%3 == 1) {
+            currentFamiliar.decreaseMood();
+            gameView.getMoodLabel().setText("Humeur : " + currentFamiliar.getMood().getName());
+        }
     }
 
     /**

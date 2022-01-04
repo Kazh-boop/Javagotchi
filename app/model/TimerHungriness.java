@@ -31,8 +31,15 @@ public class TimerHungriness extends TimerTask {
             @Override
             public void run() {
                 familiar.setHungriness(familiar.getHungriness() - 1);
-                if (gameView != null)
+               
+                if (gameView != null) {
+                    if(familiar.getHungriness()%3 == 1) {
+                        familiar.decreaseMood();
+                        gameView.getMoodLabel().setText("Humeur : " + familiar.getMood().getName());
+                    }
                 	gameView.getPbHunger().setValue(familiar.getHungriness());
+                }
+                
             }
           }, 0, minutesPerHungriness ); 
     }

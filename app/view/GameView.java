@@ -230,6 +230,13 @@ public class GameView {
     }
 
     /**
+     * @return mood JLabel
+     */
+    public JLabel getMoodLabel() {
+        return mood;
+    }
+
+    /**
      * @return save JButton
      */
 
@@ -388,9 +395,5 @@ public class GameView {
 
     public JLabel getCurrentWeatherLabel() {
         return this.weather;
-    }
-
-    public JButton getCurrentFeedButton() {
-        return feedButton;
     }
 }

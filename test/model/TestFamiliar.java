@@ -274,7 +274,7 @@ class TestFamiliar {
 	
 	@Test
 	public void testRecalculateMood() {
-		familiar.recalculateMood(Weather.RAINY, Rooms.KITCHEN);
+		familiar.decreaseMood();
 		assertEquals(Mood.JOYFUL, familiar.getMood());
 	}
 	

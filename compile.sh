@@ -1,3 +1,3 @@
 find . -name \*.class -type f -delete
-javac *.java
+javac -encoding "UTF-8" *.java
 java Main

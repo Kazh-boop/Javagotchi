@@ -186,19 +186,19 @@ public class NewGameMenuController implements ActionListener {
 	    	        	
 	    	        	switch(fType) {
 	    	        		case "Chat":
-	    	        			newFamiliar = new Cat(fName);
+	    	        			newFamiliar = new Cat(fName, this.familiarTypeURL[cursorImage]);
 	    	        			break;
 	    	        			
 	    	        		case "Chien":
-	    	        			newFamiliar = new Dog(fName);
+	    	        			newFamiliar = new Dog(fName, this.familiarTypeURL[cursorImage]);
 	    	        			break;
 	    	        		
 	    	        		case "Robot":
-								newFamiliar = new Robot(fName);
+								newFamiliar = new Robot(fName, this.familiarTypeURL[cursorImage]);
 	    	        			break;
 	    	        			
 	    	        		case "Lapin":
-	    	        			newFamiliar = new Rabbit(fName);
+	    	        			newFamiliar = new Rabbit(fName, this.familiarTypeURL[cursorImage]);
 	    	        			break;
 	    	        		
 	    	        		default:

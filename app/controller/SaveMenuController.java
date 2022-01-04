@@ -138,12 +138,4 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
 		mainFrame.repaint();
 	}
 	
-	public static void main(String[] args) throws IOException {
-		SaveManager sm = new SaveManager();
-		Familiar f = new Cat("Filou");
-		sm.openFile(f.getUID());
-		sm.writeSave(f);
-		
-	}
-	
 }
