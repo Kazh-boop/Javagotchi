@@ -125,14 +125,16 @@ public class GameController implements ActionListener {
     */
 
     private void onClickFeed() {
-    	try {
-    		currentFamiliar.feed();
+        try {
+            currentFamiliar.feed();
             gameView.getPbHunger().setValue(currentFamiliar.getHungriness());
             gameView.getFeedButton().setToolTipText(currentFamiliar.getPortions() + " portions de " + currentFamiliar.getFood() + " restantes ");
-    	}
-    	catch (FeedException e) {
-    		gameView.errorFeed(e.getMessage());
-    	}
+            gameView.getMiddlePanel().changeRoom(currentRoom);
+
+        }
+        catch (FeedException e) {
+            gameView.errorFeed(e.getMessage());
+        }
     }
 
     /**
@@ -157,9 +159,15 @@ public class GameController implements ActionListener {
     	try {
 			currentFamiliar.sleep();
 			gameView.disableAll();
+			// display
+	        gameView.getMiddlePanel().sleep(currentRoom);
+			
 			TimerSleep timerSleep = new TimerSleep(currentFamiliar, gameView);
 	    	timerSleep.run();
 	    	timerEnergy.timerSleepUp();
+	    	// display out
+	        gameView.getMiddlePanel().wakeup(currentRoom);
+	    	
 		} catch (SleepException e) {
 			gameView.errorSleep(e.getMessage());
 		}	

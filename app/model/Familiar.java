@@ -252,7 +252,7 @@ public abstract class Familiar implements Serializable {
 
     public void sleep() throws SleepException {
     	if(energy == MAX_STATS) {
-    		throw new SleepException(name + " est plein d'Ã©nergie !");
+    		throw new SleepException(name + " est plein d'énergie !");
     	}
     }
     
