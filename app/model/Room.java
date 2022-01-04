@@ -59,24 +59,28 @@ public class Room {
     /**
      * method to change room by moving to the left 
      */
-    public void moveLeft()
+    public boolean moveLeft()
     {
     	int id = currentRooms.getId();
     	if(id > 0) {
     		id--;
     		currentRooms = currentRooms.getRoomByID(id);
+            return true;
     	}
+        return false;
     }
     
     /**
      *  method to change room by moving to the right
      */
-    public void moveRight()
+    public boolean moveRight()
     {
     	int id = currentRooms.getId();
     	if(id < 2) {
     		id++;
     		currentRooms = currentRooms.getRoomByID(id);
+            return true;
     	}
+        return false;
     }
 }

@@ -85,7 +85,7 @@ public class GameController implements ActionListener {
     		onClickWash();
     	}
     	else if(e.getSource() == this.gameView.getSleepButton()) {
-				onClickSleep();
+			onClickSleep();
     	}
     	else if(e.getSource() == this.gameView.getGoLeftButton()) {
     		onClickGoLeft();

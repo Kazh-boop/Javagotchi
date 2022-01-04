@@ -68,7 +68,7 @@ public abstract class Familiar implements Serializable {
     public void feed() throws FeedException {
             canBeFeed();
             setHungriness(this.hungriness + MAX_RETRIEVE_STAT);
-            moodValue+=MAX_RETRIEVE_STAT/NB_STATS;
+            setMoodValue(moodValue+MAX_RETRIEVE_STAT/NB_STATS);
 
             this.energy -= DECREASE_STATS_PER_ACTION;
             this.hygiene -= DECREASE_STATS_PER_ACTION;
@@ -112,6 +112,7 @@ public abstract class Familiar implements Serializable {
     
     public void setPortions(final int portions) {
     	if(portions <= MAX_PORTIONS) this.portions = portions; // allows you to change the number of portions
+        else if(portions < MIN_PORTIONS) this.portions = 0;
     }
 
     /**
@@ -120,7 +121,7 @@ public abstract class Familiar implements Serializable {
     
     public void wash() throws WashException {
     	canWash();
-        moodValue+=MAX_RETRIEVE_STAT/NB_STATS;
+        setMoodValue(moodValue+MAX_RETRIEVE_STAT/NB_STATS);
     	setHygiene(hygiene + MAX_RETRIEVE_STAT);
     }
     
@@ -143,9 +144,8 @@ public abstract class Familiar implements Serializable {
     // allows you to change the percentage of hygiene
     public void setHygiene(final int hygiene){
     	this.hygiene = hygiene;
-        if(this.hygiene > MAX_STATS){
-            this.hygiene = MAX_STATS; 
-        }
+        if(this.hygiene > MAX_STATS) this.hygiene = MAX_STATS; 
+        else if(this.hygiene < MIN_STATS) this.hygiene = MIN_STATS;
     }
 
     // calculates the mood of the familiar according to its characteristics (hunger, hygiene, energy, vitality)
@@ -163,13 +163,14 @@ public abstract class Familiar implements Serializable {
         if(room.getRooms() == Rooms.GARDEN) {
             decreaseValue*=room.getWeatherCoef();
         }
-        if(this.moodValue-decreaseValue >= MIN_STATS) this.moodValue -= decreaseValue;
+        setMoodValue(this.moodValue-decreaseValue);
         this.mood = changeMood();
     }
 
     // changes the mood according to the value of moodValue
     public Mood changeMood() {
-        System.out.println("MV" + moodValue);
+        System.out.println("MV : " + moodValue);
+
         if(moodValue >= HAPPY_THRESHOLD) return Mood.HAPPY;
         else if(moodValue >= JOY_THRESHOLD) return Mood.JOYFUL;
         else if(moodValue >= FINE_THRESHOLD) return Mood.FINE;
@@ -183,7 +184,9 @@ public abstract class Familiar implements Serializable {
     }
 
     public void setMoodValue(final int moodValue) {
-    	if(moodValue <= MAX_STATS && moodValue >= MIN_STATS) { this.moodValue = moodValue; }// change the value of mood
+        this.moodValue = moodValue;// change the value of mood
+        if(this.moodValue > MAX_STATS) this.moodValue = MAX_STATS;
+        else if(this.moodValue < MIN_STATS) this.moodValue = MIN_STATS;
         changeMood();
     }
     
@@ -222,13 +225,11 @@ public abstract class Familiar implements Serializable {
     }
     
     public void moveLeft() {
-    	room.moveLeft(); // move to the left
-    	hygiene--;
+    	if(room.moveLeft()) hygiene--; // move to the left
     }
     
     public void moveRight() {
-    	room.moveRight(); // move to the right
-    	hygiene--;
+    	if(room.moveRight()) hygiene--; // move to the right
     }
     
 
@@ -250,6 +251,8 @@ public abstract class Familiar implements Serializable {
     public void setEnergy(final int energy) {
     	this.energy = energy;
     	if (this.energy > MAX_STATS) this.energy = MAX_STATS; // allows you to change the percentage of energy
+        else if (this.energy < MIN_STATS) this.energy = MIN_STATS; // allows you to change the percentage of energy
+
     }
 
     public int getVitality() {
