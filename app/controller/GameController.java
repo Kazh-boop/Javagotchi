@@ -97,11 +97,11 @@ public class GameController implements ActionListener {
 			onClickSleep();
     	}
     	else if(e.getSource() == this.gameView.getGoLeftButton()) {
-    		menuController.playsound(menuController.getClickSound());
+    		menuController.playsound(menuController.getDoorSound());
     		onClickGoLeft();
     	}
     	else if(e.getSource() == this.gameView.getGoRightButton()) {
-    		menuController.playsound(menuController.getClickSound());
+    		menuController.playsound(menuController.getDoorSound());
     		onClickGoRight();
     	}
 	}
@@ -112,6 +112,7 @@ public class GameController implements ActionListener {
     private void onClickSave() {
         try {
             saveManager.writeSave(currentFamiliar);
+    		menuController.playsound(menuController.getSaveSound());
             gameView.successfulSave();
         } catch (IOException e) {
             e.printStackTrace();
