@@ -32,13 +32,13 @@ public class ListFamiliarRenderer implements ListCellRenderer<Familiar> {
 
 		JPanel panFam = new JPanel();
 		panFam.setLayout(new BoxLayout(panFam, BoxLayout.Y_AXIS));
-		
+		panFam.setPreferredSize(new Dimension(420, 350));
 		// picture of the familiar
 		JLabel image = new JLabel(createImageIcon(familiar.getUrlIcon()));
 		image.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		// name of the familiar
-		JLabel textName = new CustomMenuLabel("Nom : "+familiar.getName(), DEFAULT_BUTTON_SIZE);
+		JLabel textName = new CustomMenuLabel("Nom : "+ familiar.getName(), DEFAULT_BUTTON_SIZE);
 		textName.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		// type of the familiar
