@@ -116,8 +116,14 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
 		menuController.playsound(menuController.getClickSound());
 		if (!(this.savesMenu.getListSave().isSelectionEmpty())) { // checking a selection
     		Familiar familiarToLoad = this.savesMenu.getListSave().getSelectedValue(); // recovery of a selection
-			familiarToLoad.resetPosition();
-			new GameController(familiarToLoad, mainFrame);
+    		if (!(familiarToLoad.isDead())) {
+				familiarToLoad.resetPosition();
+				new GameController(familiarToLoad, mainFrame, menuController);
+    		} else {
+    	        JOptionPane.showMessageDialog(
+    	                null, 
+    	                familiarToLoad.getName()+" est mort, il faut le laisser en paix en le supprimant");
+    		}
 		}
 	}
 	

@@ -1,25 +1,32 @@
 package app.model;
 			
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.JOptionPane;
+
+import app.controller.MenuController;
 import app.view.GameView;
 
 public class TimerHungriness extends TimerTask {
     private Familiar familiar;
     private int minutesPerHungriness;
     private GameView gameView;
+    private MenuController menuController;
 
     // By default lose 1% every 10 minutes
-    public TimerHungriness (Familiar familiar,GameView gameView){
+    public TimerHungriness (Familiar familiar,GameView gameView, MenuController menuController){
         this.familiar = familiar;
         this.gameView = gameView;
+        this.menuController = menuController;
         minutesPerHungriness = 10 * 60 * 1000;
     }
     
-    public TimerHungriness (Familiar familiar, GameView gameView, int period){
+    public TimerHungriness (Familiar familiar, GameView gameView, MenuController menuController, int period){
         this.familiar = familiar;
         this.gameView = gameView;
+        this.menuController = menuController;
         minutesPerHungriness = period;
     }
     
@@ -40,6 +47,19 @@ public class TimerHungriness extends TimerTask {
                 	gameView.getPbHunger().setValue(familiar.getHungriness());
                 }
                 
+                if (familiar.isDead()) {
+                	timer.cancel();
+                	try {
+                		new SaveManager().writeSave(familiar);
+                	} catch (IOException e) {
+                		e.printStackTrace();
+                		gameView.errorSave(e.toString());
+                	}
+            		String[] confirmOptions = {"Menu Principal", "Quitter"};
+            		int confirmAnswer = JOptionPane.showOptionDialog(null, familiar.getName()+" est mort de faim !", "Game Over !", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, confirmOptions, confirmOptions[0]);
+            		if (confirmAnswer == 0) menuController.mainMenuDisplay();
+            		else System.exit(0);
+                }
             }
           }, 0, minutesPerHungriness ); 
     }

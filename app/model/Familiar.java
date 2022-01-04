@@ -309,4 +309,8 @@ public abstract class Familiar implements Serializable {
     public String getUrlIcon() {
 		return urlIcon;
 	}
+    
+    public boolean isDead() {
+    	return vitality == MIN_STATS || hungriness == MIN_STATS || hygiene == MIN_STATS;
+    }
 }
