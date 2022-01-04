@@ -51,6 +51,6 @@ public class TimerSleep extends TimerTask{
                     timer.purge();
             	}
             }
-          }, 0, minutesPerEnergy); //no waiting between actions, 1 action every x minutes
+          }, minutesPerEnergy, 1); //no waiting between actions, 1 action every x minutes
     }
 }
