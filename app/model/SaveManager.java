@@ -90,7 +90,7 @@ public class SaveManager {
      */
     public void writeSave(Familiar f) throws IOException {
         if(currentFile == null) openFile(f.getUID());
-    	if (isEnableToSave()) {
+    	if (isEnableToSave() || getBaseName(currentFile.getName()).equals(f.getUID())) {
     		dataOutStream = new FileOutputStream(currentFile); // opening the file in write-only mode
     		saveDatas = new ObjectOutputStream(dataOutStream);
 
