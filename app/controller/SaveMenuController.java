@@ -94,7 +94,7 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
 
 	/**
 	 * Action when the button DeleteFamiliar is clicked
-	  */
+	 */
 	private void onClickDeleteFamiliarButton() {
     	if (!(this.savesMenu.getListSave().isSelectionEmpty())) { // checking a selection
     		SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
@@ -120,8 +120,7 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
 
 	/**
 	 * Action when the button LoadSave is clicked
-	  */
-	
+	 */
 	private void onClickLoadSave() {
 		SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
 		if (!(this.savesMenu.getListSave().isSelectionEmpty())) { // checking a selection

@@ -205,7 +205,7 @@ public class GameView {
 
         /**
          * addition of the different items on the bottom of the screen
-         */     
+         */
         bottomPanel.add(sleepButton);
         bottomPanel.add(energy);
         bottomPanel.add(pbEnergy);
@@ -337,7 +337,7 @@ public class GameView {
     }
 
     /**
-     * enable of the various buttons
+     * enable all buttons of GameView
      */
     
     public void enableAll() {
@@ -349,7 +349,7 @@ public class GameView {
     }
 
     /**
-     * disable of thne various buttons
+     * disable all buttons of GameView
      */
     
     public void disableAll() {
