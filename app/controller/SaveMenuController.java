@@ -129,10 +129,11 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
     		if (!(familiarToLoad.isDead())) {
 				familiarToLoad.resetPosition();
 				new GameController(familiarToLoad, mainFrame, menuController);
+	        	SoundManager.playsound(SoundManager.SOUNDS_LAUNCH);
     		} else {
     	        JOptionPane.showMessageDialog(
     	                null, 
-    	                familiarToLoad.getName()+" est mort, il faut le laisser en paix en le supprimant");
+    	                familiarToLoad.getName()+" est mort, il faut le laisser en paix en le supprimant.");
     		}
 		}
 	}

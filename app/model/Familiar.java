@@ -87,7 +87,7 @@ public abstract class Familiar implements Serializable {
     		throw new FeedException("Le familier est repu !");
     	}
     	else if(room.getRooms() != Rooms.KITCHEN) {
-    		throw new FeedException("Le familier ne peut Ãªtre nourri que dans la cuisine !");
+    		throw new FeedException("Le familier ne peut être nourri que dans la cuisine !");
     	}
     	else if(this.portions <= MIN_PORTIONS) {
     		throw new FeedException("Vous n'avez plus de portions !");
@@ -112,7 +112,7 @@ public abstract class Familiar implements Serializable {
     }
     
     public void setPortions(final int portions) {
-    	if(portions <= MAX_PORTIONS) { this.portions = portions; }// allows you to change the number of portions
+    	if(portions <= MAX_PORTIONS) { this.portions = portions; } // allows you to change the number of portions
         if(portions < MIN_PORTIONS) this.portions = 0;
     }
 
@@ -131,10 +131,10 @@ public abstract class Familiar implements Serializable {
      */
     public void canWash() throws WashException {
     	if(hygiene == MAX_STATS) {
-    		throw new WashException(name + " est dÃ©jÃ  tout propre !");
+    		throw new WashException(name + " est déjà  tout propre !");
     	}
     	else if(room.getRooms() != Rooms.LIVING_ROOM) {
-    		throw new WashException(name + "ne peut Ãªtre lavÃ© que dans le salon !");
+    		throw new WashException(name + " ne peut être lavé que dans le salon !");
     	}
     }
     

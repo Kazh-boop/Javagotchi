@@ -38,7 +38,12 @@ public class GameController implements ActionListener {
     private TimerHungriness timerHungriness;
     private TimerPortions timerPortions;
 
-    // constructor
+    /**
+     * Constructor
+     * @param selectedFamiliar
+     * @param mainFrame
+     * @param menuController
+     */
     public GameController(Familiar selectedFamiliar, MainFrame mainFrame, MenuController menuController) {
         currentFamiliar = selectedFamiliar;
         currentRoom = new Room(Rooms.LIVING_ROOM);
@@ -114,7 +119,28 @@ public class GameController implements ActionListener {
         try {
             saveManager.writeSave(currentFamiliar);
     		SoundManager.playsound(SoundManager.SOUNDS_SAVE);
-            gameView.successfulSave();
+    		
+    		/** 
+    	     * displays a message to say that the backup was successful
+    	     */
+    		String saveSuccessMsg = "Votre progression a bien été sauvegardée !";
+    		String[] saveSuccessOptions = {"Retour au menu", "Retour au jeu"};
+    		int saveSuccessAnswer = JOptionPane.showOptionDialog(null, saveSuccessMsg, "", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, saveSuccessOptions, saveSuccessOptions[1]);
+    		
+    		switch(saveSuccessAnswer){
+    			case 0: // retour au menu
+					SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
+					menuController.mainMenuDisplay();
+    				break;
+    				
+	    		case 1: // retour au jeu
+					SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
+	    			break;
+    		
+    			default:
+					SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
+    				menuController.mainMenuDisplay();
+    		}
         } catch (IOException e) {
             e.printStackTrace();
             gameView.errorSave(e.toString());
@@ -122,16 +148,38 @@ public class GameController implements ActionListener {
     }
     
     /**
-    * action taken when FeedButton is clicked
-    */
-
+     * action taken when FeedButton is clicked
+     */
     private void onClickFeed() {
         try {
             currentFamiliar.feed();
             gameView.getPbHunger().setValue(currentFamiliar.getHungriness());
-            gameView.getFeedButton().setToolTipText(currentFamiliar.getPortions() + " portions de " + currentFamiliar.getFood() + " restantes ");
+            gameView.getFeedButton().setToolTipText(currentFamiliar.getPortions() + " portions de " + currentFamiliar.getFood() + " restantes");
+            
+            try {
+            	switch(currentFamiliar.getFamiliarType()) {
+            		case "Chat":
+            			SoundManager.playsound(SoundManager.SOUNDS_EAT_FOOD,15f);
+            			break;
+            		
+            		case "Chien":
+            			SoundManager.playsound(SoundManager.SOUNDS_EAT_FOOD,15f);
+            			break;
+            			
+            		case "Robot":
+            			SoundManager.playsound(SoundManager.SOUNDS_EAT_CHARGE,15f);
+            			break;
+            			
+            		case "Rabbit":
+            			SoundManager.playsound(SoundManager.SOUNDS_EAT_FOOD,15f);
+            			break;
+            	}
+            	
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
             gameView.getMiddlePanel().changeRoom(currentRoom);
-
         }
         catch (FeedException e) {
             gameView.errorFeed(e.getMessage());
@@ -139,8 +187,8 @@ public class GameController implements ActionListener {
     }
 
     /**
-    * action taken when WashButton is clicked
-    */
+     * action taken when WashButton is clicked
+     */
     
     private void onClickWash() {
     	try {
@@ -153,8 +201,8 @@ public class GameController implements ActionListener {
     }
 
     /**
-    * action taken when SleepButton is clicked
-    */
+     * action taken when SleepButton is clicked
+     */
     
     private void onClickSleep() {
     	try {
@@ -166,8 +214,6 @@ public class GameController implements ActionListener {
 			TimerSleep timerSleep = new TimerSleep(currentFamiliar, gameView);
 	    	timerSleep.run();
 	    	timerEnergy.timerSleepUp();
-	    	// display out
-	        gameView.getMiddlePanel().wakeup(currentRoom);
 	    	
 		} catch (SleepException e) {
 			gameView.errorSleep(e.getMessage());
@@ -175,9 +221,8 @@ public class GameController implements ActionListener {
     }
 
     /**
-    * action taken when GoLeftButton is clicked
-    */
-    
+     * action taken when GoLeftButton is clicked
+     */
     private void onClickGoLeft() {
     	currentFamiliar.moveLeft();
         updateRoom();
@@ -188,9 +233,8 @@ public class GameController implements ActionListener {
     }
 
     /**
-    * action taken when GoRightButton is clicked
-    */
-
+     * action taken when GoRightButton is clicked
+     */
     private void onClickGoRight() {
     	currentFamiliar.moveRight();
         updateRoom();
@@ -203,7 +247,6 @@ public class GameController implements ActionListener {
     /**
      * update the familiar's mood
      */
-
     private void updateMood() {
         if(currentFamiliar.getHygiene()%3 == 1) {
             currentFamiliar.decreaseMood();
@@ -212,27 +255,28 @@ public class GameController implements ActionListener {
     }
 
     /**
-    * change the weather
-    */
-    
+     * change the weather
+     */
     private void updateWeather() {
         if(getCurrentRoom().changeWeather()) {
-            gameView.getCurrentWeatherLabel().setText("MÃ©tÃ©o : " + currentRoom.getWeatherName());
+            gameView.getCurrentWeatherLabel().setText("Météo : " + currentRoom.getWeatherName());
             gameView.getPbhygiene().setValue(currentFamiliar.getHygiene());
         }
     }
 
     /**
-    * change room
-    */
-
+     * change room
+     */
     private void updateRoom() {
         this.currentRoom = currentFamiliar.getRoom();
         currentFamiliar.changeMood();
-        gameView.getCurrentRoomLabel().setText("PiÃ¨ce : " + currentFamiliar.getRoom().getName());
+        gameView.getCurrentRoomLabel().setText("Pièce : " + currentFamiliar.getRoom().getName());
     	gameView.getPbhygiene().setValue(currentFamiliar.getHygiene());
     }
     
+    /**
+     * Death by lack of hygiene
+     */
     private void isDeadByHygiene() {
     	try {
     		saveManager.writeSave(currentFamiliar);

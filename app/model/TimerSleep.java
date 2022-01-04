@@ -51,6 +51,8 @@ public class TimerSleep extends TimerTask{
             	}
             	else {
             		gameView.enableAll();
+        	    	// display out
+        	        gameView.getMiddlePanel().wakeup(familiar.getRoom());
                     timer.cancel();
                     timer.purge();
             	}

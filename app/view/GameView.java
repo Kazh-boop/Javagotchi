@@ -9,6 +9,7 @@ import app.util.*;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.io.IOException;
 
 public class GameView {
 
@@ -97,23 +98,21 @@ public class GameView {
         mood = new CustomMenuLabel("Humeur : " + gC.getFamiliar().getMood().getName(), LABEL_FONT_SIZE);
         mood.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        weather = new CustomMenuLabel("MÃ©tÃ©o : " + gC.getCurrentRoom().getWeatherName(), LABEL_FONT_SIZE);
+        weather = new CustomMenuLabel("Météo : " + gC.getCurrentRoom().getWeatherName(), LABEL_FONT_SIZE);
         weather.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         // representation of the vitality of the familiar
-
-        vitality = new CustomMenuLabel(" VitalitÃ© : ", LABEL_FONT_SIZE);
+        vitality = new CustomMenuLabel(" Vitalité : ", LABEL_FONT_SIZE);
         vitality.setBorder(new EmptyBorder(0, RIGHT_BORDER_VITALITY, 0, 0));
         vitality.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        energy = new CustomMenuLabel(" Ã‰nergie : ", LABEL_FONT_SIZE);
+        energy = new CustomMenuLabel(" Energie : ", LABEL_FONT_SIZE);
         
-        hygiene = new CustomMenuLabel(" HygiÃ¨ne : ",LABEL_FONT_SIZE);
+        hygiene = new CustomMenuLabel(" Hygiène : ",LABEL_FONT_SIZE);
 
         hunger = new CustomMenuLabel(" Faim : ", LABEL_FONT_SIZE);
 
         // progressive bar
-
         pbEnergy = new JProgressBar(LOWER_BOUND_PBAR, HIGHER_BOUND_PBAR);
         pbEnergy.setValue(gC.getFamiliar().getEnergy());
         pbEnergy.setStringPainted(true);
@@ -135,7 +134,6 @@ public class GameView {
         pbVitality.setStringPainted(true);
 
         // feedButton
-        
         feedButton = new CustomMenuButton("Nourrir", BOTTOM_LABEL_FONT_SIZE);
         feedButton.setPreferredSize(new Dimension(BOTTOM_BUTTON_WIDTH, BOTTOM_BUTTON_HEIGHT));
         feedButton.setBackground(CustomMenuButton.getPearl());
@@ -143,14 +141,12 @@ public class GameView {
         feedButton.setToolTipText(gC.getFamiliar().getPortions() + " portions de " + gC.getFamiliar().getFood() + " restantes ");
 
         // sleepButton
-
         sleepButton = new CustomMenuButton("Dormir", BOTTOM_LABEL_FONT_SIZE);
         sleepButton.setPreferredSize(new Dimension(BOTTOM_BUTTON_WIDTH, BOTTOM_BUTTON_HEIGHT));
         sleepButton.setBackground(CustomMenuButton.getPearl());
         sleepButton.setForeground(CustomMenuButton.getColorGreen());
 
         // washButton
-
         washButton = new CustomMenuButton("Laver", BOTTOM_LABEL_FONT_SIZE);
         washButton.setPreferredSize(new Dimension(BOTTOM_BUTTON_WIDTH, BOTTOM_BUTTON_HEIGHT));
         washButton.setBackground(CustomMenuButton.getPearl());
@@ -178,7 +174,7 @@ public class GameView {
         goLeftButton.addActionListener(gC);
         goRightButton.addActionListener(gC);
         
-        currentRoom = new CustomMenuLabel("PiÃ¨ce : " + gC.getCurrentRoom().getName(), LABEL_FONT_SIZE);
+        currentRoom = new CustomMenuLabel("Pièce : " + gC.getCurrentRoom().getName(), LABEL_FONT_SIZE);
         currentRoom.setBorder(new EmptyBorder(0,10,0,10));
 
         roomSelector.add(goLeftButton);
@@ -189,7 +185,6 @@ public class GameView {
         /**
          * addition of the different items on the left of the screen
          */
-
         leftPanel.setBorder(new EmptyBorder(0, LEFT_PANEL_BORDER, 0, 0));     
         leftPanel.add(Box.createVerticalStrut(LEFT_PANEL_SPACING));
         leftPanel.add(save);
@@ -210,8 +205,7 @@ public class GameView {
 
         /**
          * addition of the different items on the bottom of the screen
-         */
-     
+         */     
         bottomPanel.add(sleepButton);
         bottomPanel.add(energy);
         bottomPanel.add(pbEnergy);
@@ -241,7 +235,6 @@ public class GameView {
     /**
      * @return save JButton
      */
-
     public JButton getSave() {
         return this.save;
     }
@@ -249,7 +242,6 @@ public class GameView {
     /**
      * @return SleepButton JButton
      */
-    
     public JButton getSleepButton() {
     	return sleepButton; 
     }
@@ -257,7 +249,6 @@ public class GameView {
     /**
      * @return FeedButton JButton
      */
-    
     public JButton getFeedButton() {
     	return feedButton; 
     }
@@ -265,7 +256,6 @@ public class GameView {
     /**
      * @return WashButton JButton
      */
-    
     public JButton getWashButton() {
     	return washButton; 
     }
@@ -273,7 +263,6 @@ public class GameView {
     /**
      * @return GoLeftButton JButton 
      */
-    
     public JButton getGoLeftButton() {
     	return goLeftButton; 
     }
@@ -281,7 +270,6 @@ public class GameView {
     /**
      * @return GoRightButton JButton
      */
-    
     public JButton getGoRightButton() {
     	return goRightButton;
     }
@@ -289,7 +277,6 @@ public class GameView {
     /**
      * @return CurrentRoom JLabel
      */
-    
     public JLabel getCurrentRoomLabel() {
     	return currentRoom;
     }
@@ -297,7 +284,6 @@ public class GameView {
     /**
      * @return pbEnergy JProgressBar
      */
-    
     public JProgressBar getPbEnergy() {
     	return pbEnergy;
     }
@@ -305,7 +291,6 @@ public class GameView {
     /**
      * @return pbHunger JProgressBar
      */
-    
     public JProgressBar getPbHunger() {
     	return pbHunger;
     }
@@ -313,7 +298,6 @@ public class GameView {
     /**
      * @return pbVitality JProgressBar
      */
-    
     public JProgressBar getPbVitality() {
     	return pbVitality;
     }
@@ -321,28 +305,13 @@ public class GameView {
     /**
      * @return pbHygiene JProgressBar
      */
-
     public JProgressBar getPbhygiene() {
     	return pbHygiene;
-    }
-
-
-    /** 
-     * displays a message to say that the backup was successful
-     */
-
-    public void successfulSave() {
-        JOptionPane.showMessageDialog(
-            mainFrame, 
-    	    "Votre progression Ã  bien Ã©tÃ© sauvegardÃ©", "SuccÃ¨s", JOptionPane.INFORMATION_MESSAGE
-        );
-    }
-    
+    }    
 
     /**
      * display of error messages
      */
-
     public void errorSave(String error) {
         JOptionPane.showMessageDialog(
             null, 
@@ -352,13 +321,13 @@ public class GameView {
     public void errorFeed(String error) {
         JOptionPane.showMessageDialog(
             null, 
-            "Le familier ne peut pas Ãªtre nourri : " + error);
+            "Le familier ne peut pas être nourri : " + error);
     }
     
     public void errorWash(String error) {
         JOptionPane.showMessageDialog(
             null, 
-            "Le familier ne peut pas Ãªtre lavÃ© : " + error);
+            "Le familier ne peut pas être lavé : " + error);
     }
     
     public void errorSleep(String error) {

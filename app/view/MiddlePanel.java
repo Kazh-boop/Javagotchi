@@ -29,7 +29,7 @@ public class MiddlePanel{
 
 		pane.removeAll();
 
-		backgroundIcon = new JLabel(IconUtil.createImageIcon(RoomsURL.valueOf(getRoomWeather()).getURL()));
+		backgroundIcon = new JLabel(IconUtil.createSizedImageIcon(RoomsURL.valueOf(getRoomWeather()).getURL(),1000,630));
 		backgroundIcon.setLocation(0, 0);
 		backgroundIcon.setSize(backgroundIcon.getPreferredSize());
 		pane.add(backgroundIcon, Integer.valueOf(0));
@@ -73,7 +73,7 @@ public class MiddlePanel{
 
 		pane.removeAll();
 
-		backgroundIcon = new JLabel(IconUtil.createImageIcon(RoomsURL.valueOf(getRoomWeather()).getURL()));
+		backgroundIcon = new JLabel(IconUtil.createSizedImageIcon(RoomsURL.valueOf(getRoomWeather()).getURL(),1000,630));
 		backgroundIcon.setLocation(0, 0);
 		backgroundIcon.setSize(backgroundIcon.getPreferredSize());
 		pane.add(backgroundIcon, Integer.valueOf(0));

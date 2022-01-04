@@ -217,6 +217,7 @@ public class NewGameMenuController implements ActionListener {
 								e.printStackTrace();
 							}
 							new GameController(newFamiliar, mainFrame, menuController);
+				        	SoundManager.playsound(SoundManager.SOUNDS_LAUNCH);
 						}
 					break;
 					

@@ -79,8 +79,6 @@ public class MenuController implements ActionListener {
         }
 	}
 	
-
-	
 	/**
 	 * 
 	 * Give the mainFrame
