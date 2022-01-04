@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 
 public class CustomMenuLabel extends JLabel {
 	
-	private static final String FONT_LIKE_SNOW = "/fonts/likesnow.ttf";
+	private static final String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
 
 
 	/**

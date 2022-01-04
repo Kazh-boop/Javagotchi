@@ -13,7 +13,7 @@ import javax.swing.JButton;
 
 public class CustomMenuButton extends JButton {
 	
-	private static final String FONT_LIKE_SNOW = "/fonts/likesnow.ttf";
+	private static final String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
 	private static final Color COLOR_CACTUS_GREEN = new Color(104, 131, 53);
 	private static final Color COLOR_PEARL = new Color(245, 235, 218);
 	private transient RoundedBorder border;	

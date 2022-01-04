@@ -20,6 +20,8 @@ public class MenuController implements ActionListener {
 	private MainMenu mainMenu;
 	
 	private static final String SOUNDS_MENU_CLICK = "../assets/sounds/click.wav";
+	private static final String SOUNDS_DOOR = "../assets/sounds/door.wav";
+	private static final String SOUNDS_SAVE = "../assets/sounds/save.wav";
 	
     /**
 	 * initializes the 3 Controller menus and the mainFrame,
@@ -104,9 +106,23 @@ public class MenuController implements ActionListener {
 	}
 
 	/**
-	 * return the sound to make when clicked
+	 * @return the sound to make when clicked
 	 */
 	public String getClickSound() {
 		return MenuController.SOUNDS_MENU_CLICK;
+	}
+	
+	/**
+	 * @return the sound to make when the room is changed
+	 */
+	public String getDoorSound() {
+		return MenuController.SOUNDS_DOOR;
+	}
+	
+	/**
+	 * @return the sound to make when the game is saved
+	 */
+	public String getSaveSound() {
+		return MenuController.SOUNDS_SAVE;
 	}
 }
