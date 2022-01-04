@@ -2,6 +2,7 @@ package app.view;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -33,7 +34,7 @@ public class ListFamiliarRenderer implements ListCellRenderer<Familiar> {
 		panFam.setLayout(new BoxLayout(panFam, BoxLayout.Y_AXIS));
 		
 		// picture of the familiar
-		JLabel image = new JLabel(createImageIcon("../assets/images/cat.png"));
+		JLabel image = new JLabel(createImageIcon(familiar.getUrlIcon()));
 		image.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		// name of the familiar

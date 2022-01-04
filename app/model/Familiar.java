@@ -30,7 +30,9 @@ public abstract class Familiar implements Serializable {
 
     // Constants
 
-    private static final int MAX_STATS = 100;
+
+
+	private static final int MAX_STATS = 100;
     private static final int MIN_STATS = 0;
 
     
@@ -297,4 +299,8 @@ public abstract class Familiar implements Serializable {
     public String getFood() {
         return food;
     }
+    
+    public String getUrlIcon() {
+		return urlIcon;
+	}
 }
