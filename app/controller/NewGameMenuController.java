@@ -136,11 +136,11 @@ public class NewGameMenuController implements ActionListener {
     	emptyMatcher = emptyPattern.matcher(fName);
     	
     	if(fName.length()>=20){
-    		JOptionPane maxLenghtProb = new JOptionPane("Le nom du familier ne peut pas depasser 20 caracteres.",JOptionPane.WARNING_MESSAGE);
+    		JOptionPane maxLenghtProb = new JOptionPane("Le nom du familier ne peut pas depasser 20 caractères.",JOptionPane.WARNING_MESSAGE);
     		setOptionBoxVisual(maxLenghtProb);
     		
     	}else if((fName.isEmpty()) || (emptyMatcher.find())) {
-    		JOptionPane emptyNameProb = new JOptionPane("Le nom du familier doit comporter au moins 1 caractï¿½re et ne pas commencer par des espaces.",JOptionPane.WARNING_MESSAGE);
+    		JOptionPane emptyNameProb = new JOptionPane("Le nom du familier doit comporter au moins 1 caractère et ne pas commencer par des espaces.",JOptionPane.WARNING_MESSAGE);
     		setOptionBoxVisual(emptyNameProb);
     		
     	}else if((invalidMatcher.find())) {

@@ -201,7 +201,7 @@ public class GameController implements ActionListener {
     
     private void updateWeather() {
         if(getCurrentRoom().changeWeather()) {
-            gameView.getCurrentWeatherLabel().setText("MÃ©tÃ©o : " + currentRoom.getWeatherName());
+            gameView.getCurrentWeatherLabel().setText("Météo : " + currentRoom.getWeatherName());
             gameView.getPbhygiene().setValue(currentFamiliar.getHygiene());
         }
     }
@@ -213,7 +213,7 @@ public class GameController implements ActionListener {
     private void updateRoom() {
         this.currentRoom = currentFamiliar.getRoom();
         currentFamiliar.changeMood();
-        gameView.getCurrentRoomLabel().setText("PiÃ¨ce : " + currentFamiliar.getRoom().getName());
+        gameView.getCurrentRoomLabel().setText("Pièce : " + currentFamiliar.getRoom().getName());
     	gameView.getPbhygiene().setValue(currentFamiliar.getHygiene());
     }
     
