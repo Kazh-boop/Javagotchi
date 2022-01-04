@@ -216,8 +216,8 @@ public abstract class Familiar implements Serializable {
         }
     }
 
-    public Rooms getRoom() {
-        return room.getRooms(); // return the room in which the familiar is located
+    public Room getRoom() {
+        return room; // return the room in which the familiar is located
     }
     
     public void setRoom(final Rooms rooms ){

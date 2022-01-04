@@ -118,13 +118,13 @@ class TestFamiliar {
 	
 	@Test
 	public void testGetRooms() {
-		assertEquals(Rooms.LIVING_ROOM, familiar.getRoom());
+		assertEquals(Rooms.LIVING_ROOM, familiar.getRoom().getRooms());
 	}
 	
 	@Test
 	public void testSetRooms() {
 		familiar.setRoom(Rooms.KITCHEN);
-		assertEquals(Rooms.KITCHEN, familiar.getRoom());
+		assertEquals(Rooms.KITCHEN, familiar.getRoom().getRooms());
 	}
 	
 	@Test
@@ -200,7 +200,7 @@ class TestFamiliar {
 	
 	 // Test nourrir familier quand les stats sont au max, pas de depassement de MAX_STATS
 	@Test
-	public void testFeedMaxStats() throws FeedException {
+	public void testFeedMaxStats() {
 		setUpFeed();
 		familiar.setHungriness(100);
 		Throwable exception = assertThrows(FeedException.class, () -> familiar.feed());
@@ -208,7 +208,7 @@ class TestFamiliar {
 	}
 	
 	@Test
-	public void testFeedWrongPlace() throws FeedException {
+	public void testFeedWrongPlace() {
 		setUpFeed();
 		familiar.setRoom(Rooms.LIVING_ROOM);
 		Throwable exception = assertThrows(FeedException.class, () -> familiar.feed());
@@ -217,7 +217,7 @@ class TestFamiliar {
 	
 	// Test nourrir familier quand il n'y a plus de portion
 	@Test
-	public void testFeedNoPortion() throws FeedException {
+	public void testFeedNoPortion() {
 		setUpFeed();
 		familiar.resetPortion();
 		Throwable exception = assertThrows(FeedException.class, () -> familiar.feed());
@@ -294,13 +294,13 @@ class TestFamiliar {
 	@Test
 	public void testMooveLeft() {
 		familiar.moveLeft();
-		assertEquals(Rooms.GARDEN, familiar.getRoom());
+		assertEquals(Rooms.GARDEN, familiar.getRoom().getRooms());
 	}
 	
 	@Test
 	public void testMooveRight() {
 		familiar.moveRight();
-		assertEquals(Rooms.KITCHEN, familiar.getRoom());
+		assertEquals(Rooms.KITCHEN, familiar.getRoom().getRooms());
 	}
 	
 //==========================================================================//
@@ -317,7 +317,7 @@ class TestFamiliar {
 	}
 	
 	@Test
-	public void testWashMaxStats() throws WashException {
+	public void testWashMaxStats() {
 		setUpWash();
 		familiar.setHygiene(100);
 		Throwable exception = assertThrows(WashException.class, () -> familiar.wash());
@@ -325,7 +325,7 @@ class TestFamiliar {
 	}
 	
 	@Test
-	public void testWashWrongPlace() throws WashException {
+	public void testWashWrongPlace() {
 		setUpWash();
 		familiar.setRoom(Rooms.KITCHEN);
 		Throwable exception = assertThrows(WashException.class, () -> familiar.wash());

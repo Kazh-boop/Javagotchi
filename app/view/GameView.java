@@ -39,7 +39,7 @@ public class GameView {
     private GameController gC;
     private JFrame mainFrame;
 	private JPanel leftPanel;
-    private JPanel middlePanel;
+    private MiddlePanel middlePanel;
     private JPanel bottomPanel;
     private CustomMenuButton save;
     private JLabel name;
@@ -66,6 +66,8 @@ public class GameView {
     private CustomMenuButton sleepButton;
     private CustomMenuButton washButton;
     
+    private JLabel bgGame;
+    
     public GameView(JFrame nFrame, GameController g){
         this.mainFrame = nFrame;
         this.gC = g;
@@ -81,7 +83,7 @@ public class GameView {
 
         this.leftPanel = new JPanel();
         this.leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.PAGE_AXIS));
-        this.middlePanel = new JPanel();
+        this.middlePanel = new MiddlePanel(gC.getFamiliar(), gC.getCurrentRoom());
         this.bottomPanel = new JPanel();
 
         save = new CustomMenuButton("Sauvegarder", SAVE_BUTTON_FONT_SIZE);
@@ -184,6 +186,8 @@ public class GameView {
         roomSelector.add(currentRoom);
         roomSelector.add(goRightButton);
         roomSelector.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
+        bgGame = new JLabel(IconUtil.createImageIcon("../assets/images/cuisine/cuisine_cloudy.png"));
 
         /**
          * addition of the different items on the left of the screen
@@ -205,6 +209,7 @@ public class GameView {
         leftPanel.add(Box.createVerticalStrut(10));
         leftPanel.add(pbVitality);
         leftPanel.add(Box.createVerticalStrut(LEFT_PANEL_SPACING));
+        
 
         /**
          * addition of the different items on the bottom of the screen
@@ -222,7 +227,7 @@ public class GameView {
 
         bottomPanel.setBorder(new EmptyBorder(0,0,BOTTOM_PANEL_BORDER,0));
         mainFrame.add(leftPanel, BorderLayout.LINE_START);
-        mainFrame.add(middlePanel, BorderLayout.CENTER);
+        mainFrame.add(middlePanel.getPane(), BorderLayout.CENTER);
         mainFrame.add(bottomPanel, BorderLayout.PAGE_END);
 
         mainFrame.setVisible(true);
@@ -395,5 +400,9 @@ public class GameView {
 
     public JLabel getCurrentWeatherLabel() {
         return this.weather;
+    }
+
+    public MiddlePanel getMiddlePanel() {
+        return this.middlePanel;
     }
 }
