@@ -81,21 +81,27 @@ public class GameController implements ActionListener {
     @Override
 	public void actionPerformed(ActionEvent e) {
     	if (e.getSource() == this.gameView.getSave()) { 
+    		menuController.playsound(menuController.getClickSound());
             this.onClickSave();
     	}
     	else if(e.getSource() == this.gameView.getFeedButton()) {
+    		menuController.playsound(menuController.getClickSound());
     		onClickFeed();
     	}
     	else if(e.getSource() == this.gameView.getWashButton()) {
+    		menuController.playsound(menuController.getClickSound());
     		onClickWash();
     	}
     	else if(e.getSource() == this.gameView.getSleepButton()) {
+    		menuController.playsound(menuController.getClickSound());
 			onClickSleep();
     	}
     	else if(e.getSource() == this.gameView.getGoLeftButton()) {
+    		menuController.playsound(menuController.getClickSound());
     		onClickGoLeft();
     	}
     	else if(e.getSource() == this.gameView.getGoRightButton()) {
+    		menuController.playsound(menuController.getClickSound());
     		onClickGoRight();
     	}
 	}
