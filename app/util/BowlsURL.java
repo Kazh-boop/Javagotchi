@@ -2,10 +2,10 @@ package app.util;
 
 public enum BowlsURL {
     Chat0("../assets/images/gamelle/chat_0.png"),
-    Cat1("../assets/images/gamelle/chat_1.png"),
-    Cat2("../assets/images/gamelle/chat_2.png"),
-    Cat3("../assets/images/gamelle/chat_3.png"),
-    Cat4("../assets/images/gamelle/chat_4.png"),
+    Chat1("../assets/images/gamelle/chat_1.png"),
+    Chat2("../assets/images/gamelle/chat_2.png"),
+    Chat3("../assets/images/gamelle/chat_3.png"),
+    Chat4("../assets/images/gamelle/chat_4.png"),
 
     Chien0("../assets/images/gamelle/chien_0.png"),
     Chien1("../assets/images/gamelle/chien_1.png"),
