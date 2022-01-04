@@ -27,7 +27,6 @@ public class TimerPortions extends TimerTask {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                System.out.println(familiar.getPortions());
                 familiar.addPortion();
             }
           }, 0, minutesPerPortion); //no waiting between actions, 1 action every x minutes

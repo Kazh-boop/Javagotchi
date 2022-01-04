@@ -66,6 +66,7 @@ public abstract class Familiar implements Serializable {
      */
 
     public void feed() throws FeedException {
+            // check if familiar can be fed and change linked value if yes
             canBeFeed();
             setHungriness(this.hungriness + MAX_RETRIEVE_STAT);
             setMoodValue(moodValue+MAX_RETRIEVE_STAT/NB_STATS);
@@ -73,7 +74,7 @@ public abstract class Familiar implements Serializable {
             this.energy -= DECREASE_STATS_PER_ACTION;
             this.hygiene -= DECREASE_STATS_PER_ACTION;
             decreaseMood(DECREASE_STATS_PER_ACTION*2);
-            this.portions--;
+            setPortions(portions-1);
     }
 
 
@@ -83,7 +84,7 @@ public abstract class Familiar implements Serializable {
     public void canBeFeed() throws FeedException {
     	if(hungriness == MAX_STATS)
     	{
-    		throw new FeedException("Le familier est répu !");
+    		throw new FeedException("Le familier est repu !");
     	}
     	else if(room.getRooms() != Rooms.KITCHEN) {
     		throw new FeedException("Le familier ne peut être nourri que dans la cuisine !");
@@ -98,7 +99,7 @@ public abstract class Familiar implements Serializable {
      */ 
 
     public void addPortion() {
-        if(this.portions < MAX_PORTIONS) this.portions++;
+        if(this.portions < MAX_PORTIONS) setPortions(portions++);
     }
 
     // used for testing
@@ -111,8 +112,8 @@ public abstract class Familiar implements Serializable {
     }
     
     public void setPortions(final int portions) {
-    	if(portions <= MAX_PORTIONS) this.portions = portions; // allows you to change the number of portions
-        else if(portions < MIN_PORTIONS) this.portions = 0;
+    	if(portions <= MAX_PORTIONS) { this.portions = portions; }// allows you to change the number of portions
+        if(portions < MIN_PORTIONS) this.portions = 0;
     }
 
     /**
@@ -169,7 +170,6 @@ public abstract class Familiar implements Serializable {
 
     // changes the mood according to the value of moodValue
     public Mood changeMood() {
-        System.out.println("MV : " + moodValue);
 
         if(moodValue >= HAPPY_THRESHOLD) return Mood.HAPPY;
         else if(moodValue >= JOY_THRESHOLD) return Mood.JOYFUL;
@@ -274,6 +274,7 @@ public abstract class Familiar implements Serializable {
     public void setHungriness(final int hungriness) {
         this.hungriness = hungriness;
         if (this.hungriness > MAX_STATS) this.hungriness = MAX_STATS; // allows you to change the percentage reprenting the familiar's hunger
+        if (this.hungriness < MIN_STATS) this.hungriness = MIN_STATS;
     }
     
     public String getUID() {

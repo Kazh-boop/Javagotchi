@@ -20,6 +20,7 @@ public class Toast extends JFrame {
   
         // create a panel
         JPanel p = new JPanel() {
+            @Override
             public void paintComponent(Graphics g)
             {
                 int wid = g.getFontMetrics().stringWidth(s);

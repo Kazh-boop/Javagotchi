@@ -3,7 +3,6 @@ package app.controller;
 import app.model.SaveManager;
 import app.view.MainFrame;
 import app.view.SavesMenu;
-import app.model.Cat;
 import app.model.Familiar;
 
 import java.awt.event.ActionEvent;
