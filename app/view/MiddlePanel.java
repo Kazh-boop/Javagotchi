@@ -2,7 +2,6 @@ package app.view;
 
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
 
 import app.model.Familiar;
 import app.model.Room;
@@ -10,7 +9,7 @@ import app.util.RoomsURL;
 import app.util.BowlsURL;
 import app.util.IconUtil;
 
-public class MiddlePanel extends JPanel{
+public class MiddlePanel{
 	private JLayeredPane pane;
 	private JLabel backgroundIcon;
 	private JLabel bowl = null;
