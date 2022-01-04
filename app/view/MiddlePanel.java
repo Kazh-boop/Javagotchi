@@ -1,5 +1,8 @@
 package app.view;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
@@ -33,10 +36,11 @@ public class MiddlePanel{
 		backgroundIcon.setSize(backgroundIcon.getPreferredSize());
 		pane.add(backgroundIcon, Integer.valueOf(0));
 		
-
 		if("Cuisine".equals(room.getName())) {
 			String typePortions = familiar.getFamiliarType() + familiar.getPortions();
-			bowl = new JLabel(IconUtil.createImageIcon(BowlsURL.valueOf(typePortions).getUrl()));
+			bowl = new JLabel(IconUtil.createSizedImageIcon(BowlsURL.valueOf(typePortions).getUrl(), 150 , 100));
+			bowl.setSize(bowl.getPreferredSize());
+			bowl.setLocation(825, 500);
 			pane.add(bowl, Integer.valueOf(1));
 		}
 	}
