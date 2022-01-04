@@ -5,13 +5,14 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import app.model.Familiar;
 import app.model.Room;
-import app.model.Rooms;
 import app.controller.GameController;
 import app.util.RoomsURL;
+import app.util.BowlsURL;
 
 public class MiddlePanel {
 	private JLayeredPane pane;
 	private JLabel background;
+	private JLabel bowl = null;
 	
 	private Familiar familiar;
 	private Room room;
@@ -31,6 +32,11 @@ public class MiddlePanel {
 		background.setSize(background.getPreferredSize());
 		pane.add(background, Integer.valueOf(0));
 		
+		if(room.getName() == "Cuisine") {
+			String type_portions = familiar.getFamiliarType() + familiar.getPortions();
+			bowl = new JLabel(createImageIcon(BowlsURL.valueOf(type_portions).getUrl()));
+			pane.add(bowl, Integer.valueOf(1));
+		}
 	}
 	
 	public JLayeredPane getPane() {
