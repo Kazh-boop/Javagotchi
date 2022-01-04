@@ -16,11 +16,9 @@ import app.model.Cat;
 import app.model.Familiar;
 import app.model.Mood;
 import app.model.Rooms;
-import app.model.Weather;
 
 class TestFamiliar {
 	
-    private static final int MAX_STATS = 100;
     private static final int TEST_STATS = 80;
     private static final String CAT_NAME = "Filou";
     private static final String CAT_URL = "/app/assets/images/cat.png";

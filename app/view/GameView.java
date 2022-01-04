@@ -66,7 +66,6 @@ public class GameView {
     private CustomMenuButton sleepButton;
     private CustomMenuButton washButton;
     
-    private JLabel bgGame;
     
     public GameView(JFrame nFrame, GameController g){
         this.mainFrame = nFrame;
@@ -186,8 +185,6 @@ public class GameView {
         roomSelector.add(currentRoom);
         roomSelector.add(goRightButton);
         roomSelector.setAlignmentX(Component.LEFT_ALIGNMENT);
-        
-        bgGame = new JLabel(IconUtil.createImageIcon("../assets/images/cuisine/cuisine_cloudy.png"));
 
         /**
          * addition of the different items on the left of the screen

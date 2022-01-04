@@ -1,29 +1,29 @@
 package app.util;
 
 public enum BowlsURL {
-    Chat0("../assets/images/gamelle/chat_0"),
-    Cat1("../assets/images/gamelle/chat_1"),
-    Cat2("../assets/images/gamelle/chat_2"),
-    Cat3("../assets/images/gamelle/chat_3"),
-    Cat4("../assets/images/gamelle/chat_4"),
+    Chat0("../assets/images/gamelle/chat_0.png"),
+    Cat1("../assets/images/gamelle/chat_1.png"),
+    Cat2("../assets/images/gamelle/chat_2.png"),
+    Cat3("../assets/images/gamelle/chat_3.png"),
+    Cat4("../assets/images/gamelle/chat_4.png"),
 
-    Chien0("../assets/images/gamelle/chien_0"),
-    Chien1("../assets/images/gamelle/chien_1"),
-    Chien2("../assets/images/gamelle/chien_2"),
-    Chien3("../assets/images/gamelle/chien_3"),
-    Chien4("../assets/images/gamelle/chien_4"),
+    Chien0("../assets/images/gamelle/chien_0.png"),
+    Chien1("../assets/images/gamelle/chien_1.png"),
+    Chien2("../assets/images/gamelle/chien_2.png"),
+    Chien3("../assets/images/gamelle/chien_3.png"),
+    Chien4("../assets/images/gamelle/chien_4.png"),
 
-    Robot0("../assets/images/gamelle/robot_0"),
-    Robot1("../assets/images/gamelle/robot_1"),
-    Robot2("../assets/images/gamelle/robot_2"),
-    Robot3("../assets/images/gamelle/robot_3"),
-    Robot4("../assets/images/gamelle/robot_4"),
+    Robot0("../assets/images/gamelle/robot_0.png"),
+    Robot1("../assets/images/gamelle/robot_1.png"),
+    Robot2("../assets/images/gamelle/robot_2.png"),
+    Robot3("../assets/images/gamelle/robot_3.png"),
+    Robot4("../assets/images/gamelle/robot_4.png"),
 
-    Lapin0("../assets/images/gamelle/lapin_0"),
-    Lapin1("../assets/images/gamelle/lapin_1"),
-    Lapin2("../assets/images/gamelle/lapin_2"),
-    Lapin3("../assets/images/gamelle/lapin_3"),
-    Lapin4("../assets/images/gamelle/lapin_4");
+    Lapin0("../assets/images/gamelle/lapin_0.png"),
+    Lapin1("../assets/images/gamelle/lapin_1.png"),
+    Lapin2("../assets/images/gamelle/lapin_2.png"),
+    Lapin3("../assets/images/gamelle/lapin_3.png"),
+    Lapin4("../assets/images/gamelle/lapin_4.png");
 
     private String url;
  
