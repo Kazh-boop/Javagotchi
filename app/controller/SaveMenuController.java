@@ -42,11 +42,19 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
 		flush();
 		savesMenu.display(this);
 	}
+
+	/**
+	 * return all Name of familiar saved
+	 */
 	
 	public String[] getSaveName() {
 		return saveManager.getNameSave();
 	}
 	
+	/**
+	 * return all Familiar saved
+	 */
+
 	public List<Familiar> getAllFamiliar() throws ClassNotFoundException, IOException {
 		return saveManager.getAllFamiliar();
 	}
@@ -116,8 +124,14 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
 		menuController.playsound(menuController.getClickSound());
 		if (!(this.savesMenu.getListSave().isSelectionEmpty())) { // checking a selection
     		Familiar familiarToLoad = this.savesMenu.getListSave().getSelectedValue(); // recovery of a selection
-			familiarToLoad.resetPosition();
-			new GameController(familiarToLoad, mainFrame);
+    		if (!(familiarToLoad.isDead())) {
+				familiarToLoad.resetPosition();
+				new GameController(familiarToLoad, mainFrame, menuController);
+    		} else {
+    	        JOptionPane.showMessageDialog(
+    	                null, 
+    	                familiarToLoad.getName()+" est mort, il faut le laisser en paix en le supprimant");
+    		}
 		}
 	}
 	

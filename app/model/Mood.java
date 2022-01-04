@@ -19,9 +19,17 @@ public enum Mood {
         this.name = name;
     }
 
+    /**
+     * @return coef float
+     */
+
     public float getCoef() {
         return coef;
     }
+
+    /**
+     * @return name String
+     */
 
     public String getName() {
         return name;

@@ -1,5 +1,6 @@
 package test.model;
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -32,14 +33,14 @@ public class TestTimerVitality {
 	@Test
 	public void testNewTimerVitality()
 	{
-		TimerVitality timerVitality = new TimerVitality(familiar, null);
+		TimerVitality timerVitality = new TimerVitality(familiar, null, null);
 		assertNotNull(timerVitality);
 	}
 	
 	@Test
 	public void testNewTimerVitalityPeriod()
 	{
-		TimerVitality timerVitality = new TimerVitality(familiar, null, 10);
+		TimerVitality timerVitality = new TimerVitality(familiar, null, null, 10);
 		assertNotNull(timerVitality);
 	}
 	
@@ -54,7 +55,7 @@ public class TestTimerVitality {
 		*/
 		familiar.setVitality(98);
 		
-		TimerVitality timerVitality = new TimerVitality(familiar, null, 10);
+		TimerVitality timerVitality = new TimerVitality(familiar, null, null, 10);
 		timerVitality.run();
 		Thread.sleep(20);
 		assertEquals(100, familiar.getVitality());
@@ -68,7 +69,7 @@ public class TestTimerVitality {
 		familiar.setMood(Mood.MISERABLE);
 		familiar.setHungriness(14);
 		familiar.setVitality(100);
-		TimerVitality timerVitality = new TimerVitality(familiar, null, 10);
+		TimerVitality timerVitality = new TimerVitality(familiar, null, null, 10);
 		timerVitality.run();
 		Thread.sleep(20);
 		assertEquals(98, familiar.getVitality());

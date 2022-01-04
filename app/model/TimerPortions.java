@@ -21,6 +21,12 @@ public class TimerPortions extends TimerTask {
         minutesPerPortion = period;
     }
 
+
+    /**
+     * starting the timer and adding portions to the familiar
+     */
+
+
     @Override
     public void run() {
         Timer timer = new Timer();

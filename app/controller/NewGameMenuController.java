@@ -140,7 +140,7 @@ public class NewGameMenuController implements ActionListener {
     		setOptionBoxVisual(maxLenghtProb);
     		
     	}else if((fName.isEmpty()) || (emptyMatcher.find())) {
-    		JOptionPane emptyNameProb = new JOptionPane("Le nom du familier doit comporter au moins 1 caract�re et ne pas commencer par des espaces.",JOptionPane.WARNING_MESSAGE);
+    		JOptionPane emptyNameProb = new JOptionPane("Le nom du familier doit comporter au moins 1 caractï¿½re et ne pas commencer par des espaces.",JOptionPane.WARNING_MESSAGE);
     		setOptionBoxVisual(emptyNameProb);
     		
     	}else if((invalidMatcher.find())) {
@@ -215,7 +215,7 @@ public class NewGameMenuController implements ActionListener {
 							} catch (IOException e) {
 								e.printStackTrace();
 							}
-							new GameController(newFamiliar, mainFrame);
+							new GameController(newFamiliar, mainFrame, menuController);
 						}
 					break;
 					

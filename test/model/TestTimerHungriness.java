@@ -29,19 +29,19 @@ public class TestTimerHungriness {
 	
 	@Test
 	public void testNewTimerHungriness() {
-		TimerHungriness timerHungriness = new TimerHungriness(familiar, null);
+		TimerHungriness timerHungriness = new TimerHungriness(familiar, null, null);
 		assertNotNull(timerHungriness);
 	}
 	
 	@Test
 	public void testNewTimerHungrinessPeriod() {
-		TimerHungriness timerHungriness = new TimerHungriness(familiar, null, 10);
+		TimerHungriness timerHungriness = new TimerHungriness(familiar, null, null, 10);
 		assertNotNull(timerHungriness);
 	}
 	
 	@Test
 	public void timerLoseSatiety() throws InterruptedException {
-		TimerHungriness timerHungriness = new TimerHungriness(familiar, null, 10);
+		TimerHungriness timerHungriness = new TimerHungriness(familiar, null, null, 10);
 		timerHungriness.run();
 		Thread.sleep(50);
 		assertEquals(95, familiar.getHungriness());
