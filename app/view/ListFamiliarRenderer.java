@@ -32,7 +32,7 @@ public class ListFamiliarRenderer implements ListCellRenderer<Familiar> {
 
 		JPanel panFam = new JPanel();
 		panFam.setLayout(new BoxLayout(panFam, BoxLayout.Y_AXIS));
-		panFam.setPreferredSize(new Dimension(420, 350));
+		panFam.setPreferredSize(new Dimension(420, 400));
 		// picture of the familiar
 		JLabel image = new JLabel(createImageIcon(familiar.getUrlIcon()));
 		image.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -45,11 +45,15 @@ public class ListFamiliarRenderer implements ListCellRenderer<Familiar> {
 		JLabel textType = new CustomMenuLabel("Type : "+familiar.getFamiliarType(), DEFAULT_BUTTON_SIZE);
 		textType.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
+		JLabel textStatut = new CustomMenuLabel("Statut : "+statutToString(familiar), DEFAULT_BUTTON_SIZE);
+		textStatut.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
 		
 		// adding elements to the panel
 		panFam.add(image);
 		panFam.add(textName);
 		panFam.add(textType);
+		panFam.add(textStatut);
 
 		// setting up the list
 		list.setLayoutOrientation(JList.VERTICAL_WRAP);
@@ -80,5 +84,9 @@ public class ListFamiliarRenderer implements ListCellRenderer<Familiar> {
             return null;
         }
     }
+	
+	private String statutToString(Familiar f) {
+		return (f.isDead() ? "Mort" : "Vivant");
+	}
 
 }

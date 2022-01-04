@@ -18,37 +18,42 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import java.io.IOException;
+
+import javax.swing.JOptionPane;
+
 import app.exceptions.*;
 
 public class GameController implements ActionListener {
     
-    Familiar currentFamiliar;
-    Room currentRoom;
-    GameView gameView;
-    MainFrame  mainFrame;
-    SaveManager saveManager;
+    private Familiar currentFamiliar;
+    private Room currentRoom;
+    private GameView gameView;
+    private MainFrame  mainFrame;
+    private SaveManager saveManager;
+    private MenuController menuController; // to go back to MainMenu
     
-    TimerEnergy timerEnergy;
-    TimerVitality timerVitality;
-    TimerHungriness timerHungriness;
-    TimerPortions timerPortions;
+    private TimerEnergy timerEnergy;
+    private TimerVitality timerVitality;
+    private TimerHungriness timerHungriness;
+    private TimerPortions timerPortions;
 
     // constructor
-    public GameController(Familiar selectedFamiliar, MainFrame mainFrame) {
+    public GameController(Familiar selectedFamiliar, MainFrame mainFrame, MenuController menuController) {
         currentFamiliar = selectedFamiliar;
         currentRoom = new Room(Rooms.LIVING_ROOM);
         this.mainFrame = mainFrame;
         flush();
         this.gameView = new GameView(mainFrame, this);
         this.saveManager = new SaveManager();
+        this.menuController = menuController;
         
         timerEnergy = new TimerEnergy(currentFamiliar, gameView);
         timerEnergy.run();
         
-        timerVitality = new TimerVitality(currentFamiliar, gameView);
+        timerVitality = new TimerVitality(currentFamiliar, gameView, this.menuController);
         timerVitality.run();
         
-        timerHungriness = new TimerHungriness(currentFamiliar, gameView);
+        timerHungriness = new TimerHungriness(currentFamiliar, gameView, this.menuController);
         timerHungriness.run();
         
         timerPortions = new TimerPortions(currentFamiliar);
@@ -162,6 +167,7 @@ public class GameController implements ActionListener {
         updateRoom();
         updateWeather();
         updateMood();
+        if (currentFamiliar.isDead()) isDeadByHygiene();
     }
 
     /**
@@ -173,6 +179,7 @@ public class GameController implements ActionListener {
         updateRoom();
         updateWeather();
         updateMood();
+        if (currentFamiliar.isDead()) isDeadByHygiene();
     }
 
     /**
@@ -192,7 +199,7 @@ public class GameController implements ActionListener {
     
     private void updateWeather() {
         if(getCurrentRoom().changeWeather()) {
-            gameView.getCurrentWeatherLabel().setText("Météo : " + currentRoom.getWeatherName());
+            gameView.getCurrentWeatherLabel().setText("MÃ©tÃ©o : " + currentRoom.getWeatherName());
             gameView.getPbhygiene().setValue(currentFamiliar.getHygiene());
         }
     }
@@ -203,7 +210,20 @@ public class GameController implements ActionListener {
 
     private void updateRoom() {
         currentFamiliar.changeMood();
-        gameView.getCurrentRoomLabel().setText("Pièce : " + currentFamiliar.getRoom().getName());
+        gameView.getCurrentRoomLabel().setText("PiÃ¨ce : " + currentFamiliar.getRoom().getName());
     	gameView.getPbhygiene().setValue(currentFamiliar.getHygiene());
+    }
+    
+    private void isDeadByHygiene() {
+    	try {
+    		saveManager.writeSave(currentFamiliar);
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    		gameView.errorSave(e.toString());
+    	}
+		String[] confirmOptions = {"Menu Principal", "Quitter"};
+		int confirmAnswer = JOptionPane.showOptionDialog(null, currentFamiliar.getName()+" est mort d'insalubrité !", "Game Over !", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, confirmOptions, confirmOptions[0]);
+		if (confirmAnswer == 0) menuController.mainMenuDisplay();
+		else System.exit(0);
     }
 }
