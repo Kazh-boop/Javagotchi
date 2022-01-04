@@ -25,6 +25,9 @@ public class TestSave {
 	private static final String ABSOLUTEPATH = "save/test/";
 	private static final String EXTENSION = ".dat";
 	private static final File rep = new File(ABSOLUTEPATH);
+    private static final String CAT_URL = "/app/assets/images/cat.png";
+    private static final String DOG_URL = "/app/assets/images/dog.png";
+
 
 
 	@BeforeAll
@@ -33,11 +36,11 @@ public class TestSave {
 		rep.mkdirs();
 		
 		// Cat save
-		saveFamiliarCat = new Cat("Filou");
+		saveFamiliarCat = new Cat("Filou", CAT_URL);
 		nameSaveCat = saveFamiliarCat.getUID();
 		
 		// Dog save
-		saveFamiliarDog = new Dog("Toutou");
+		saveFamiliarDog = new Dog("Toutou", DOG_URL);
 		nameSaveDog = saveFamiliarDog.getUID();
 	}
 

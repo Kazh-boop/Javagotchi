@@ -22,6 +22,8 @@ class TestLoad {
 	private String nameSave;
 	private static final String ABSOLUTEPATH = "save/test/";
 	private static final File rep = new File(ABSOLUTEPATH);
+    private static final String CAT_URL = "/app/assets/images/cat.png";
+
 	
 	@BeforeEach
 	public void setUp() throws Exception {
@@ -29,7 +31,7 @@ class TestLoad {
 		rep.mkdirs();
 
 		// Cat save
-		saveFamiliar = new Cat("Filou");
+		saveFamiliar = new Cat("Filou", CAT_URL);
 		nameSave = saveFamiliar.getUID();
 		saveManager.openFile(nameSave);
 		saveManager.writeSave(saveFamiliar);

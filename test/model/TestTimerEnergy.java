@@ -14,10 +14,12 @@ import app.model.TimerEnergy;
 public class TestTimerEnergy {
 	
 	private static Familiar familiar;
+    private static final String CAT_URL = "/app/assets/images/cat.png";
+
 	
 	@BeforeAll
 	public static void setUp() throws Exception {
-		familiar = new Cat("Filou");
+		familiar = new Cat("Filou", CAT_URL);
 	}
 	
 	@AfterAll

@@ -14,10 +14,12 @@ import app.model.TimerHungriness;
 public class TestTimerHungriness {
 
 	private static Familiar familiar;
+    private static final String CAT_URL = "/app/assets/images/cat.png";
+
 	
 	@BeforeEach
 	public void setUp() {
-		familiar = new Cat("Filou");
+		familiar = new Cat("Filou", CAT_URL);
 	}
 	
 	@AfterEach

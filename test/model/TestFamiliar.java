@@ -22,11 +22,12 @@ class TestFamiliar {
     private static final int MAX_STATS = 100;
     private static final int TEST_HUNGRINESS = 50;
     private static final String CAT_NAME = "Filou";
+    private static final String CAT_URL = "/app/assets/images/cat.png";
     private Familiar familiar;
     
     @BeforeEach
     public void initEach() {
-    	familiar = new Cat(CAT_NAME);
+    	familiar = new Cat(CAT_NAME, CAT_URL);
     }
     
 	@AfterEach
@@ -41,13 +42,13 @@ class TestFamiliar {
 	
 	@Test
 	public void newFamiliar() {
-		Familiar familiar2 = new Cat(CAT_NAME);
+		Familiar familiar2 = new Cat(CAT_NAME, CAT_URL);
 		assertNotNull(familiar2);
 	}
 	
 	@Test
 	public void newFamiliarCopy( ){
-		Cat familiar1 = new Cat(CAT_NAME);
+		Cat familiar1 = new Cat(CAT_NAME, CAT_URL);
 		Cat familiar2 = new Cat(familiar1);
 		assertEquals(familiar1, familiar2);
 	}
