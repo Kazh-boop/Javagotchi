@@ -249,10 +249,12 @@ public abstract class Familiar implements Serializable {
      * method of allowing the familiar to sleep,
      * unless it is full of energy
      */
-
-    public void sleep() throws SleepException {
+	public void sleep() throws SleepException {
     	if(energy == MAX_STATS) {
     		throw new SleepException(name + " est plein d'énergie !");
+    	}
+    	if((room.getRooms().equals(Rooms.GARDEN)) || (room.getRooms().equals(Rooms.KITCHEN))) {
+    		throw new SleepException(name + " ne se trouve pas dans le " + Rooms.LIVING_ROOM.getName() + " !");
     	}
     }
     
@@ -264,7 +266,6 @@ public abstract class Familiar implements Serializable {
     	this.energy = energy;
     	if (this.energy > MAX_STATS) this.energy = MAX_STATS; // allows you to change the percentage of energy
         else if (this.energy < MIN_STATS) this.energy = MIN_STATS; // allows you to change the percentage of energy
-
     }
 
     public int getVitality() {

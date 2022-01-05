@@ -11,6 +11,7 @@ public class TimerSleep extends TimerTask{
     private int minutesPerEnergy;
     private GameView gameView;
     private int count = 0;
+    private int sleepProgress = 0;
 
 
 	/**
@@ -48,6 +49,8 @@ public class TimerSleep extends TimerTask{
                         gameView.getPbEnergy().setValue(familiar.getEnergy());
                         gameView.getMoodLabel().setText("Humeur : " + familiar.getMood().getName());
                     }
+                    sleepProgress = gameView.getMiddlePanel().getSleepProgressBar().getValue();
+                    sleepProgress+=20;
             	}
             	else {
             		gameView.enableAll();

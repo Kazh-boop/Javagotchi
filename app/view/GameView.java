@@ -51,7 +51,6 @@ public class GameView {
     private JButton goLeftButton;
     private JButton goRightButton;
     
-    
     private JLabel weather;
     private JLabel vitality;
     private JLabel energy;

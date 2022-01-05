@@ -156,29 +156,23 @@ public class GameController implements ActionListener {
             gameView.getPbHunger().setValue(currentFamiliar.getHungriness());
             gameView.getFeedButton().setToolTipText(currentFamiliar.getPortions() + " portions de " + currentFamiliar.getFood() + " restantes");
             
-            try {
-            	switch(currentFamiliar.getFamiliarType()) {
-            		case "Chat":
-            			SoundManager.playsound(SoundManager.SOUNDS_EAT_FOOD,15f);
-            			break;
-            		
-            		case "Chien":
-            			SoundManager.playsound(SoundManager.SOUNDS_EAT_FOOD,15f);
-            			break;
-            			
-            		case "Robot":
-            			SoundManager.playsound(SoundManager.SOUNDS_EAT_CHARGE,15f);
-            			break;
-            			
-            		case "Rabbit":
-            			SoundManager.playsound(SoundManager.SOUNDS_EAT_FOOD,15f);
-            			break;
-            	}
-            	
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+        	switch(currentFamiliar.getFamiliarType()) {
+        		case "Chat":
+        			SoundManager.playsound(SoundManager.SOUNDS_EAT_FOOD,15f);
+        			break;
+        		
+        		case "Chien":
+        			SoundManager.playsound(SoundManager.SOUNDS_EAT_FOOD,15f);
+        			break;
+        			
+        		case "Robot":
+        			SoundManager.playsound(SoundManager.SOUNDS_EAT_CHARGE,15f);
+        			break;
+        			
+        		case "Rabbit":
+        			SoundManager.playsound(SoundManager.SOUNDS_EAT_FOOD,15f);
+        			break;
+        	}
             gameView.getMiddlePanel().changeRoom(currentRoom);
         }
         catch (FeedException e) {
@@ -285,7 +279,7 @@ public class GameController implements ActionListener {
     		gameView.errorSave(e.toString());
     	}
 		String[] confirmOptions = {"Menu Principal", "Quitter"};
-		int confirmAnswer = JOptionPane.showOptionDialog(null, currentFamiliar.getName()+" est mort d'insalubritÃ© !", "Game Over !", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, confirmOptions, confirmOptions[0]);
+		int confirmAnswer = JOptionPane.showOptionDialog(null, currentFamiliar.getName()+" est mort d'insalubrité !", "Game Over !", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, confirmOptions, confirmOptions[0]);
 		if (confirmAnswer == 0) menuController.mainMenuDisplay();
 		else System.exit(0);
     }
