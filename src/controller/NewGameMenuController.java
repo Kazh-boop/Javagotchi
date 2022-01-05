@@ -136,15 +136,15 @@ public class NewGameMenuController implements ActionListener {
     	emptyMatcher = emptyPattern.matcher(fName);
     	
     	if(fName.length()>=20){
-    		JOptionPane maxLenghtProb = new JOptionPane("Le nom du familier ne peut pas depasser 20 caractères.",JOptionPane.WARNING_MESSAGE);
+    		JOptionPane maxLenghtProb = new JOptionPane("Le nom du familier ne peut pas depasser 20 caractÃ¨res.",JOptionPane.WARNING_MESSAGE);
     		setOptionBoxVisual(maxLenghtProb);
     		
     	}else if((fName.isEmpty()) || (emptyMatcher.find())) {
-    		JOptionPane emptyNameProb = new JOptionPane("Le nom du familier doit comporter au moins 1 caractère et ne pas commencer par des espaces.",JOptionPane.WARNING_MESSAGE);
+    		JOptionPane emptyNameProb = new JOptionPane("Le nom du familier doit comporter au moins 1 caractÃ¨re et ne pas commencer par des espaces.",JOptionPane.WARNING_MESSAGE);
     		setOptionBoxVisual(emptyNameProb);
     		
     	}else if((invalidMatcher.find())) {
-    		JOptionPane invalidNameProb = new JOptionPane("Les caractères <, >, :, \", /, \\, |, ?, * sont interdits dans le nom du familier.",JOptionPane.WARNING_MESSAGE);
+    		JOptionPane invalidNameProb = new JOptionPane("Les caractÃ¨res <, >, :, \", /, \\, |, ?, * sont interdits dans le nom du familier.",JOptionPane.WARNING_MESSAGE);
     		setOptionBoxVisual(invalidNameProb);
     		
     	
@@ -174,9 +174,9 @@ public class NewGameMenuController implements ActionListener {
     		}
     		
     	}else {
-    		String confirmMsg = "Création de "+fName+" le "+fType+" ?";
+    		String confirmMsg = "CrÃ©ation de "+fName+" le "+fType+" ?";
     		String[] confirmOptions = {"Oui", "Non"};
-    		int confirmAnswer = JOptionPane.showOptionDialog(null, confirmMsg, "Confirmer création", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, confirmOptions, confirmOptions[0]);
+    		int confirmAnswer = JOptionPane.showOptionDialog(null, confirmMsg, "Confirmer crÃ©ation", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, confirmOptions, confirmOptions[0]);
     		
     		switch(confirmAnswer){
 	    		case 0:
@@ -238,7 +238,7 @@ public class NewGameMenuController implements ActionListener {
 	 * @return pane JOptionPane
 	 */
 	private JOptionPane setOptionBoxVisual(JOptionPane pane) {
-		JDialog boite = pane.createDialog("Robot vérificateur");
+		JDialog boite = pane.createDialog("Robot vÃ©rificateur");
 	    boite.setVisible(true);
 		return pane;
 	}

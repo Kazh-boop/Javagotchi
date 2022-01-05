@@ -123,7 +123,7 @@ public class GameController implements ActionListener {
     		/** 
     	     * displays a message to say that the backup was successful
     	     */
-    		String saveSuccessMsg = "Votre progression a bien été sauvegardée !";
+    		String saveSuccessMsg = "Votre progression a bien ï¿½tï¿½ sauvegardï¿½e !";
     		String[] saveSuccessOptions = {"Retour au menu", "Retour au jeu"};
     		int saveSuccessAnswer = JOptionPane.showOptionDialog(null, saveSuccessMsg, "", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, saveSuccessOptions, saveSuccessOptions[1]);
     		
@@ -255,7 +255,7 @@ public class GameController implements ActionListener {
      */
     private void updateWeather() {
         if(getCurrentRoom().changeWeather()) {
-            gameView.getCurrentWeatherLabel().setText("Météo : " + currentRoom.getWeatherName());
+            gameView.getCurrentWeatherLabel().setText("MÃ©tÃ©o : " + currentRoom.getWeatherName());
             gameView.getPbhygiene().setValue(currentFamiliar.getHygiene());
         }
     }
@@ -266,7 +266,7 @@ public class GameController implements ActionListener {
     private void updateRoom() {
         this.currentRoom = currentFamiliar.getRoom();
         currentFamiliar.changeMood();
-        gameView.getCurrentRoomLabel().setText("Pièce : " + currentFamiliar.getRoom().getName());
+        gameView.getCurrentRoomLabel().setText("PiÃ¨ce : " + currentFamiliar.getRoom().getName());
     	gameView.getPbhygiene().setValue(currentFamiliar.getHygiene());
     }
     
@@ -281,7 +281,7 @@ public class GameController implements ActionListener {
     		gameView.errorSave(e.toString());
     	}
 		String[] confirmOptions = {"Menu Principal", "Quitter"};
-		int confirmAnswer = JOptionPane.showOptionDialog(null, currentFamiliar.getName()+" est mort d'insalubrité !", "Game Over !", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, confirmOptions, confirmOptions[0]);
+		int confirmAnswer = JOptionPane.showOptionDialog(null, currentFamiliar.getName()+" est mort d'insalubritÃ© !", "Game Over !", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, confirmOptions, confirmOptions[0]);
 		if (confirmAnswer == 0) menuController.mainMenuDisplay();
 		else System.exit(0);
     }
