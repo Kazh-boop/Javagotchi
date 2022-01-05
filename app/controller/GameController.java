@@ -183,7 +183,6 @@ public class GameController implements ActionListener {
     /**
      * action taken when WashButton is clicked
      */
-    
     private void onClickWash() {
     	try {
     		currentFamiliar.wash();
@@ -197,7 +196,6 @@ public class GameController implements ActionListener {
     /**
      * action taken when SleepButton is clicked
      */
-    
     private void onClickSleep() {
     	try {
 			currentFamiliar.sleep();

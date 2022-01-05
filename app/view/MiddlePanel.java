@@ -56,7 +56,7 @@ public class MiddlePanel{
 				
 			case "Lapin":
 				familiarIcon = new JLabel(IconUtil.createImageIcon("../assets/images/rabbit.png"));
-				familiarIcon.setLocation(450, 370);
+				familiarIcon.setLocation(450, 350);
 				break;
 				
 			default:
@@ -89,7 +89,7 @@ public class MiddlePanel{
 		switch(familiar.getFamiliarType()){
 			case "Chat":
 				familiarIcon = new JLabel(IconUtil.createImageIcon("../assets/images/cat_sleep.png"));
-				familiarIcon.setLocation(450, 370);
+				familiarIcon.setLocation(10, 340);
 				break;
 				
 			case "Chien":
@@ -104,12 +104,12 @@ public class MiddlePanel{
 				
 			case "Lapin":
 				familiarIcon = new JLabel(IconUtil.createImageIcon("../assets/images/rabbit_sleep.png"));
-				familiarIcon.setLocation(450, 370);
+				familiarIcon.setLocation(89, 266);
 				break;
 				
 			default:
 				familiarIcon = new JLabel(IconUtil.createImageIcon("../assets/images/cat_sleep.png"));
-				familiarIcon.setLocation(450, 370);
+				familiarIcon.setLocation(10, 340);
 				break;
 		}
 		familiarIcon.setSize(familiarIcon.getPreferredSize());
@@ -120,13 +120,11 @@ public class MiddlePanel{
 		sleepCompletion.setSize(200, 50);;
 		pane.add(sleepCompletion, Integer.valueOf(2));
 		
-		/*
 		sleepPB = new JProgressBar(0, 100);
-		sleepPB.setLocation(465, 65);
+		sleepPB.setLocation(465, 62);
 		sleepPB.setValue(0);
 		sleepPB.setSize(sleepCompletion.getPreferredSize());
 		pane.add(sleepPB, Integer.valueOf(3));
-		*/
 	}
 	
 	/**
