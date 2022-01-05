@@ -60,7 +60,7 @@ public class SavesMenu {
     /** display(MenuController)
      * 
      * Displays the backup menu
-     * @param nController
+     * @param smController SaveMenuController
      * @throws IOException 
      * @throws ClassNotFoundException 
      */

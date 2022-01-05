@@ -61,9 +61,10 @@ public class NewGameMenuController implements ActionListener {
 
 
 	/**
-	 * reception of actions when clicking on buttons,
-	 * execution of the corresponding action
-	  */
+	 * Reception of actions when clicking on buttons,
+	 * Execution of the corresponding action
+	 * @param e
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == this.newGameMenu.getBackMenu()) {
@@ -86,15 +87,14 @@ public class NewGameMenuController implements ActionListener {
 	}
 	
 	/** 
-	 * empties the MainFrame of all its components
+	 * Empties the MainFrame of all its components
 	 */
 	private void flush() {
 		mainFrame.getContentPane().removeAll();
 		mainFrame.repaint();
 	}
 	
-	/** turnRightFamiliar()
-	 * 
+	/**
 	 * Change the choice of the familiar with the one on his right
 	 */
 	private void turnRightFamiliar() {
@@ -106,8 +106,7 @@ public class NewGameMenuController implements ActionListener {
 			this.newGameMenu.getSpeciesIcon().setIcon(createImageIcon(familiarTypeURL[cursorImage]));
 		}
 	
-	/** turnLeftFamiliar()
-	 * 
+	/**
 	 * Change the choice of the familiar with the one on his left
 	 */
 	private void turnLeftFamiliar() {
@@ -119,10 +118,9 @@ public class NewGameMenuController implements ActionListener {
 		this.newGameMenu.getSpeciesIcon().setIcon(createImageIcon(familiarTypeURL[cursorImage]));
 	}
 	
-	/** launchNewGame()
-	 * 
-	 * checks the validity of the name entered
-	 * create a familiar and start the game
+	/**
+	 * Checks the validity of the name entered
+	 * Create a familiar and start the game
 	 */
 	private void launchNewGame() {
 		String fName = this.newGameMenu.getName().getText();
@@ -262,14 +260,14 @@ public class NewGameMenuController implements ActionListener {
     }
 	
 	/**
-	 * @return mainFrame MainFrame
+	 * @return MainFrame mainFrame
 	 */
 	public MainFrame getMainFrame() {
 		return this.mainFrame;
 	}
 	
 	/**
-	 * @param i int
+	 * @param int i
 	 */
 	private void setCursorImage(int i) {
 		cursorImage=0;
