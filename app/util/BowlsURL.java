@@ -26,11 +26,19 @@ public enum BowlsURL {
     Lapin4("../assets/images/gamelle/lapin_4.png");
 
     private String url;
- 
-    BowlsURL(String url) {
+    
+    /**
+     * Constructor
+     * @param url
+     */
+    private BowlsURL(String url) {
         this.url = url;
     }
- 
+    
+    /**
+     * getter
+     * @return url
+     */
     public String getUrl() {
         return url;
     }

@@ -9,30 +9,47 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-public class SoundManager {
+public enum SoundManager {
+    SOUNDS_MENU_CLICK("app/assets/sounds/click.wav"),
+	SOUNDS_DOOR("app/assets/sounds/door.wav"),
+	SOUNDS_SAVE("app/assets/sounds/save.wav"),
+	SOUNDS_EAT_FOOD("app/assets/sounds/eat_0.wav"),
+	SOUNDS_EAT_CHARGE("app/assets/sounds/eat_1.wav"),
+	SOUNDS_LAUNCH("app/assets/sounds/launch.wav");
 
-    public static final String SOUNDS_MENU_CLICK = "app/assets/sounds/click.wav";
-	public static final String SOUNDS_DOOR = "app/assets/sounds/door.wav";
-	public static final String SOUNDS_SAVE = "app/assets/sounds/save.wav";
-	public static final String SOUNDS_EAT_FOOD = "app/assets/sounds/eat_0.wav";
-	public static final String SOUNDS_EAT_CHARGE = "app/assets/sounds/eat_1.wav";
-	public static final String SOUNDS_LAUNCH = "app/assets/sounds/launch.wav";
-	
-    private SoundManager() { }
+    private String url;
+    
+    /**
+     * Constructor
+     * @param url
+     */
+    private SoundManager(String url) {
+    	this.url = url;
+    }
+    
+    /**
+     * getter
+     * @return url
+     */
+    public String getUrl() {
+        return url;
+    }
     
     /**
      * Start a song with default volume
-     * @param path
+     * @param sound
      */
-	public static void playsound(String path) {
-		playsound(path,20f);
+	public static void playsound(SoundManager sound) {
+		playsound(sound,20f);
 	}
 	
 	/**
 	 * Start a song with defined volume
-	 * @param path
+	 * @param sound
+	 * @param volume
 	 */
-	public static void playsound(String path, float volume) {
+	public static void playsound(SoundManager sound, float volume) {
+		String path = sound.getUrl();
 		try {
 			Clip clip = AudioSystem.getClip();
 
