@@ -35,16 +35,23 @@ public class MiddlePanel{
 	}
 	
 	/**
+	 * Add the game background to the pane displayed
+	 */
+	private void setupBackground() {
+		backgroundIcon = new JLabel(IconUtil.createSizedImageIcon(RoomsURL.valueOf(getRoomWeather()).getURL(),1000,630));
+		backgroundIcon.setLocation(0, 0);
+		backgroundIcon.setSize(backgroundIcon.getPreferredSize());
+		pane.add(backgroundIcon, Integer.valueOf(0));
+	}
+	
+	/**
 	 * Display the game panel by layering the background, the familiar and the other part that could be displayed
 	 */
 	private void setup() {
 
 		pane.removeAll();
 
-		backgroundIcon = new JLabel(IconUtil.createSizedImageIcon(RoomsURL.valueOf(getRoomWeather()).getURL(),1000,630));
-		backgroundIcon.setLocation(0, 0);
-		backgroundIcon.setSize(backgroundIcon.getPreferredSize());
-		pane.add(backgroundIcon, Integer.valueOf(0));
+		setupBackground();
 		
 		switch(familiar.getFamiliarType()){
 			case "Chat":
@@ -87,16 +94,13 @@ public class MiddlePanel{
 	
 	/**
 	 * Display the game panel by layering the background, the familiar and the other part that could be displayed
-	 * only when the familiar is sleeping
+	 * only called when the familiar is sleeping
 	 */
 	private void setupSleep() {
 
 		pane.removeAll();
 
-		backgroundIcon = new JLabel(IconUtil.createSizedImageIcon(RoomsURL.valueOf(getRoomWeather()).getURL(),1000,630));
-		backgroundIcon.setLocation(0, 0);
-		backgroundIcon.setSize(backgroundIcon.getPreferredSize());
-		pane.add(backgroundIcon, Integer.valueOf(0));
+		setupBackground();
 		
 		switch(familiar.getFamiliarType()){
 			case "Chat":
@@ -151,6 +155,13 @@ public class MiddlePanel{
 	 */
 	public JProgressBar getSleepProgressBar() {
 		return sleepPB;
+	}
+	
+	/**
+	 * @return familiarIcon
+	 */
+	public JLabel getFamiliarIcon() {
+		return familiarIcon;
 	}
 	
 	/**

@@ -103,11 +103,9 @@ public class GameController implements ActionListener {
 			onClickSleep();
     	}
     	else if(e.getSource() == this.gameView.getGoLeftButton()) {
-    		SoundManager.playsound(SoundManager.SOUNDS_DOOR);
     		onClickGoLeft();
     	}
     	else if(e.getSource() == this.gameView.getGoRightButton()) {
-    		SoundManager.playsound(SoundManager.SOUNDS_DOOR);
     		onClickGoRight();
     	}
 	}
@@ -123,7 +121,7 @@ public class GameController implements ActionListener {
     		/** 
     	     * displays a message to say that the backup was successful
     	     */
-    		String saveSuccessMsg = "Votre progression a bien ï¿½tï¿½ sauvegardï¿½e !";
+    		String saveSuccessMsg = "Votre progression a bien été sauvegardée !";
     		String[] saveSuccessOptions = {"Retour au menu", "Retour au jeu"};
     		int saveSuccessAnswer = JOptionPane.showOptionDialog(null, saveSuccessMsg, "", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, saveSuccessOptions, saveSuccessOptions[1]);
     		
@@ -155,7 +153,8 @@ public class GameController implements ActionListener {
             currentFamiliar.feed();
             gameView.getPbHunger().setValue(currentFamiliar.getHungriness());
             gameView.getFeedButton().setToolTipText(currentFamiliar.getPortions() + " portions de " + currentFamiliar.getFood() + " restantes");
-            
+
+        	// sound during the meal
         	switch(currentFamiliar.getFamiliarType()) {
         		case "Chat":
         			SoundManager.playsound(SoundManager.SOUNDS_EAT_FOOD,15f);
@@ -173,6 +172,7 @@ public class GameController implements ActionListener {
         			SoundManager.playsound(SoundManager.SOUNDS_EAT_FOOD,15f);
         			break;
         	}
+        	// display after eating
             gameView.getMiddlePanel().changeRoom(currentRoom);
         }
         catch (FeedException e) {
@@ -255,7 +255,7 @@ public class GameController implements ActionListener {
      */
     private void updateWeather() {
         if(getCurrentRoom().changeWeather()) {
-            gameView.getCurrentWeatherLabel().setText("MÃ©tÃ©o : " + currentRoom.getWeatherName());
+            gameView.getCurrentWeatherLabel().setText("Météo : " + currentRoom.getWeatherName());
             gameView.getPbhygiene().setValue(currentFamiliar.getHygiene());
         }
     }
@@ -266,7 +266,7 @@ public class GameController implements ActionListener {
     private void updateRoom() {
         this.currentRoom = currentFamiliar.getRoom();
         currentFamiliar.changeMood();
-        gameView.getCurrentRoomLabel().setText("PiÃ¨ce : " + currentFamiliar.getRoom().getName());
+        gameView.getCurrentRoomLabel().setText("Pièce : " + currentFamiliar.getRoom().getName());
     	gameView.getPbhygiene().setValue(currentFamiliar.getHygiene());
     }
     
@@ -281,7 +281,7 @@ public class GameController implements ActionListener {
     		gameView.errorSave(e.toString());
     	}
 		String[] confirmOptions = {"Menu Principal", "Quitter"};
-		int confirmAnswer = JOptionPane.showOptionDialog(null, currentFamiliar.getName()+" est mort d'insalubritÃ© !", "Game Over !", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, confirmOptions, confirmOptions[0]);
+		int confirmAnswer = JOptionPane.showOptionDialog(null, currentFamiliar.getName()+" est mort d'insalubrité !", "Game Over !", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, confirmOptions, confirmOptions[0]);
 		if (confirmAnswer == 0) menuController.mainMenuDisplay();
 		else System.exit(0);
     }

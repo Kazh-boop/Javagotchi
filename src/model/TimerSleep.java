@@ -38,7 +38,8 @@ public class TimerSleep extends TimerTask{
     }
     
     /**
-     * starting the timer and changing setEnergy and setMoodValue
+     * Starting the timer and changing setEnergy and setMoodValue
+     * Update the progressBar "Sommeil", every 2 minutes
      */
     @Override
     public void run() {
@@ -54,6 +55,7 @@ public class TimerSleep extends TimerTask{
                         gameView.getPbEnergy().setValue(familiar.getEnergy());
                         gameView.getMoodLabel().setText("Humeur : " + familiar.getMood().getName());
                     }
+                    
                     if(sleepProgress==0) {
 	                    sleepProgress+=20;
                     }else {
@@ -61,6 +63,7 @@ public class TimerSleep extends TimerTask{
                     	gameView.getMiddlePanel().getSleepProgressBar().setValue(sleepProgress);
 	                    sleepProgress+=20;
                     }
+                    
             	} else {
             		gameView.enableAll();
         	    	// display out

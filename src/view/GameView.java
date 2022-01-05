@@ -98,17 +98,17 @@ public class GameView {
         mood = new CustomMenuLabel("Humeur : " + gC.getFamiliar().getMood().getName(), LABEL_FONT_SIZE);
         mood.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        weather = new CustomMenuLabel("MÃ©tÃ©o : " + gC.getCurrentRoom().getWeatherName(), LABEL_FONT_SIZE);
+        weather = new CustomMenuLabel("Météo : " + gC.getCurrentRoom().getWeatherName(), LABEL_FONT_SIZE);
         weather.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         // representation of the vitality of the familiar
-        vitality = new CustomMenuLabel(" VitalitÃ© : ", LABEL_FONT_SIZE);
+        vitality = new CustomMenuLabel(" Vitalité : ", LABEL_FONT_SIZE);
         vitality.setBorder(new EmptyBorder(0, RIGHT_BORDER_VITALITY, 0, 0));
         vitality.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         energy = new CustomMenuLabel(" Energie : ", LABEL_FONT_SIZE);
         
-        hygiene = new CustomMenuLabel(" HygiÃ¨ne : ",LABEL_FONT_SIZE);
+        hygiene = new CustomMenuLabel(" Hygiène : ",LABEL_FONT_SIZE);
 
         hunger = new CustomMenuLabel(" Faim : ", LABEL_FONT_SIZE);
 
@@ -174,7 +174,7 @@ public class GameView {
         goLeftButton.addActionListener(gC);
         goRightButton.addActionListener(gC);
         
-        currentRoom = new CustomMenuLabel("PiÃ¨ce : " + gC.getCurrentRoom().getName(), LABEL_FONT_SIZE);
+        currentRoom = new CustomMenuLabel("Pièce : " + gC.getCurrentRoom().getName(), LABEL_FONT_SIZE);
         currentRoom.setBorder(new EmptyBorder(0,10,0,10));
 
         roomSelector.add(goLeftButton);
@@ -324,7 +324,7 @@ public class GameView {
     public void errorFeed(String error) {
         JOptionPane.showMessageDialog(
             null, 
-            "Le familier ne peut pas Ãªtre nourri : " + error);
+            "Le familier ne peut pas être nourri : " + error);
     }
     
     /**
@@ -334,7 +334,7 @@ public class GameView {
     public void errorWash(String error) {
         JOptionPane.showMessageDialog(
             null, 
-            "Le familier ne peut pas Ãªtre lavÃ© : " + error);
+            "Le familier ne peut pas être lavé : " + error);
     }
     
     /**

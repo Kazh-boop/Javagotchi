@@ -15,9 +15,7 @@ public class MenuController implements ActionListener {
 	private NewGameMenuController newGameMenuController;
 	protected SaveMenuController saveMenuController;
 	private MainMenu mainMenu;
-	
-
-	
+		
     /**
      * Constructor
 	 * Initializes the 3 Controller menus and the mainFrame,

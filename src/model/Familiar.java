@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 import exceptions.*;
+import util.SoundManager;
 
 
 public abstract class Familiar implements Serializable {
@@ -286,6 +287,7 @@ public abstract class Familiar implements Serializable {
      */
     public void moveLeft() {
     	if(room.moveLeft()) {
+    		SoundManager.playsound(SoundManager.SOUNDS_DOOR);
     		hygiene-=2;
     		energy--;
     	}
@@ -296,6 +298,7 @@ public abstract class Familiar implements Serializable {
      */
     public void moveRight() {
     	if(room.moveRight()) {
+    		SoundManager.playsound(SoundManager.SOUNDS_DOOR);
     		hygiene-=2;
     		energy--;
     	}

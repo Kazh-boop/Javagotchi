@@ -59,7 +59,7 @@ public class NewGameMenu {
         this.title = new CustomMenuLabel("Nouvelle Partie", TITLE_FONT_SIZE);
         this.textName = new CustomMenuLabel("Nom du familier :");
         this.name = new JTextField(null,NAME_MAX_CHAR);
-        this.textType = new CustomMenuLabel("Choix de l'espÃ¨ce de votre familier");
+        this.textType = new CustomMenuLabel("Choix de l'espèce de votre familier");
         this.leftFamiliar = new CustomMenuButton(IconUtil.createImageIcon("left.png"));
         this.speciesIcon = new JLabel(IconUtil.createImageIcon("cat.png"));
         this.rightFamiliar = new CustomMenuButton(IconUtil.createImageIcon("right.png"));
