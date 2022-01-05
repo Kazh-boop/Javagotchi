@@ -253,7 +253,7 @@ public abstract class Familiar implements Serializable {
     	if(energy == MAX_STATS) {
     		throw new SleepException(name + " est plein d'énergie !");
     	}
-    	if((room.getRooms().equals(Rooms.GARDEN)) || (room.getRooms().equals(Rooms.KITCHEN))) {
+    	if(room.getRooms().equals(Rooms.GARDEN) || room.getRooms().equals(Rooms.KITCHEN)) {
     		throw new SleepException(name + " ne se trouve pas dans le " + Rooms.LIVING_ROOM.getName() + " !");
     	}
     }

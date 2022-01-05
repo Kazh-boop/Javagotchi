@@ -197,14 +197,18 @@ public class GameController implements ActionListener {
      * action taken when SleepButton is clicked
      */
     private void onClickSleep() {
-    	try {
+		try {
 			currentFamiliar.sleep();
 			gameView.disableAll();
 			// display
 	        gameView.getMiddlePanel().sleep(currentRoom);
-			
-			TimerSleep timerSleep = new TimerSleep(currentFamiliar, gameView);
-	    	timerSleep.run();
+	        TimerSleep timerSleep = null;
+	        if(currentFamiliar.getName().equals("Notch") && currentFamiliar.getFamiliarType().equals("Chien")) {
+				timerSleep = new TimerSleep(currentFamiliar, gameView, 1000);
+			}else {
+				timerSleep = new TimerSleep(currentFamiliar, gameView);
+			}
+			timerSleep.run();
 	    	timerEnergy.timerSleepUp();
 	    	
 		} catch (SleepException e) {
