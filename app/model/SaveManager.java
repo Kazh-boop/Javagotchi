@@ -66,7 +66,7 @@ public class SaveManager {
 
     /**
      * Constructor
-     * @param directoryPath String, initializes the directoryPath attribute 
+     * initializes the directoryPath attribute 
      */
     public SaveManager() {
         this.repSave = new File(DIRECTORY_PATH);
@@ -77,7 +77,6 @@ public class SaveManager {
     /**
      * Allows you to design which file you are going to work on
      * @param saveName String, base of the name of the file to be saved
-     * @throws FileNotFoundException
      */
     public void openFile(String saveName) {
     	currentFile = new File(DIRECTORY_PATH + saveName + ".dat");
@@ -153,7 +152,8 @@ public class SaveManager {
     
     /**
      * Retrieves all familiar from each file and places them in a vector
-     * @return listFamiliar Vector<Familiar>, vector containing the data saved in each file
+     * listFamiliar Vector<Familiar>, vector containing the data saved in each file
+     * @return listFamiliar
      * @throws ClassNotFoundException
      * @throws IOException
      */
@@ -174,7 +174,7 @@ public class SaveManager {
     
     /**
      * Ensures that there are less than 3 backups
-     * @return
+     * @return boolean
      */
     public boolean isEnableToSave() {
     	return getNbSave() < 3;

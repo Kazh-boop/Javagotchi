@@ -15,15 +15,22 @@ public class TimerSleep extends TimerTask{
 
 
 	/**
-     * constructor
-     */
-
+	 * Constructor
+	 * @param familiar
+	 * @param gameView
+	 */
     public TimerSleep(Familiar familiar, GameView gameView){
         this.familiar = familiar;
         minutesPerEnergy = 2 * 60 * 1000;
         this.gameView = gameView;
     }
     
+    /**
+     * Constructor with variable period
+     * @param familiar
+     * @param gameView
+     * @param period
+     */
     public TimerSleep(Familiar familiar,GameView gameView, int period){
         this.familiar = familiar;
         minutesPerEnergy = period;
@@ -33,7 +40,6 @@ public class TimerSleep extends TimerTask{
     /**
      * starting the timer and changing setEnergy and setMoodValue
      */
-
     @Override
     public void run() {
         Timer timer = new Timer();

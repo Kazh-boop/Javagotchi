@@ -66,25 +66,35 @@ public class GameController implements ActionListener {
         timerPortions.run();
     }
 
-    // return the familiar
+    /**
+     * @return currentFamiliar
+     */
     public Familiar getFamiliar() {
         return this.currentFamiliar;
     }
 
-    //return the room you are in
+    /**
+     * @return currentRoom
+     */
     public Room getCurrentRoom() {
         return this.currentRoom;
     }
 
     /** 
-	 * empties the mainFrame of all its components
+	 * Empties the mainFrame of all its components
 	 */
 	private void flush() {
 		mainFrame.getContentPane().removeAll();
 		mainFrame.repaint();
 	}
 
-    @Override
+	/** 
+	 * Reception of actions when clicking on buttons,
+	 * Comparison of the source of the action and the different buttons,
+	 * Execution of the corresponding action
+	 * @param e
+	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
     	if (e.getSource() == this.gameView.getSave()) { 
     		SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
@@ -113,7 +123,7 @@ public class GameController implements ActionListener {
 	}
     
     /**
-     * method to create a backup when a button is clicked
+     * Method to create a backup when a button is clicked
      */ 
     private void onClickSave() {
         try {
@@ -148,7 +158,7 @@ public class GameController implements ActionListener {
     }
     
     /**
-     * action taken when FeedButton is clicked
+     * Action taken when FeedButton is clicked
      */
     private void onClickFeed() {
         try {
@@ -181,7 +191,7 @@ public class GameController implements ActionListener {
     }
 
     /**
-     * action taken when WashButton is clicked
+     * Action taken when WashButton is clicked
      */
     private void onClickWash() {
     	try {
@@ -194,7 +204,7 @@ public class GameController implements ActionListener {
     }
 
     /**
-     * action taken when SleepButton is clicked
+     * Action taken when SleepButton is clicked
      */
     private void onClickSleep() {
 		try {
@@ -217,7 +227,7 @@ public class GameController implements ActionListener {
     }
 
     /**
-     * action taken when GoLeftButton is clicked
+     * Action taken when GoLeftButton is clicked
      */
     private void onClickGoLeft() {
     	currentFamiliar.moveLeft();
@@ -229,7 +239,7 @@ public class GameController implements ActionListener {
     }
 
     /**
-     * action taken when GoRightButton is clicked
+     * Action taken when GoRightButton is clicked
      */
     private void onClickGoRight() {
     	currentFamiliar.moveRight();
@@ -241,7 +251,7 @@ public class GameController implements ActionListener {
     }
 
     /**
-     * update the familiar's mood
+     * Update the familiar's mood
      */
     private void updateMood() {
         if(currentFamiliar.getHygiene()%3 == 1) {
@@ -251,7 +261,7 @@ public class GameController implements ActionListener {
     }
 
     /**
-     * change the weather
+     * Change the weather
      */
     private void updateWeather() {
         if(getCurrentRoom().changeWeather()) {
@@ -261,7 +271,7 @@ public class GameController implements ActionListener {
     }
 
     /**
-     * change room
+     * Update the room's state
      */
     private void updateRoom() {
         this.currentRoom = currentFamiliar.getRoom();

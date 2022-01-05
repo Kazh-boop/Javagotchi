@@ -48,17 +48,15 @@ public class SavesMenu {
 
     public SavesMenu(){}
 	
-	/** SavesMenu(MainFrame)
-	 * 
-	 * Constructor of SavesMenu
+	/**
+	 * Constructor
 	 * @param nFrame
 	 */
     public SavesMenu(MainFrame nFrame){
     	this.mainFrame = nFrame;
     }
     
-    /** display(MenuController)
-     * 
+    /**
      * Displays the backup menu
      * @param smController SaveMenuController
      * @throws IOException 
@@ -133,44 +131,42 @@ public class SavesMenu {
     }
     
     /**
-     * @return the modelFamiliar
+     * @return modelFamiliar
      */
     public DefaultListModel<Familiar> getModelFamiliar() {
 		return modelFamiliar;
 	}
     
     /**
-     * @return the listSave
+     * @return listSave
      */
 	public JList<Familiar> getListSave() {
 		return listSave;
 	}
 
-	/** getMainFrame()
-     * 
-     * @return JFrame mainFrame
+	/**
+     * @return mainFrame
      */
     public JFrame getMainFrame(){
         return this.mainFrame;
     }
     
-    /** getBackMenu()
-     * 
-     * @return Button backMenu
+    /**
+     * @return backMenu
      */
     public JButton getBackMenu(){
     	return this.backMenu;
 	}
     
     /**
-     * @return the deleteFamiliar
+     * @return deleteFamiliar
      */
 	public JButton getDeleteFamiliar() {
 		return deleteFamiliar;
 	}
 
 	/**
-	 * @return the loadSave
+	 * @return loadSave
 	 */
 	public JButton getLoadSave() {
 		return loadSave;

@@ -13,7 +13,9 @@ public class MainFrame extends JFrame {
     private static final int DEFAULT_WIDTH = 1280;
     private static final int DEFAULT_HEIGHT = 720;
 
-
+    /**
+     * Defined the mainFrame where all the application while be displayed
+     */
     public MainFrame() {
         super();
         

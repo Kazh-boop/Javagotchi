@@ -13,8 +13,10 @@ public class TimerEnergy extends TimerTask {
     private Boolean isTimerSleepUp = false;
 
     /**
-     * constructor
+     * Constructor
      * minutesPerEnergy is 10 minutes because this timer is used for the sleep action
+     * @param familiar
+     * @param gameView
      */
     public TimerEnergy(Familiar familiar, GameView gameView){
         this.familiar = familiar;
@@ -22,15 +24,26 @@ public class TimerEnergy extends TimerTask {
         this.gameView = gameView;
     }
     
+    /**
+     * Constructor with variable period
+     * minutesPerEnergy is 10 minutes because this timer is used for the sleep action
+     * @param familiar
+     * @param gameView
+     * @param period
+     */
     public TimerEnergy(Familiar familiar,GameView gameView, int period){
         this.familiar = familiar;
         minutesPerEnergy = period;
         this.gameView = gameView;
     }
     
+    /**
+     * set isTimerSleepUp to true
+     */
     public void timerSleepUp() {
     	isTimerSleepUp = true;
     }
+    
     /**
      * start the timer and change the value of setEnergy as the familiar rests
      */

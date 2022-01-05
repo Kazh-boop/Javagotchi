@@ -3,7 +3,8 @@ package app.model;
 
 /**
  * enumeration of the different rooms
-  */
+ */
+
 public enum Rooms {
     GARDEN(0,"Jardin", "", new Integer[]{1,2}),
 	LIVING_ROOM(1, "Salon", "", new Integer[] {3,4}),
@@ -14,6 +15,13 @@ public enum Rooms {
 	private String url;
 	private Integer[] actionsAvailable;
 
+	/**
+	 * Constructor
+	 * @param id
+	 * @param name
+	 * @param url
+	 * @param actionsAvailable
+	 */
     Rooms(int id, String name, String url, Integer[] actionsAvailable) {
     	this.id = id;
     	this.name = name;
@@ -21,26 +29,38 @@ public enum Rooms {
     	this.actionsAvailable = actionsAvailable;
     }
 
+    /**
+     * @return id
+     */
 	public int getId() {
 		return id;
 	}
 
+	/**
+	 * @return name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * @return url
+	 */
 	public String getUrl() {
 		return url;
 	}
 
+	/**
+	 * @return actionsAvailable
+	 */
 	public Integer[] getActionsAvailable() {
 		return actionsAvailable;
 	}
-	
 
 	/**
-	* each room is associated with an ID
-	  */
+	 * each room is associated with an ID
+	 * @return rooms
+	 */
 	public Rooms getRoomByID(int id)
 	{
 		Rooms rooms = null;
@@ -58,6 +78,4 @@ public enum Rooms {
 		
 		return rooms;
 	}
-
-    
 }

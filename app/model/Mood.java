@@ -11,9 +11,14 @@ public enum Mood {
     SAD(1.2f, "Maussade"),
     MISERABLE(1.4f, "Malheureux"),;
     
-    float coef;
-    String name;
-
+	private float coef;
+    private String name;
+    
+    /**
+     * Constructor
+     * @param coef
+     * @param name
+     */
     Mood(float coef, String name){
         this.coef = coef;
         this.name = name;
@@ -22,7 +27,6 @@ public enum Mood {
     /**
      * @return coef float
      */
-
     public float getCoef() {
         return coef;
     }
@@ -30,7 +34,6 @@ public enum Mood {
     /**
      * @return name String
      */
-
     public String getName() {
         return name;
     }

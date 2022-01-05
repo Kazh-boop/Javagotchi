@@ -23,7 +23,8 @@ public class MenuController implements ActionListener {
 
 	
     /**
-	 * initializes the 3 Controller menus and the mainFrame,
+     * Constructor
+	 * Initializes the 3 Controller menus and the mainFrame,
 	 * displays the main menu
 	 */
 	public MenuController() {
@@ -44,7 +45,7 @@ public class MenuController implements ActionListener {
 	}
 	
 	/** 
-	 * empties the mainframe of all its components
+	 * Empties the mainframe of all its components
 	 */
 	private void flush() {
 		mainFrame.getContentPane().removeAll();
@@ -52,10 +53,10 @@ public class MenuController implements ActionListener {
 	}
 	
 	/** 
-	 * reception of actions when clicking on buttons,
+	 * Reception of actions when clicking on buttons,
 	 * Comparison of the source of the action and the different buttons,
-	 * execution of the corresponding action
-	 * @param e ActionEvent
+	 * Execution of the corresponding action
+	 * @param e
 	 */
 	@Override
     public void actionPerformed(ActionEvent e) {
@@ -80,9 +81,7 @@ public class MenuController implements ActionListener {
 	}
 	
 	/**
-	 * 
-	 * Give the mainFrame
-	 * @return mainFrame MainFrame
+	 * @return mainFrame
 	 */
 	public MainFrame getMainFrame() {
 		return this.mainFrame;

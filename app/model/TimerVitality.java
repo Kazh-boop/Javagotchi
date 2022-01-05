@@ -15,12 +15,12 @@ public class TimerVitality extends TimerTask {
     private GameView gameView;
     private MenuController menuController;
 
-
     /**
-     * constructor 
-     * @param menuController 
+     * Constructor
+     * @param familiar
+     * @param gameView
+     * @param menuController
      */
-
     public TimerVitality(Familiar familiar, GameView gameView, MenuController menuController){
         this.familiar = familiar;
         this.gameView = gameView;
@@ -28,6 +28,13 @@ public class TimerVitality extends TimerTask {
         minutesPerVitality = 6 * 60 * 1000;
     }
     
+    /**
+     * Constructor with variable period
+     * @param familiar
+     * @param gameView
+     * @param menuController
+     * @param period
+     */
     public TimerVitality(Familiar familiar, GameView gameView, MenuController menuController,  int period){
         this.familiar = familiar;
         this.menuController = menuController;
@@ -37,8 +44,8 @@ public class TimerVitality extends TimerTask {
 
     /**
      * returns true if vitality is above 90%
+     * @return boolean
      */
-    
     private Boolean increased()
     {
     	Boolean result = false;
@@ -55,9 +62,9 @@ public class TimerVitality extends TimerTask {
     }
 
     /**
-    * returns true if vitality is below 15% 
+    * returns true if vitality is below 15%
+    * @return boolean
     */
-    
     private Boolean decreased()
     {
     	Boolean result = false;
@@ -76,7 +83,6 @@ public class TimerVitality extends TimerTask {
     /**
      * starting the timer and changing setVitality
      */
-
     @Override
     public void run() {
         Timer timer = new Timer();

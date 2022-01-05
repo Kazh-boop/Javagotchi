@@ -22,6 +22,11 @@ public class MiddlePanel{
 	private Familiar familiar;
 	private transient Room room;
 	
+	/**
+	 * Constructor
+	 * @param familiar
+	 * @param room
+	 */
 	MiddlePanel(Familiar familiar, Room room) {
 		pane = new JLayeredPane();
 		this.familiar = familiar;
@@ -29,6 +34,9 @@ public class MiddlePanel{
 		setup();	
 	}
 	
+	/**
+	 * Display the game panel by layering the background, the familiar and the other part that could be displayed
+	 */
 	private void setup() {
 
 		pane.removeAll();
@@ -77,6 +85,10 @@ public class MiddlePanel{
 		}
 	}
 	
+	/**
+	 * Display the game panel by layering the background, the familiar and the other part that could be displayed
+	 * only when the familiar is sleeping
+	 */
 	private void setupSleep() {
 
 		pane.removeAll();

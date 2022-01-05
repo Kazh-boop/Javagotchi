@@ -1,5 +1,9 @@
 package app.util;
 
+/**
+ * enumeration to know the different places where the familiar can be
+ */
+
 public enum RoomsURL {
 
 	CuisineNuageux("../assets/images/cuisine/cuisine_cloudy.png"),
@@ -16,11 +20,18 @@ public enum RoomsURL {
 	SalonEnsolleillee("../assets/images/salon/salon_sunny.png");
 
 	private String url;
- 
+	
+	/**
+	 * Constructor
+	 * @param url
+	 */
     RoomsURL(String url) {
         this.url = url;
     }
     
+    /**
+     * @return url
+     */
     public String getURL() {
     	return url;
     }

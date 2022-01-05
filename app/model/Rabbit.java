@@ -2,7 +2,11 @@ package app.model;
 
 public class Rabbit extends Familiar {
 
-    //costructor
+	/**
+     * Constructor
+     * @param name
+     * @param url
+     */
     public Rabbit(String name, String url) {
         super();
         this.name = name;
@@ -11,12 +15,15 @@ public class Rabbit extends Familiar {
         this.familiarType = "Lapin";
     }
 
-    public Rabbit(Rabbit r) {
+    /**
+     * @param rabbit
+     */
+    public Rabbit(Rabbit rabbit) {
         super();
-        this.name = r.name; 
-        this.mood = r.mood;
-        this.moodValue = r.moodValue;
-        this.urlIcon = r.urlIcon;
+        this.name = rabbit.name; 
+        this.mood = rabbit.mood;
+        this.moodValue = rabbit.moodValue;
+        this.urlIcon = rabbit.urlIcon;
         this.food = "Carottes";
         this.familiarType = "Lapin";
     }

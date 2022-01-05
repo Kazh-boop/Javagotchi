@@ -25,11 +25,18 @@ public class ListFamiliarRenderer implements ListCellRenderer<Familiar> {
 	
 	private static final float DEFAULT_BUTTON_SIZE = 32f;
 
+	/**
+	 * Create the panel that display the save
+	 * @param list
+	 * @param familiar
+	 * @param index
+	 * @param isSelected
+	 * @param cellHasFocus
+	 * @return panFam
+	 */
 	@Override
-	public Component getListCellRendererComponent(JList<? extends Familiar> list, Familiar familiar, int index,
-			boolean isSelected, boolean cellHasFocus) {
+	public Component getListCellRendererComponent(JList<? extends Familiar> list, Familiar familiar, int index, boolean isSelected, boolean cellHasFocus) {
 		
-
 		JPanel panFam = new JPanel();
 		panFam.setLayout(new BoxLayout(panFam, BoxLayout.Y_AXIS));
 		panFam.setPreferredSize(new Dimension(420, 400));
@@ -72,8 +79,8 @@ public class ListFamiliarRenderer implements ListCellRenderer<Familiar> {
 	 * Check that the entered URL leads to a file
 	 * Create and return an ImageIcon from the source file
 	 * 
-	 * @param path String
-	 * @return imgURL static ImageIcon
+	 * @param path
+	 * @return imgURL
 	 */
 	private static ImageIcon createImageIcon(String path) {
         java.net.URL imgURL = NewGameMenu.class.getResource(path);

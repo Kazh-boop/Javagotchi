@@ -9,7 +9,6 @@ import app.util.*;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.io.IOException;
 
 public class GameView {
 
@@ -35,7 +34,6 @@ public class GameView {
     private static final int BOTTOM_PANEL_BORDER = 20;
 
     private static final int RIGHT_BORDER_PBAR = 20;
-
 
     private GameController gC;
     private JFrame mainFrame;
@@ -66,7 +64,11 @@ public class GameView {
     private CustomMenuButton sleepButton;
     private CustomMenuButton washButton;
     
-    
+    /**
+     * Constructor
+     * @param nFrame
+     * @param g
+     */
     public GameView(JFrame nFrame, GameController g){
         this.mainFrame = nFrame;
         this.gC = g;
@@ -75,8 +77,7 @@ public class GameView {
 
     /**
      * layout of the different items in the game
-      */
-
+     */
     public void display(){
         mainFrame.setLayout(new BorderLayout());
 
@@ -202,9 +203,7 @@ public class GameView {
         leftPanel.add(Box.createVerticalStrut(LEFT_PANEL_SPACING));
         
 
-        /**
-         * addition of the different items on the bottom of the screen
-         */
+        // addition of the different items on the bottom of the screen
         bottomPanel.add(sleepButton);
         bottomPanel.add(energy);
         bottomPanel.add(pbEnergy);

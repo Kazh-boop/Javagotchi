@@ -11,9 +11,8 @@ public class CustomMenuLabel extends JLabel {
 	
 	private static final String FONT_LIKE_SNOW = "../assets/fonts/likesnow.ttf";
 
-
 	/**
-	 * Make a default skin for the JLabel menu
+	 * 
 	 * @param name String
 	 */
 	public CustomMenuLabel(String name) {
@@ -22,18 +21,34 @@ public class CustomMenuLabel extends JLabel {
 		setCustomFont(32f);
 	}
 	
+	/**
+	 * Constructor
+	 * @param name
+	 * @param position
+	 */
 	CustomMenuLabel(String name, int position) {
 		super(name);
 		
 		setCustomFont(24f);
 	}
 	
+	/**
+	 * Constructor
+	 * @param name
+	 * @param size
+	 */
 	public CustomMenuLabel(String name, float size) {
 		super(name);
 		
 		setCustomFont(size);
 	}
 	
+	/**
+	 * Constructor
+	 * @param name
+	 * @param size
+	 * @param position
+	 */
 	public CustomMenuLabel(String name, float size, int position) {
 		super(name, position);
 	

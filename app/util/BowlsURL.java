@@ -1,5 +1,9 @@
 package app.util;
 
+/**
+ * enumeration to know the different states of the familiar bowl
+ */
+
 public enum BowlsURL {
     Chat0("../assets/images/gamelle/chat_0.png"),
     Chat1("../assets/images/gamelle/chat_1.png"),

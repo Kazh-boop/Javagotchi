@@ -15,7 +15,13 @@ public class TimerHungriness extends TimerTask {
     private GameView gameView;
     private MenuController menuController;
 
-    // By default lose 1% every 10 minutes
+    /**
+     * Constructor
+     * By default lose 1% every 10 minutes
+     * @param familiar
+     * @param gameView
+     * @param menuController
+     */
     public TimerHungriness (Familiar familiar,GameView gameView, MenuController menuController){
         this.familiar = familiar;
         this.gameView = gameView;
@@ -23,6 +29,13 @@ public class TimerHungriness extends TimerTask {
         minutesPerHungriness = 10 * 60 * 1000;
     }
     
+    /**
+     * Constructor with variable period
+     * @param familiar
+     * @param gameView
+     * @param menuController
+     * @param period
+     */
     public TimerHungriness (Familiar familiar, GameView gameView, MenuController menuController, int period){
         this.familiar = familiar;
         this.gameView = gameView;
@@ -30,7 +43,9 @@ public class TimerHungriness extends TimerTask {
         minutesPerHungriness = period;
     }
     
-    // Start the timer and change the value of setHungriness as the familiar rests
+    /**
+     * Start the timer and change the value of setHungriness as the familiar rests
+     */
     @Override
     public void run() {
         Timer timer = new Timer();

@@ -2,7 +2,11 @@ package app.model;
 
 public class Dog extends Familiar {
 
-    //constructor
+	/**
+     * Constructor
+     * @param name
+     * @param url
+     */
 	public Dog(String name, String url) {
 		super();
         this.name = name;
@@ -11,6 +15,9 @@ public class Dog extends Familiar {
         this.familiarType = "Chien";
     }
 	
+	/**
+	 * @param dog
+	 */
     public Dog(Dog dog) {
 		super();
         this.name = dog.name;

@@ -18,22 +18,43 @@ public class CustomMenuButton extends JButton {
 	private static final Color COLOR_PEARL = new Color(245, 235, 218);
 	private transient RoundedBorder border;	
 	
+	/**
+	 * Side constructor
+	 */
     public CustomMenuButton() {
         this(null, null, 48f);
     }
 
+    /**
+     * Side constructor
+     * @param icon
+     */
     public CustomMenuButton(Icon icon) {
         this(null, icon, 48f);
     }
     
+    /**
+     * Side constructor
+     * @param name
+     */
 	public CustomMenuButton(String name) {
 		this(name,null,48f);
 	}
 	
+	/**
+	 * Side constructor
+	 * @param text
+	 * @param icon
+	 */
     public CustomMenuButton(String text, Icon icon) {
         this(text, icon, 48f);
     }
 	
+    /**
+     * Side constructor
+     * @param name
+     * @param size
+     */
     public CustomMenuButton(String name, Float size) {
 		this(name,null,size);
 	}
@@ -79,12 +100,18 @@ public class CustomMenuButton extends JButton {
         setBackground(COLOR_PEARL);
 	}
 	
-	// return the pearl color
+	/**
+	 * return the pearl color
+	 * @return COLOR_PEARL
+	 */
 	public static Color getPearl() {
 		return COLOR_PEARL;
 	}
 
-	// return the green color
+	/**
+	 * return the green color
+	 * @return COLOR_CACTUS_GREEN
+	 */
 	public static Color getColorGreen() {
 		return COLOR_CACTUS_GREEN;
 	}

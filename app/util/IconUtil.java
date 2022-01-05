@@ -10,8 +10,9 @@ public class IconUtil {
 
     /**
 	 * Check that the entered URL leads to a file
-	 * @param path String
-	 * @return imgURL ImageIcon
+	 * and create an ImageIcon based on this file
+	 * @param path
+	 * @return imgURL
 	 */
     public static ImageIcon createImageIcon(String path) {
         URL imgURL = IconUtil.class.getResource(path);
@@ -23,6 +24,13 @@ public class IconUtil {
         }
     }
 
+    /**
+     * Create an ImageIcon with a defined size
+     * @param path
+     * @param width
+     * @param height
+     * @return newimg
+     */
     public static ImageIcon createSizedImageIcon(String path, int width, int height) {
         Image image = createImageIcon(path).getImage(); 
         Image newimg = image.getScaledInstance(width, height, Image.SCALE_SMOOTH); 

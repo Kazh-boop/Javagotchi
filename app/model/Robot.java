@@ -2,7 +2,11 @@ package app.model;
 
 public class Robot extends Familiar {
     
-    // constructor
+    /**
+     * Constructor
+     * @param name
+     * @param url
+     */
     public Robot(String name, String url) {
         super();
         this.name = name;
@@ -11,12 +15,15 @@ public class Robot extends Familiar {
         this.familiarType = "Robot";
     }
 
-    public Robot(Robot r) {
+    /**
+     * @param robot
+     */
+    public Robot(Robot robot) {
         super();
-        this.name = r.name;
-        this.mood = r.mood;
-        this.moodValue = r.moodValue;
-        this.urlIcon = r.urlIcon;
+        this.name = robot.name;
+        this.mood = robot.mood;
+        this.moodValue = robot.moodValue;
+        this.urlIcon = robot.urlIcon;
         this.food = "Electricite";
         this.familiarType = "Robot";
     }

@@ -117,42 +117,44 @@ public class NewGameMenu {
     }
     
     /**
-     * @return textField for the name of the familiar
+     * @return name
      */
     public JTextField getName(){
         return this.name;
     }
     
     /**
-     * @return Button corresponding to the action of returning to the main menu
+     * Return the button corresponding to the action of returning to the main menu
+     * @return backMenu
      */
     public JButton getBackMenu(){
     	return this.backMenu;
     }
 
     /**
-     * @return Button corresponding to the familiar change action
+     * Return the button corresponding to the familiar change action
+     * @return rightFamiliar
      */
     public JButton getRightFamiliarType(){
     	return this.rightFamiliar;
     }
     
     /**
-     * @return leftFamiliar JButton
+     * @return leftFamiliar
      */
     public JButton getLeftFamiliarType(){
     	return this.leftFamiliar;
     }
     
     /**
-     * @return speciesIcon JLabel
+     * @return speciesIcon
      */
     public JLabel getSpeciesIcon(){
     	return this.speciesIcon;
     }
     
     /**
-     * @return launchGame JButton
+     * @return launchGame
      */
     public JButton getLaunchGame(){
     	return this.launchGame;

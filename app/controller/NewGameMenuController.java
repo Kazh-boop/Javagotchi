@@ -52,7 +52,7 @@ public class NewGameMenuController implements ActionListener {
 	
 	/**
 	 * Displays the new main menu on the MainFrame
-	  */
+	 */
 	public void newGameMenuDisplay() {
 		flush();
 		setCursorImage(0);
@@ -60,10 +60,11 @@ public class NewGameMenuController implements ActionListener {
 	}
 
 
-	/**
+	/** 
 	 * Reception of actions when clicking on buttons,
+	 * Comparison of the source of the action and the different buttons,
 	 * Execution of the corresponding action
-	 * @param e
+	 * @param e 
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -110,11 +111,11 @@ public class NewGameMenuController implements ActionListener {
 	 * Change the choice of the familiar with the one on his left
 	 */
 	private void turnLeftFamiliar() {
-	if(cursorImage > CURSOR_MIN) {
-		cursorImage--;
-	}else{
-		cursorImage = CURSOR_MAX;
-	}
+		if(cursorImage > CURSOR_MIN) {
+			cursorImage--;
+		}else{
+			cursorImage = CURSOR_MAX;
+		}
 		this.newGameMenu.getSpeciesIcon().setIcon(createImageIcon(familiarTypeURL[cursorImage]));
 	}
 	
@@ -232,7 +233,7 @@ public class NewGameMenuController implements ActionListener {
 	}
 	
 	/**
-	 * makes a standard dressing of a JOptionPane
+	 * Makes a standard dressing of a JOptionPane
 	 * @param pane JOptionPane
 	 * @return pane JOptionPane
 	 */
@@ -245,9 +246,8 @@ public class NewGameMenuController implements ActionListener {
 	/**
 	 * Check that the entered URL leads to a file
 	 * Create and return an ImageIcon from the source file
-	 * 
-	 * @param path String
-	 * @return imgURL static ImageIcon
+	 * @param path
+	 * @return imgURL
 	 */
 	private static ImageIcon createImageIcon(String path) {
         java.net.URL imgURL = NewGameMenu.class.getResource(path);
@@ -260,14 +260,14 @@ public class NewGameMenuController implements ActionListener {
     }
 	
 	/**
-	 * @return MainFrame mainFrame
+	 * @return MainFrame
 	 */
 	public MainFrame getMainFrame() {
 		return this.mainFrame;
 	}
 	
 	/**
-	 * @param int i
+	 * @param i
 	 */
 	private void setCursorImage(int i) {
 		cursorImage=0;

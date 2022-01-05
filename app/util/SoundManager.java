@@ -9,6 +9,10 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+/**
+ * enumeration to know the different sounds that can be played during the game
+ */
+
 public enum SoundManager {
     SOUNDS_MENU_CLICK("app/assets/sounds/click.wav"),
 	SOUNDS_DOOR("app/assets/sounds/door.wav"),
@@ -28,7 +32,6 @@ public enum SoundManager {
     }
     
     /**
-     * getter
      * @return url
      */
     public String getUrl() {

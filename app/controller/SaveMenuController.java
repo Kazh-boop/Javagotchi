@@ -24,8 +24,8 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
 	
 	/**
 	 * Constructor
-	 * @param menuController MenuController
-	 * @param nFrame MainFrame
+	 * @param menuController
+	 * @param nFrame
 	 */
 	public SaveMenuController(MenuController menuController, MainFrame nFrame) {
 		this.mainFrame = nFrame;
@@ -35,7 +35,7 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
 	}
 	
 	/**
-	 * displays the backup menu
+	 * Displays the backup menu
 	 * @throws ClassNotFoundException
 	 * @throws IOException
 	 */
@@ -45,17 +45,17 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
 	}
 
 	/**
-	 * return all Name of familiar saved
+	 * @return save's name
 	 */
-	
 	public String[] getSaveName() {
 		return saveManager.getNameSave();
 	}
 	
 	/**
-	 * return all Familiar saved
+	 * @return All familiar of the list
+	 * @throws ClassNotFoundException
+	 * @throws IOException
 	 */
-
 	public List<Familiar> getAllFamiliar() throws ClassNotFoundException, IOException {
 		return saveManager.getAllFamiliar();
 	}
@@ -75,6 +75,9 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
     	}
 	}
 	
+	/**
+	 * @param e
+	 */
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
         if (!(e.getValueIsAdjusting())) {
@@ -84,8 +87,8 @@ public class SaveMenuController implements ActionListener, ListSelectionListener
 	}
 	
 	/**
-	 * action when the button BackMenu is clicked
-	  */
+	 * Action when the button BackMenu is clicked
+	 */
 	private void onClickBackMenu() {
 		SoundManager.playsound(SoundManager.SOUNDS_MENU_CLICK);
 		menuController.mainMenuDisplay();

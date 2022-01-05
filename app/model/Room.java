@@ -8,36 +8,60 @@ public class Room {
     private static final int AMOUNT_OF_WEATHER = 5;
     private Rooms currentRooms;
 
-    // constructor
+    /**
+     * Constructor
+     * @param selectedRoom
+     */
     public Room(Rooms selectedRoom) {
         this.currentRooms = selectedRoom;
         this.currentWeather = Weather.SUNNY;
     }
 
+    /**
+     * Return the current weather name
+     * @return weather
+     */
     public String getWeatherName() {
-        return currentWeather.getName(); // return the weather 
+        return currentWeather.getName(); 
     }
 
+    /**
+     * return the image representing the room where the familiar is located
+     * @return url
+     */
     public String getImageRoom() {
-        return currentWeather.getUrl(); // return the image representing the room where the familiar is located
+        return currentWeather.getUrl();
     }
 
+    /**
+     * return the coefficient representing the weather
+     * @return coef
+     */
     public float getWeatherCoef() {
-        return currentWeather.getCoef(); // return the coefficient representing the weather
+        return currentWeather.getCoef();
     }
     
+    /**
+     * return the room where the familiar is located
+     * @return currentRooms
+     */
     public Rooms getRooms()
     {
-    	return currentRooms; // return the room where the familiar is located
+    	return currentRooms;
     }
     
+    /**
+     * allows you to change room
+     * @param rooms
+     */
     public void setRooms(Rooms rooms)
     {
-    	this.currentRooms = rooms; // allows you to change room
+    	this.currentRooms = rooms;
     }
 
     /**
      * method to change the weather randomly
+     * @return boolean
      */
     public boolean changeWeather() {
         int newWeather = new Random().nextInt(100);
@@ -51,13 +75,15 @@ public class Room {
 
     /**
      * return the Name of the room
-      */
+     * @return Room's name
+     */
     public String getName() {
         return currentRooms.getName();
     }
     
     /**
-     * method to change room by moving to the left 
+     * method to change room by moving to the left
+     * @return boolean
      */
     public boolean moveLeft()
     {
@@ -71,7 +97,8 @@ public class Room {
     }
     
     /**
-     *  method to change room by moving to the right
+     * method to change room by moving to the right
+     * @return boolean
      */
     public boolean moveRight()
     {
